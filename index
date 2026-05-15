@@ -1,0 +1,1447 @@
+import { useState, useRef, useEffect } from "react";
+
+// ─── INGREDIENT DB ──────────────────────────────────────────────────────────
+const DB = {
+  "water":{tr:"Su",cat:"Çözücü",rating:"safe",score:100,desc:"Formülün temel taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tüm cilt tipleri.",avoid:[]},
+  "aqua":{tr:"Su",cat:"Çözücü",rating:"safe",score:100,desc:"Formülün temel taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tüm cilt tipleri.",avoid:[]},
+  "glycerin":{tr:"Gliserin",cat:"Nemlendirici",rating:"safe",score:98,desc:"Havadan nem çeken güçlü humektan. Cilt bariyerini destekler.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez, sabah ve akşam.",avoid:[]},
+  "glycerol":{tr:"Gliserol",cat:"Nemlendirici",rating:"safe",score:98,desc:"Gliserin ile aynı bileşen.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "sodium hyaluronate":{tr:"Sodyum Hyalüronat",cat:"Nemlendirici",rating:"safe",score:99,desc:"Derinin derin katmanlarına ulaşan küçük moleküllü hyalüronik asit tuzu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah ve akşam, üzerine nemlendirici.",avoid:[]},
+  "hyaluronic acid":{tr:"Hyalüronik Asit",cat:"Nemlendirici",rating:"safe",score:99,desc:"Ağırlığının 1000 katı su tutabilen süper nemlendirici.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Nemli cilde uygula, üzerine kilitle.",avoid:[]},
+  "propylene glycol":{tr:"Propilen Glikol",cat:"Nemlendirici",rating:"caution",score:60,desc:"Nemlendirici ve taşıyıcı.",concern:"Hassas ciltlerde tahriş",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"<%5 konsantrasyon.",avoid:["sensitive"]},
+  "butylene glycol":{tr:"Bütilen Glikol",cat:"Nemlendirici",rating:"safe",score:85,desc:"Hafif nemlendirici, emilimi artırır.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "panthenol":{tr:"Panthenol (Pro-B5)",cat:"Nemlendirici",rating:"safe",score:97,desc:"Yatıştırıcı ve nemlendirici. Bariyer güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tahriş sonrası günde 2-3 kez.",avoid:[]},
+  "urea":{tr:"Üre",cat:"Nemlendirici",rating:"safe",score:90,desc:"Keratolotik ve nemlendirici.",concern:null,comedogenic:0,skinTypes:["dry","normal"],usage:"Akşam %5-10.",avoid:["sensitive"]},
+  "niacinamide":{tr:"Niasinamid (B3)",cat:"Aktif",rating:"safe",score:99,desc:"Gözenek küçülter, leke açar, yağlanmayı dengeler, bariyeri güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah/akşam %2-10.",avoid:[]},
+  "retinol":{tr:"Retinol (A Vitamini)",cat:"Aktif",rating:"caution",score:88,desc:"Anti-aging altın standardı. Hücre yenilenmesi.",concern:"Hamilelikte yasak. SPF şart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sadece akşam, haftada 2-3x başla.",avoid:["sensitive","dry"],conflictsWith:["ascorbic acid","glycolic acid","salicylic acid","benzoyl peroxide"],conflictNote:"Retinoid + asit aynı gece kullanılmamalı — yüksek irritasyon riski. Benzoil peroksit retinolü inaktive eder."},
+  "retinal":{tr:"Retinal",cat:"Aktif",rating:"caution",score:90,desc:"Retinoldan 11x güçlü.",concern:"Hamilelikte yasak. SPF şart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sadece akşam.",avoid:["sensitive","dry"],conflictsWith:["ascorbic acid","glycolic acid","salicylic acid","lactic acid","mandelic acid","benzoyl peroxide"],conflictNote:"Retinoid + asit aynı gece kesinlikle kullanılmamalı. Benzoil peroksit retinolü inaktive eder."},
+  "retinyl palmitate":{tr:"Retinil Palmitat",cat:"Aktif",rating:"safe",score:75,desc:"En hafif retinol formu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF ile.",avoid:[]},
+  "ascorbic acid":{tr:"Askorbik Asit (C Vitamini)",cat:"Aktif",rating:"safe",score:97,bioavailability:"cok yuksek",vitaminCTier:1,desc:"En guclu ve dogrudan aktif C vitamini formu. Antioksidan, leke acici, kolajen sentezi uyarici.",concern:"pH 3.5 altinda calisir. Okside olabilir — hava gecirmez ambalaj sart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sabah %10-20, uzerine SPF.",avoid:["sensitive"],conflictsWith:["retinol","retinal","benzoyl peroxide"],conflictNote:"Retinoid ile ayni seansta kullanmaktan kacin. Yuksek konsantrasyonda (%10+) niasinamid ile sararma riski — dusuk konsantrasyonda sorun yok. Benzoil peroksit C vitaminini oksitler."},
+  "ascorbyl glucoside":{tr:"Askorbil Glukozit (C Vitamini Turevi)",cat:"Aktif",rating:"caution",score:72,bioavailability:"orta",vitaminCTier:3,desc:"Stabil C vitamini turevidir. Ciltte enzimle askorbik asite donusur; donusum hizi degisken ama etki gosterebildigi in vitro kanitlanmistir.",concern:"Biyoyararlanimi askorbik aside gore dusuk. Hassas ciltler icin iyi alternatif.",comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "ascorbyl tetraisopalmitate":{tr:"Askorbil Tetraizopalmirat",cat:"Aktif",rating:"safe",score:88,bioavailability:"iyi",vitaminCTier:2,desc:"Yagda cozunur stabil C vitamini turevidir. 2 gun icinde %84u askorbik asite donusur, derin penetrasyon gosterir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "sodium ascorbyl phosphate":{tr:"Sodyum Askorbil Fosfat",cat:"Aktif",rating:"caution",score:70,bioavailability:"orta-dusuk",vitaminCTier:3,desc:"Stabil C vitamini turevidir. Epidermise gecisi zayif; akne uzerinde anti-inflamatuar etki gosterir.",concern:"Epidermise gecisi sinirli. Renk esitleme icin askorbik asite gore daha az etkili. Akne bakim icin iyi secim.",comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "3-o-ethyl ascorbic acid":{tr:"3-O-Etil Askorbik Asit",cat:"Aktif",rating:"safe",score:85,bioavailability:"iyi",vitaminCTier:2,desc:"Stabil ve iyi biyoyararlanımlı C vitamini.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "alpha arbutin":{tr:"Alfa Arbütin",cat:"Aktif",rating:"safe",score:93,desc:"Melanin üretimini baskılayan leke açıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah ve akşam %1-2.",avoid:[]},
+  "kojic acid":{tr:"Kojik Asit",cat:"Aktif",rating:"caution",score:75,desc:"Mantar kaynaklı leke açıcı.",concern:"Uzun süreli yüksek doz önerilmez.",comedogenic:0,skinTypes:["normal","combination"],usage:"Kısa kürler, SPF ile.",avoid:["sensitive","dry"]},
+  "azelaic acid":{tr:"Azelaik Asit",cat:"Aktif",rating:"safe",score:95,desc:"Akne, rozase, leke — çok yönlü. Gebelikte kullanılabilir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam %10-20.",avoid:[]},
+  "salicylic acid":{tr:"Salisilik Asit (BHA)",cat:"Aktif",rating:"caution",score:88,desc:"Gözenek içine giren yağda çözünür asit.",concern:"Hamilelikte dikkat. Kuru ciltlerde kurutucu.",comedogenic:0,skinTypes:["oily","combination"],usage:"Akşam %0.5-2, 2-3 günde bir başla.",avoid:["dry","sensitive"],conflictsWith:["retinol","retinal","glycolic acid"],conflictNote:"Birden fazla asit + retinoid kombinasyonu aşırı irritasyon riski."},
+  "glycolic acid":{tr:"Glikolik Asit (AHA)",cat:"Aktif",rating:"caution",score:85,desc:"Güçlü exfoliant.",concern:"SPF şart. Hassas ciltlerde dikkat.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Akşam haftada 2-3x, SPF.",avoid:["sensitive","dry"],conflictsWith:["retinol","retinal","salicylic acid","benzoyl peroxide"],conflictNote:"Çoklu asit/retinoid kombinasyonu iritasyon riski."},
+  "lactic acid":{tr:"Laktik Asit (AHA)",cat:"Aktif",rating:"safe",score:90,desc:"Nazik AHA, nemlendirir de.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF.",avoid:[]},
+  "mandelic acid":{tr:"Mandelik Asit",cat:"Aktif",rating:"safe",score:92,desc:"En nazik AHA, koyu ciltler için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF.",avoid:[]},
+  "bakuchiol":{tr:"Bakuchiol",cat:"Aktif",rating:"safe",score:94,desc:"Bitkisel retinol alternatifi. Hamilelikte kullanılabilir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "adenosine":{tr:"Adenozin",cat:"Aktif",rating:"safe",score:91,desc:"Anti-aging. Kırışıklık azaltır, elastikiyet artırır.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "benzoyl peroxide":{tr:"Benzoil Peroksit",cat:"Aktif",rating:"caution",score:78,desc:"Akne bakterisini öldüren güçlü aktif.",concern:"Çok kurutucu. Havlu/yastık beyazlatabilir.",comedogenic:0,skinTypes:["oily","combination"],usage:"Akşam nokta uygulaması ile başla.",avoid:["dry","sensitive"],conflictsWith:["retinol","retinal","ascorbic acid","glycolic acid","salicylic acid"],conflictNote:"Retinol ve asitlerle birlikte aşırı irritasyon ve etkinlik kaybı."},
+  "tranexamic acid":{tr:"Traneksamik Asit",cat:"Aktif",rating:"safe",score:92,desc:"Leke açıcı, rozase ve hiperpigmentasyon için.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "dimethicone":{tr:"Dimetikon",cat:"Emollient",rating:"safe",score:80,desc:"Silikon bazlı yumuşatıcı. İpeksi his, nem kilitleme.",concern:null,comedogenic:1,skinTypes:["dry","normal","sensitive"],usage:"Akşam bakım katmanı.",avoid:["oily"]},
+  "cetyl alcohol":{tr:"Setil Alkol",cat:"Emollient",rating:"safe",score:88,desc:"Yagli alkol, nemlendirir, kivam verir. Yagli ciltlerde dikkat — komedonik potansiyeli orta duzeydir.",concern:"Yagliakne egilimli ciltlerde dikkatli kullanim onerilir.",comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Kuru ciltler için.",avoid:["oily","combination"]},
+  "squalane":{tr:"Skualan",cat:"Emollient",rating:"safe",score:98,desc:"Ultra hafif bitkisel yağ, gözenek tıkamaz.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "jojoba oil":{tr:"Jojoba Yağı",cat:"Emollient",rating:"safe",score:96,desc:"Sebuma benzer vaks ester, dengeleyici.",concern:null,comedogenic:2,skinTypes:["normal","dry","combination"],usage:"Akşam birkaç damla.",avoid:["oily"]},
+  "rosehip oil":{tr:"Kuşburnu Yağı",cat:"Emollient",rating:"caution",score:80,desc:"A vitamini ve yağ asitleri, anti-aging.",concern:"Akne/yağlı ciltlerde dikkat.",comedogenic:1,skinTypes:["dry","normal","combination"],usage:"Akşam.",avoid:["oily"]},
+  "shea butter":{tr:"Shea Yağı",cat:"Emollient",rating:"safe",score:85,desc:"Besleyici ve onarıcı.",concern:null,comedogenic:0,skinTypes:["dry","sensitive"],usage:"Akşam.",avoid:["oily","combination"]},
+  "ceramide np":{tr:"Seramid NP",cat:"Bariyer",rating:"safe",score:99,desc:"Cildin doğal bariyer yapı taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide ap":{tr:"Seramid AP",cat:"Bariyer",rating:"safe",score:99,desc:"Bariyer desteği.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide eop":{tr:"Seramid EOP",cat:"Bariyer",rating:"safe",score:99,desc:"Bariyer takviyesi.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide":{tr:"Seramid",cat:"Bariyer",rating:"safe",score:99,desc:"Cildin doğal bariyer yapı taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "cholesterol":{tr:"Kolesterol",cat:"Bariyer",rating:"safe",score:90,desc:"Seramidlerle birlikte bariyer fonksiyonu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Seramid ürünlerle.",avoid:[]},
+  "phenoxyethanol":{tr:"Fenoksietanol",cat:"Koruyucu",rating:"caution",score:70,desc:"Yaygın koruyucu, %1 altında güvenli.",concern:"Bebek ürünleri ve hassas ciltler dikkat.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Düşük konsantrasyonda.",avoid:["sensitive"]},
+  "ethylhexylglycerin":{tr:"Etilheksilgliserin",cat:"Koruyucu",rating:"safe",score:82,desc:"Hafif koruyucu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "potassium sorbate":{tr:"Potasyum Sorbat",cat:"Koruyucu",rating:"safe",score:85,desc:"Hafif ve güvenli koruyucu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "benzyl alcohol":{tr:"Benzil Alkol",cat:"Koruyucu",rating:"caution",score:65,desc:"Doğal koruyucu ve çözücü.",concern:"Bazı kişilerde alerjen.",comedogenic:0,skinTypes:["normal","oily"],usage:"Dikkat.",avoid:["sensitive"]},
+  "tocopherol":{tr:"Tokoferol (E Vit.)",cat:"Antioksidan",rating:"safe",score:93,desc:"Güçlü antioksidan.",concern:null,comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Sabah veya akşam.",avoid:["oily"]},
+  "tocopheryl acetate":{tr:"Tokoferil Asetat (E Vit.)",cat:"Antioksidan",rating:"safe",score:90,desc:"E vitamininin stabil formu.",concern:null,comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Sabah veya akşam.",avoid:["oily"]},
+  "ferulic acid":{tr:"Ferülik Asit",cat:"Antioksidan",rating:"safe",score:93,desc:"C ve E vitaminini güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah C vitamini ile.",avoid:[]},
+  "resveratrol":{tr:"Resveratrol",cat:"Antioksidan",rating:"safe",score:93,desc:"Güçlü antioksidan, anti-aging.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "citric acid":{tr:"Sitrik Asit",cat:"pH Düzenleyici",rating:"safe",score:85,desc:"pH dengesi, hafif antioksidan.",concern:null,comedogenic:0,skinTypes:["all"],usage:"pH dengeleyici.",avoid:[]},
+  "sodium hydroxide":{tr:"Sodyum Hidroksit",cat:"pH Düzenleyici",rating:"safe",score:80,desc:"pH dengesini sağlar.",concern:null,comedogenic:0,skinTypes:["all"],usage:"pH dengeleyici.",avoid:[]},
+  "fragrance":{tr:"Parfüm / Koku",cat:"Parfüm",rating:"risky",score:30,desc:"İçeriği gizli tutulabilen koku karışımı.",concern:"Alerji, tahriş, endokrin bozucu riski.",comedogenic:0,skinTypes:[],usage:"Hassas ciltler kaçınsın.",avoid:["sensitive","dry","oily","combination"]},
+  "parfum":{tr:"Parfüm",cat:"Parfüm",rating:"risky",score:30,desc:"Koku bileşenleri karışımı.",concern:"Hassas ciltlerde kaçın.",comedogenic:0,skinTypes:[],usage:"Kaçının.",avoid:["sensitive"]},
+  "linalool":{tr:"Linalool",cat:"Parfüm Bileşeni",rating:"caution",score:50,desc:"Lavanta kokusu — potansiyel alerjen.",concern:"AB'de zorunlu bildirilen 26 alerjen arasında.",comedogenic:0,skinTypes:["normal","oily"],usage:"Hassas ciltler dikkat.",avoid:["sensitive"]},
+  "limonene":{tr:"Limonen",cat:"Parfüm Bileşeni",rating:"caution",score:50,desc:"Narenciye kokusu — potansiyel alerjen.",concern:"AB'de zorunlu bildirilen alerjen.",comedogenic:0,skinTypes:["normal","oily"],usage:"Hassas ciltler dikkat.",avoid:["sensitive"]},
+  "zinc oxide":{tr:"Çinko Oksit",cat:"Güneş Filtresi",rating:"safe",score:98,desc:"Fiziksel UVA+UVB filtresi. Hassas ve bebek ciltler için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah son katman.",avoid:[]},
+  "titanium dioxide":{tr:"Titanyum Dioksit",cat:"Güneş Filtresi",rating:"safe",score:95,desc:"Fiziksel güneş filtresi.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah son katman.",avoid:[]},
+  "avobenzone":{tr:"Avobenson",cat:"Güneş Filtresi",rating:"caution",score:72,desc:"Kimyasal UVA filtresi.",concern:"Stabilize edilmeli, bazı ciltlerde irritasyon.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Sabah.",avoid:["sensitive"]},
+  "oxybenzone":{tr:"Oksibenson",cat:"Güneş Filtresi",rating:"risky",score:25,desc:"Kimyasal filtre.",concern:"Endokrin bozucu şüphesi, mercan zararı.",comedogenic:0,skinTypes:[],usage:"Fiziksel alternatif tercih et.",avoid:["sensitive","dry","oily","combination","normal"]},
+  "alcohol denat":{tr:"Denatüre Alkol",cat:"Çözücü",rating:"caution",score:50,desc:"Ürünü inceltir, emilimi hızlandırır.",concern:"Bariyer bozabilir.",comedogenic:0,skinTypes:["oily"],usage:"Kısa süreli, yağlı ciltler.",avoid:["dry","sensitive","normal"]},
+  "alcohol":{tr:"Alkol",cat:"Çözücü",rating:"caution",score:50,desc:"Çözücü.",concern:"Hassas/kuru ciltlerde dikkat.",comedogenic:0,skinTypes:["oily"],usage:"Dikkat.",avoid:["dry","sensitive"]},
+  "carbomer":{tr:"Karbomer",cat:"Kıvam Artırıcı",rating:"safe",score:85,desc:"Jel kıvamı sağlayan polimer.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "xanthan gum":{tr:"Ksantan Sakızı",cat:"Kıvam Artırıcı",rating:"safe",score:90,desc:"Doğal kıvam verici.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "allantoin":{tr:"Allantoin",cat:"Yatıştırıcı",rating:"safe",score:96,desc:"Tahriş giderici, hücre yenilemeyi destekler.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "centella asiatica extract":{tr:"Centella Asiatica (Cica)",cat:"Yatıştırıcı",rating:"safe",score:97,desc:"Sakinleştirici ve onarıcı. Akne izi için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "aloe barbadensis leaf juice":{tr:"Aloe Vera",cat:"Yatıştırıcı",rating:"safe",score:95,desc:"Soğutucu, yatıştırıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Gerektiğinde günde 2-3 kez.",avoid:[]},
+  "green tea extract":{tr:"Yeşil Çay Özü",cat:"Antioksidan",rating:"safe",score:94,desc:"EGCG içerir. Güçlü antioksidan.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah.",avoid:[]},
+  "collagen":{tr:"Kolajen",cat:"Aktif",rating:"safe",score:70,desc:"Ciltte yüzeyel nemlendirici etki — deriye nüfuz edemez.",concern:"Topikal kolajen vaadiyle çelişir.",comedogenic:0,skinTypes:["all"],usage:"Nemlendirici etki beklenir.",avoid:[]},
+  "kaolin":{tr:"Kaolin (Kil)",cat:"Emici",rating:"safe",score:87,desc:"Doğal kil. Yağ emer.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Haftada 1-2 kez maske.",avoid:["dry","sensitive"]},
+  "bentonite":{tr:"Bentonit Kili",cat:"Emici",rating:"safe",score:84,desc:"Yağ emici kil.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Haftada 1-2 kez.",avoid:["dry","sensitive"]},
+  "zinc pca":{tr:"Çinko PCA",cat:"Aktif",rating:"safe",score:88,desc:"Yağlanmayı dengeler, akne karşıtı.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Sabah veya akşam.",avoid:[]},
+  "snail secretion filtrate":{tr:"Salyangoz Müsini",cat:"Yatıştırıcı",rating:"safe",score:92,desc:"Onarıcı, nemlendirici, yatıştırıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "propolis extract":{tr:"Propolis Özü",cat:"Antioksidan",rating:"safe",score:88,desc:"Antimikrobiyal ve antioksidan.",concern:"Arı ürünlerine alerjisi olanlar dikkat.",comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "caffeine":{tr:"Kafein",cat:"Aktif",rating:"safe",score:85,desc:"Göz altı şişliği ve koyu halka için.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah göz çevresi.",avoid:[]},
+  "petrolatum":{tr:"Petrolatum (Vazelin)",cat:"Emollient",rating:"safe",score:88,desc:"Güçlü onarıcı ve nem kilitleyici.",concern:null,comedogenic:1,skinTypes:["dry","sensitive"],usage:"Akşam son katman.",avoid:["oily"]},
+};
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function lookupIngredient(raw, index, total) {
+  const key = raw.trim().toLowerCase().replace(/\*/g,"");
+  let found = DB[key];
+  if (!found) { for (const [k,v] of Object.entries(DB)) { if (key.includes(k)||k.includes(key)){found=v;break;} } }
+  const base = found||{tr:raw.trim(),cat:"Bilinmeyen",rating:"unknown",score:50,desc:"Veritabanında bilgi yok.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Bilgi yok.",avoid:[]};
+  const pct=index/total;
+  const position=pct<0.15?"Yüksek":pct<0.4?"Orta-Yüksek":pct<0.65?"Orta":pct<0.85?"Düşük":"Eser";
+  const positionNote=pct<0.15?"Üst sıralarda — yüksek konsantrasyon":pct<0.4?"İlk yarıda — orta-yüksek":pct<0.65?"Ortada — orta":pct<0.85?"İkinci yarıda — düşük":"Sonda — genellikle <%1";
+  return {name:raw.trim(),position,positionNote,listIndex:index+1,...base};
+}
+function parseIngredients(text){
+  const items=text.split(/[,\n;]+/).map(s=>s.trim()).filter(Boolean);
+  return items.map((item,i)=>lookupIngredient(item,i,items.length));
+}
+
+// ─── CONFLICT DETECTION ───────────────────────────────────────────────────────
+const CONFLICTS=[
+  {a:["retinol","retinal","retinyl palmitate"],b:["ascorbic acid","glycolic acid","salicylic acid","benzoyl peroxide","lactic acid","mandelic acid"],severity:"high",icon:"⚡",title:"Retinoid + Asit / Benzoil Peroksit",tip:"Retinoid ve asitler ayni gece kesinlikle kullanilmamali. Benzoil peroksit retinolu inaktive eder. Farkli gecelere ayir."},
+  {a:["ascorbic acid"],b:["niacinamide"],severity:"medium",icon:"🟡",title:"C Vitamini + Niasinamid (Yuksek Kons.)",tip:"Her ikisi yuksek konsantrasyonda (%10+) ayni rutinde kullanildiginda sararma riski. Dusuk konsantrasyonda sorun yoktur. Sabah C vitamini, aksam niasinamid onerilir."},
+  {a:["benzoyl peroxide"],b:["retinol","retinal","ascorbic acid"],severity:"high",icon:"⚡",title:"Benzoil Peroksit + Retinoid / C Vitamini",tip:"Benzoil peroksit retinolu inaktive eder ve C vitaminini oksitler — bu ikililer kesinlikle ayni rutinde kullanilmamali."},
+  {a:["glycolic acid","salicylic acid","lactic acid","mandelic acid"],b:["glycolic acid","salicylic acid","lactic acid","mandelic acid"],severity:"medium",icon:"🟡",title:"Çoklu Asit",tip:"Aynı rutinde birden fazla güçlü asit aşırı irritasyon riski. Tek bir exfoliant seç."},
+  {a:["alcohol denat","alcohol"],b:["retinol","ascorbic acid","niacinamide"],severity:"medium",icon:"🟡",title:"Alkol + Aktif Bileşenler",tip:"Alkol aktif bileşenlerin etkinliğini azaltabilir ve iritasyon artırabilir."},
+  {a:["fragrance","parfum"],b:["retinol","retinal","glycolic acid","salicylic acid","ascorbic acid"],severity:"medium",icon:"🟡",title:"Parfüm + Güçlü Aktifler",tip:"Parfüm hassas ve aktif içerikli ürünlerde ekstra iritasyon riski."},
+];
+
+function detectConflicts(items){
+  const keys=items.map(i=>i.name.toLowerCase());
+  const found=[];
+  for(const c of CONFLICTS){
+    const hasA=c.a.some(a=>keys.some(k=>k.includes(a)||a.includes(k)));
+    const hasB=c.b.some(b=>keys.some(k=>k.includes(b)||b.includes(k)));
+    if(hasA&&hasB){
+      // find actual ingredient names
+      const aNames=items.filter(i=>c.a.some(a=>i.name.toLowerCase().includes(a)||a.includes(i.name.toLowerCase()))).map(i=>i.tr);
+      const bNames=items.filter(i=>c.b.some(b=>i.name.toLowerCase().includes(b)||b.includes(i.name.toLowerCase()))).map(i=>i.tr);
+      const key=c.title;
+      if(!found.find(f=>f.title===key)) found.push({...c,aNames:[...new Set(aNames)],bNames:[...new Set(bNames)]});
+    }
+  }
+  return found;
+}
+
+// ─── PALETTE ──────────────────────────────────────────────────────────────────
+const C={
+  bg:"#0e0b16",bgCard:"#16112a",bgDeep:"#0a0812",bgHover:"#1c1638",
+  border:"#2d2250",borderGold:"#c9993a40",
+  text:"#ede8ff",textMid:"#9b8ec4",textLight:"#5a4d80",
+  purple:"#7c5cbf",purpleLight:"#a87de8",purpleDim:"#2a1f4a",
+  gold:"#c9993a",goldLight:"#e8c46a",goldDim:"#3a2a0a",goldBorder:"#c9993a50",
+  safe:"#4ec994",safeDim:"#0d2e1e",safeBorder:"#1d5c3a",
+  caution:"#e8a830",cautionDim:"#2e1e04",cautionBorder:"#5a3c08",
+  risky:"#e85060",riskyDim:"#2e0810",riskyBorder:"#5a1020",
+  unknown:"#6a5a8a",unknownDim:"#1a1228",unknownBorder:"#3a2a5a",
+};
+const RM={
+  safe:{label:"Güvenli",color:C.safe,bg:C.safeDim,border:C.safeBorder},
+  caution:{label:"Dikkat",color:C.caution,bg:C.cautionDim,border:C.cautionBorder},
+  risky:{label:"Riskli",color:C.risky,bg:C.riskyDim,border:C.riskyBorder},
+  unknown:{label:"Bilinmiyor",color:C.unknown,bg:C.unknownDim,border:C.unknownBorder},
+};
+
+// ─── QUIZ ─────────────────────────────────────────────────────────────────────
+const QUIZ=[
+  {q:"Yüzünüzü yıkadıktan birkaç saat sonra cildiniz nasıl?",opts:[{l:"Gergin ve çekiyor",t:"dry"},{l:"Parlıyor, yağlı hissediyor",t:"oily"},{l:"T bölgesi yağlı, yanaklar normal",t:"combination"},{l:"Normal, rahat",t:"normal"}]},
+  {q:"Gözenekleriniz hakkında ne söylersiniz?",opts:[{l:"Pek fark etmiyorum",t:"dry"},{l:"Büyük ve belirgin",t:"oily"},{l:"Burun/alın büyük, yanaklar küçük",t:"combination"},{l:"Normal büyüklükte",t:"normal"}]},
+  {q:"Yeni bir ürün denediğinizde ne olur?",opts:[{l:"Sık sık kızarır veya tahriş olur",t:"sensitive"},{l:"Akne veya siyah nokta çıkar",t:"oily"},{l:"Genelde iyi tolere ederim",t:"normal"},{l:"Bazen çekmece yapıyor",t:"dry"}]},
+  {q:"Makyaj gün içinde nasıl görünür?",opts:[{l:"Uçuyor, pul pul",t:"dry"},{l:"Parlıyor, akıyor",t:"oily"},{l:"T bölgesi parlıyor",t:"combination"},{l:"Genelde yerinde kalıyor",t:"normal"}]},
+  {q:"En çok hangi sorunla boğuşuyorsunuz?",opts:[{l:"Kuru, sıkıştıran his",t:"dry"},{l:"Akne, siyah nokta",t:"oily"},{l:"Leke / renk eşitsizliği",t:"combination"},{l:"Kırışıklık / sarkma",t:"normal"},{l:"Hassasiyet, kızarıklık",t:"sensitive"}]},
+];
+const SKIN_REC={
+  dry:{label:"Kuru Cilt",emoji:"🌵",desc:"Bariyeri onarın, nem kilitleyin.",badges:["Seramid","Hyalüronik Asit","Panthenol","Squalane"],avoid:["Alkol","Salisilik Asit","Glikolik Asit","Parfüm"]},
+  oily:{label:"Yağlı Cilt",emoji:"✨",desc:"Yağı dengeleyin, gözenekleri açık tutun.",badges:["Niasinamid","Salisilik Asit","Çinko PCA","BHA"],avoid:["Ağır Yağlar","Shea Yağı","Dimetikon (yoğun)"]},
+  combination:{label:"Karma Cilt",emoji:"⚖️",desc:"T bölgesini dengeleyin, yanakları koruyun.",badges:["Niasinamid","Hyalüronik Asit","BHA (T bölge)","Skualan"],avoid:["Çok ağır kremler","Parfüm"]},
+  sensitive:{label:"Hassas Cilt",emoji:"🌸",desc:"Yatıştırın, irritanlardan kaçının.",badges:["Centella Asiatica","Allantoin","Seramid","Azelaik Asit"],avoid:["Parfüm","Alkol","Retinol (başlangıçta)","Kuvvetli AHA/BHA"]},
+  normal:{label:"Normal Cilt",emoji:"🍃",desc:"Koruyun ve antioksidanlarla destekleyin.",badges:["C Vitamini","Retinol","Peptidler","SPF"],avoid:["Gereksiz yoğun ürünler"]},
+};
+
+
+const GITHUB_PRODUCTS_URL = "https://raw.githubusercontent.com/KULLANICI_ADI/REPO_ADI/main/products.json";
+
+// Compact product data [name, brand, cat, ingredients]
+const PRODUCT_DATA = [
+['CeraVe Moisturizing Cream','CeraVe','Nemlendirici','Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Hyaluronic Acid, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Sodium PCA, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Moisturizing Lotion','CeraVe','Nemlendirici','Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Foaming Facial Cleanser','CeraVe','Temizleyici','Water, Glycerin, Sodium Lauroyl Sarcosinate, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Hydrating Facial Cleanser','CeraVe','Temizleyici','Water, Glycerin, Cetearyl Alcohol, Behentrimonium Methosulfate, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe AM Facial Moisturizing Lotion SPF30','CeraVe','Güneş Koruma','Water, Homosalate, Glycerin, Zinc Oxide, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Xanthan Gum, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe PM Facial Moisturizing Lotion','CeraVe','Nemlendirici','Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Renewing SA Cleanser','CeraVe','Temizleyici','Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Resurfacing Retinol Serum','CeraVe','Serum','Water, Glycerin, Niacinamide, Retinol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Vitamin C Serum','CeraVe','Serum','Water, Ascorbic Acid, Glycerin, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Hyaluronic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Eye Repair Cream','CeraVe','Göz Kremi','Water, Glycerin, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Healing Ointment','CeraVe','Onarıcı','Petrolatum, Mineral Oil, Ceramide NP, Ceramide AP, Ceramide EOP, Hyaluronic Acid, Cholesterol, Phytosphingosine'],
+['CeraVe SA Smoothing Cream','CeraVe','Nemlendirici','Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Cetearyl Alcohol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Blemish Control Cleanser','CeraVe','Temizleyici','Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Sodium Hyaluronate, Zinc PCA, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Skin Renewing Night Cream','CeraVe','Gece Kremi','Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Retinol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Acne Control Gel','CeraVe','Akne Bakım','Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Lactic Acid, Ceramide NP, Allantoin, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['CeraVe Body Lotion','CeraVe','Vücut Bakımı','Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Dimethicone, Sodium Hyaluronate, Xanthan Gum, Tocopherol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['La Roche-Posay Toleriane Hydrating Gentle Cleanser','La Roche-Posay','Temizleyici','Water, Glycerin, Cetyl Alcohol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Toleriane Double Repair Moisturizer','La Roche-Posay','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Ceramide AP, Sodium Hyaluronate, Cholesterol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Toleriane Double Repair UV SPF30','La Roche-Posay','Güneş Koruma','Water, Homosalate, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Toleriane Sensitive Fluide','La Roche-Posay','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Effaclar Purifying Foaming Gel','La Roche-Posay','Temizleyici','Water, Glycerin, Zinc Pidolate, Niacinamide, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Effaclar Duo+','La Roche-Posay','Akne Bakım','Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Lipo-Hydroxy Acid, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Effaclar Serum','La Roche-Posay','Serum','Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Glycolic Acid, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Effaclar Mat','La Roche-Posay','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Zinc PCA, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Anthelios UVMune 400 SPF50+','La Roche-Posay','Güneş Koruma','Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Niacinamide, Titanium Dioxide, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Anthelios Invisible Fluid SPF50+','La Roche-Posay','Güneş Koruma','Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Anthelios XL SPF50+ Melt-in Cream','La Roche-Posay','Güneş Koruma','Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Tocopherol, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Hyalu B5 Serum','La Roche-Posay','Serum','Water, Glycerin, Sodium Hyaluronate, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate Crosspolymer, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Cicaplast Baume B5','La Roche-Posay','Onarıcı','Water, Glycerin, Panthenol, Shea Butter, Allantoin, Ceramide NP, Zinc Sulfate, Copper Sulfate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Cicaplast Baume B5 SPF50','La Roche-Posay','Güneş Koruma','Water, Zinc Oxide, Glycerin, Panthenol, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Redermic Retinol Serum','La Roche-Posay','Serum','Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['La Roche-Posay Mela B3 Serum','La Roche-Posay','Serum','Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['La Roche-Posay Lipikar Balm AP+M','La Roche-Posay','Vücut Bakımı','Water, Glycerin, Shea Butter, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Minéral 89 Hyaluronic Acid Serum','Vichy','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Pentylene Glycol, Sodium Chloride, Hyaluronic Acid, Xanthan Gum, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Minéral 89 Eyes','Vichy','Göz Serumu','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Caffeine, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Liftactiv Supreme Serum 10','Vichy','Serum','Water, Glycerin, Rhamnose, Niacinamide, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Liftactiv Collagen Specialist','Vichy','Nemlendirici','Water, Glycerin, Niacinamide, Retinyl Palmitate, Collagen, Sodium Hyaluronate, Adenosine, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Normaderm Phytosolution Cleanser','Vichy','Temizleyici','Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Normaderm Correcting Anti-Acne Care','Vichy','Akne Bakım','Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Capital Soleil UV Age Daily SPF50+','Vichy','Güneş Koruma','Water, Homosalate, Octocrylene, Glycerin, Niacinamide, Dimethicone, Hyaluronic Acid, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Aqualia Thermal Rich Cream','Vichy','Nemlendirici','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Vichy Slow Age Fluid SPF25','Vichy','Güneş Koruma','Water, Homosalate, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Bioderma Sensibio H2O Micellar Water','Bioderma','Temizleyici','Water, Hexylene Glycol, Fructooligosaccharides, Disodium Cocoamphodiacetate, Disodium EDTA, Cucumis Sativus Fruit Extract, Propylene Glycol, Sodium Benzoate, Cetrimonium Bromide'],
+['Bioderma Sebium H2O Micellar Water','Bioderma','Temizleyici','Water, Hexylene Glycol, Zinc Gluconate, Copper Sulfate, Disodium Cocoamphodiacetate, Niacinamide, Allantoin, Disodium EDTA, Sodium Benzoate, Cetrimonium Bromide'],
+['Bioderma Sensibio Moisturizer','Bioderma','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Bioderma Sebium Mat','Bioderma','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Zinc Gluconate, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol'],
+['Bioderma Hydrabio Serum','Bioderma','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Bioderma Pigmentbio C-Concentrate','Bioderma','Serum','Water, Ascorbic Acid, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Bioderma Sensibio AR Cream','Bioderma','Nemlendirici','Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Bioderma Atoderm Intensive Baume','Bioderma','Vücut Bakımı','Water, Glycerin, Shea Butter, Ceramide NP, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene Cicalfate+ Restorative Protective Cream','Avene','Onarıcı','Water, Glycerin, Zinc Sulfate, Copper Sulfate, Sucrose Octasulfate, Allantoin, Squalane, Beeswax, Stearyl Alcohol, Cetyl Alcohol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene Hydrance Rich Hydrating Cream','Avene','Nemlendirici','Water, Glycerin, Dimethicone, Squalane, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene Cleanance Cleansing Gel','Avene','Temizleyici','Water, Glycerin, Zinc PCA, Niacinamide, Salicylic Acid, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['Avene Tolerance Control Soothing Skin Recovery Cream','Avene','Nemlendirici','Water, Glycerin, Squalane, Ceramide NP, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol'],
+['Avene RetrinAL 0.1 Intensive Cream','Avene','Anti-Aging','Water, Glycerin, Retinal, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene RetrinAL 0.05 Progressive Cream','Avene','Anti-Aging','Water, Glycerin, Retinal, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene A-Oxitive Antioxidant Water-Cream','Avene','Anti-Aging','Water, Glycerin, Ascorbyl Glucoside, Vitamin E, Ferulic Acid, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Avene Physiolift Day Smoothing Cream SPF30','Avene','Güneş Koruma','Water, Homosalate, Glycerin, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['The Ordinary Niacinamide 10% + Zinc 1%','The Ordinary','Serum','Aqua, Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin'],
+['The Ordinary Hyaluronic Acid 2% + B5','The Ordinary','Serum','Aqua, Sodium Hyaluronate, Panthenol, Sodium Hyaluronate Crosspolymer, Propanediol, Pentylene Glycol, Glycerin, Ahnfeltia Concinna Extract, Sodium Acetylated Hyaluronate, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Retinol 0.2% in Squalane','The Ordinary','Serum','Squalane, Retinol'],
+['The Ordinary Retinol 0.5% in Squalane','The Ordinary','Serum','Squalane, Retinol'],
+['The Ordinary Retinol 1% in Squalane','The Ordinary','Serum','Squalane, Retinol'],
+['The Ordinary Retinal 0.2% Emulsion','The Ordinary','Serum','Aqua, Glycerin, Squalane, Retinal, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol'],
+['The Ordinary Granactive Retinoid 2% Emulsion','The Ordinary','Serum','Aqua, Glycerin, Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol'],
+['The Ordinary Granactive Retinoid 5% in Squalane','The Ordinary','Serum','Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide'],
+['The Ordinary AHA 30% + BHA 2% Peeling Solution','The Ordinary','Peeling','Aqua, Glycolic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Propanediol, Salicylic Acid, Daucus Carota Sativa Extract, Lantana Camara Flower Extract, Tasmannia Lanceolata Fruit/Leaf Extract, Dimethyl Isosorbide, Potassium Citrate, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Glycolic Acid 7% Toning Solution','The Ordinary','Tonik','Aqua, Glycolic Acid, Rosa Damascena Flower Water, Centaurea Cyanus Flower Water, Aloe Barbadensis Leaf Water, Propanediol, Glycerin, Triethanolamine, Sodium Hyaluronate Crosspolymer, Tasmannia Lanceolata Fruit/Leaf Extract, Potassium Citrate, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Lactic Acid 5% + HA','The Ordinary','Serum','Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Lactic Acid 10% + HA','The Ordinary','Serum','Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Mandelic Acid 10% + HA','The Ordinary','Serum','Aqua, Mandelic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Azelaic Acid Suspension 10%','The Ordinary','Serum','Aqua, Azelaic Acid, Isodecyl Neopentanoate, Dimethicone, Glycerin, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Alpha Arbutin 2% + HA','The Ordinary','Serum','Aqua, Alpha Arbutin, Propanediol, Sodium Hyaluronate Crosspolymer, Ferulic Acid, Lactic Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Ascorbic Acid 8% + Alpha Arbutin 2%','The Ordinary','Serum','Ascorbic Acid, Alpha Arbutin, Propanediol, Dimethyl Isosorbide'],
+['The Ordinary Vitamin C Suspension 23% + HA Spheres 2%','The Ordinary','Serum','Ascorbic Acid, Isodecyl Neopentanoate, Squalane, Isononyl Isononanoate, Sodium Hyaluronate Crosspolymer, Silica, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Buffet Multi-Technology Peptide Serum','The Ordinary','Serum','Aqua, Glycerin, Sodium Hyaluronate, Pentapeptide-18, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Palmitoyl Tripeptide-38, Acetyl Hexapeptide-3, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Natural Moisturizing Factors + HA','The Ordinary','Nemlendirici','Aqua, Glycerin, Urea, Arginine, Aspartic Acid, Pyrrolidone Carboxylic Acid, Glycine, Alanine, Serine, Sodium PCA, Sodium Hyaluronate, Panthenol, Allantoin, Lecithin, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Salicylic Acid 2% Solution','The Ordinary','Serum','Aqua, Salicylic Acid, Witch Hazel Water, Sodium Hyaluronate Crosspolymer, Propanediol, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Salicylic Acid 2% Masque','The Ordinary','Maske','Aqua, Kaolin, Bentonite, Salicylic Acid, Glycerin, Propanediol, Sodium Hyaluronate, Allantoin, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary 100% Plant-Derived Squalane','The Ordinary','Yağ','Squalane'],
+['The Ordinary 100% Cold-Pressed Rosehip Seed Oil','The Ordinary','Yağ','Rosa Canina Seed Oil'],
+['The Ordinary Marine Hyaluronics','The Ordinary','Serum','Aqua, Propanediol, Pseudoalteromonas Ferment Extract, Sodium Hyaluronate, Sesamum Indicum Seed Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary EUK 134 0.1%','The Ordinary','Serum','Aqua, Propanediol, Ethylbisiminomethylguaiacol Manganese Chloride, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Salicylic Acid 2% Anhydrous Solution','The Ordinary','Serum','Squalane, Salicylic Acid, Isononyl Isononanoate'],
+['The Ordinary 3% Plant-Derived Glycolic Acid Toning Solution','The Ordinary','Tonik','Aqua, Glycolic Acid, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Ordinary Squalane Cleanser','The Ordinary','Temizleyici','Squalane, Sucrose Stearate, Sucrose Laurate'],
+['COSRX Advanced Snail 96 Mucin Power Essence','COSRX','Esans','Snail Secretion Filtrate, Betaine, Panthenol, Sodium Polyacrylate, Phenoxyethanol, Allantoin, Ethylhexylglycerin, Sodium Hyaluronate, Glycerin'],
+['COSRX Advanced Snail 92 All In One Cream','COSRX','Nemlendirici','Snail Secretion Filtrate, Cetearyl Olivate, Sorbitan Olivate, Dimethicone, Glycerin, Niacinamide, Panthenol, Allantoin, Sodium Hyaluronate, Ceramide NP, Tocopherol, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Salicylic Acid Daily Gentle Cleanser','COSRX','Temizleyici','Water, Sodium Methyl Cocoyl Taurate, Glycerin, Salicylic Acid, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX BHA Blackhead Power Liquid','COSRX','Tonik','Butylene Glycol, Salix Alba Bark Water, Betaine Salicylate, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX AHA 7 Whitehead Power Liquid','COSRX','Tonik','Glycolic Acid, Pyrus Malus Fruit Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Low pH Good Morning Gel Cleanser','COSRX','Temizleyici','Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Allantoin, Panthenol, Sodium Hyaluronate, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Hydrium Triple Hyaluronic Moisture Ampoule','COSRX','Serum','Water, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Glycerin, Panthenol, Allantoin, Betaine, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Triple C Lightning Liquid','COSRX','Serum','Ascorbic Acid, Propanediol, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Glycerin, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX The Retinol 0.1 Cream','COSRX','Nemlendirici','Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX The Retinol 0.5 Oil','COSRX','Yağ','Squalane, Retinol, Tocopherol'],
+['COSRX Oil-Free Ultra Moisturizing Lotion','COSRX','Nemlendirici','Water, Glycerin, Niacinamide, Birch Sap, Allantoin, Panthenol, Sodium Hyaluronate, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Full Fit Propolis Light Ampoule','COSRX','Serum','Propolis Extract, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Pure Fit Cica Serum','COSRX','Serum','Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['COSRX Pure Fit Cica Cream','COSRX','Nemlendirici','Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Heartleaf 77% Soothing Toner','Anua','Tonik','Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Heartleaf Pore Control Cleansing Oil','Anua','Temizleyici','Caprylic/Capric Triglyceride, Squalane, Houttuynia Cordata Extract, Niacinamide, Sodium Hyaluronate, Tocopherol, Phenoxyethanol'],
+['Anua Heartleaf 80% Moisture Barrier Cream','Anua','Nemlendirici','Houttuynia Cordata Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Niacinamide 10% + TXA 4% Serum','Anua','Serum','Water, Glycerin, Niacinamide, Tranexamic Acid, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Peach 77% Niacin Serum','Anua','Serum','Prunus Persica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Heartleaf Quercetinol Pore Serum','Anua','Serum','Water, Glycerin, Niacinamide, Salicylic Acid, Houttuynia Cordata Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Anua Heartleaf Skin Toner Pad','Anua','Tonik','Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Salicylic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['Innisfree Green Tea Seed Serum','Innisfree','Serum','Water, Glycerin, Camellia Sinensis Leaf Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Innisfree Green Tea Hyaluronic Acid Serum','Innisfree','Serum','Water, Glycerin, Sodium Hyaluronate, Camellia Sinensis Leaf Water, Niacinamide, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Innisfree Jeju Volcanic Pore Cleansing Foam','Innisfree','Temizleyici','Water, Glycerin, Sodium Cocoyl Isethionate, Kaolin, Bentonite, Niacinamide, Allantoin, Citric Acid, Phenoxyethanol'],
+['Innisfree Retinol Cica Repair Ampoule','Innisfree','Serum','Water, Glycerin, Retinol, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Innisfree Brightening Pore Serum','Innisfree','Serum','Water, Glycerin, Niacinamide, Salicylic Acid, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Innisfree Daily UV Defense SPF45','Innisfree','Güneş Koruma','Water, Homosalate, Octocrylene, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Some By Mi AHA BHA PHA 30 Days Miracle Toner','Some By Mi','Tonik','Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Tea Tree Leaf Extract, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['Some By Mi AHA BHA PHA 30 Days Miracle Serum','Some By Mi','Serum','Water, Glycerin, Niacinamide, Glycolic Acid, Salicylic Acid, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Some By Mi AHA BHA PHA 30 Days Miracle Cream','Some By Mi','Nemlendirici','Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Some By Mi Yuja Niacin Brightening Serum','Some By Mi','Serum','Water, Glycerin, Niacinamide, Alpha Arbutin, Citrus Junos Fruit Extract, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Some By Mi Snail Truecica Miracle Repair Serum','Some By Mi','Serum','Snail Secretion Filtrate, Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Some By Mi Retinol Intense Advanced Triple Action Eye Cream','Some By Mi','Göz Kremi','Water, Glycerin, Retinol, Niacinamide, Sodium Hyaluronate, Peptides, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Drunk Elephant Protini Polypeptide Cream','Drunk Elephant','Nemlendirici','Water, Glycerin, Niacinamide, Cetearyl Alcohol, Signal Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Squalane, Ceramide NP, Tocopherol, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Drunk Elephant T.L.C. Sukari Babyfacial AHA+BHA Mask','Drunk Elephant','Peeling','Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Carbomer, Phenoxyethanol'],
+['Drunk Elephant C-Firma Fresh Day Serum','Drunk Elephant','Serum','Water, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Ferulic Acid, Tocopherol, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Drunk Elephant A-Passioni Retinol Cream','Drunk Elephant','Nemlendirici','Water, Glycerin, Retinol, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Drunk Elephant B-Hydra Intensive Hydration Serum','Drunk Elephant','Serum','Water, Glycerin, Sodium Hyaluronate, Panthenol, Pineapple Ceramide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Drunk Elephant Lala Retro Whipped Cream','Drunk Elephant','Nemlendirici','Water, Glycerin, Squalane, Shea Butter, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Drunk Elephant Umbra Tinte Physical Defense SPF30','Drunk Elephant','Güneş Koruma','Water, Zinc Oxide, Glycerin, Dimethicone, Squalane, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Drunk Elephant F-Balm Electrolyte Waterfacial Mask','Drunk Elephant','Maske','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Drunk Elephant Beste No. 9 Jelly Cleanser','Drunk Elephant','Temizleyici','Water, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol'],
+['Paula\'s Choice Skin Perfecting 2% BHA Liquid Exfoliant','Paula\'s Choice','Tonik','Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 80, Camellia Oleifera Leaf Extract, Sodium Hydroxide, Tetrasodium EDTA'],
+['Paula\'s Choice Skin Perfecting 1% BHA Lotion','Paula\'s Choice','Serum','Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice C15 Super Booster','Paula\'s Choice','Serum','Ascorbic Acid, Water, Dimethyl Isosorbide, Ferulic Acid, Panthenol, Tocopherol, Sodium Hydroxide, Glycerin, Xanthan Gum, Sodium Hyaluronate'],
+['Paula\'s Choice RESIST Anti-Aging Moisturizer SPF50','Paula\'s Choice','Güneş Koruma','Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice 1% Retinol Booster','Paula\'s Choice','Serum','Water, Retinol, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Paula\'s Choice 0.3% Retinol + 2% Bakuchiol Treatment','Paula\'s Choice','Serum','Water, Glycerin, Retinol, Bakuchiol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice 10% Azelaic Acid Booster','Paula\'s Choice','Serum','Water, Azelaic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice 20% Niacinamide Treatment','Paula\'s Choice','Serum','Water, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Paula\'s Choice CLEAR Regular Strength 2.5% Benzoyl Peroxide','Paula\'s Choice','Akne Bakım','Water, Benzoyl Peroxide, Glycerin, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice SKIN RECOVERY Replenishing Moisturizer','Paula\'s Choice','Nemlendirici','Water, Glycerin, Dimethicone, Shea Butter, Ceramide NP, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Paula\'s Choice RESIST 10% Alpha Hydroxy Acid','Paula\'s Choice','Serum','Water, Glycolic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['SkinCeuticals C E Ferulic','SkinCeuticals','Serum','Water, Ethoxydiglycol, Ascorbic Acid, Glycerin, Propylene Glycol, Laureth-23, Tocopherol, Ferulic Acid, Panthenol, Sodium Hyaluronate, Benzyl Alcohol, Dehydroacetic Acid'],
+['SkinCeuticals Phloretin CF','SkinCeuticals','Serum','Water, Ethoxydiglycol, Ascorbic Acid, Phloretin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol'],
+['SkinCeuticals Silymarin CF','SkinCeuticals','Serum','Water, Ethoxydiglycol, Ascorbic Acid, Salicylic Acid, Silymarin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol'],
+['SkinCeuticals HA Intensifier','SkinCeuticals','Serum','Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Licorice Root Extract, Purple Rice Extract, Proxylane, Phenoxyethanol'],
+['SkinCeuticals Triple Lipid Restore 2:4:2','SkinCeuticals','Nemlendirici','Water, Glycerin, Ceramide NP, Cholesterol, Fatty Acids, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['SkinCeuticals Retinol 0.3','SkinCeuticals','Serum','Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['SkinCeuticals Retinol 0.5','SkinCeuticals','Serum','Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['SkinCeuticals Phyto Corrective Gel','SkinCeuticals','Serum','Water, Glycerin, Niacinamide, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['SkinCeuticals Physical Fusion UV Defense SPF50','SkinCeuticals','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['The Inkey List Hyaluronic Acid Serum','The Inkey List','Serum','Aqua, Sodium Hyaluronate, Glycerin, Sodium Polyacrylate, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Retinol Serum','The Inkey List','Serum','Aqua, Glycerin, Squalane, Retinol, Dimethicone, Dimethyl Isosorbide, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol'],
+['The Inkey List Niacinamide','The Inkey List','Serum','Aqua, Niacinamide, Zinc PCA, Propanediol, Xanthan Gum, Allantoin, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Salicylic Acid Cleanser','The Inkey List','Temizleyici','Aqua, Glycerin, Salicylic Acid, Allantoin, Panthenol, Sodium Hyaluronate, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Vitamin C Serum','The Inkey List','Serum','Aqua, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Oat Cleansing Balm','The Inkey List','Temizleyici','Caprylic/Capric Triglyceride, Squalane, Avena Sativa Kernel Extract, Glycerin, Sodium Hyaluronate, Tocopherol, Phenoxyethanol'],
+['The Inkey List Q10 Serum','The Inkey List','Serum','Aqua, Glycerin, Ubiquinone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Peptide Moisturizer','The Inkey List','Nemlendirici','Aqua, Glycerin, Matrixyl 3000, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Tranexamic Acid Night Treatment','The Inkey List','Gece Bakımı','Aqua, Glycerin, Tranexamic Acid, Niacinamide, Retinol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Bakuchiol Moisturizer','The Inkey List','Nemlendirici','Aqua, Glycerin, Bakuchiol, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['The Inkey List Polyglutamic Acid Dewy Serum','The Inkey List','Serum','Aqua, Glycerin, Polyglutamic Acid, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Farmasi Dr. C. Tuna Suprem Hyaluronic Acid Serum','Farmasi','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Farmasi Dr. C. Tuna Suprem Retinol Night Cream','Farmasi','Gece Kremi','Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Farmasi Dr. C. Tuna Suprem Vitamin C Serum','Farmasi','Serum','Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem Niacinamide Serum','Farmasi','Serum','Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem AHA BHA Peeling Toner','Farmasi','Tonik','Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem Collagen Cream','Farmasi','Nemlendirici','Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem Micellar Water','Farmasi','Temizleyici','Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA'],
+['Farmasi Dr. C. Tuna Suprem SPF50 Sunscreen','Farmasi','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem Alpha Arbutin Serum','Farmasi','Serum','Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Farmasi Dr. C. Tuna Suprem Salicylic Acid Serum','Farmasi','Serum','Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus Hyalüronik Asit Serumu','Biota Plus','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Biota Plus Retinol Serumu','Biota Plus','Serum','Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus C Vitamini Serumu','Biota Plus','Serum','Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus Niacinamide Serumu','Biota Plus','Serum','Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus Kil Maskesi','Biota Plus','Maske','Water, Kaolin, Bentonite, Glycerin, Niacinamide, Allantoin, Salicylic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus SPF50 Güneş Kremi','Biota Plus','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Biota Plus Alfa Arbutin Serumu','Biota Plus','Serum','Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eveline Hyaluron Expert Intensely Lifting Cream','Eveline','Nemlendirici','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Retinyl Palmitate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eveline Vitamin C Brightening Serum','Eveline','Serum','Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eveline White Prestige 4D Whitening Night Cream','Eveline','Gece Kremi','Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Retinyl Palmitate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eveline Retinol Power Lifting Expert Cream','Eveline','Nemlendirici','Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eveline Bio Hyaluron Expert Eye Cream','Eveline','Göz Kremi','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Golden Rose Wonder BB Cream SPF25','Golden Rose','BB Krem','Water, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Golden Rose Skin Base Foundation','Golden Rose','Fondöten','Water, Cyclopentasiloxane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Phenoxyethanol'],
+['Golden Rose CC Cream SPF50+','Golden Rose','Güneş Koruma','Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Flormar Perfect Coverage Foundation','Flormar','Fondöten','Water, Cyclopentasiloxane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Phenoxyethanol, Ethylhexylglycerin'],
+['Flormar BB Cream SPF15','Flormar','BB Krem','Water, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Beauty of Joseon Relief Sun SPF50+','Beauty of Joseon','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Rice Bran Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Beauty of Joseon Glow Serum Propolis + Niacinamide','Beauty of Joseon','Serum','Water, Glycerin, Propolis Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Beauty of Joseon Revive Eye Serum','Beauty of Joseon','Göz Serumu','Water, Glycerin, Niacinamide, Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Beauty of Joseon Dynasty Cream','Beauty of Joseon','Nemlendirici','Water, Glycerin, Niacinamide, Rice Bran Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Beauty of Joseon Calming Serum Green Tea + Panthenol','Beauty of Joseon','Serum','Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Skin1004 Madagascar Centella Ampoule','Skin1004','Serum','Centella Asiatica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Skin1004 Hyalu-Cica Water-Fit Sun Serum SPF50+','Skin1004','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Skin1004 Madagascar Centella Tone Brightening Capsule Ampoule','Skin1004','Serum','Water, Glycerin, Niacinamide, Centella Asiatica Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Torriden Dive-In Low-Molecular Hyaluronic Acid Serum','Torriden','Serum','Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Sodium Acetylated Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Torriden Solid-In Ceramide Moisturizer','Torriden','Nemlendirici','Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Torriden Dive-In Low-Molecular Hyaluronic Acid Toner','Torriden','Tonik','Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Klairs Freshly Juiced Vitamin C Serum','Klairs','Serum','Water, Ascorbic Acid, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Klairs Rich Moist Soothing Serum','Klairs','Serum','Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Klairs Supple Preparation Facial Toner','Klairs','Tonik','Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Klairs Midnight Blue Calming Cream','Klairs','Nemlendirici','Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Axis-Y Dark Spot Correcting Glow Serum','Axis-Y','Serum','Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Axis-Y Complete No-Stress Physical Sunscreen SPF50+','Axis-Y','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Centella Asiatica Extract, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Purito Centella Unscented Serum','Purito','Serum','Water, Centella Asiatica Extract, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Purito Daily Go-To Sunscreen SPF50+','Purito','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Purito From Green Vitamin C Serum','Purito','Serum','Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Isntree Hyaluronic Acid Toner','Isntree','Tonik','Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Isntree Hyaluronic Acid Watery Sun Gel SPF50+','Isntree','Güneş Koruma','Water, Zinc Oxide, Titanium Dioxide, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Isntree Onion Newpair Eye Cream','Isntree','Göz Kremi','Water, Glycerin, Allium Cepa Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Round Lab Birch Juice Moisturizing Serum','Round Lab','Serum','Betula Platyphylla Japonica Juice, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Round Lab 1025 Dokdo Toner','Round Lab','Tonik','Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Sea Water, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Round Lab Birch Juice Moisturizing Cream','Round Lab','Nemlendirici','Betula Platyphylla Japonica Juice, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Good Molecules Niacinamide Toning Essence','Good Molecules','Esans','Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Good Molecules Discoloration Correcting Serum','Good Molecules','Serum','Water, Glycerin, Tranexamic Acid, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Good Molecules Hyaluronic Acid Serum','Good Molecules','Serum','Aqua, Sodium Hyaluronate, Glycerin, Sodium Polyacrylate, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin'],
+['Good Molecules Overnight Exfoliating Treatment','Good Molecules','Gece Bakımı','Water, Glycerin, Glycolic Acid, Lactic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Laneige Water Sleeping Mask','Laneige','Maske','Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Laneige Lip Sleeping Mask','Laneige','Dudak Bakımı','Hydrogenated Polyisobutene, Glycerin, Sodium Hyaluronate, Panthenol, Tocopherol, Phenoxyethanol'],
+['Laneige Water Bank Blue Hyaluronic Serum','Laneige','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Dr. Jart+ Cicapair Tiger Grass Cream','Dr. Jart+','Nemlendirici','Water, Glycerin, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Dr. Jart+ Ceramidin Cream','Dr. Jart+','Nemlendirici','Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Dr. Jart+ Vital Hydra Solution Deep Moisture Serum','Dr. Jart+','Serum','Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Neutrogena Hydro Boost Water Gel','Neutrogena','Nemlendirici','Water, Dimethicone, Glycerin, Sodium Hyaluronate, Dimethicone/Vinyl Dimethicone Crosspolymer, Phenoxyethanol, Dimethiconol, Sodium Acrylates Copolymer, Carbomer, Sodium Hydroxide, Ethylhexylglycerin'],
+['Neutrogena Hydro Boost Gel Cream','Neutrogena','Nemlendirici','Water, Glycerin, Dimethicone, Sodium Hyaluronate, Cetearyl Alcohol, Phenoxyethanol, Dimethiconol, Carbomer, Sodium Hydroxide, Ethylhexylglycerin'],
+['Neutrogena Rapid Wrinkle Repair Retinol Serum','Neutrogena','Serum','Water, Glycerin, Retinol, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Neutrogena Bright Boost Serum','Neutrogena','Serum','Water, Glycerin, Niacinamide, Ascorbyl Glucoside, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Neutrogena Ultra Sheer Dry-Touch SPF50+','Neutrogena','Güneş Koruma','Water, Homosalate, Octocrylene, Avobenzone, Glycerin, Dimethicone, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Neutrogena Oil-Free Acne Wash','Neutrogena','Temizleyici','Water, Glycerin, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol'],
+['Garnier Micellar Cleansing Water','Garnier','Temizleyici','Water, Hexylene Glycol, Glycerin, Disodium Cocoamphodiacetate, Disodium EDTA, Poloxamer 184, Rosa Damascena Flower Water, Sodium Benzoate, Sodium Chloride'],
+['Garnier Vitamin C Brightening Serum','Garnier','Serum','Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Salicylic Acid, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Garnier Hyaluronic Aloe Jelly Moisturizer','Garnier','Nemlendirici','Water, Glycerin, Aloe Barbadensis Leaf Juice, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Garnier Green Labs Niacin+Pore Serum Cream','Garnier','Nemlendirici','Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Garnier Ambre Solaire Super UV SPF50+ Serum','Garnier','Güneş Koruma','Water, Homosalate, Octocrylene, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Olay Regenerist Micro-Sculpting Cream','Olay','Nemlendirici','Water, Glycerin, Niacinamide, Dimethicone, Cetearyl Alcohol, Panthenol, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Olay Vitamin C Brightening Serum','Olay','Serum','Water, Glycerin, Niacinamide, Ascorbyl Glucoside, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Olay Regenerist Retinol 24 Night Moisturizer','Olay','Gece Kremi','Water, Glycerin, Niacinamide, Retinol, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Kiehl\'s Ultra Facial Cream','Kiehl\'s','Nemlendirici','Water, Glycerin, Squalane, Sucrose, Dimethicone, Sodium PCA, Panthenol, Allantoin, Mannitol, Trehalose, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Kiehl\'s Powerful-Strength Line-Reducing Concentrate','Kiehl\'s','Serum','Water, Ascorbic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Kiehl\'s Midnight Recovery Concentrate','Kiehl\'s','Yağ','Squalane, Rosehip Oil, Lavandula Angustifolia Oil, Evening Primrose Oil, Tocopherol, Linalool, Limonene'],
+['Kiehl\'s Clearly Corrective Dark Spot Solution','Kiehl\'s','Serum','Water, Glycerin, Niacinamide, White Birch Extract, Ascorbic Acid, Peony Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eucerin Hyaluron-Filler Serum','Eucerin','Serum','Aqua, Glycerin, Sodium Hyaluronate, Niacinamide, Dimethicone, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol'],
+['Eucerin DermoPure Triple Action Serum','Eucerin','Serum','Aqua, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eucerin Sun Oil Control SPF50+','Eucerin','Güneş Koruma','Aqua, Homosalate, Octocrylene, Glycerin, Niacinamide, Silica, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Eucerin Aquaphor Soothing Skin Balm','Eucerin','Onarıcı','Petrolatum, Mineral Oil, Panthenol, Bisabolol, Glycerin'],
+['Cetaphil Gentle Skin Cleanser','Cetaphil','Temizleyici','Water, Cetyl Alcohol, Propylene Glycol, Sodium Lauryl Sulfate, Stearyl Alcohol, Methylparaben, Propylparaben, Butylparaben'],
+['Cetaphil Moisturizing Cream','Cetaphil','Nemlendirici','Water, Glycerin, Petrolatum, Dicaprylyl Ether, Dimethicone, Urea, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Cetaphil Daily Facial Moisturizer SPF50','Cetaphil','Güneş Koruma','Water, Homosalate, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Cetaphil PRO Oily Skin Moisturizer SPF30','Cetaphil','Güneş Koruma','Water, Homosalate, Glycerin, Niacinamide, Zinc PCA, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Simple Kind to Skin Micellar Cleansing Water','Simple','Temizleyici','Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Panthenol, Allantoin, Sodium Hyaluronate, Disodium EDTA, Citric Acid'],
+['Simple Kind to Skin Moisturising Facial Wash','Simple','Temizleyici','Water, Glycerin, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Panthenol, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol'],
+['Simple Kind to Skin Hydrating Light Moisturiser','Simple','Nemlendirici','Water, Glycerin, Dimethicone, Panthenol, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Medicube Zero Pore Pad 2.0','Medicube','Ped','Water, Glycerin, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol'],
+['Medicube Red Erasing Serum','Medicube','Serum','Water, Glycerin, Niacinamide, Azelaic Acid, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Medicube Red Tightening Booster','Medicube','Serum','Water, Glycerin, Niacinamide, Retinol, Peptides, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Sulwhasoo First Care Activating Serum','Sulwhasoo','Serum','Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panax Ginseng Root Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Sulwhasoo Concentrated Ginseng Renewing Cream','Sulwhasoo','Nemlendirici','Water, Glycerin, Niacinamide, Panax Ginseng Root Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Etude House Soon Jung 2x Barrier Intensive Cream','Etude House','Nemlendirici','Water, Glycerin, Ceramide NP, Panthenol, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin'],
+['Etude House SoonJung 10 Free Mildness Toner','Etude House','Tonik','Water, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Missha Time Revolution The First Treatment Essence','Missha','Esans','Saccharomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Phenoxyethanol, Ethylhexylglycerin'],
+['Missha Super Aqua Ultra Hyalron Serum','Missha','Serum','Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Niacinamide, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Missha All Around Safe Block SPF50+','Missha','Güneş Koruma','Water, Homosalate, Ethylhexyl Triazone, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Haruharu WONDER Black Rice Hyaluronic Toner','Haruharu WONDER','Tonik','Oryza Sativa Bran Extract, Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol'],
+['Haruharu WONDER Black Rice Bakuchiol Eye Cream','Haruharu WONDER','Göz Kremi','Water, Glycerin, Bakuchiol, Oryza Sativa Bran Extract, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol']
+].map(([name,brand,cat,ingredients])=>({name,brand,cat,ingredients}));
+
+function calcScore(items){
+  if(!items||!items.length)return 0;
+  const w=items.map(ing=>{
+    let s=ing.rating==="unknown"?45:ing.score;
+    if(ing.vitaminCTier===3)s=Math.min(s,72);
+    const wt=ing.rating==="risky"?1.5:1;
+    return{s,wt};
+  });
+  const tw=w.reduce((a,b)=>a+b.wt,0);
+  return Math.round(w.reduce((a,b)=>a+b.s*b.wt,0)/tw);
+}
+
+const SAMPLE="Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinol, Dimethicone, Phenoxyethanol, Fragrance, Citric Acid, Tocopheryl Acetate, Allantoin, Carbomer, Cetyl Alcohol, Potassium Sorbate";
+
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
+const GITHUB_URL = GITHUB_PRODUCTS_URL;
+
+export default function App(){
+
+// ─── PIXEL ART PALETTE ─────────────────────────────────────────────────────────
+const P={
+  bg:"#fff0f7",bgCard:"#fff8fc",bgDeep:"#ffe4f2",bgHover:"#ffd6ec",
+  border:"#f0a8cc",borderLight:"#fcd5e8",
+  text:"#5a2d4c",textMid:"#9c6080",textLight:"#c49ab4",
+  pink:"#e8679a",pinkLight:"#f5a0c4",pinkDim:"#fde8f3",pinkDark:"#c0456e",
+  mint:"#7dd8a8",mintDim:"#d5f5e6",mintBorder:"#a8e8c4",
+  peach:"#f5a878",peachDim:"#fde8d8",peachBorder:"#f0c8a8",
+  lavender:"#b08ad8",lavDim:"#ede0f8",lavBorder:"#d0b8ec",
+  yellow:"#f5d848",yellowDim:"#fffad0",yellowBorder:"#e8c830",
+  safe:"#5cba8a",safeDim:"#d0f0e0",safeBorder:"#90d8b0",
+  caution:"#f0a030",cautionDim:"#fff0d0",cautionBorder:"#e0c070",
+  risky:"#e06070",riskyDim:"#ffe0e4",riskyBorder:"#f09090",
+  unknown:"#a090c0",unknownDim:"#e8e0f8",unknownBorder:"#c0b0e0",
+};
+const RM2={
+  safe:{label:"Güvenli",color:P.safe,bg:P.safeDim,border:P.safeBorder,emoji:"🌸"},
+  caution:{label:"Dikkat",color:P.caution,bg:P.cautionDim,border:P.cautionBorder,emoji:"🌼"},
+  risky:{label:"Riskli",color:P.risky,bg:P.riskyDim,border:P.riskyBorder,emoji:"🌺"},
+  unknown:{label:"Bilinmiyor",color:P.unknown,bg:P.unknownDim,border:P.unknownBorder,emoji:"🍄"},
+};
+const px=(col,offset=4)=>({border:`3px solid ${col}`,boxShadow:`${offset}px ${offset}px 0 ${col}`});
+
+// Floating pixel elements
+function FloatingPixels(){
+  const items=[
+    {emoji:"🦋",x:5,y:10,delay:0,dur:8},{emoji:"🌸",x:88,y:15,delay:1,dur:9},
+    {emoji:"🦋",x:15,y:75,delay:2,dur:11},{emoji:"🌼",x:80,y:70,delay:0.5,dur:7},
+    {emoji:"⭐",x:50,y:5,delay:3,dur:10},{emoji:"🌺",x:92,y:45,delay:1.5,dur:8},
+    {emoji:"🦋",x:3,y:45,delay:4,dur:9},{emoji:"🌸",x:70,y:88,delay:2.5,dur:12},
+    {emoji:"✨",x:25,y:90,delay:1,dur:7},{emoji:"🌷",x:60,y:3,delay:3.5,dur:10},
+    {emoji:"🦋",x:45,y:92,delay:0.8,dur:11},{emoji:"🌼",x:10,y:30,delay:2.2,dur:8},
+  ];
+  return(
+    <div style={{position:"fixed",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
+      {items.map((it,i)=>(
+        <div key={i} style={{
+          position:"absolute",left:`${it.x}%`,top:`${it.y}%`,
+          fontSize:it.emoji==="🦋"?22:16,
+          animation:`float${i%3} ${it.dur}s ease-in-out ${it.delay}s infinite`,
+          opacity:0.6,
+        }}>{it.emoji}</div>
+      ))}
+    </div>
+  );
+}
+
+// Pixel card wrapper
+function PixelCard({children,color,style={}}){
+  const col=color||P.border;
+  return(
+    <div style={{
+      background:P.bgCard,border:`3px solid ${col}`,
+      boxShadow:`4px 4px 0 ${col}`,borderRadius:0,
+      imageRendering:"pixelated",...style
+    }}>{children}</div>
+  );
+}
+
+// Section header with pixel decoration
+function SectionHead({emoji,title,color}){
+  return(
+    <div style={{display:"flex",alignItems:"center",gap:8,padding:"10px 14px",
+      background:color||P.pinkDim,borderBottom:`3px solid ${P.border}`,
+      fontFamily:"'Press Start 2P',monospace",fontSize:10,color:P.text}}>
+      <span style={{fontSize:16}}>{emoji}</span>
+      {title}
+    </div>
+  );
+}
+
+export default function App(){
+  const [mode,setMode]=useState("home");
+  const [input,setInput]=useState("");
+  const [results,setResults]=useState(null);
+  const [activeIdx,setActiveIdx]=useState(null);
+  const [filter,setFilter]=useState("all");
+  const [productQ,setProductQ]=useState("");
+  const [productSuggs,setProductSuggs]=useState([]);
+  const [compareA,setCompareA]=useState({input:"",results:null,productQ:"",productSuggs:[]});
+  const [compareB,setCompareB]=useState({input:"",results:null,productQ:"",productSuggs:[]});
+  const [quizStep,setQuizStep]=useState(0);
+  const [quizAnswers,setQuizAnswers]=useState([]);
+  const [quizResult,setQuizResult]=useState(null);
+  const [showDisclaimer,setShowDisclaimer]=useState(false);
+  const [allProducts,setAllProducts]=useState(PRODUCT_DATA);
+  const [ghStatus,setGhStatus]=useState("ok");
+  const [showPhotoAdd,setShowPhotoAdd]=useState(false);
+  const [photoScanStatus,setPhotoScanStatus]=useState("");
+  const [photoScanResult,setPhotoScanResult]=useState(null);
+  const [photoScanError,setPhotoScanError]=useState("");
+  const [routineProducts,setRoutineProducts]=useState([]);
+  const [routineResult,setRoutineResult]=useState(null);
+  const [routineQ,setRoutineQ]=useState("");
+  const [routineSuggs,setRoutineSuggs]=useState([]);
+  const [manualName,setManualName]=useState("");
+  const [manualIng,setManualIng]=useState("");
+  const photoRef=useRef(null);
+  const GITHUB_URL=GITHUB_PRODUCTS_URL;
+
+  useEffect(()=>{
+    if(GITHUB_URL.includes("KULLANICI_ADI"))return;
+    fetch(GITHUB_URL+"?t="+Date.now())
+      .then(r=>{if(!r.ok)throw new Error();return r.json();})
+      .then(data=>{
+        const valid=Array.isArray(data)?data.filter(p=>p.name&&p.ingredients):[];
+        if(valid.length>0){
+          const existing=new Set(PRODUCT_DATA.map(p=>p.name.toLowerCase()));
+          const newOnes=valid.filter(p=>!existing.has(p.name.toLowerCase()));
+          setAllProducts([...PRODUCT_DATA,...newOnes]);
+        }
+      }).catch(()=>{});
+  },[]);
+
+  const analyze=(text,cb)=>{
+    const src=text||input;if(!src.trim())return;
+    const r=parseIngredients(src);
+    if(cb)cb(r);else{setResults(r);setActiveIdx(null);setFilter("all");}
+  };
+
+  const searchProducts=(q,cb)=>{
+    if(!q||q.trim().length<2){cb([]);return;}
+    const ql=q.toLowerCase().trim();
+    const words=ql.split(/\s+/);
+    const scored=allProducts.map(p=>{
+      const hay=(p.name+" "+p.brand+" "+(p.cat||"")).toLowerCase();
+      let s=0;
+      if(hay.includes(ql))s+=100;
+      words.forEach(w=>{if(hay.includes(w))s+=20;});
+      if(p.brand.toLowerCase().includes(ql))s+=40;
+      if(p.name.toLowerCase().startsWith(ql))s+=30;
+      return{...p,_s:s};
+    }).filter(p=>p._s>0).sort((a,b)=>b._s-a._s).slice(0,8);
+    cb(scored);
+  };
+
+  const handlePhotoScan=async(file)=>{
+    if(!file)return;
+    setPhotoScanStatus("loading");setPhotoScanError("");setPhotoScanResult(null);
+    try{
+      const base64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(",")[1]);r.onerror=rej;r.readAsDataURL(file);});
+      const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:[
+          {type:"image",source:{type:"base64",media_type:file.type||"image/jpeg",data:base64}},
+          {type:"text",text:'Bu kozmetik ürün fotoğrafından bilgileri çıkar, SADECE JSON döndür: {"name":"Ürün adı","brand":"Marka","cat":"Kategori","ingredients":"INCI listesi"}'}
+        ]}]})});
+      const data=await resp.json();
+      const text=data.content.map(i=>i.text||"").join("").trim();
+      const parsed=JSON.parse(text.replace(/```json|```/g,"").trim());
+      if(!parsed.ingredients)throw new Error("inci_not_found");
+      setPhotoScanResult(parsed);setPhotoScanStatus("done");
+    }catch(e){
+      setPhotoScanError(e.message==="inci_not_found"?"İçerik listesi okunamadı.":"Fotoğraf işlenemedi.");
+      setPhotoScanStatus("error");
+    }
+  };
+
+  const answerQuiz=(type)=>{
+    const ans=[...quizAnswers,type];
+    if(quizStep<QUIZ.length-1){setQuizAnswers(ans);setQuizStep(quizStep+1);}
+    else{
+      const counts={};ans.forEach(t=>{counts[t]=(counts[t]||0)+1;});
+      setQuizResult(Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0]);
+    }
+  };
+
+  const STEPS_M=["Temizleyici","Tonik / Esans","C Vitamini Serumu","Serum (Aktif)","Göz Kremi","Nemlendirici","Güneş Koruma"];
+  const STEPS_E=["Temizleyici (Yağ Bazlı)","Temizleyici","Tonik / Esans","Asit / Peeling","Serum (Aktif)","Retinoid","Göz Kremi","Nemlendirici","Onarıcı"];
+  const guessTime=(p)=>{const n=(p.name+" "+(p.cat||"")).toLowerCase();if(/spf|sunscreen|güneş|sun protect/.test(n))return"morning";if(/night|gece|retinol|retinal|retinoid|granactive|peeling|exfoliant|aha|bha|glycolic|salicylic/.test(n))return"evening";if(/cleansing oil|oil cleanser|cleansing balm/.test(n))return"evening";return"both";};
+  const guessStep=(p,session)=>{const n=(p.name+" "+(p.cat||"")).toLowerCase();if(/spf|sunscreen|güneş/.test(n))return"Güneş Koruma";if(/retinol|retinal|retinoid|granactive/.test(n))return"Retinoid";if(/cleansing oil|cleansing balm|oil cleanser/.test(n))return"Temizleyici (Yağ Bazlı)";if(/cleanser|temizleyici|foam|gel clean|micellar|wash/.test(n))return"Temizleyici";if(/eye|göz/.test(n))return"Göz Kremi";if(/toner|tonik|essence|esans|pad/.test(n))return"Tonik / Esans";if(/peeling|exfoliant|aha|bha/.test(n))return"Asit / Peeling";if(session==="morning"&&/ascorbic acid|vitamin c serum|c vitamini/.test(n))return"C Vitamini Serumu";if(/serum|ampoule|booster|liquid|esans/.test(n))return"Serum (Aktif)";if(/ointment|healing|onarıcı|petrolatum/.test(n))return"Onarıcı";return"Nemlendirici";};
+  const getActives=(parsed)=>{const k=parsed.map(i=>i.name.toLowerCase());const has=(terms)=>terms.some(t=>k.some(ki=>ki.includes(t)));return{retinoid:has(["retinol","retinal","granactive","hydroxypinacolone retinoate"]),vitaminC:has(["ascorbic acid","sodium ascorbyl phosphate","3-o-ethyl"]),aha:has(["glycolic acid","lactic acid","mandelic acid"]),bha:has(["salicylic acid","betaine salicylate"]),niacinamide:has(["niacinamide"]),benzoyl:has(["benzoyl peroxide"])};};
+  const buildRoutine=()=>{
+    if(!routineProducts.length)return;
+    const tagged=routineProducts.map(p=>({...p,time:guessTime(p),actives:getActives(p.parsed)}));
+    const sortByStep=(list,steps)=>list.sort((a,b)=>{const ai=steps.indexOf(a.step),bi=steps.indexOf(b.step);return(ai===-1?99:ai)-(bi===-1?99:bi);});
+    const morning=sortByStep(tagged.filter(p=>p.time==="morning"||p.time==="both").map(p=>({...p,step:guessStep(p,"morning")})),STEPS_M);
+    const evening=sortByStep(tagged.filter(p=>p.time==="evening"||p.time==="both").map(p=>({...p,step:guessStep(p,"evening")})),STEPS_E);
+    const cfls=[];
+    morning.filter(p=>p.actives.retinoid).forEach(p=>cfls.push({severity:"high",msg:`"${p.name}" retinoid içeriyor ve sabah rutininde — retinoidler sadece akşam kullanılmalı.`}));
+    const eAcid=evening.filter(p=>p.actives.aha||p.actives.bha),eRet=evening.filter(p=>p.actives.retinoid);
+    if(eAcid.length&&eRet.length)cfls.push({severity:"high",msg:`Asit + Retinoid aynı akşam rutininde — farklı gecelere ayır.`});
+    const vcP=tagged.filter(p=>p.actives.vitaminC),niaP=tagged.filter(p=>p.actives.niacinamide);
+    if(vcP.length&&niaP.length&&vcP.some(v=>niaP.some(n=>n.name!==v.name)))cfls.push({severity:"medium",msg:"C vitamini + niasinamid yüksek konsantrasyonda sararma riski."});
+    const benz=tagged.filter(p=>p.actives.benzoyl);
+    if(benz.length&&(vcP.length||eRet.length))cfls.push({severity:"high",msg:`Benzoil peroksit retinolü inaktive eder ve C vitaminini oksitler.`});
+    const tips=[];
+    if(eRet.length)tips.push("🌙 Retinoid kullanırken sabah mutlaka SPF uygulayın!");
+    if(!morning.some(p=>/spf|sunscreen|güneş/.test((p.name+p.cat).toLowerCase())))tips.push("☀️ Sabah rutininde SPF yok — aktif kullanıyorsan şart!");
+    if(vcP.length)tips.push("✨ C vitaminini sabah kullan — antioksidan koruması gündüz en değerli.");
+    setRoutineResult({morning,evening,conflicts:cfls,tips});
+  };
+
+  const conflicts=results?detectConflicts(results):[];
+  const BADGE_DEFS2=[
+    {id:"ceramide_hero",icon:"🛡️",label:"Bariyer Kahramanı",check:items=>items.filter(i=>i.name.toLowerCase().includes("ceramide")).length>=3},
+    {id:"fragrance_free",icon:"🌿",label:"Parfümsüz",check:items=>!items.some(i=>["fragrance","parfum","linalool","limonene"].some(k=>i.name.toLowerCase().includes(k)))},
+    {id:"powerhouse_c",icon:"⚡",label:"Güçlü C Vitamini",check:items=>items.some(i=>i.vitaminCTier&&i.vitaminCTier<=2)},
+    {id:"retinoid_pack",icon:"🔬",label:"Retinoid Formül",check:items=>items.some(i=>["retinol","retinal"].some(k=>i.name.toLowerCase().includes(k)))},
+    {id:"clean_formula",icon:"✨",label:"Temiz Formül",check:items=>items.filter(i=>i.rating==="risky").length===0},
+    {id:"hydration_max",icon:"💧",label:"Nem Bombası",check:items=>items.filter((i,idx)=>idx<items.length*0.4&&["glycerin","hyaluronate","panthenol"].some(k=>i.name.toLowerCase().includes(k))).length>=3},
+    {id:"spf_hero",icon:"☀️",label:"SPF Koruması",check:items=>items.some(i=>["zinc oxide","titanium dioxide","avobenzone","homosalate"].some(k=>i.name.toLowerCase().includes(k)))},
+  ];
+  const badges=results?BADGE_DEFS2.filter(b=>b.check(results)):[];
+  const avgScore=calcScore(results);
+  const scoreColor=avgScore>=80?P.mint:avgScore>=60?P.peach:P.risky;
+  const filtered=results?.filter(r=>filter==="all"||r.rating===filter);
+  const active=activeIdx!==null&&results?results[activeIdx]:null;
+
+  const S={fontFamily:"'DM Sans',sans-serif"};
+  const pixel={fontFamily:"'Press Start 2P',monospace"};
+
+  const NavBtn=({id,label,emoji})=>(
+    <button onClick={()=>{setMode(id);if(id==="quiz"){setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}if(id==="routine"){setRoutineProducts([]);setRoutineResult(null);setManualName("");setManualIng("");}}}
+      style={{...pixel,fontSize:9,padding:"8px 12px",cursor:"pointer",background:mode===id?P.pink:P.bgCard,
+        color:mode===id?"#fff":P.textMid,...px(mode===id?P.pinkDark:P.border,mode===id?3:2),
+        border:`3px solid ${mode===id?P.pinkDark:P.border}`,borderRadius:0,transition:"all 0.15s",fontFamily:"'Press Start 2P',monospace"}}>
+      {emoji} {label}
+    </button>
+  );
+
+  const PxBtn=({onClick,children,color,disabled,style={}})=>{
+    const col=disabled?P.border:color||P.pink;
+    const textCol=disabled?P.textLight:"#fff";
+    return(
+      <button onClick={disabled?undefined:onClick}
+        style={{...pixel,fontSize:9,padding:"10px 16px",cursor:disabled?"not-allowed":"pointer",
+          background:disabled?P.bgDeep:col,color:textCol,
+          border:`3px solid ${disabled?P.border:col}`,
+          boxShadow:disabled?"none":`3px 3px 0 ${disabled?P.border:P.pinkDark}`,
+          borderRadius:0,fontFamily:"'Press Start 2P',monospace",...style}}>
+        {children}
+      </button>
+    );
+  };
+
+  return(
+    <div style={{minHeight:"100vh",background:P.bg,...S,position:"relative",overflow:"hidden"}}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@400;500;600&display=swap');
+        *{box-sizing:border-box;margin:0;padding:0;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:${P.bgDeep};}::-webkit-scrollbar-thumb{background:${P.border};border-radius:0;}
+        @keyframes float0{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+        @keyframes float1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(-6deg)}}
+        @keyframes float2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes popIn{0%{transform:scale(0.8)}70%{transform:scale(1.05)}100%{transform:scale(1)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+        .fade{animation:fadeUp 0.3s ease forwards}
+        .pop{animation:popIn 0.4s ease forwards}
+        .row-px:hover{background:${P.bgHover}!important;cursor:pointer;}
+        .btn-px{transition:all 0.15s;cursor:pointer;}
+        .btn-px:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0;}
+        .btn-px:active{transform:translate(2px,2px);box-shadow:1px 1px 0;}
+        input,textarea{outline:none;font-family:'DM Sans',sans-serif;}
+        input:focus,textarea:focus{border-color:${P.pink}!important;box-shadow:3px 3px 0 ${P.pink}!important;}
+      `}</style>
+
+      {/* Floating decorations */}
+      <FloatingPixels/>
+
+      {/* Pixel checkerboard bg pattern */}
+      <div style={{position:"fixed",inset:0,pointerEvents:"none",zIndex:0,
+        backgroundImage:`radial-gradient(circle at 20% 20%, ${P.pinkDim}80 0%, transparent 50%), radial-gradient(circle at 80% 80%, ${P.lavDim}80 0%, transparent 50%)`}}/>
+
+      {/* DISCLAIMER MODAL */}
+      {showDisclaimer&&(
+        <div onClick={()=>setShowDisclaimer(false)} style={{position:"fixed",inset:0,background:"rgba(90,45,76,0.7)",zIndex:100,display:"flex",alignItems:"center",justifyContent:"center",padding:20,backdropFilter:"blur(2px)"}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:P.bgCard,maxWidth:460,width:"100%",...px(P.pink)}}>
+            <div style={{...pixel,fontSize:9,background:P.pink,color:"#fff",padding:"12px 16px"}}>⚠️ YASAL UYARI</div>
+            <div style={{padding:20}}>
+              <p style={{fontSize:13,color:P.text,lineHeight:1.9,marginBottom:12}}>Bu platform <strong style={{color:P.pink}}>Dr. Bengi Su Ege</strong> tarafından genel bilgilendirme amacıyla hazırlanmıştır.</p>
+              <p style={{fontSize:12,color:P.textMid,lineHeight:1.8,marginBottom:6}}>🌸 Tıbbi tavsiye değildir.</p>
+              <p style={{fontSize:12,color:P.textMid,lineHeight:1.8,marginBottom:6}}>🌼 Konsantrasyon tahminleri INCI sırasına dayalıdır.</p>
+              <p style={{fontSize:12,color:P.textMid,lineHeight:1.8,marginBottom:20}}>🌺 Bireysel alerji ve cilt durumu göz önünde bulundurulamaz.</p>
+              <PxBtn onClick={()=>setShowDisclaimer(false)} style={{width:"100%",justifyContent:"center",display:"block",textAlign:"center"}}>Anladım! 🌸</PxBtn>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PHOTO MODAL */}
+      {showPhotoAdd&&(
+        <div onClick={()=>setShowPhotoAdd(false)} style={{position:"fixed",inset:0,background:"rgba(90,45,76,0.7)",zIndex:100,display:"flex",alignItems:"center",justifyContent:"center",padding:20,backdropFilter:"blur(2px)"}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:P.bgCard,maxWidth:420,width:"100%",...px(P.lavender)}}>
+            <div style={{...pixel,fontSize:8,background:P.lavender,color:"#fff",padding:"12px 16px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              📷 FOTOĞRAFLA TARA
+              <button onClick={()=>setShowPhotoAdd(false)} style={{background:"none",border:"none",color:"#fff",fontSize:16,cursor:"pointer"}}>×</button>
+            </div>
+            <div style={{padding:20}}>
+              <input ref={photoRef} type="file" accept="image/*" capture="environment" style={{display:"none"}} onChange={e=>handlePhotoScan(e.target.files[0])}/>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:16}}>
+                {["📸 Düz çek","💡 İyi ışık","🔍 Net yaz","📐 Tam liste"].map((t,i)=>(
+                  <div key={i} style={{fontSize:11,color:P.textMid,background:P.bgDeep,padding:"7px 10px",...px(P.border,2)}}>{t}</div>
+                ))}
+              </div>
+              {photoScanStatus===""&&<PxBtn onClick={()=>photoRef.current?.click()} style={{width:"100%",textAlign:"center",display:"block"}}>📷 Fotoğraf Çek / Yükle</PxBtn>}
+              {photoScanStatus==="loading"&&<div style={{textAlign:"center",padding:20,...pixel,fontSize:9,color:P.pink}}>✨ Okunuyor...</div>}
+              {photoScanStatus==="error"&&(
+                <div>
+                  <div style={{padding:12,background:P.riskyDim,color:P.risky,fontSize:12,marginBottom:10,...px(P.riskyBorder,2)}}>⚠️ {photoScanError}</div>
+                  <PxBtn onClick={()=>{setPhotoScanStatus("");photoRef.current?.click();}} color={P.lavender} style={{width:"100%",textAlign:"center",display:"block"}}>Tekrar Dene</PxBtn>
+                </div>
+              )}
+              {photoScanStatus==="done"&&photoScanResult&&(
+                <div>
+                  <div style={{background:P.mintDim,padding:14,marginBottom:12,...px(P.mintBorder,2)}}>
+                    <div style={{...pixel,fontSize:8,color:P.mint,marginBottom:8}}>✓ OKUNAN</div>
+                    <div style={{fontSize:14,color:P.text,fontWeight:600,marginBottom:4}}>{photoScanResult.name||"—"}</div>
+                    <div style={{fontSize:11,color:P.pink,marginBottom:8}}>{photoScanResult.brand}</div>
+                    <div style={{fontSize:11,color:P.textMid,lineHeight:1.6,maxHeight:70,overflow:"auto"}}>{photoScanResult.ingredients}</div>
+                  </div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+                    <PxBtn onClick={()=>{setPhotoScanStatus("");setPhotoScanResult(null);photoRef.current?.click();}} color={P.lavender}>Tekrar 📷</PxBtn>
+                    <PxBtn onClick={()=>{setInput(photoScanResult.ingredients);setMode("analyze");setShowPhotoAdd(false);setPhotoScanStatus("");setPhotoScanResult(null);analyze(photoScanResult.ingredients);}}>Analiz Et ✨</PxBtn>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div style={{position:"relative",zIndex:1,maxWidth:860,margin:"0 auto",padding:"0 16px 80px"}}>
+
+        {/* ── HEADER ── */}
+        <div style={{padding:"20px 0 16px",marginBottom:24}}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
+            {/* Logo */}
+            <button onClick={()=>{setMode("home");setResults(null);}} style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:10}}>
+              <div style={{...px(P.pinkDark),background:P.pink,width:40,height:40,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>🌸</div>
+              <div>
+                <div style={{...pixel,fontSize:11,color:P.pink}}>DermaDecode</div>
+                <div style={{fontSize:10,color:P.textLight}}>by Dr. Bengi Su Ege</div>
+              </div>
+            </button>
+
+            {/* Nav */}
+            <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
+              <NavBtn id="analyze" label="Analiz" emoji="🔍"/>
+              <NavBtn id="compare" label="Karşılaştır" emoji="⚖️"/>
+              <NavBtn id="quiz" label="Quiz" emoji="🎯"/>
+              <NavBtn id="routine" label="Rutin" emoji="🌅"/>
+              <button onClick={()=>{setShowPhotoAdd(true);setPhotoScanStatus("");setPhotoScanResult(null);setPhotoScanError("");}}
+                style={{...pixel,fontSize:9,padding:"8px 12px",cursor:"pointer",background:P.lavDim,color:P.lavender,
+                  border:`3px solid ${P.lavender}`,boxShadow:`2px 2px 0 ${P.lavender}`,borderRadius:0,fontFamily:"'Press Start 2P',monospace"}}>
+                📷 Tara
+              </button>
+              <button onClick={()=>setShowDisclaimer(true)}
+                style={{...pixel,fontSize:9,padding:"8px 10px",cursor:"pointer",background:P.riskyDim,color:P.risky,
+                  border:`3px solid ${P.riskyBorder}`,boxShadow:`2px 2px 0 ${P.riskyBorder}`,borderRadius:0,fontFamily:"'Press Start 2P',monospace"}}>
+                ⚠️
+              </button>
+            </div>
+
+            {/* Author badge */}
+            <div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 12px",background:P.bgCard,...px(P.pinkLight,2)}}>
+              <div style={{width:28,height:28,background:P.pinkDim,...px(P.pink,2),display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>👩‍⚕️</div>
+              <div>
+                <div style={{fontSize:12,color:P.text,fontWeight:600}}>Dr. Bengi Su Ege</div>
+                <div style={{fontSize:9,color:P.textLight,...pixel}}>İÇERİK DANIŞMANI</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pixel divider */}
+          <div style={{marginTop:16,height:4,background:`repeating-linear-gradient(90deg, ${P.pink} 0px, ${P.pink} 8px, ${P.pinkLight} 8px, ${P.pinkLight} 16px)`}}/>
+        </div>
+
+        {/* ── HOME ── */}
+        {mode==="home"&&(
+          <div className="fade" style={{textAlign:"center",padding:"20px 0"}}>
+            <div style={{fontSize:48,marginBottom:8,animation:"wiggle 3s ease-in-out infinite"}}>🌸</div>
+            <div style={{...pixel,fontSize:8,color:P.textMid,marginBottom:10,letterSpacing:2}}>KOZMETIK ICERIK ANALIZI</div>
+            <div style={{...pixel,fontSize:20,color:P.pink,marginBottom:6,lineHeight:1.4}}>DermaDecode</div>
+            <div style={{fontSize:15,color:P.textMid,marginBottom:32,lineHeight:1.8,maxWidth:420,margin:"0 auto 32px"}}>
+              Ürün içeriklerini analiz et, karşılaştır ve cilt tipine uygun formülleri keşfet 🦋
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:16,maxWidth:640,margin:"0 auto 40px"}}>
+              {[
+                {id:"analyze",emoji:"🔍",title:"İçerik Analiz",desc:"Bileşenleri dermatolojik açıdan incele",color:P.pink},
+                {id:"compare",emoji:"⚖️",title:"Karşılaştır",desc:"2 ürünü yan yana analiz et",color:P.lavender},
+                {id:"quiz",emoji:"🎯",title:"Cilt Quiz",desc:"Cilt tipini keşfet, öneri al",color:P.mint},
+                {id:"routine",emoji:"🌅",title:"Rutin Kur",desc:"Sabah/akşam rutinini oluştur",color:P.peach},
+              ].map(card=>(
+                <button key={card.id} className="btn-px" onClick={()=>{setMode(card.id);if(card.id==="quiz"){setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}}}
+                  style={{background:P.bgCard,padding:"20px 16px",...px(card.color),border:`3px solid ${card.color}`,cursor:"pointer",textAlign:"center"}}>
+                  <div style={{fontSize:32,marginBottom:10}}>{card.emoji}</div>
+                  <div style={{...pixel,fontSize:9,color:card.color,marginBottom:8}}>{card.title}</div>
+                  <div style={{fontSize:12,color:P.textMid,lineHeight:1.5}}>{card.desc}</div>
+                </button>
+              ))}
+            </div>
+            <div style={{display:"flex",justifyContent:"center",gap:20,flexWrap:"wrap"}}>
+              {[["🌸","Bilimsel Analiz"],["🦋","Çakışma Tespiti"],["⭐","Quiz Sistemi"],["🌼","Rutin Oluşturucu"]].map(([e,l])=>(
+                <div key={l} style={{textAlign:"center"}}>
+                  <div style={{fontSize:24,marginBottom:4}}>{e}</div>
+                  <div style={{...pixel,fontSize:7,color:P.textMid}}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── QUIZ ── */}
+        {mode==="quiz"&&(
+          <div className="fade">
+            {!quizResult?(
+              <PixelCard color={P.pink}>
+                <SectionHead emoji="🎯" title={`SORU ${quizStep+1}/${QUIZ.length}`} color={P.pinkDim}/>
+                <div style={{padding:20}}>
+                  <div style={{height:8,background:P.bgDeep,...px(P.border,2),marginBottom:18}}>
+                    <div style={{height:"100%",width:`${((quizStep+1)/QUIZ.length)*100}%`,background:`repeating-linear-gradient(90deg,${P.pink} 0,${P.pink} 8px,${P.pinkLight} 8px,${P.pinkLight} 16px)`,transition:"width 0.4s"}}/>
+                  </div>
+                  <div style={{...pixel,fontSize:10,color:P.text,lineHeight:1.8,marginBottom:20}}>{QUIZ[quizStep].q}</div>
+                  <div style={{display:"grid",gap:10}}>
+                    {QUIZ[quizStep].opts.map((opt,i)=>(
+                      <button key={i} className="btn-px" onClick={()=>answerQuiz(opt.t)}
+                        style={{background:P.bgCard,padding:"14px 18px",...px(P.border),border:`3px solid ${P.border}`,cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:12}}>
+                        <div style={{...pixel,fontSize:9,color:P.pink,flexShrink:0}}>{String.fromCharCode(65+i)}</div>
+                        <div style={{fontSize:14,color:P.text}}>{opt.l}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </PixelCard>
+            ):(
+              <div className="fade">
+                {(()=>{const r=SKIN_REC[quizResult]||SKIN_REC.normal;return(
+                  <PixelCard color={P.mint}>
+                    <SectionHead emoji="🌸" title="CİLT TİPİNİZ" color={P.mintDim}/>
+                    <div style={{padding:24,textAlign:"center"}}>
+                      <div style={{fontSize:56,marginBottom:8}}>{r.emoji}</div>
+                      <div style={{...pixel,fontSize:14,color:P.mint,marginBottom:8}}>{r.label}</div>
+                      <div style={{fontSize:14,color:P.textMid,lineHeight:1.8,marginBottom:24}}>{r.desc}</div>
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:20}}>
+                        <div style={{background:P.mintDim,padding:16,...px(P.mintBorder,2)}}>
+                          <div style={{...pixel,fontSize:8,color:P.mint,marginBottom:10}}>✓ ÖNERİLEN</div>
+                          <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                            {r.badges.map(b=><span key={b} style={{fontSize:11,padding:"3px 8px",background:P.bgCard,...px(P.mint,2),color:P.mint}}>{b}</span>)}
+                          </div>
+                        </div>
+                        <div style={{background:P.riskyDim,padding:16,...px(P.riskyBorder,2)}}>
+                          <div style={{...pixel,fontSize:8,color:P.risky,marginBottom:10}}>✗ KAÇIN</div>
+                          <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                            {r.avoid.map(b=><span key={b} style={{fontSize:11,padding:"3px 8px",background:P.bgCard,...px(P.risky,2),color:P.risky}}>{b}</span>)}
+                          </div>
+                        </div>
+                      </div>
+                      <div style={{display:"flex",gap:10}}>
+                        <PxBtn onClick={()=>{setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}} color={P.lavender} style={{flex:1,textAlign:"center",display:"block"}}>Tekrar 🎯</PxBtn>
+                        <PxBtn onClick={()=>setMode("analyze")} style={{flex:2,textAlign:"center",display:"block"}}>Ürün Analiz Et 🔍</PxBtn>
+                      </div>
+                    </div>
+                  </PixelCard>
+                );})()}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── ANALYZE ── */}
+        {mode==="analyze"&&(
+          <div className="fade">
+            <PixelCard color={P.pink} style={{marginBottom:12}}>
+              <SectionHead emoji="🔍" title="ÜRÜN ANALİZ" color={P.pinkDim}/>
+              <div style={{padding:18}}>
+                <ProductSearch q={productQ} setQ={setProductQ} suggs={productSuggs} setSuggs={setProductSuggs}
+                  onSearch={q=>searchProducts(q,s=>setProductSuggs(s))}
+                  onSelect={p=>{setInput(p.ingredients);setProductQ(p.name);setProductSuggs([]);analyze(p.ingredients);}}
+                  ghStatus={ghStatus} totalCount={allProducts.length}/>
+                <div style={{margin:"12px 0",display:"flex",alignItems:"center",gap:8}}>
+                  <div style={{flex:1,height:2,background:`repeating-linear-gradient(90deg,${P.border} 0,${P.border} 6px,transparent 6px,transparent 12px)`}}/>
+                  <span style={{fontSize:11,color:P.textLight,...pixel}}>ya da</span>
+                  <div style={{flex:1,height:2,background:`repeating-linear-gradient(90deg,${P.border} 0,${P.border} 6px,transparent 6px,transparent 12px)`}}/>
+                </div>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                  <span style={{fontSize:12,color:P.textMid}}>INCI listesini yapıştır</span>
+                  <button onClick={()=>setInput(SAMPLE)} style={{...pixel,fontSize:8,padding:"4px 10px",cursor:"pointer",background:P.yellowDim,color:P.peach,border:`2px solid ${P.yellowBorder}`,boxShadow:`2px 2px 0 ${P.yellowBorder}`,fontFamily:"'Press Start 2P',monospace"}}>Örnek</button>
+                </div>
+                <textarea value={input} onChange={e=>setInput(e.target.value)} placeholder="Water, Glycerin, Niacinamide..." rows={4}
+                  style={{width:"100%",background:P.bgDeep,border:`3px solid ${P.border}`,padding:12,color:P.text,fontSize:13,resize:"vertical",lineHeight:1.6,boxShadow:`3px 3px 0 ${P.border}`}}/>
+                <PxBtn onClick={()=>analyze()} disabled={!input.trim()} style={{marginTop:10,width:"100%",textAlign:"center",display:"block"}}>
+                  ✨ İçerikleri Analiz Et
+                </PxBtn>
+              </div>
+            </PixelCard>
+
+            <div style={{marginBottom:12,padding:"10px 14px",background:P.yellowDim,...px(P.yellowBorder,2),fontSize:12,color:P.peach,display:"flex",justifyContent:"space-between",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+              <span>🌼 Genel bilgi amaçlıdır, tıbbi tavsiye değildir.</span>
+              <button onClick={()=>setShowDisclaimer(true)} style={{...pixel,fontSize:8,color:P.risky,background:"none",border:`2px solid ${P.riskyBorder}`,padding:"3px 8px",cursor:"pointer",fontFamily:"'Press Start 2P',monospace"}}>Uyarılar</button>
+            </div>
+
+            {results&&(
+              <div className="fade">
+                {/* BADGES */}
+                {badges.length>0&&(
+                  <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:12}}>
+                    {badges.map((b,i)=>(
+                      <div key={b.id} className="pop" style={{animationDelay:`${i*0.08}s`,display:"flex",alignItems:"center",gap:6,padding:"6px 10px",...px(P.yellowBorder,2),background:P.yellowDim,fontSize:12,color:P.peach}} title={b.desc||""}>
+                        {b.icon} <span style={{...pixel,fontSize:8}}>{b.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* CONFLICTS */}
+                {conflicts.length>0&&(
+                  <PixelCard color={P.risky} style={{marginBottom:12}}>
+                    <SectionHead emoji="⚡" title={`${conflicts.length} ÇAKIŞMA TESPİT EDİLDİ`} color={P.riskyDim}/>
+                    {conflicts.map((cf,i)=>(
+                      <div key={i} style={{padding:"12px 16px",borderBottom:i<conflicts.length-1?`2px dashed ${P.riskyBorder}`:"none"}}>
+                        <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:6}}>
+                          <span style={{fontSize:16}}>{cf.icon}</span>
+                          <span style={{...pixel,fontSize:8,color:cf.severity==="high"?P.risky:P.caution}}>{cf.title}</span>
+                          <span style={{...pixel,fontSize:7,padding:"2px 6px",background:cf.severity==="high"?P.riskyDim:P.cautionDim,color:cf.severity==="high"?P.risky:P.caution,...px(cf.severity==="high"?P.riskyBorder:P.cautionBorder,1)}}>
+                            {cf.severity==="high"?"YÜKSEK":"ORTA"}
+                          </span>
+                        </div>
+                        <div style={{fontSize:12,color:P.textMid,lineHeight:1.7,paddingLeft:24}}>
+                          <span style={{color:P.risky}}>{cf.aNames?.join(", ")}</span>{cf.aNames&&" + "}<span style={{color:P.caution}}>{cf.bNames?.join(", ")}</span>
+                          <div style={{marginTop:4,color:P.textLight}}>{cf.tip}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </PixelCard>
+                )}
+
+                {/* SCORES */}
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
+                  <PixelCard color={scoreColor}>
+                    <div style={{padding:"18px 20px"}}>
+                      <div style={{...pixel,fontSize:8,color:P.textMid,marginBottom:8}}>GENEL SKOR</div>
+                      <div style={{...pixel,fontSize:36,color:scoreColor,lineHeight:1,marginBottom:10}}>{avgScore}<span style={{fontSize:14,color:P.textLight}}>/100</span></div>
+                      <div style={{height:8,...px(P.border,2)}}>
+                        <div style={{height:"100%",width:`${avgScore}%`,background:`repeating-linear-gradient(90deg,${scoreColor} 0,${scoreColor} 8px,${scoreColor}aa 8px,${scoreColor}aa 12px)`,transition:"width 1s ease"}}/>
+                      </div>
+                    </div>
+                  </PixelCard>
+                  <PixelCard color={P.lavender}>
+                    <div style={{padding:"18px 20px"}}>
+                      <div style={{...pixel,fontSize:8,color:P.textMid,marginBottom:12}}>DAĞILIM</div>
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:6}}>
+                        {[{l:"Güvenli",c:results.filter(r=>r.rating==="safe").length,col:P.safe,r:"safe"},{l:"Dikkat",c:results.filter(r=>r.rating==="caution").length,col:P.caution,r:"caution"},{l:"Riskli",c:results.filter(r=>r.rating==="risky").length,col:P.risky,r:"risky"},{l:"?",c:results.filter(r=>r.rating==="unknown").length,col:P.unknown,r:"unknown"}].map(x=>(
+                          <button key={x.r} onClick={()=>setFilter(f=>f===x.r?"all":x.r)}
+                            style={{display:"flex",alignItems:"center",gap:5,padding:"6px 8px",background:filter===x.r?`${x.col}20`:P.bgDeep,border:`2px solid ${filter===x.r?x.col:P.border}`,cursor:"pointer",boxShadow:filter===x.r?`2px 2px 0 ${x.col}`:"none"}}>
+                            <div style={{width:8,height:8,background:x.col,flexShrink:0}}/>
+                            <span style={{...pixel,fontSize:8,color:P.text}}>{x.c}</span>
+                            <span style={{fontSize:10,color:P.textMid}}>{x.l}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </PixelCard>
+                </div>
+
+                {/* INGREDIENT LIST */}
+                <PixelCard color={P.border} style={{marginBottom:12}}>
+                  <div style={{display:"grid",gridTemplateColumns:"24px 1fr 80px 44px",padding:"8px 16px",background:P.bgDeep,borderBottom:`3px solid ${P.border}`}}>
+                    {["#","Bileşen","Konsantrasyon","Skor"].map((h,i)=>(
+                      <div key={i} style={{...pixel,fontSize:7,color:P.textLight,textAlign:i===3?"right":"left"}}>{h}</div>
+                    ))}
+                  </div>
+                  {filtered?.map((ing,i)=>{
+                    const meta=RM2[ing.rating]||RM2.unknown;
+                    const realIdx=results.indexOf(ing);
+                    const hasConflict=conflicts.some(cf=>[...(cf.aNames||[]),...(cf.bNames||[])].includes(ing.tr));
+                    return(
+                      <div key={i} className="row-px" onClick={()=>setActiveIdx(activeIdx===realIdx?null:realIdx)}
+                        style={{display:"grid",gridTemplateColumns:"24px 1fr 80px 44px",alignItems:"center",padding:"12px 16px",borderBottom:i<filtered.length-1?`2px dashed ${P.borderLight}`:"none",background:activeIdx===realIdx?P.pinkDim:"transparent"}}>
+                        <span style={{...pixel,fontSize:8,color:P.textLight}}>{ing.listIndex}</span>
+                        <div>
+                          <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+                            <span style={{fontSize:16}}>{meta.emoji}</span>
+                            <span style={{fontSize:13,color:P.text,fontWeight:500}}>{ing.tr}</span>
+                            {hasConflict&&<span style={{...pixel,fontSize:7,padding:"1px 5px",background:P.riskyDim,color:P.risky,border:`1px solid ${P.riskyBorder}`}}>⚡</span>}
+                            {ing.vitaminCTier===1&&<span style={{...pixel,fontSize:7,padding:"1px 5px",background:P.mintDim,color:P.mint,border:`1px solid ${P.mintBorder}`}}>Güçlü C</span>}
+                          </div>
+                          <div style={{fontSize:10,color:P.textLight,marginTop:2,paddingLeft:22}}>{ing.name} · {ing.cat}</div>
+                        </div>
+                        <div style={{...pixel,fontSize:7,color:ing.position==="Yüksek"?P.caution:ing.position==="Eser"?P.textLight:P.textMid}}>{ing.position}</div>
+                        <div style={{...pixel,fontSize:14,color:meta.color,textAlign:"right"}}>{ing.score}</div>
+                      </div>
+                    );
+                  })}
+                </PixelCard>
+
+                {/* DETAIL */}
+                {active&&(
+                  <div className="fade">
+                    <PixelCard color={(RM2[active.rating]||RM2.unknown).border} style={{marginBottom:12}}>
+                      <SectionHead emoji={(RM2[active.rating]||RM2.unknown).emoji} title={active.tr.toUpperCase()} color={(RM2[active.rating]||RM2.unknown).bg}/>
+                      <div style={{padding:20}}>
+                        <div style={{display:"flex",justifyContent:"space-between",marginBottom:12}}>
+                          <div style={{fontSize:11,color:P.textLight}}>#{active.listIndex} · {active.cat}</div>
+                          <div style={{...pixel,fontSize:20,color:(RM2[active.rating]||RM2.unknown).color}}>{active.score}<span style={{fontSize:10,color:P.textLight}}>/100</span></div>
+                        </div>
+                        <p style={{fontSize:13,color:P.textMid,lineHeight:1.85,marginBottom:12}}>{active.desc}</p>
+                        {active.vitaminCTier&&(
+                          <div style={{padding:12,background:active.vitaminCTier<=2?P.mintDim:active.vitaminCTier===3?P.cautionDim:P.riskyDim,...px(active.vitaminCTier<=2?P.mintBorder:active.vitaminCTier===3?P.cautionBorder:P.riskyBorder,2),marginBottom:10}}>
+                            <div style={{...pixel,fontSize:8,color:active.vitaminCTier<=2?P.mint:active.vitaminCTier===3?P.caution:P.risky,marginBottom:8}}>C VİTAMİNİ TİER {active.vitaminCTier}/4</div>
+                            <div style={{display:"flex",gap:4,marginBottom:8}}>
+                              {[1,2,3,4].map(t=><div key={t} style={{flex:1,height:8,background:t<=active.vitaminCTier?(active.vitaminCTier<=2?P.mint:active.vitaminCTier===3?P.caution:P.risky):P.border,...(t<=active.vitaminCTier?{}:{opacity:0.3})}}/>)}
+                            </div>
+                            <p style={{fontSize:12,color:P.text,lineHeight:1.6}}>
+                              {active.vitaminCTier===1&&"En güçlü form — yüksek biyoyararlanım ✨"}
+                              {active.vitaminCTier===2&&"İyi form — güvenilir etki 🌸"}
+                              {active.vitaminCTier===3&&"Orta form — dönüşüm gerektirir 🌼"}
+                              {active.vitaminCTier===4&&"Zayıf form — düşük biyoyararlanım 🍄"}
+                            </p>
+                          </div>
+                        )}
+                        {active.usage&&(
+                          <div style={{padding:10,background:P.pinkDim,...px(P.pinkLight,2),marginBottom:10,fontSize:12,color:P.text,lineHeight:1.6}}>
+                            <span style={{...pixel,fontSize:8,color:P.pink}}>💡 KULLANIM: </span>{active.usage}
+                          </div>
+                        )}
+                        <div style={{fontSize:12,color:P.textMid,padding:"8px 12px",background:P.bgDeep,...px(P.border,2),marginBottom:active.concern?10:0}}>
+                          📍 {active.positionNote}
+                        </div>
+                        {active.concern&&(
+                          <div style={{padding:"10px 12px",background:P.riskyDim,...px(P.riskyBorder,2),fontSize:12,color:P.risky,lineHeight:1.6,marginTop:10}}>
+                            ⚠️ {active.concern}
+                          </div>
+                        )}
+                      </div>
+                    </PixelCard>
+                  </div>
+                )}
+
+                {/* SKIN SUITABILITY */}
+                {(()=>{
+                  const types=["dry","oily","combination","sensitive","normal"];
+                  const LABELS={dry:"Kuru",oily:"Yağlı",combination:"Karma",sensitive:"Hassas",normal:"Normal"};
+                  const EMOJIS={dry:"🏜️",oily:"✨",combination:"⚖️",sensitive:"🌸",normal:"🍃"};
+                  const suits=types.map(type=>{
+                    const avoid=results.filter(r=>r.avoid?.includes(type)).length;
+                    const score=Math.max(0,Math.round(100-(avoid/results.length)*100));
+                    return{type,label:LABELS[type],emoji:EMOJIS[type],score,avoid};
+                  });
+                  return(
+                    <PixelCard color={P.lavender} style={{marginBottom:12}}>
+                      <SectionHead emoji="🌈" title="CİLT TİPİNE UYGUNLUK" color={P.lavDim}/>
+                      <div style={{padding:18,display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10}}>
+                        {suits.map(({type,label,emoji,score})=>{
+                          const col=score>=80?P.safe:score>=55?P.caution:P.risky;
+                          return(
+                            <div key={type} style={{textAlign:"center"}}>
+                              <div style={{fontSize:20,marginBottom:4}}>{emoji}</div>
+                              <div style={{...pixel,fontSize:13,color:col,marginBottom:6}}>{score}</div>
+                              <div style={{height:6,...px(P.border,1),marginBottom:4}}>
+                                <div style={{height:"100%",width:`${score}%`,background:col}}/>
+                              </div>
+                              <div style={{...pixel,fontSize:7,color:P.textMid}}>{label}</div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </PixelCard>
+                  );
+                })()}
+
+                {/* PROMISE ANALYSIS */}
+                {(()=>{
+                  const checks=[
+                    {claim:"💧 Nemlendirme",evaluate(){
+                      const a=results.filter(i=>["hyaluronic acid","sodium hyaluronate","glycerin","glycerol","panthenol","urea"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(!a.length)return{verdict:"Zayıf",color:P.risky,detail:"Güçlü nemlendirici yok."};
+                      const pct=results.indexOf(a[0])/results.length;
+                      if(pct<0.4)return{verdict:"Güçlü",color:P.mint,detail:`${a[0].tr} üst sıralarda.`};
+                      if(pct<0.7)return{verdict:"Orta",color:P.caution,detail:`${a[0].tr} orta sıralarda.`};
+                      return{verdict:"Zayıf",color:P.risky,detail:`${a[0].tr} listede geride.`};
+                    }},
+                    {claim:"⏳ Anti-Aging",evaluate(){
+                      const a=results.filter(i=>["retinol","retinal","retinyl","bakuchiol","adenosine","peptide","ascorbic acid"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(!a.length)return{verdict:"Zayıf",color:P.risky,detail:"Anti-aging bileşen yok."};
+                      return results.indexOf(a[0])<results.length*0.5?{verdict:"Güçlü",color:P.mint,detail:`${a[0].tr} etkin sırada.`}:{verdict:"Orta",color:P.caution,detail:`${a[0].tr} var ama geride.`};
+                    }},
+                    {claim:"✨ Leke Açma",evaluate(){
+                      const a=results.filter(i=>["niacinamide","alpha arbutin","kojic acid","ascorbic acid","ascorbyl","azelaic acid","tranexamic"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(!a.length)return{verdict:"Zayıf",color:P.risky,detail:"Leke açıcı bileşen yok."};
+                      return results.indexOf(a[0])<results.length*0.5?{verdict:"Güçlü",color:P.mint,detail:`${a[0].tr} etkin.`}:{verdict:"Orta",color:P.caution,detail:`${a[0].tr} mevcut.`};
+                    }},
+                    {claim:"🌸 Hassas Cilt",evaluate(){
+                      const sooth=results.filter(i=>["allantoin","centella","aloe","panthenol","ceramide","green tea","squalane"].some(k=>i.name.toLowerCase().includes(k)));
+                      const irr=results.filter(i=>["fragrance","parfum","alcohol denat","linalool","limonene"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(irr.length&&!sooth.length)return{verdict:"Yanıltıcı",color:P.risky,detail:`${irr[0].tr} irritan var.`};
+                      if(irr.length)return{verdict:"Çelişkili",color:P.caution,detail:"İritan ve yatıştırıcı bir arada."};
+                      if(sooth.length>=2)return{verdict:"Güçlü",color:P.mint,detail:"Yatıştırıcı formül."};
+                      return sooth.length?{verdict:"Orta",color:P.caution,detail:"Kısmi yatıştırıcı."}:{verdict:"Zayıf",color:P.risky,detail:"Yatıştırıcı yok."};
+                    }},
+                    {claim:"🔬 Gözenek/Yağ",evaluate(){
+                      const a=results.filter(i=>["niacinamide","salicylic acid","zinc","kaolin","bentonite"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(!a.length)return{verdict:"Zayıf",color:P.risky,detail:"Gözenek bileşeni yok."};
+                      return{verdict:"Güçlü",color:P.mint,detail:`${a[0].tr} mevcut.`};
+                    }},
+                    {claim:"🛡️ Bariyer",evaluate(){
+                      const cers=results.filter(i=>i.name.toLowerCase().includes("ceramide"));
+                      if(cers.length>=2)return{verdict:"Güçlü",color:P.mint,detail:`${cers.length} seramid ✨`};
+                      if(cers.length===1)return{verdict:"İyi",color:P.mint,detail:`${cers[0].tr} var.`};
+                      return{verdict:"Zayıf",color:P.risky,detail:"Seramid kompleksi yok."};
+                    }},
+                    {claim:"☀️ SPF",evaluate(){
+                      const sf=results.filter(i=>["zinc oxide","titanium dioxide","avobenzone","octocrylene","homosalate"].some(k=>i.name.toLowerCase().includes(k)));
+                      if(!sf.length)return{verdict:"Yok",color:P.unknown,detail:"Güneş filtresi yok."};
+                      const phys=sf.filter(a=>["zinc oxide","titanium dioxide"].some(k=>a.name.toLowerCase().includes(k)));
+                      return phys.length?{verdict:"Güvenli",color:P.mint,detail:"Fiziksel filtre 🌸"}:{verdict:"Kimyasal",color:P.caution,detail:"Kimyasal filtre."};
+                    }},
+                  ];
+                  return(
+                    <PixelCard color={P.peach} style={{marginBottom:12}}>
+                      <SectionHead emoji="🌺" title="VAATLER vs FORMÜL" color={P.peachDim}/>
+                      <div style={{padding:16,display:"flex",flexDirection:"column",gap:8}}>
+                        {checks.map((c,i)=>{
+                          const res=c.evaluate();
+                          return(
+                            <div key={i} style={{display:"grid",gridTemplateColumns:"1fr auto",alignItems:"center",gap:12,padding:"10px 12px",background:P.bgDeep,...px(P.border,2)}}>
+                              <div>
+                                <div style={{...pixel,fontSize:8,color:P.textMid,marginBottom:4}}>{c.claim}</div>
+                                <div style={{fontSize:12,color:P.text,lineHeight:1.5}}>{res.detail}</div>
+                              </div>
+                              <span style={{...pixel,fontSize:8,padding:"4px 8px",background:`${res.color}20`,color:res.color,...px(res.color,2),whiteSpace:"nowrap"}}>{res.verdict}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div style={{padding:"10px 16px",borderTop:`2px dashed ${P.peachBorder}`,fontSize:11,color:P.textLight}}>
+                        ⚠️ Konsantrasyon bilinmeden kesin etkinlik garantisi verilemez.
+                      </div>
+                    </PixelCard>
+                  );
+                })()}
+
+                {/* Footer */}
+                <div style={{padding:"14px 0",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
+                  <div>
+                    <div style={{...pixel,fontSize:9,color:P.pink}}>Dr. Bengi Su Ege 🌸</div>
+                    <div style={{fontSize:11,color:P.textLight}}>Genel bilgi · Tıbbi tavsiye değildir</div>
+                  </div>
+                  <button onClick={()=>setShowDisclaimer(true)} style={{...pixel,fontSize:8,color:P.risky,background:P.riskyDim,border:`2px solid ${P.riskyBorder}`,padding:"5px 10px",cursor:"pointer",boxShadow:`2px 2px 0 ${P.riskyBorder}`,fontFamily:"'Press Start 2P',monospace"}}>Yasal Uyarılar</button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── COMPARE ── */}
+        {mode==="compare"&&(
+          <div className="fade">
+            <PixelCard color={P.lavender} style={{marginBottom:16}}>
+              <SectionHead emoji="⚖️" title="ÜRÜN KARŞILAŞTIRMA" color={P.lavDim}/>
+              <div style={{padding:16,display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+                {[["A",compareA,setCompareA],["B",compareB,setCompareB]].map(([label,state,setState])=>(
+                  <div key={label}>
+                    <div style={{...pixel,fontSize:9,color:P.lavender,marginBottom:10}}>ÜRÜN {label}</div>
+                    <ProductSearch q={state.productQ} setQ={q=>setState(s=>({...s,productQ:q}))}
+                      suggs={state.productSuggs} setSuggs={ss=>setState(s=>({...s,productSuggs:ss}))}
+                      onSearch={q=>searchProducts(q,ss=>setState(s=>({...s,productSuggs:ss})))}
+                      onSelect={p=>{const r=parseIngredients(p.ingredients);setState(s=>({...s,input:p.ingredients,results:r,productQ:p.name,productSuggs:[]}));}}
+                      small ghStatus={ghStatus}/>
+                    <div style={{margin:"8px 0",height:1,background:P.border}}/>
+                    <textarea value={state.input} onChange={e=>{const v=e.target.value;setState(s=>({...s,input:v}));}} placeholder="veya INCI yapıştır..." rows={3}
+                      style={{width:"100%",background:P.bgDeep,border:`2px solid ${P.border}`,padding:10,color:P.text,fontSize:12,resize:"vertical"}}/>
+                    <PxBtn onClick={()=>{const r=parseIngredients(state.input);setState(s=>({...s,results:r}));}} disabled={!state.input.trim()} color={P.lavender} style={{marginTop:8,width:"100%",textAlign:"center",display:"block"}}>
+                      Analiz Et ✨
+                    </PxBtn>
+                  </div>
+                ))}
+              </div>
+            </PixelCard>
+
+            {compareA.results&&compareB.results&&(
+              <div className="fade">
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
+                  {[[compareA,"A",P.pink],[compareB,"B",P.lavender]].map(([state,label,col])=>{
+                    const sc=calcScore(state.results);
+                    const scCol=sc>=80?P.mint:sc>=60?P.caution:P.risky;
+                    const bdg=BADGE_DEFS2.filter(b=>b.check(state.results));
+                    const cfls=detectConflicts(state.results);
+                    return(
+                      <PixelCard key={label} color={col}>
+                        <div style={{padding:"12px 16px",background:`${col}20`,borderBottom:`3px solid ${col}`,...pixel,fontSize:9,color:col}}>ÜRÜN {label}</div>
+                        <div style={{padding:16}}>
+                          <div style={{fontSize:12,color:P.textMid,marginBottom:10,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{state.productQ||"Manuel giriş"}</div>
+                          <div style={{...pixel,fontSize:32,color:scCol,lineHeight:1,marginBottom:8}}>{sc}<span style={{fontSize:12,color:P.textLight}}>/100</span></div>
+                          <div style={{height:6,...px(P.border,1),marginBottom:10}}>
+                            <div style={{height:"100%",width:`${sc}%`,background:scCol}}/>
+                          </div>
+                          <div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:8}}>
+                            {bdg.slice(0,3).map(b=><span key={b.id} style={{...pixel,fontSize:7,padding:"2px 6px",background:P.yellowDim,color:P.peach,...px(P.yellowBorder,1)}}>{b.icon}</span>)}
+                          </div>
+                          {cfls.length>0&&<div style={{...pixel,fontSize:8,color:P.risky,padding:"5px 8px",background:P.riskyDim,...px(P.riskyBorder,1)}}>⚡ {cfls.length} çakışma</div>}
+                        </div>
+                      </PixelCard>
+                    );
+                  })}
+                </div>
+
+                {(()=>{
+                  const sA=calcScore(compareA.results),sB=calcScore(compareB.results);
+                  const w=sA>sB?"A":sB>sA?"B":null;
+                  return(
+                    <PixelCard color={w?P.yellow:P.border} style={{marginBottom:12}}>
+                      <div style={{padding:20,textAlign:"center"}}>
+                        {w?(
+                          <>
+                            <div style={{fontSize:32,marginBottom:8}}>🏆</div>
+                            <div style={{...pixel,fontSize:12,color:P.peach,marginBottom:6}}>ÜRÜN {w} ÖNE ÇIKIYOR</div>
+                            <div style={{fontSize:13,color:P.textMid}}>Fark: {Math.abs(sA-sB)} puan</div>
+                          </>
+                        ):<div style={{...pixel,fontSize:10,color:P.textMid}}>EŞİT SKOR 🌸</div>}
+                      </div>
+                    </PixelCard>
+                  );
+                })()}
+
+                <PixelCard color={P.border}>
+                  <SectionHead emoji="🔍" title="ORTAK & FARKLI BİLEŞENLER" color={P.bgDeep}/>
+                  {(()=>{
+                    const kA=new Set(compareA.results.map(i=>i.tr));
+                    const kB=new Set(compareB.results.map(i=>i.tr));
+                    const onlyA=[...kA].filter(k=>!kB.has(k)).slice(0,6);
+                    const onlyB=[...kB].filter(k=>!kA.has(k)).slice(0,6);
+                    const common=[...kA].filter(k=>kB.has(k)).slice(0,6);
+                    return(
+                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",borderTop:`3px solid ${P.border}`}}>
+                        {[["Sadece A'da",onlyA,P.pink],["Ortak",common,P.peach],["Sadece B'de",onlyB,P.lavender]].map(([title,list,col])=>(
+                          <div key={title} style={{padding:14,borderRight:col!==P.lavender?`2px dashed ${P.border}`:"none"}}>
+                            <div style={{...pixel,fontSize:7,color:col,marginBottom:10}}>{title}</div>
+                            {list.map(k=><div key={k} style={{fontSize:11,color:P.text,padding:"3px 0",borderBottom:`1px dashed ${P.borderLight}`}}>{k}</div>)}
+                            {!list.length&&<div style={{fontSize:11,color:P.textLight}}>—</div>}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </PixelCard>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── ROUTINE ── */}
+        {mode==="routine"&&(
+          <div className="fade">
+            <PixelCard color={P.peach} style={{marginBottom:12}}>
+              <SectionHead emoji="🌅" title="RUTİN OLUŞTURUCU" color={P.peachDim}/>
+              <div style={{padding:18}}>
+                <ProductSearch q={routineQ} setQ={setRoutineQ} suggs={routineSuggs} setSuggs={setRoutineSuggs}
+                  onSearch={q=>searchProducts(q,s=>setRoutineSuggs(s))}
+                  onSelect={p=>{
+                    if(routineProducts.find(rp=>rp.name===p.name))return;
+                    setRoutineProducts(prev=>[...prev,{name:p.name,brand:p.brand,cat:p.cat||"",ingredients:p.ingredients,parsed:parseIngredients(p.ingredients)}]);
+                    setRoutineQ("");setRoutineSuggs([]);setRoutineResult(null);
+                  }}
+                  ghStatus={ghStatus} totalCount={allProducts.length}/>
+                <div style={{margin:"10px 0",height:2,background:`repeating-linear-gradient(90deg,${P.border} 0,${P.border} 6px,transparent 6px,transparent 12px)`}}/>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+                  <input value={manualName} onChange={e=>setManualName(e.target.value)} placeholder="Ürün adı"
+                    style={{background:P.bgDeep,border:`3px solid ${P.border}`,padding:"10px 12px",color:P.text,fontSize:13,boxShadow:`3px 3px 0 ${P.border}`}}/>
+                  <div style={{display:"flex",gap:6}}>
+                    <input value={manualIng} onChange={e=>setManualIng(e.target.value)} placeholder="Water, Glycerin..."
+                      style={{flex:1,background:P.bgDeep,border:`3px solid ${P.border}`,padding:"10px 12px",color:P.text,fontSize:13,boxShadow:`3px 3px 0 ${P.border}`}}/>
+                    <PxBtn onClick={()=>{
+                      if(!manualName.trim()||!manualIng.trim())return;
+                      setRoutineProducts(prev=>[...prev,{name:manualName.trim(),brand:"",cat:"",ingredients:manualIng.trim(),parsed:parseIngredients(manualIng.trim())}]);
+                      setManualName("");setManualIng("");setRoutineResult(null);
+                    }} color={P.peach}>+ Ekle</PxBtn>
+                  </div>
+                </div>
+              </div>
+            </PixelCard>
+
+            {routineProducts.length>0&&(
+              <PixelCard color={P.border} style={{marginBottom:12}}>
+                <SectionHead emoji="🛍️" title={`EKLENEN ÜRÜNLER (${routineProducts.length})`} color={P.bgDeep}/>
+                {routineProducts.map((p,i)=>(
+                  <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 16px",borderBottom:i<routineProducts.length-1?`2px dashed ${P.borderLight}`:"none"}}>
+                    <span style={{fontSize:16}}>{guessTime(p)==="morning"?"🌅":guessTime(p)==="evening"?"🌙":"🌸"}</span>
+                    <div style={{flex:1}}>
+                      <div style={{fontSize:13,color:P.text,fontWeight:500}}>{p.name}</div>
+                      {p.brand&&<div style={{fontSize:10,color:P.pink}}>{p.brand}</div>}
+                    </div>
+                    <button onClick={()=>{setRoutineProducts(prev=>prev.filter((_,j)=>j!==i));setRoutineResult(null);}}
+                      style={{background:P.riskyDim,border:`2px solid ${P.riskyBorder}`,color:P.risky,width:28,height:28,cursor:"pointer",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center"}}>×</button>
+                  </div>
+                ))}
+                <div style={{padding:14,borderTop:`3px solid ${P.border}`}}>
+                  <PxBtn onClick={buildRoutine} style={{width:"100%",textAlign:"center",display:"block"}}>🌸 Rutini Oluştur</PxBtn>
+                </div>
+              </PixelCard>
+            )}
+
+            {routineResult&&(
+              <div className="fade">
+                {routineResult.conflicts.length>0&&(
+                  <PixelCard color={P.risky} style={{marginBottom:12}}>
+                    <SectionHead emoji="⚡" title="UYARILAR" color={P.riskyDim}/>
+                    {routineResult.conflicts.map((cf,i)=>(
+                      <div key={i} style={{padding:"12px 16px",borderBottom:i<routineResult.conflicts.length-1?`2px dashed ${P.riskyBorder}`:"none"}}>
+                        <span style={{...pixel,fontSize:8,color:cf.severity==="high"?P.risky:P.caution,marginBottom:4,display:"block"}}>{cf.severity==="high"?"⚡ YÜKSEK":"🟡 ORTA"}</span>
+                        <div style={{fontSize:12,color:P.textMid,lineHeight:1.7}}>{cf.msg}</div>
+                      </div>
+                    ))}
+                  </PixelCard>
+                )}
+
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
+                  {[{session:"morning",label:"🌅 SABAH RUTİNİ",list:routineResult.morning,col:P.yellow,dim:P.yellowDim,border:P.yellowBorder},
+                    {session:"evening",label:"🌙 AKŞAM RUTİNİ",list:routineResult.evening,col:P.lavender,dim:P.lavDim,border:P.lavBorder}].map(({label,list,col,dim,border})=>(
+                    <PixelCard key={label} color={col}>
+                      <div style={{padding:"10px 14px",background:dim,borderBottom:`3px solid ${border}`,...pixel,fontSize:8,color:col}}>{label}</div>
+                      {list.length===0?<div style={{padding:16,fontSize:12,color:P.textLight,textAlign:"center"}}>Bu seans için ürün yok 🌸</div>:
+                        list.map((p,i)=>(
+                          <div key={i} style={{padding:"12px 14px",borderBottom:i<list.length-1?`2px dashed ${border}`:"none"}}>
+                            <div style={{...pixel,fontSize:7,color:col,marginBottom:4}}>{i+1}. {p.step}</div>
+                            <div style={{fontSize:13,color:P.text,fontWeight:500}}>{p.name}</div>
+                            {p.brand&&<div style={{fontSize:10,color:P.textLight}}>{p.brand}</div>}
+                            <div style={{display:"flex",gap:4,marginTop:4,flexWrap:"wrap"}}>
+                              {p.actives.retinoid&&<span style={{...pixel,fontSize:7,padding:"1px 5px",background:P.lavDim,color:P.lavender,...px(P.lavBorder,1)}}>Retinoid</span>}
+                              {(p.actives.aha||p.actives.bha)&&<span style={{...pixel,fontSize:7,padding:"1px 5px",background:P.cautionDim,color:P.caution,...px(P.cautionBorder,1)}}>Asit</span>}
+                              {p.actives.vitaminC&&<span style={{...pixel,fontSize:7,padding:"1px 5px",background:P.mintDim,color:P.mint,...px(P.mintBorder,1)}}>C Vit.</span>}
+                            </div>
+                          </div>
+                        ))}
+                    </PixelCard>
+                  ))}
+                </div>
+
+                {routineResult.tips.length>0&&(
+                  <PixelCard color={P.mint} style={{marginBottom:12}}>
+                    <SectionHead emoji="💡" title="UZMAN İPUÇLARI" color={P.mintDim}/>
+                    <div style={{padding:16,display:"flex",flexDirection:"column",gap:8}}>
+                      {routineResult.tips.map((t,i)=>(
+                        <div key={i} style={{fontSize:13,color:P.text,lineHeight:1.7,paddingLeft:14,borderLeft:`4px solid ${P.mint}`,padding:"6px 12px",background:P.mintDim}}>{t}</div>
+                      ))}
+                    </div>
+                  </PixelCard>
+                )}
+
+                {routineResult.conflicts.length===0&&(
+                  <div style={{padding:"12px 16px",background:P.mintDim,...px(P.mintBorder,2),fontSize:13,color:P.mint,marginBottom:12}}>
+                    ✓ Çakışma tespit edilmedi! 🌸
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── PRODUCT SEARCH COMPONENT ─────────────────────────────────────────────────
+function ProductSearch({q,setQ,suggs,setSuggs,onSearch,onSelect,small,ghStatus,totalCount}){
+  const C2={bgDeep:"#fff0f7",border:"#f0a8cc",text:"#5a2d4c",textLight:"#c49ab4",gold:"#e8679a",goldDim:"#fde8f3",goldBorder:"#e8679a50",purpleDim:"#ffd6ec",bgCard:"#fff8fc",safe:"#5cba8a",safeDim:"#d0f0e0",safeBorder:"#90d8b0",caution:"#f0a030",cautionDim:"#fff0d0"};
+  return(
+    <div style={{position:"relative"}}>
+      <div style={{marginBottom:6,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <span style={{fontSize:11,color:C2.textLight,letterSpacing:1}}>
+          {small?"Ürün ara":"İsim veya marka ile ara"}
+        </span>
+        {ghStatus==="loading"&&(
+          <span style={{fontSize:10,color:C2.caution,display:"flex",alignItems:"center",gap:4}}>
+            <span style={{display:"inline-block",width:8,height:8,borderRadius:"50%",border:`1.5px solid ${C2.caution}`,borderTopColor:"transparent",animation:"spin 0.7s linear infinite"}}/>
+            Veritabanı yükleniyor…
+          </span>
+        )}
+        {ghStatus==="ok"&&totalCount&&(
+          <span style={{fontSize:10,color:C2.safe}}>✓ {totalCount} ürün hazır</span>
+        )}
+        {ghStatus==="err"&&(
+          <span style={{fontSize:10,color:"#e85060"}}>⚠ Veritabanı yüklenemedi</span>
+        )}
+      </div>
+      <div style={{position:"relative"}}>
+        <input value={q} onChange={e=>{setQ(e.target.value);onSearch(e.target.value);}}
+          placeholder={small?"Ürün ara...":"CeraVe, Cosrx, Anua, Farmasi, The Ordinary..."}
+          style={{width:"100%",background:C2.bgDeep,border:`1px solid ${C2.border}`,borderRadius:10,padding:`${small?"10px":"13px"} 38px ${small?"10px":"13px"} 14px`,color:C2.text,fontSize:small?13:15,outline:"none",fontFamily:"'DM Sans',sans-serif",transition:"border-color 0.2s"}}
+          onFocus={e=>e.target.style.borderColor=C2.gold} onBlur={e=>setTimeout(()=>{e.target.style.borderColor=C2.border;},200)}/>
+        <span style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",fontSize:14,opacity:0.4}}>🔍</span>
+      </div>
+      {suggs.length>0&&(
+        <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:C2.bgCard,border:`1px solid ${C2.goldBorder}`,borderRadius:12,overflow:"hidden",zIndex:30,boxShadow:"0 12px 40px rgba(0,0,0,0.5)",maxHeight:300,overflowY:"auto"}}>
+          {suggs.map((p,i)=>(
+            <div key={i} onMouseDown={()=>onSelect(p)}
+              style={{padding:"10px 14px",cursor:"pointer",borderBottom:i<suggs.length-1?`1px solid ${C2.border}`:"none"}}
+              onMouseEnter={e=>e.currentTarget.style.background=C2.purpleDim}
+              onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+              <div style={{fontSize:13,color:C2.text,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>{p.name}</div>
+              <div style={{fontSize:11,color:C2.gold,fontFamily:"'DM Sans',sans-serif",marginTop:2}}>{p.brand}{p.cat?" · "+p.cat:""}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
