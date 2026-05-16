@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>DermaDecode — Dr. Bengi Su Ege</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --sky: #c8dff0;
+  --sky-light: #e8f3fb;
+  --blossom: #f2c4ce;
+  --blossom-deep: #e8a0b0;
+  --white: #fefefe;
+  --cream: #fdf9f7;
+  --ink: #1a1520;
+  --ink-mid: #5a4f60;
+  --ink-light: #9b90a0;
+  --safe: #4a9e6e;
+  --safe-light: #d8f0e4;
+  --caution: #c8882a;
+  --caution-light: #faecd8;
+  --risky: #c04060;
+  --risky-light: #fce4e8;
+  --unknown: #808098;
+  --unknown-light: #eceaf4;
+  --shadow-sm: 0 2px 8px rgba(26,21,32,0.06), 0 1px 3px rgba(26,21,32,0.04);
+  --shadow-md: 0 8px 24px rgba(26,21,32,0.08), 0 2px 8px rgba(26,21,32,0.05);
+  --shadow-lg: 0 20px 50px rgba(26,21,32,0.10), 0 8px 20px rgba(26,21,32,0.06);
+  --shadow-xl: 0 32px 80px rgba(26,21,32,0.14), 0 12px 32px rgba(26,21,32,0.08);
+  --r: 16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{height:100%;overflow-x:hidden;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── BACKGROUND ─────────────────────────────── */
+#bg{
+  position:fixed;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,
+      var(--sky-light) 0%,
+      #d8ecf8 25%,
+      #ecddf0 55%,
+      #f5e8ee 75%,
+      var(--cream) 100%
+    );
+  overflow:hidden;
+}
+#bg-photo{
+  position:absolute;inset:0;
+  background-image:url('bg.jpg');
+  background-size:cover;
+  background-position:center 40%;
+  opacity:0.75;
+}
+#bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(255,250,252,0.10) 0%,
+    rgba(255,248,250,0.15) 40%,
+    rgba(253,249,247,0.60) 72%,
+    rgba(253,249,247,0.92) 100%
+  );
+}
+
+/* ── PETALS ─────────────────────────────────── */
+.petal{
+  position:absolute;
+  top:-20px;
+  border-radius:50% 50% 50% 50%/30% 30% 70% 70%;
+  opacity:0;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg) translateX(0);opacity:0;}
+  5%{opacity:.9;}
+  95%{opacity:.6;}
+  100%{transform:translateY(105vh) rotate(480deg) translateX(60px);opacity:0;}
+}
+
+/* ── NAV ────────────────────────────────────── */
+#nav{
+  position:relative;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 32px;
+  background:rgba(254,254,254,0.96);
+  border-bottom:1px solid rgba(200,180,210,0.15);
+  box-shadow:0 1px 0 rgba(200,180,210,0.1), var(--shadow-sm);
+}
+.logo{
+  display:flex;align-items:center;gap:14px;
+  background:none;border:none;cursor:pointer;
+}
+.logo-mark{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(145deg,#f2c4ce,#c8dff0);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  box-shadow:var(--shadow-md);
+  flex-shrink:0;
+}
+.logo-text{
+  display:flex;flex-direction:column;gap:1px;
+  text-align:left;
+}
+.logo-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;
+  color:var(--ink);letter-spacing:-0.01em;line-height:1;
+}
+.logo-sub{
+  font-size:11px;color:var(--ink-light);
+  letter-spacing:0.04em;font-weight:300;
+}
+.nav-tabs{display:flex;gap:4px;align-items:center;}
+.nav-tab{
+  padding:8px 16px;border-radius:100px;border:none;
+  background:transparent;color:var(--ink-mid);
+  font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.nav-tab:hover{background:rgba(242,196,206,0.2);color:var(--ink);}
+.nav-tab.active{
+  background:var(--ink);color:var(--white);
+  box-shadow:var(--shadow-sm);
+}
+.nav-doctor{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 14px;border-radius:100px;
+  background:var(--cream);
+  border:1px solid rgba(200,180,210,0.2);
+  box-shadow:var(--shadow-sm);
+}
+.nav-doctor-name{font-size:13px;font-weight:600;color:var(--ink);}
+.nav-doctor-title{font-size:10px;color:var(--ink-light);letter-spacing:0.04em;}
+
+/* ── MOBILE NAV ─────────────────────────────── */
+#mobile-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:rgba(254,254,254,0.94);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(200,180,210,0.15);
+  padding:8px 0 max(8px,env(safe-area-inset-bottom));
+  box-shadow:0 -4px 20px rgba(26,21,32,0.08);
+}
+.mob-tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;cursor:pointer;
+  color:var(--ink-light);font-family:'DM Sans',sans-serif;
+  font-size:10px;font-weight:500;padding:4px 0;transition:color .2s;
+}
+.mob-tab.active{color:var(--ink);}
+.mob-tab-icon{font-size:20px;line-height:1;}
+@media(max-width:680px){
+  #nav .nav-tabs,#nav .nav-doctor{display:none!important;}
+  #nav{padding:14px 20px;}
+  #mobile-nav{display:flex;}
+  #main{padding:20px 16px 90px!important;}
+  .two-col{grid-template-columns:1fr!important;}
+  .five-col{grid-template-columns:repeat(3,1fr)!important;}
+  .three-col{grid-template-columns:1fr!important;}
+  .logo-name{font-size:18px;}
+}
+
+/* ── MAIN ───────────────────────────────────── */
+#main{
+  position:relative;z-index:1;
+  max-width:860px;margin:0 auto;
+  padding:32px 24px 60px;
+}
+
+/* ── CARD ───────────────────────────────────── */
+.card{
+  background:var(--white);
+  border-radius:var(--r);
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
+  border:1px solid rgba(200,180,210,0.12);
+  transition:box-shadow .25s;
+}
+.card-head{
+  padding:22px 28px 18px;
+  border-bottom:1px solid rgba(200,180,210,0.12);
+  background:linear-gradient(135deg,rgba(242,196,206,0.08) 0%,rgba(200,223,240,0.08) 100%);
+}
+.card-head-label{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-light);margin-bottom:4px;
+}
+.card-head-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:var(--ink);line-height:1.2;
+}
+.card-body{padding:24px 28px;}
+
+/* ── BUTTON ─────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 24px;border-radius:100px;border:none;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.btn-primary{
+  background:var(--ink);color:var(--white);
+  box-shadow:var(--shadow-sm);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.btn-ghost{
+  background:transparent;color:var(--ink-mid);
+  border:1.5px solid rgba(200,180,210,0.4);
+}
+.btn-ghost:hover{background:rgba(242,196,206,0.12);color:var(--ink);}
+.btn-sm{padding:8px 18px;font-size:13px;}
+.btn-full{width:100%;display:flex;}
+
+/* ── INPUT ──────────────────────────────────── */
+.input{
+  width:100%;padding:12px 16px;
+  border:1.5px solid rgba(200,180,210,0.3);
+  border-radius:12px;
+  background:var(--cream);
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);
+  transition:border-color .2s,box-shadow .2s;outline:none;
+}
+.input:focus{
+  border-color:var(--blossom-deep);
+  box-shadow:0 0 0 3px rgba(232,160,176,0.15);
+}
+.input::placeholder{color:var(--ink-light);}
+textarea.input{resize:vertical;min-height:100px;line-height:1.6;}
+
+/* ── SEARCH DROPDOWN ─────────────────────────── */
+.sugg-box{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:40;
+  background:var(--white);
+  border:1.5px solid rgba(200,180,210,0.25);
+  border-radius:14px;
+  box-shadow:var(--shadow-lg);
+  overflow:hidden;
+  max-height:280px;overflow-y:auto;
+}
+.sugg-item{
+  padding:12px 18px;cursor:pointer;
+  border-bottom:1px solid rgba(200,180,210,0.1);
+  transition:background .15s;
+}
+.sugg-item:last-child{border-bottom:none;}
+.sugg-item:hover{background:rgba(242,196,206,0.1);}
+.sugg-name{font-size:14px;font-weight:500;color:var(--ink);}
+.sugg-brand{font-size:12px;color:var(--blossom-deep);margin-top:2px;}
+
+/* ── CHIP ───────────────────────────────────── */
+.chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:100px;
+  font-size:12px;font-weight:500;
+  background:var(--cream);color:var(--ink-mid);
+  border:1px solid rgba(200,180,210,0.2);
+  cursor:pointer;transition:all .15s;
+}
+.chip.active{background:var(--ink);color:var(--white);border-color:var(--ink);}
+.chip:hover:not(.active){background:rgba(242,196,206,0.15);}
+
+/* ── SCORE BAR ──────────────────────────────── */
+.score-bar{
+  height:6px;border-radius:100px;
+  background:rgba(200,180,210,0.15);overflow:hidden;
+}
+.score-fill{
+  height:100%;border-radius:100px;
+  transition:width 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── INGREDIENT ROW ─────────────────────────── */
+.ing-row{
+  display:grid;
+  grid-template-columns:28px 1fr 90px 52px;
+  align-items:center;gap:12px;
+  padding:14px 28px;
+  border-bottom:1px solid rgba(200,180,210,0.08);
+  cursor:pointer;transition:background .15s;
+}
+.ing-row:last-child{border-bottom:none;}
+.ing-row:hover{background:rgba(242,196,206,0.06);}
+.ing-row.active{background:rgba(242,196,206,0.1);}
+
+/* ── HOME CARDS ─────────────────────────────── */
+.home-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:16px;
+}
+.home-card{
+  border-radius:20px;padding:28px 22px;
+  cursor:pointer;border:none;font-family:'DM Sans',sans-serif;
+  text-align:left;color:var(--white);
+  position:relative;overflow:hidden;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+.home-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%);
+}
+.home-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);}
+.home-card-icon{font-size:36px;margin-bottom:14px;display:block;}
+.home-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:600;margin-bottom:6px;line-height:1.2;
+}
+.home-card-desc{font-size:13px;opacity:.85;line-height:1.5;}
+
+/* ── PROMISE ROW ─────────────────────────────── */
+.promise-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(200,180,210,0.1);
+}
+.promise-row:last-child{border-bottom:none;}
+.promise-label{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.promise-detail{font-size:12px;color:var(--ink-light);}
+.verdict{
+  font-size:12px;font-weight:700;padding:5px 14px;
+  border-radius:100px;white-space:nowrap;flex-shrink:0;
+}
+
+/* ── CONFLICT BOX ───────────────────────────── */
+.conflict-item{
+  padding:16px 20px;border-radius:12px;
+  margin-bottom:10px;
+}
+.conflict-item:last-child{margin-bottom:0;}
+
+/* ── QUIZ OPTION ─────────────────────────────── */
+.quiz-opt{
+  width:100%;padding:14px 20px;border-radius:14px;
+  border:1.5px solid rgba(200,180,210,0.2);
+  background:var(--cream);
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);
+  cursor:pointer;text-align:left;display:flex;align-items:center;gap:14px;
+  transition:all .2s;
+}
+.quiz-opt:hover{
+  border-color:var(--blossom-deep);
+  background:rgba(242,196,206,0.08);
+  transform:translateX(4px);
+}
+.quiz-letter{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  background:linear-gradient(135deg,var(--blossom),var(--sky));
+  color:var(--ink);
+}
+
+/* ── ROUTINE STEP ────────────────────────────── */
+.routine-step{
+  padding:16px 24px;
+  border-bottom:1px solid rgba(200,180,210,0.1);
+}
+.routine-step:last-child{border-bottom:none;}
+.step-number{
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-light);margin-bottom:4px;
+}
+.step-name{font-size:15px;font-weight:500;color:var(--ink);}
+.step-brand{font-size:12px;color:var(--blossom-deep);margin-top:2px;}
+
+/* ── SKIN GRID ───────────────────────────────── */
+.skin-cell{text-align:center;padding:8px 4px;}
+.skin-score{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:600;line-height:1;margin-bottom:6px;
+}
+.skin-label{font-size:11px;color:var(--ink-light);font-weight:500;}
+
+/* ── BADGE ───────────────────────────────────── */
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 12px;border-radius:100px;
+  font-size:11px;font-weight:600;letter-spacing:.04em;
+  background:linear-gradient(135deg,rgba(242,196,206,0.3),rgba(200,223,240,0.3));
+  color:var(--ink-mid);border:1px solid rgba(200,180,210,0.2);
+}
+
+/* ── ANIMATIONS ──────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:none;}
+}
+@keyframes breathe{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.04);}
+}
+.fade-up{animation:fadeUp .4s cubic-bezier(.4,0,.2,1) both;}
+
+/* ── DISCLAIMER ──────────────────────────────── */
+#modal{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(26,21,32,0.5);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.modal-box{
+  background:var(--white);border-radius:24px;
+  max-width:440px;width:100%;
+  box-shadow:var(--shadow-xl);
+  overflow:hidden;
+}
+
+#bg-photo::after,
+.unsplash-credit,
+[data-testid="attribution"],
+a[href*="unsplash.com"]:not(.logo) {
+  display:none!important;
+}
+#bg-photo {
+  overflow:hidden;
+}
+</style>
+</head>
+<body>
+
+<div id="bg">
+  <div id="bg-photo"></div>
+  <div id="bg-overlay"></div>
+</div>
+
+<!-- Petals injected by JS -->
+
+<nav id="nav">
+  <button class="logo" onclick="goHome()">
+    <div class="logo-mark">🌸</div>
+    <div class="logo-text">
+      <div class="logo-name">DermaDecode</div>
+      <div class="logo-sub">by Dr. Bengi Su Ege</div>
+    </div>
+  </button>
+
+  <div class="nav-tabs" id="navTabs"></div>
+
+  <div class="nav-doctor">
+    <span style="font-size:22px">👩‍⚕️</span>
+    <div>
+      <div class="nav-doctor-name">Dr. Bengi Su Ege</div>
+      <div class="nav-doctor-title">Dermatoloji Uzmanı</div>
+    </div>
+  </div>
+</nav>
+
+<div id="main"></div>
+
+<nav id="mobile-nav" style="display:none"></nav>
+
+<script>
+const EMBEDDED_PRODUCTS=([["CeraVe Moisturizing Cream","CeraVe","Nemlendirici","Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Hyaluronic Acid, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Sodium PCA, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Moisturizing Lotion","CeraVe","Nemlendirici","Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Foaming Facial Cleanser","CeraVe","Temizleyici","Water, Glycerin, Sodium Lauroyl Sarcosinate, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Hydrating Facial Cleanser","CeraVe","Temizleyici","Water, Glycerin, Cetearyl Alcohol, Behentrimonium Methosulfate, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe AM Facial Moisturizing Lotion SPF30","CeraVe","Güneş Koruma","Water, Homosalate, Glycerin, Zinc Oxide, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Xanthan Gum, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe PM Facial Moisturizing Lotion","CeraVe","Nemlendirici","Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Renewing SA Cleanser","CeraVe","Temizleyici","Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Resurfacing Retinol Serum","CeraVe","Serum","Water, Glycerin, Niacinamide, Retinol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Vitamin C Serum","CeraVe","Serum","Water, Ascorbic Acid, Glycerin, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Hyaluronic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Eye Repair Cream","CeraVe","Göz Kremi","Water, Glycerin, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Healing Ointment","CeraVe","Onarıcı","Petrolatum, Mineral Oil, Ceramide NP, Ceramide AP, Ceramide EOP, Hyaluronic Acid, Cholesterol, Phytosphingosine"],["CeraVe SA Smoothing Cream","CeraVe","Nemlendirici","Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Cetearyl Alcohol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Skin Renewing Night Cream","CeraVe","Gece Kremi","Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Retinol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Acne Control Gel","CeraVe","Akne Bakım","Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Lactic Acid, Ceramide NP, Allantoin, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Body Lotion","CeraVe","Vücut Bakımı","Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Dimethicone, Sodium Hyaluronate, Xanthan Gum, Tocopherol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Therapeutic Hand Cream","CeraVe","El Bakımı","Water, Glycerin, Petrolatum, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Dimethicone, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["CeraVe Hydrating Sunscreen SPF50","CeraVe","Güneş Koruma","Water, Homosalate, Glycerin, Zinc Oxide, Titanium Dioxide, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Niacinamide, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["CeraVe Mineral Sunscreen SPF30","CeraVe","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Niacinamide, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Hydrating Toner","CeraVe","Tonik","Water, Glycerin, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Baby Moisturizing Cream","CeraVe","Bebek","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Dimethicone, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Baby Wash and Shampoo","CeraVe","Bebek","Water, Glycerin, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["CeraVe Psoriasis Moisturizing Cream","CeraVe","Tedavi Edici","Water, Glycerin, Salicylic Acid, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Lactic Acid, Urea, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["CeraVe Blemish Control Cleanser","CeraVe","Temizleyici","Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Sodium Hyaluronate, Zinc PCA, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["CeraVe Smoothing Cleanser","CeraVe","Temizleyici","Water, Glycerin, Sodium Cocoyl Isethionate, Ceramide NP, Ceramide AP, Ceramide EOP, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["CeraVe Facial Moisturizing Lotion Acne-Prone","CeraVe","Akne Bakım","Water, Glycerin, Niacinamide, Dimethicone, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["La Roche-Posay Toleriane Hydrating Gentle Cleanser","La Roche-Posay","Temizleyici","Water, Glycerin, Cetyl Alcohol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Double Repair Moisturizer","La Roche-Posay","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Ceramide AP, Sodium Hyaluronate, Cholesterol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Double Repair UV SPF30","La Roche-Posay","Güneş Koruma","Water, Homosalate, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Sensitive Fluide","La Roche-Posay","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Sensitive Creme","La Roche-Posay","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Shea Butter, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Ultra Eye","La Roche-Posay","Göz Kremi","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Effaclar Purifying Foaming Gel","La Roche-Posay","Temizleyici","Water, Glycerin, Zinc Pidolate, Niacinamide, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Effaclar Duo+","La Roche-Posay","Akne Bakım","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Lipo-Hydroxy Acid, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Effaclar Serum","La Roche-Posay","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Glycolic Acid, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Effaclar Mat","La Roche-Posay","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Zinc PCA, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Anthelios UVMune 400 SPF50+","La Roche-Posay","Güneş Koruma","Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Niacinamide, Titanium Dioxide, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Anthelios Invisible Fluid SPF50+","La Roche-Posay","Güneş Koruma","Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Anthelios Tinted SPF50+","La Roche-Posay","Güneş Koruma","Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Iron Oxides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Anthelios AC Mat SPF50+","La Roche-Posay","Güneş Koruma","Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Niacinamide, Silica, Zinc PCA, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Hyalu B5 Serum","La Roche-Posay","Serum","Water, Glycerin, Sodium Hyaluronate, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate Crosspolymer, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Cicaplast Baume B5","La Roche-Posay","Onarıcı","Water, Glycerin, Panthenol, Shea Butter, Allantoin, Ceramide NP, Zinc Sulfate, Copper Sulfate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Cicaplast Baume B5 SPF50","La Roche-Posay","Güneş Koruma","Water, Zinc Oxide, Glycerin, Panthenol, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Cicaplast Gel B5","La Roche-Posay","Onarıcı","Water, Glycerin, Panthenol, Allantoin, Niacinamide, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Redermic Retinol Serum","La Roche-Posay","Serum","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["La Roche-Posay Mela B3 Serum","La Roche-Posay","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Pure Vitamin C10 Serum","La Roche-Posay","Serum","Water, Ascorbic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Salicylic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Lipikar Balm AP+M","La Roche-Posay","Vücut Bakımı","Water, Glycerin, Shea Butter, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Substiane Rich","La Roche-Posay","Anti-Aging","Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Retinyl Palmitate, Allantoin, Shea Butter, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Redermic C Vitamin C Eye","La Roche-Posay","Göz Kremi","Water, Ascorbyl Glucoside, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Toleriane Purifying Foaming Cream Cleanser","La Roche-Posay","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Niacinamide, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["La Roche-Posay Effaclar Gel Cleanser Oily Skin","La Roche-Posay","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Sodium Laureth Sulfate, Niacinamide, Zinc Pidolate, Salicylic Acid, Allantoin, Citric Acid, Phenoxyethanol"],["La Roche-Posay Anthelios XL Melt-in Cream SPF50+","La Roche-Posay","Güneş Koruma","Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Tocopherol, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Rosaliac Micellar Water","La Roche-Posay","Temizleyici","Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Niacinamide, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"],["La Roche-Posay Lipikar Syndet AP+","La Roche-Posay","Vücut Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Niacinamide, Sodium Hydroxide, Phenoxyethanol"],["La Roche-Posay Effaclar K+","La Roche-Posay","Akne Bakım","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Lactic Acid, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["The Ordinary Niacinamide 10% + Zinc 1%","The Ordinary","Serum","Aqua, Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin"],["The Ordinary Hyaluronic Acid 2% + B5","The Ordinary","Serum","Aqua, Sodium Hyaluronate, Panthenol, Sodium Hyaluronate Crosspolymer, Propanediol, Pentylene Glycol, Glycerin, Ahnfeltia Concinna Extract, Sodium Acetylated Hyaluronate, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Retinol 0.2% in Squalane","The Ordinary","Serum","Squalane, Retinol"],["The Ordinary Retinol 0.5% in Squalane","The Ordinary","Serum","Squalane, Retinol"],["The Ordinary Retinol 1% in Squalane","The Ordinary","Serum","Squalane, Retinol"],["The Ordinary Retinal 0.2% Emulsion","The Ordinary","Serum","Aqua, Glycerin, Squalane, Retinal, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"],["The Ordinary Granactive Retinoid 2% Emulsion","The Ordinary","Serum","Aqua, Glycerin, Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"],["The Ordinary Granactive Retinoid 5% in Squalane","The Ordinary","Serum","Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide"],["The Ordinary AHA 30% + BHA 2% Peeling Solution","The Ordinary","Peeling","Aqua, Glycolic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Propanediol, Salicylic Acid, Tasmannia Lanceolata Fruit/Leaf Extract, Dimethyl Isosorbide, Potassium Citrate, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Glycolic Acid 7% Toning Solution","The Ordinary","Tonik","Aqua, Glycolic Acid, Rosa Damascena Flower Water, Centaurea Cyanus Flower Water, Aloe Barbadensis Leaf Water, Propanediol, Glycerin, Triethanolamine, Sodium Hyaluronate Crosspolymer, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Lactic Acid 5% + HA","The Ordinary","Serum","Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Lactic Acid 10% + HA","The Ordinary","Serum","Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Mandelic Acid 10% + HA","The Ordinary","Serum","Aqua, Mandelic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Azelaic Acid Suspension 10%","The Ordinary","Serum","Aqua, Azelaic Acid, Isodecyl Neopentanoate, Dimethicone, Glycerin, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Alpha Arbutin 2% + HA","The Ordinary","Serum","Aqua, Alpha Arbutin, Propanediol, Sodium Hyaluronate Crosspolymer, Ferulic Acid, Lactic Acid, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Ascorbic Acid 8% + Alpha Arbutin 2%","The Ordinary","Serum","Ascorbic Acid, Alpha Arbutin, Propanediol, Dimethyl Isosorbide"],["The Ordinary Vitamin C Suspension 23% + HA Spheres 2%","The Ordinary","Serum","Ascorbic Acid, Isodecyl Neopentanoate, Squalane, Sodium Hyaluronate Crosspolymer, Silica, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Buffet Multi-Technology Peptide Serum","The Ordinary","Serum","Aqua, Glycerin, Sodium Hyaluronate, Pentapeptide-18, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Palmitoyl Tripeptide-38, Acetyl Hexapeptide-3, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Natural Moisturizing Factors + HA","The Ordinary","Nemlendirici","Aqua, Glycerin, Urea, Arginine, Aspartic Acid, Pyrrolidone Carboxylic Acid, Glycine, Alanine, Serine, Sodium PCA, Sodium Hyaluronate, Panthenol, Allantoin, Lecithin, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Salicylic Acid 2% Solution","The Ordinary","Serum","Aqua, Salicylic Acid, Witch Hazel Water, Sodium Hyaluronate Crosspolymer, Propanediol, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Salicylic Acid 2% Masque","The Ordinary","Maske","Aqua, Kaolin, Bentonite, Salicylic Acid, Glycerin, Propanediol, Sodium Hyaluronate, Allantoin, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary 100% Plant-Derived Squalane","The Ordinary","Yağ","Squalane"],["The Ordinary 100% Cold-Pressed Rosehip Seed Oil","The Ordinary","Yağ","Rosa Canina Seed Oil"],["The Ordinary Marine Hyaluronics","The Ordinary","Serum","Aqua, Propanediol, Pseudoalteromonas Ferment Extract, Sodium Hyaluronate, Sesamum Indicum Seed Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary EUK 134 0.1%","The Ordinary","Serum","Aqua, Propanediol, Ethylbisiminomethylguaiacol Manganese Chloride, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Squalane Cleanser","The Ordinary","Temizleyici","Squalane, Sucrose Stearate, Sucrose Laurate"],["The Ordinary Multi-Peptide + Copper Peptides Serum","The Ordinary","Serum","Aqua, Glycerin, Tripeptide-1, Copper Tripeptide-1, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Caffeine Solution 5% + EGCG","The Ordinary","Göz Serumu","Aqua, Caffeine, Epigallocatechin Gallate, Glycerin, Propanediol, Ruscus Aculeatus Root Extract, Sodium Hyaluronate, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Coverage Foundation","The Ordinary","Fondöten","Aqua, Isododecane, Dimethicone, Titanium Dioxide, Niacinamide, Glycerin, Iron Oxides, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Mineral UV Filters SPF30","The Ordinary","Güneş Koruma","Aqua, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Multi-Peptide Lash and Brow Serum","The Ordinary","Serum","Aqua, Propanediol, Glycerin, Biotinoyl Tripeptide-1, Apigenin, Oleanolic Acid, Sodium Hyaluronate, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Glycolipid Cream Cleanser","The Ordinary","Temizleyici","Aqua, Glycerin, Cocamidopropyl Betaine, Glycolipids, Allantoin, Sodium Hyaluronate, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Depuff Eye Serum","The Ordinary","Göz Serumu","Aqua, Glycerin, Sodium Hyaluronate, Caffeine, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary 3% Glycolic Acid Toning Solution","The Ordinary","Tonik","Aqua, Glycolic Acid, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Ordinary Concealer","The Ordinary","Kapatıcı","Aqua, Isododecane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Iron Oxides, Phenoxyethanol"],["COSRX Advanced Snail 96 Mucin Power Essence","COSRX","Esans","Snail Secretion Filtrate, Betaine, Panthenol, Sodium Polyacrylate, Phenoxyethanol, Allantoin, Ethylhexylglycerin, Sodium Hyaluronate, Glycerin"],["COSRX Advanced Snail 92 All In One Cream","COSRX","Nemlendirici","Snail Secretion Filtrate, Cetearyl Olivate, Sorbitan Olivate, Dimethicone, Glycerin, Niacinamide, Panthenol, Allantoin, Sodium Hyaluronate, Ceramide NP, Tocopherol, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Salicylic Acid Daily Gentle Cleanser","COSRX","Temizleyici","Water, Sodium Methyl Cocoyl Taurate, Glycerin, Salicylic Acid, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX BHA Blackhead Power Liquid","COSRX","Tonik","Butylene Glycol, Salix Alba Bark Water, Betaine Salicylate, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin"],["COSRX AHA 7 Whitehead Power Liquid","COSRX","Tonik","Glycolic Acid, Pyrus Malus Fruit Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Low pH Good Morning Gel Cleanser","COSRX","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Allantoin, Panthenol, Sodium Hyaluronate, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Hydrium Triple Hyaluronic Moisture Ampoule","COSRX","Serum","Water, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Glycerin, Panthenol, Allantoin, Betaine, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Triple C Lightning Liquid","COSRX","Serum","Ascorbic Acid, Propanediol, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Glycerin, Phenoxyethanol, Ethylhexylglycerin"],["COSRX The Retinol 0.1 Cream","COSRX","Nemlendirici","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX The Retinol 0.5 Oil","COSRX","Yağ","Squalane, Retinol, Tocopherol"],["COSRX Oil-Free Ultra Moisturizing Lotion","COSRX","Nemlendirici","Water, Glycerin, Niacinamide, Birch Sap, Allantoin, Panthenol, Sodium Hyaluronate, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Full Fit Propolis Light Ampoule","COSRX","Serum","Propolis Extract, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Pure Fit Cica Serum","COSRX","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Pure Fit Cica Cream","COSRX","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Acne Pimple Master Patch","COSRX","Akne Bakım","Styrene Isoprene Styrene Block Copolymer, Polyisobutylene, Petroleum Resin, Polyurethane Film"],["COSRX AC Collection Ultimate Spot Cream","COSRX","Akne Bakım","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Centella Asiatica Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX RX Balancium Comfort Ceramide Cream","COSRX","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Centella Water Alcohol-Free Toner","COSRX","Tonik","Centella Asiatica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Advanced Snail Peptide Eye Cream","COSRX","Göz Kremi","Water, Glycerin, Snail Secretion Filtrate, Peptides, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX One Step Original Clear Pad","COSRX","Ped","Water, Betaine, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Hyaluronic Acid Intensive Cream","COSRX","Nemlendirici","Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Sun SPF50+ PA++++","COSRX","Güneş Koruma","Water, Homosalate, Ethylhexyl Triazone, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Advanced Snail Mucin Power Gel Toner","COSRX","Tonik","Snail Secretion Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Mini AC Collection Acne Foam Cleanser","COSRX","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["COSRX Balancium Comfort Ceramide Soft Cream","COSRX","Nemlendirici","Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Bioderma Sensibio H2O Micellar Water","Bioderma","Temizleyici","Water, Hexylene Glycol, Fructooligosaccharides, Disodium Cocoamphodiacetate, Disodium EDTA, Cucumis Sativus Fruit Extract, Propylene Glycol, Sodium Benzoate, Cetrimonium Bromide"],["Bioderma Sebium H2O Micellar Water","Bioderma","Temizleyici","Water, Hexylene Glycol, Zinc Gluconate, Copper Sulfate, Disodium Cocoamphodiacetate, Niacinamide, Allantoin, Disodium EDTA, Sodium Benzoate, Cetrimonium Bromide"],["Bioderma Sensibio Moisturizer","Bioderma","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Sensibio AR Cream","Bioderma","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Sebium Mat","Bioderma","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Zinc Gluconate, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol"],["Bioderma Sebium Pore Refiner","Bioderma","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Hydrabio H2O Micellar Water","Bioderma","Temizleyici","Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Sodium Hyaluronate, Allantoin, Sodium Benzoate, Phenoxyethanol"],["Bioderma Hydrabio Serum","Bioderma","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Atoderm Intensive Baume","Bioderma","Vücut Bakımı","Water, Glycerin, Shea Butter, Ceramide NP, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Pigmentbio C-Concentrate","Bioderma","Serum","Water, Ascorbic Acid, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Photoderm MAX Aquafluid SPF50+","Bioderma","Güneş Koruma","Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Pigmentbio Daily Care SPF50+","Bioderma","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Alpha Arbutin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Sensibio Foam Cleanser","Bioderma","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Bioderma Hydrabio Gel-Creme","Bioderma","Nemlendirici","Water, Glycerin, Dimethicone, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Bioderma Sensibio Light Cream","Bioderma","Nemlendirici","Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice Skin Perfecting 2% BHA Liquid Exfoliant","Paula's Choice","Tonik","Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 80, Camellia Oleifera Leaf Extract, Sodium Hydroxide, Tetrasodium EDTA"],["Paula's Choice C15 Super Booster","Paula's Choice","Serum","Ascorbic Acid, Water, Dimethyl Isosorbide, Ferulic Acid, Panthenol, Tocopherol, Sodium Hydroxide, Glycerin, Xanthan Gum, Sodium Hyaluronate"],["Paula's Choice 1% Retinol Booster","Paula's Choice","Serum","Water, Retinol, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Paula's Choice 10% Azelaic Acid Booster","Paula's Choice","Serum","Water, Azelaic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice 20% Niacinamide Treatment","Paula's Choice","Serum","Water, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Paula's Choice CLEAR 2.5% Benzoyl Peroxide","Paula's Choice","Akne Bakım","Water, Benzoyl Peroxide, Glycerin, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice SKIN RECOVERY Replenishing Moisturizer","Paula's Choice","Nemlendirici","Water, Glycerin, Dimethicone, Shea Butter, Ceramide NP, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice RESIST Anti-Aging Moisturizer SPF50","Paula's Choice","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice 0.3% Retinol + 2% Bakuchiol","Paula's Choice","Serum","Water, Glycerin, Retinol, Bakuchiol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice CALM Redness Relief Moisturizer","Paula's Choice","Nemlendirici","Water, Glycerin, Niacinamide, Ceramide NP, Allantoin, Centella Asiatica Extract, Panthenol, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice Skin Perfecting 8% AHA Gel","Paula's Choice","Serum","Water, Glycolic Acid, Butylene Glycol, Glycerin, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice PEPTIDE Booster","Paula's Choice","Serum","Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice SKIN BALANCING Ultra-Sheer Daily Defense SPF30","Paula's Choice","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice Clinical Niacinamide 20% Treatment","Paula's Choice","Serum","Water, Niacinamide, Glycerin, Allantoin, Sodium Hyaluronate, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Paula's Choice Defense Antioxidant Serum","Paula's Choice","Serum","Water, Glycerin, Ascorbic Acid, Niacinamide, Tocopherol, Ferulic Acid, Resveratrol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant Protini Polypeptide Cream","Drunk Elephant","Nemlendirici","Water, Glycerin, Niacinamide, Cetearyl Alcohol, Signal Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Squalane, Ceramide NP, Tocopherol, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Drunk Elephant T.L.C. Sukari Babyfacial","Drunk Elephant","Peeling","Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Carbomer, Phenoxyethanol"],["Drunk Elephant C-Firma Fresh Day Serum","Drunk Elephant","Serum","Water, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Ferulic Acid, Tocopherol, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant A-Passioni Retinol Cream","Drunk Elephant","Nemlendirici","Water, Glycerin, Retinol, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Drunk Elephant B-Hydra Intensive Hydration Serum","Drunk Elephant","Serum","Water, Glycerin, Sodium Hyaluronate, Panthenol, Pineapple Ceramide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Drunk Elephant Lala Retro Whipped Cream","Drunk Elephant","Nemlendirici","Water, Glycerin, Squalane, Shea Butter, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Drunk Elephant Umbra Tinte Physical Defense SPF30","Drunk Elephant","Güneş Koruma","Water, Zinc Oxide, Glycerin, Dimethicone, Squalane, Ceramide NP, Allantoin, Iron Oxides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant Beste No. 9 Jelly Cleanser","Drunk Elephant","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Drunk Elephant T.L.C. Framboos Glycolic Night Serum","Drunk Elephant","Gece Serumu","Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant B-Goldi Bright Drops","Drunk Elephant","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant Slaai Makeup-Melting Butter Cleanser","Drunk Elephant","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Marula Oil, Glycerin, Allantoin, Tocopherol, Phenoxyethanol"],["Drunk Elephant F-Balm Electrolyte Waterfacial Mask","Drunk Elephant","Maske","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant C-Tango Multivitamin Eye Cream","Drunk Elephant","Göz Kremi","Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Drunk Elephant Polypeptide-121 Future Cream","Drunk Elephant","Nemlendirici","Water, Glycerin, Ceramide NP, Niacinamide, Multi-Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals C E Ferulic","SkinCeuticals","Serum","Water, Ethoxydiglycol, Ascorbic Acid, Glycerin, Propylene Glycol, Laureth-23, Tocopherol, Ferulic Acid, Panthenol, Sodium Hyaluronate, Benzyl Alcohol, Dehydroacetic Acid"],["SkinCeuticals Phloretin CF","SkinCeuticals","Serum","Water, Ethoxydiglycol, Ascorbic Acid, Phloretin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol"],["SkinCeuticals Silymarin CF","SkinCeuticals","Serum","Water, Ethoxydiglycol, Ascorbic Acid, Salicylic Acid, Silymarin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol"],["SkinCeuticals HA Intensifier","SkinCeuticals","Serum","Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Licorice Root Extract, Purple Rice Extract, Proxylane, Phenoxyethanol"],["SkinCeuticals Triple Lipid Restore 2:4:2","SkinCeuticals","Nemlendirici","Water, Glycerin, Ceramide NP, Cholesterol, Fatty Acids, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Retinol 0.3","SkinCeuticals","Serum","Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Retinol 0.5","SkinCeuticals","Serum","Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Retinol 1.0","SkinCeuticals","Serum","Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Phyto Corrective Gel","SkinCeuticals","Serum","Water, Glycerin, Niacinamide, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Physical Fusion UV Defense SPF50","SkinCeuticals","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Hydrating B5 Gel","SkinCeuticals","Serum","Water, Glycerin, Panthenol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Blemish Age Defense","SkinCeuticals","Serum","Water, Salicylic Acid, Glycerin, Niacinamide, Dioic Acid, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals A.G.E. Interrupter Advanced","SkinCeuticals","Anti-Aging","Water, Glycerin, Proxylane, Blueberry Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Metacell Renewal B3","SkinCeuticals","Serum","Water, Glycerin, Niacinamide, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["SkinCeuticals Simply Clean","SkinCeuticals","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Sarcosinate, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["SkinCeuticals Daily Brightening UV Defense SPF30","SkinCeuticals","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo First Care Activating Serum","Sulwhasoo","Serum","Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panax Ginseng Root Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Concentrated Ginseng Renewing Cream","Sulwhasoo","Nemlendirici","Water, Glycerin, Niacinamide, Panax Ginseng Root Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Snowise EX Brightening Serum","Sulwhasoo","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, White Mulberry Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Timetreasure Invigorating Cream","Sulwhasoo","Anti-Aging","Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Retinyl Palmitate, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo UV Wise Brightening Sun Protector SPF50+","Sulwhasoo","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Panax Ginseng Root Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Gentle Cleansing Foam","Sulwhasoo","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Panax Ginseng Root Extract, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Sulwhasoo Concentrated Ginseng Renewing Serum","Sulwhasoo","Serum","Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Radiance Energy Mask","Sulwhasoo","Maske","Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Anua Heartleaf 77% Soothing Toner","Anua","Tonik","Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf Pore Control Cleansing Oil","Anua","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Houttuynia Cordata Extract, Niacinamide, Sodium Hyaluronate, Tocopherol, Phenoxyethanol"],["Anua Heartleaf 80% Moisture Barrier Cream","Anua","Nemlendirici","Houttuynia Cordata Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Niacinamide 10% + TXA 4% Serum","Anua","Serum","Water, Glycerin, Niacinamide, Tranexamic Acid, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Peach 77% Niacin Serum","Anua","Serum","Prunus Persica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf Quercetinol Pore Serum","Anua","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Houttuynia Cordata Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf Artichoke Brightening Serum","Anua","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Cynara Scolymus Leaf Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf Cream","Anua","Nemlendirici","Houttuynia Cordata Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Squalane, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Anua Heartleaf Foam Cleanser","Anua","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Houttuynia Cordata Extract, Niacinamide, Allantoin, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf UV Aqua Sun Fluid SPF50+","Anua","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Houttuynia Cordata Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Anua Heartleaf Retinol Serum","Anua","Serum","Water, Glycerin, Retinol, Houttuynia Cordata Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Anua Heartleaf Skin Toner Pad","Anua","Ped","Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Salicylic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["Anua Peach Niacin Brightening Mask","Anua","Maske","Water, Glycerin, Niacinamide, Prunus Persica Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Anua Heartleaf Blemish Serum","Anua","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Houttuynia Cordata Extract, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Anua Heartleaf Jelly Cleanser","Anua","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Houttuynia Cordata Extract, Hyaluronic Acid, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Round Lab Birch Juice Moisturizing Serum","Round Lab","Serum","Betula Platyphylla Japonica Juice, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Round Lab 1025 Dokdo Toner","Round Lab","Tonik","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Sea Water, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab Birch Juice Moisturizing Cream","Round Lab","Nemlendirici","Betula Platyphylla Japonica Juice, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab 1025 Dokdo Cleanser","Round Lab","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Sea Water, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Round Lab Dokdo Sun Cream SPF50+","Round Lab","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Sea Water, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab Mugwort Calming Serum","Round Lab","Serum","Water, Glycerin, Artemisia Princeps Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab Mugwort Calming Cream","Round Lab","Nemlendirici","Water, Glycerin, Artemisia Princeps Leaf Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab Vitamin C Serum","Round Lab","Serum","Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Round Lab Retinol Night Serum","Round Lab","Gece Serumu","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin1004 Madagascar Centella Ampoule","Skin1004","Serum","Centella Asiatica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Skin1004 Hyalu-Cica Water-Fit Sun Serum SPF50+","Skin1004","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin1004 Madagascar Centella Tone Brightening Capsule Ampoule","Skin1004","Serum","Water, Glycerin, Niacinamide, Centella Asiatica Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin1004 Madagascar Centella Asiatica 100 Ampoule","Skin1004","Serum","Centella Asiatica Extract, Glycerin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Skin1004 Madagascar Centella Foam Cleanser","Skin1004","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Centella Asiatica Extract, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Skin1004 Madagascar Centella Light Cream","Skin1004","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin1004 Zombie Beauty Hydrating Serum","Skin1004","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin1004 Madagascar Centella Poremizing Quick Wash","Skin1004","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Centella Asiatica Extract, Allantoin, Citric Acid, Phenoxyethanol"],["Skin1004 Hyalu-Cica Toner Pad","Skin1004","Ped","Water, Glycerin, Centella Asiatica Extract, Sodium Hyaluronate, Niacinamide, Allantoin, Salicylic Acid, Citric Acid, Phenoxyethanol"],["Torriden Dive-In Low-Molecular Hyaluronic Acid Serum","Torriden","Serum","Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Sodium Acetylated Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Torriden Solid-In Ceramide Moisturizer","Torriden","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Dive-In Low-Molecular Hyaluronic Acid Toner","Torriden","Tonik","Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Balanceful Cica Serum","Torriden","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Balanceful Cica Cream","Torriden","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Dive-In Serum Sun SPF50+","Torriden","Güneş Koruma","Water, Zinc Oxide, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Solid-In Ceramide Eye Cream","Torriden","Göz Kremi","Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Dive-In Hyaluronic Acid Cleanser","Torriden","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Torriden Solid-In Ceramide Toner","Torriden","Tonik","Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Torriden Solid-In Ceramide Milk Cleanser","Torriden","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Beauty of Joseon Relief Sun SPF50+","Beauty of Joseon","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Rice Bran Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Glow Serum Propolis + Niacinamide","Beauty of Joseon","Serum","Water, Glycerin, Propolis Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Dynasty Cream","Beauty of Joseon","Nemlendirici","Water, Glycerin, Niacinamide, Rice Bran Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Calming Serum Green Tea + Panthenol","Beauty of Joseon","Serum","Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Revive Eye Serum","Beauty of Joseon","Göz Serumu","Water, Glycerin, Niacinamide, Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Centella + Vitamin C Sun Serum SPF50+","Beauty of Joseon","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Centella Asiatica Extract, Ascorbyl Glucoside, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Ginseng Essence Water","Beauty of Joseon","Tonik","Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Revive Serum Ginseng + Snail Mucin","Beauty of Joseon","Serum","Water, Glycerin, Panax Ginseng Root Extract, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Matte Sun Stick SPF50+","Beauty of Joseon","Güneş Koruma","Zinc Oxide, Titanium Dioxide, Caprylic/Capric Triglyceride, Squalane, Niacinamide, Allantoin, Tocopherol, Phenoxyethanol"],["Beauty of Joseon Glow Deep Serum Rice + Alpha Arbutin","Beauty of Joseon","Serum","Water, Glycerin, Rice Bran Extract, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Midnight Repair Serum Ginseng + Retinal","Beauty of Joseon","Gece Serumu","Water, Glycerin, Panax Ginseng Root Extract, Retinal, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Plum Blossom Radiance Serum","Beauty of Joseon","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Prunus Mume Flower Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Glow Sunscreen Carrot + Niacinamide SPF50+","Beauty of Joseon","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Daucus Carota Sativa Root Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Apricot Blossom Peeling Gel","Beauty of Joseon","Peeling","Water, Glycerin, Prunus Armeniaca Flower Extract, Lactic Acid, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Beauty of Joseon Radiance Cleansing Balm","Beauty of Joseon","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Rice Bran Extract, Glycerin, Allantoin, Tocopherol, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Hyaluronic Acid Serum","Farmasi","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Farmasi Dr. C. Tuna Suprem Retinol Night Cream","Farmasi","Gece Kremi","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Farmasi Dr. C. Tuna Suprem Vitamin C Serum","Farmasi","Serum","Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Niacinamide Serum","Farmasi","Serum","Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem AHA BHA Peeling Toner","Farmasi","Tonik","Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Collagen Cream","Farmasi","Nemlendirici","Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Micellar Water","Farmasi","Temizleyici","Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"],["Farmasi Dr. C. Tuna Suprem SPF50 Sunscreen","Farmasi","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Alpha Arbutin Serum","Farmasi","Serum","Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Salicylic Acid Serum","Farmasi","Serum","Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Azelaic Acid Serum","Farmasi","Serum","Water, Glycerin, Azelaic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Ceramide Moisturizer","Farmasi","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Eye Cream","Farmasi","Göz Kremi","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Snail Mucin Serum","Farmasi","Serum","Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Tranexamic Acid Serum","Farmasi","Serum","Water, Glycerin, Tranexamic Acid, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Bakuchiol Serum","Farmasi","Serum","Water, Glycerin, Bakuchiol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Peptide Serum","Farmasi","Serum","Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Dr. C. Tuna Suprem Tinted Moisturizer SPF30","Farmasi","Güneş Koruma","Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Iron Oxides, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Farmasi Skin Care Refreshing Toner","Farmasi","Tonik","Water, Glycerin, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Farmasi BB Cream SPF15","Farmasi","BB Krem","Water, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Hyalüronik Asit Serumu","Biota Plus","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Biota Plus Retinol Serumu","Biota Plus","Serum","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus C Vitamini Serumu","Biota Plus","Serum","Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Niacinamide Serumu","Biota Plus","Serum","Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Kil Maskesi","Biota Plus","Maske","Water, Kaolin, Bentonite, Glycerin, Niacinamide, Allantoin, Salicylic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus SPF50 Güneş Kremi","Biota Plus","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Alfa Arbutin Serumu","Biota Plus","Serum","Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Seramid Nemlendirici","Biota Plus","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Salisilik Asit Serumu","Biota Plus","Serum","Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Azelaik Asit Serumu","Biota Plus","Serum","Water, Glycerin, Azelaic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Micellar Temizleme Suyu","Biota Plus","Temizleyici","Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Sodium Benzoate, Disodium EDTA"],["Biota Plus Bakuchiol Serumu","Biota Plus","Serum","Water, Glycerin, Bakuchiol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Göz Altı Serumu","Biota Plus","Göz Serumu","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Peptit Serumu","Biota Plus","Serum","Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Biota Plus Gece Gündüz Kremi","Biota Plus","Nemlendirici","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Hyaluron Expert Intensely Lifting Cream","Eveline","Nemlendirici","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Retinyl Palmitate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Vitamin C Brightening Serum","Eveline","Serum","Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline White Prestige 4D Whitening Night Cream","Eveline","Gece Kremi","Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Retinyl Palmitate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Retinol Power Lifting Expert Cream","Eveline","Nemlendirici","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Bio Hyaluron Expert Eye Cream","Eveline","Göz Kremi","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Facemed+ Salicylic Acid Face Wash","Eveline","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Allantoin, Citric Acid, Phenoxyethanol"],["Eveline Facemed+ Micellar Water 3 in 1","Eveline","Temizleyici","Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"],["Eveline Serum 7 Effects Perfect Skin","Eveline","Serum","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinyl Palmitate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Niacynamid 10% + Zinc Face Serum","Eveline","Serum","Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline SPF50 Protective Face Fluid","Eveline","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Pure Control Mattifying Face Moisturizer","Eveline","Nemlendirici","Water, Glycerin, Niacinamide, Zinc PCA, Silica, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Peptide Lift Expert Moisturizing Cream","Eveline","Nemlendirici","Water, Glycerin, Peptides, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eveline Hyaluronic Expert Skin Toner","Eveline","Tonik","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Neutrogena Hydro Boost Water Gel","Neutrogena","Nemlendirici","Water, Dimethicone, Glycerin, Sodium Hyaluronate, Dimethicone/Vinyl Dimethicone Crosspolymer, Phenoxyethanol, Dimethiconol, Sodium Acrylates Copolymer, Carbomer, Sodium Hydroxide, Ethylhexylglycerin"],["Neutrogena Rapid Wrinkle Repair Retinol Serum","Neutrogena","Serum","Water, Glycerin, Retinol, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Neutrogena Ultra Sheer Dry-Touch SPF50+","Neutrogena","Güneş Koruma","Water, Homosalate, Octocrylene, Avobenzone, Glycerin, Dimethicone, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Neutrogena Oil-Free Acne Wash","Neutrogena","Temizleyici","Water, Glycerin, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["Garnier Micellar Cleansing Water","Garnier","Temizleyici","Water, Hexylene Glycol, Glycerin, Disodium Cocoamphodiacetate, Disodium EDTA, Poloxamer 184, Rosa Damascena Flower Water, Sodium Benzoate, Sodium Chloride"],["Garnier Vitamin C Brightening Serum","Garnier","Serum","Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Salicylic Acid, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Garnier Hyaluronic Aloe Jelly Moisturizer","Garnier","Nemlendirici","Water, Glycerin, Aloe Barbadensis Leaf Juice, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Vichy Minéral 89 Hyaluronic Acid Serum","Vichy","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Pentylene Glycol, Sodium Chloride, Hyaluronic Acid, Xanthan Gum, Citric Acid, Sodium Hydroxide, Phenoxyethanol"],["Vichy Capital Soleil UV Age Daily SPF50+","Vichy","Güneş Koruma","Water, Homosalate, Octocrylene, Glycerin, Niacinamide, Dimethicone, Hyaluronic Acid, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Vichy Normaderm Correcting Anti-Acne Care","Vichy","Akne Bakım","Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Avene Cicalfate+ Restorative Protective Cream","Avene","Onarıcı","Water, Glycerin, Zinc Sulfate, Copper Sulfate, Sucrose Octasulfate, Allantoin, Squalane, Beeswax, Stearyl Alcohol, Cetyl Alcohol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Avene Hydrance Rich Hydrating Cream","Avene","Nemlendirici","Water, Glycerin, Dimethicone, Squalane, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Avene RetrinAL 0.1 Intensive Cream","Avene","Anti-Aging","Water, Glycerin, Retinal, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eucerin Hyaluron-Filler Serum","Eucerin","Serum","Aqua, Glycerin, Sodium Hyaluronate, Niacinamide, Dimethicone, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol"],["Eucerin DermoPure Triple Action Serum","Eucerin","Serum","Aqua, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Eucerin Sun Oil Control SPF50+","Eucerin","Güneş Koruma","Aqua, Homosalate, Octocrylene, Glycerin, Niacinamide, Silica, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Cetaphil Moisturizing Cream","Cetaphil","Nemlendirici","Water, Glycerin, Petrolatum, Dicaprylyl Ether, Dimethicone, Urea, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Cetaphil Gentle Skin Cleanser","Cetaphil","Temizleyici","Water, Cetyl Alcohol, Propylene Glycol, Sodium Lauryl Sulfate, Stearyl Alcohol, Methylparaben, Propylparaben, Butylparaben"],["Kiehl's Ultra Facial Cream","Kiehl's","Nemlendirici","Water, Glycerin, Squalane, Sucrose, Dimethicone, Sodium PCA, Panthenol, Allantoin, Mannitol, Trehalose, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Kiehl's Powerful-Strength Line-Reducing Concentrate","Kiehl's","Serum","Water, Ascorbic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["The Inkey List Hyaluronic Acid Serum","The Inkey List","Serum","Aqua, Sodium Hyaluronate, Glycerin, Sodium Polyacrylate, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"],["The Inkey List Retinol Serum","The Inkey List","Serum","Aqua, Glycerin, Squalane, Retinol, Dimethicone, Dimethyl Isosorbide, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"],["The Inkey List Niacinamide","The Inkey List","Serum","Aqua, Niacinamide, Zinc PCA, Propanediol, Xanthan Gum, Allantoin, Phenoxyethanol, Ethylhexylglycerin"],["The Inkey List Vitamin C Serum","The Inkey List","Serum","Aqua, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["The Inkey List Tranexamic Acid Night Treatment","The Inkey List","Gece Bakımı","Aqua, Glycerin, Tranexamic Acid, Niacinamide, Retinol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Good Molecules Discoloration Correcting Serum","Good Molecules","Serum","Water, Glycerin, Tranexamic Acid, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Good Molecules Niacinamide Toning Essence","Good Molecules","Esans","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Good Molecules Overnight Exfoliating Treatment","Good Molecules","Gece Bakımı","Water, Glycerin, Glycolic Acid, Lactic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Purito Centella Unscented Serum","Purito","Serum","Water, Centella Asiatica Extract, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Purito Daily Go-To Sunscreen SPF50+","Purito","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Purito From Green Vitamin C Serum","Purito","Serum","Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Isntree Hyaluronic Acid Toner","Isntree","Tonik","Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Isntree Hyaluronic Acid Watery Sun Gel SPF50+","Isntree","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Freshly Juiced Vitamin C Serum","Klairs","Serum","Water, Ascorbic Acid, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Rich Moist Soothing Serum","Klairs","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Midnight Blue Calming Cream","Klairs","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Supple Preparation Facial Toner","Klairs","Tonik","Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Axis-Y Dark Spot Correcting Glow Serum","Axis-Y","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Axis-Y Complete No-Stress Physical Sunscreen SPF50+","Axis-Y","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Centella Asiatica Extract, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Laneige Water Sleeping Mask","Laneige","Maske","Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Laneige Lip Sleeping Mask","Laneige","Dudak Bakımı","Hydrogenated Polyisobutene, Glycerin, Sodium Hyaluronate, Panthenol, Tocopherol, Phenoxyethanol"],["Laneige Water Bank Blue Hyaluronic Serum","Laneige","Serum","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Dr. Jart+ Cicapair Tiger Grass Cream","Dr. Jart+","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Dr. Jart+ Ceramidin Cream","Dr. Jart+","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Missha Time Revolution The First Treatment Essence","Missha","Esans","Saccharomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Phenoxyethanol, Ethylhexylglycerin"],["Missha All Around Safe Block SPF50+","Missha","Güneş Koruma","Water, Homosalate, Ethylhexyl Triazone, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Hyaluronic Toner","Haruharu WONDER","Tonik","Oryza Sativa Bran Extract, Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Bakuchiol Eye Cream","Haruharu WONDER","Göz Kremi","Water, Glycerin, Bakuchiol, Oryza Sativa Bran Extract, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Zero Pore Pad 2.0","Medicube","Ped","Water, Glycerin, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Medicube Red Erasing Serum","Medicube","Serum","Water, Glycerin, Niacinamide, Azelaic Acid, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Some By Mi AHA BHA PHA 30 Days Miracle Toner","Some By Mi","Tonik","Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Tea Tree Leaf Extract, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["Some By Mi AHA BHA PHA 30 Days Miracle Serum","Some By Mi","Serum","Water, Glycerin, Niacinamide, Glycolic Acid, Salicylic Acid, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Some By Mi Yuja Niacin Brightening Serum","Some By Mi","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Citrus Junos Fruit Extract, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Innisfree Green Tea Seed Serum","Innisfree","Serum","Water, Glycerin, Camellia Sinensis Leaf Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Innisfree Retinol Cica Repair Ampoule","Innisfree","Serum","Water, Glycerin, Retinol, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Innisfree Daily UV Defense SPF45","Innisfree","Güneş Koruma","Water, Homosalate, Octocrylene, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Etude House Soon Jung 2x Barrier Intensive Cream","Etude House","Nemlendirici","Water, Glycerin, Ceramide NP, Panthenol, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Etude House SoonJung 10 Free Mildness Toner","Etude House","Tonik","Water, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Golden Rose Wonder BB Cream SPF25","Golden Rose","BB Krem","Water, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Golden Rose CC Cream SPF50+","Golden Rose","Güneş Koruma","Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Flormar Perfect Coverage Foundation","Flormar","Fondöten","Water, Cyclopentasiloxane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Phenoxyethanol, Ethylhexylglycerin"],["Olay Regenerist Micro-Sculpting Cream","Olay","Nemlendirici","Water, Glycerin, Niacinamide, Dimethicone, Cetearyl Alcohol, Panthenol, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Olay Regenerist Retinol 24 Night Moisturizer","Olay","Gece Kremi","Water, Glycerin, Niacinamide, Retinol, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Sulwhasoo Snowise EX Brightening Cream","Sulwhasoo","Nemlendirici","Water, Glycerin, Niacinamide, Alpha Arbutin, White Mulberry Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TIRTIR Milk Skin Toner","TIRTIR","Tonik","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tremella Fuciformis Sporocarp Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["TIRTIR Mask Fit Red Cushion SPF40","TIRTIR","Fondöten","Water, Cyclopentasiloxane, Titanium Dioxide, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Iron Oxides, Phenoxyethanol"],["TIRTIR Milk Skin Serum","TIRTIR","Serum","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tremella Fuciformis Sporocarp Extract, Adenosine, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["TIRTIR Micro Fit Sunscreen SPF50+","TIRTIR","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TIRTIR Calming Serum Cica","TIRTIR","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["TIRTIR Mask Fit All Cover Cushion SPF50+","TIRTIR","Fondöten","Water, Cyclopentasiloxane, Titanium Dioxide, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Iron Oxides, Phenoxyethanol"],["TIRTIR Cream Fit Skin Toner","TIRTIR","Tonik","Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TIRTIR Glow Serum Niacinamide","TIRTIR","Serum","Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["TIRTIR Collagen Jelly Cream","TIRTIR","Nemlendirici","Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TIRTIR Retinol Real Cream","TIRTIR","Nemlendirici","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mixsoon Bean Essence","Mixsoon","Esans","Glycine Soja Seed Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mixsoon Centella Serum","Mixsoon","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mixsoon Bifida Ferment Essence","Mixsoon","Esans","Bifida Ferment Lysate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mixsoon Galactomyces Serum","Mixsoon","Serum","Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mixsoon Syn-Ake Peptide Serum","Mixsoon","Serum","Water, Glycerin, Syn-Ake, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mixsoon Hyaluronique Serum","Mixsoon","Serum","Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mixsoon Rice Toner","Mixsoon","Tonik","Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mixsoon Vitamin C 25% Serum","Mixsoon","Serum","Water, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["It's Skin Power 10 Formula VC Effector","It's Skin","Serum","Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["It's Skin Power 10 Formula WR Effector","It's Skin","Serum","Water, Glycerin, Niacinamide, Retinyl Palmitate, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["It's Skin Power 10 Formula GF Effector","It's Skin","Serum","Water, Glycerin, Niacinamide, Peptides, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["It's Skin Power 10 Formula LI Effector","It's Skin","Serum","Water, Glycerin, Niacinamide, Licorice Root Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["It's Skin Power 10 Formula Q10 Effector","It's Skin","Serum","Water, Glycerin, Ubiquinone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["It's Skin Hyaluronic Acid Moisture Serum","It's Skin","Serum","Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["It's Skin Prestige D'snail Serum","It's Skin","Serum","Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mizon All In One Snail Repair Cream","Mizon","Nemlendirici","Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mizon Original Skin Energy Hyaluronic Acid 100","Mizon","Serum","Water, Sodium Hyaluronate, Glycerin, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Mizon Snail Repair Eye Cream","Mizon","Göz Kremi","Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mizon Collagen Power Firming Serum","Mizon","Serum","Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Allantoin, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mizon Good Night White Sleeping Mask","Mizon","Maske","Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Mizon AHA & BHA Daily Clean Toner","Mizon","Tonik","Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["Mizon Snail Repair Intensive Ampoule","Mizon","Serum","Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["By Wishtrend Vitamin C 21.5% Advanced Serum","By Wishtrend","Serum","Ascorbic Acid, Water, Dimethyl Isosorbide, Glycerin, Ferulic Acid, Tocopherol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["By Wishtrend Acid-Duo 2% Mild Gel Cleanser","By Wishtrend","Temizleyici","Water, Glycerin, Gluconolactone, Lactic Acid, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["By Wishtrend Gluten-Free No-Stress Calming Serum","By Wishtrend","Serum","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["By Wishtrend Mandelic Acid 5% Skin Prep Water","By Wishtrend","Tonik","Water, Glycerin, Mandelic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["By Wishtrend Mugwort 5% Clearing Serum","By Wishtrend","Serum","Water, Glycerin, Artemisia Princeps Leaf Extract, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["By Wishtrend Polyphenols in Propolis 15% Ampoule","By Wishtrend","Serum","Water, Glycerin, Propolis Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["By Wishtrend Pure Vitamin C 15% with Ferulic Acid","By Wishtrend","Serum","Ascorbic Acid, Water, Dimethyl Isosorbide, Ferulic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Ma:nyo Pure Cleansing Oil","Ma:nyo","Temizleyici","Caprylic/Capric Triglyceride, Cetyl Ethylhexanoate, Squalane, PEG-20 Glyceryl Triisostearate, Tocopherol, Phenoxyethanol"],["Ma:nyo Galactomyces Niacin Special Treatment Essence","Ma:nyo","Esans","Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin"],["Ma:nyo Bifida Complex Biome Ampoule","Ma:nyo","Serum","Bifida Ferment Lysate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Ma:nyo Galactomyces Moisture Cream","Ma:nyo","Nemlendirici","Water, Glycerin, Galactomyces Ferment Filtrate, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Ma:nyo Hyaluron Bakuchiol Serum","Ma:nyo","Serum","Water, Glycerin, Bakuchiol, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Ma:nyo Rosehip Repair Serum","Ma:nyo","Serum","Water, Glycerin, Rosa Canina Seed Oil, Niacinamide, Sodium Hyaluronate, Allantoin, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin&Lab Barrierderm Intensive Cream","Skin&Lab","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin&Lab Dr. Pore Tightening Serum","Skin&Lab","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin&Lab Red Serum","Skin&Lab","Serum","Water, Glycerin, Niacinamide, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin&Lab Vitamin C Brightening Serum","Skin&Lab","Serum","Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Skin&Lab Sun Project Light Sun Essence SPF50+","Skin&Lab","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture 5.5 Lotion","Haruharu WONDER","Nemlendirici","Oryza Sativa Bran Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture Cream","Haruharu WONDER","Nemlendirici","Oryza Sativa Bran Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture Serum","Haruharu WONDER","Serum","Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture Deep Cleansing Oil","Haruharu WONDER","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Oryza Sativa Bran Oil, Glycerin, Tocopherol, Phenoxyethanol"],["Haruharu WONDER Honey Green Repairative Serum","Haruharu WONDER","Serum","Water, Glycerin, Honey Extract, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture Sunscreen SPF50+","Haruharu WONDER","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Oryza Sativa Bran Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Haruharu WONDER Black Rice Moisture Toner","Haruharu WONDER","Tonik","Oryza Sativa Bran Extract, Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Red Body Acne Serum","Medicube","Vücut Bakımı","Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Age-R Booster H","Medicube","Serum","Water, Glycerin, Niacinamide, Sodium Hyaluronate, Hyaluronic Acid, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Red Clearing Serum","Medicube","Serum","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Collagen Lifting Capsule Cream","Medicube","Nemlendirici","Water, Glycerin, Collagen, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Medicube Zero Sebum Clearing Foam","Medicube","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Citric Acid, Phenoxyethanol"],["Medicube Peptide Bouncing Cream","Medicube","Nemlendirici","Water, Glycerin, Peptides, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Cosrx Advanced Snail 96 Mucin Power Ampoule","COSRX","Serum","Snail Secretion Filtrate, Glycerin, Betaine, Panthenol, Sodium Polyacrylate, Allantoin, Sodium Hyaluronate, Phenoxyethanol, Ethylhexylglycerin"],["Some By Mi Snail Truecica Miracle Repair Cream","Some By Mi","Nemlendirici","Water, Glycerin, Snail Secretion Filtrate, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Some By Mi Retinol Intense Reactivating Serum","Some By Mi","Serum","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Some By Mi Galactomyces Pure Vitamin C Glow Serum","Some By Mi","Serum","Galactomyces Ferment Filtrate, Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Some By Mi AHA BHA PHA 30 Days Miracle Cream","Some By Mi","Nemlendirici","Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Isntree Hyaluronic Acid Real Eye Cream","Isntree","Göz Kremi","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Isntree Chestnut AHA 8% Clear Serum","Isntree","Serum","Water, Glycerin, Glycolic Acid, Lactic Acid, Castanea Crenata Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Isntree Green Tea Fresh Toner","Isntree","Tonik","Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Isntree Centella Nourishing Cream","Isntree","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Goodal Green Tangerine Vita C Dark Spot Serum","Goodal","Serum","Water, Glycerin, Citrus Unshiu Peel Extract, Ascorbyl Glucoside, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Goodal Green Tangerine Vita C Oil Drop Serum","Goodal","Serum","Squalane, Ascorbyl Tetraisopalmitate, Citrus Unshiu Peel Extract, Rosehip Oil, Tocopherol, Phenoxyethanol"],["Goodal Houttuynia Cordata Calming Moisture Toner","Goodal","Tonik","Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Neogen Real Fresh Foam Green Tea","Neogen","Temizleyici","Water, Glycerin, Sodium Cocoyl Isethionate, Camellia Sinensis Leaf Water, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Neogen Bio-Peel Gauze Peeling Wine","Neogen","Peeling","Water, Glycerin, Vitis Vinifera Fruit Extract, Lactic Acid, Glycolic Acid, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Neogen Dermalogy Real Ferment Micro Essence","Neogen","Esans","Saccharomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin"],["Neogen Day-Light Protection Sunscreen SPF50+","Neogen","Güneş Koruma","Water, Homosalate, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Dr. Althea Retinol Tightening Serum","Dr. Althea","Serum","Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"],["Dr. Althea Pro-Collagen Peptide Serum","Dr. Althea","Serum","Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Dr. Althea Tone-Up UV Shield SPF50+","Dr. Althea","Güneş Koruma","Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Abib Mild Acidic pH Sheet Mask Cica Fit","Abib","Maske","Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Abib Gummy Sheet Mask Hyaluronic Acid Sticker","Abib","Maske","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Abib Heartleaf Essence Pad","Abib","Ped","Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Salicylic Acid, Allantoin, Citric Acid, Phenoxyethanol"],["Abib Rebalancing Skin Toner Heartleaf Boosting","Abib","Tonik","Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["VT Cosmetics Cica Cream","VT Cosmetics","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["VT Cosmetics Reedle Shot 100","VT Cosmetics","Serum","Water, Glycerin, Niacinamide, Retinol, Peptides, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["VT Cosmetics Pro Cica Foam Cleanser","VT Cosmetics","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Centella Asiatica Extract, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"],["Rovectin Skin Essentials Barrier Repair Cream","Rovectin","Nemlendirici","Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Rovectin Skin Essentials Conditioning Cleanser","Rovectin","Temizleyici","Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"],["Rovectin Clean Nourishing Sleeping Mask","Rovectin","Maske","Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Benton Aloe BHA Skin Toner","Benton","Tonik","Water, Aloe Barbadensis Leaf Juice, Glycerin, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"],["Benton Snail Bee Ultimate Serum","Benton","Serum","Water, Glycerin, Snail Secretion Filtrate, Bee Venom, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Benton Deep Green Tea Serum","Benton","Serum","Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Numbuzin No.3 Skin Softening Serum","Numbuzin","Serum","Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Numbuzin No.5 Vitamin Niacinamide Concentrated Serum","Numbuzin","Serum","Water, Glycerin, Niacinamide, Ascorbyl Glucoside, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Numbuzin No.9 Poreless Soft Skin Toner","Numbuzin","Tonik","Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol"],["Huxley Secret of Sahara Oil","Huxley","Yağ","Opuntia Ficus-Indica Seed Oil, Squalane, Rosa Canina Seed Oil, Tocopherol, Linalool"],["Huxley Grab Water Essence","Huxley","Esans","Water, Glycerin, Opuntia Ficus-Indica Seed Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Huxley Cream Anti-Gravity","Huxley","Nemlendirici","Water, Glycerin, Opuntia Ficus-Indica Seed Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Fundamental Nourishing Eye Butter","Klairs","Göz Kremi","Water, Glycerin, Shea Butter, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Klairs Gentle Black Deep Cleansing Oil","Klairs","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Jojoba Oil, Tocopherol, Sodium Hyaluronate, Phenoxyethanol"],["Etude House Soon Jung pH 5.5 Relief Toner","Etude House","Tonik","Water, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Etude House Real Art Cleansing Oil Moisture","Etude House","Temizleyici","Caprylic/Capric Triglyceride, Squalane, Glycerin, Tocopherol, Sodium Hyaluronate, Phenoxyethanol"],["I'm From Rice Toner","I'm From","Tonik","Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["I'm From Fig Serum","I'm From","Serum","Water, Glycerin, Ficus Carica Fruit Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["I'm From Mugwort Sheet Mask","I'm From","Maske","Water, Glycerin, Artemisia Princeps Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Belif True Cream Moisturizing Bomb","Belif","Nemlendirici","Water, Glycerin, Glyceryl Glucoside, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Belif The True Cream Aqua Bomb","Belif","Nemlendirici","Water, Glycerin, Glyceryl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TonyMoly Magic Food Banana Sleeping Pack","TonyMoly","Maske","Water, Glycerin, Musa Sapientum Fruit Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["TonyMoly I'm Real Sheet Mask Hyaluronic Acid","TonyMoly","Maske","Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Nature Republic Soothing & Moisture Aloe Vera Gel","Nature Republic","Jel","Aloe Barbadensis Leaf Juice, Water, Glycerin, Carbomer, Sodium Hydroxide, Allantoin, Panthenol, Phenoxyethanol"],["Dr.G Red Blemish Clear Soothing Cream","Dr.G","Nemlendirici","Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Dr.G Brightening Peeling Gel","Dr.G","Peeling","Water, Glycerin, Lactic Acid, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Papa Recipe Bombee Honey Mask","Papa Recipe","Maske","Water, Glycerin, Honey Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Cosrx Advanced Snail 92 Wrinkle Care Serum","COSRX","Serum","Water, Glycerin, Snail Secretion Filtrate, Retinyl Palmitate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Missha Super Aqua Ultra Hyalron Serum","Missha","Serum","Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Niacinamide, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"],["Missha Time Revolution Night Repair Ampoule","Missha","Gece Serumu","Water, Glycerin, Niacinamide, Retinol, Adenosine, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"]]).map(([name,brand,cat,ingredients])=>({name,brand,cat,ingredients}));
+// ════════════════════════════════════════════════════════════
+// LOGIC — DB + Parse + Conflicts + Quiz + Score
+// ════════════════════════════════════════════════════════════
+// ─── INGREDIENT DB ──────────────────────────────────────────────────────────
+const DB = {
+  "water":{tr:"Su",cat:"Çözücü",rating:"safe",score:100,desc:"Formülün temel taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tüm cilt tipleri.",avoid:[]},
+  "aqua":{tr:"Su",cat:"Çözücü",rating:"safe",score:100,desc:"Formülün temel taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tüm cilt tipleri.",avoid:[]},
+  "glycerin":{tr:"Gliserin",cat:"Nemlendirici",rating:"safe",score:98,desc:"Havadan nem çeken güçlü humektan. Cilt bariyerini destekler.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez, sabah ve akşam.",avoid:[]},
+  "glycerol":{tr:"Gliserol",cat:"Nemlendirici",rating:"safe",score:98,desc:"Gliserin ile aynı bileşen.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "sodium hyaluronate":{tr:"Sodyum Hyalüronat",cat:"Nemlendirici",rating:"safe",score:99,desc:"Derinin derin katmanlarına ulaşan küçük moleküllü hyalüronik asit tuzu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah ve akşam, üzerine nemlendirici.",avoid:[]},
+  "hyaluronic acid":{tr:"Hyalüronik Asit",cat:"Nemlendirici",rating:"safe",score:99,desc:"Ağırlığının 1000 katı su tutabilen süper nemlendirici.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Nemli cilde uygula, üzerine kilitle.",avoid:[]},
+  "propylene glycol":{tr:"Propilen Glikol",cat:"Nemlendirici",rating:"caution",score:60,desc:"Nemlendirici ve taşıyıcı.",concern:"Hassas ciltlerde tahriş",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"<%5 konsantrasyon.",avoid:["sensitive"]},
+  "butylene glycol":{tr:"Bütilen Glikol",cat:"Nemlendirici",rating:"safe",score:85,desc:"Hafif nemlendirici, emilimi artırır.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "panthenol":{tr:"Panthenol (Pro-B5)",cat:"Nemlendirici",rating:"safe",score:97,desc:"Yatıştırıcı ve nemlendirici. Bariyer güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Tahriş sonrası günde 2-3 kez.",avoid:[]},
+  "urea":{tr:"Üre",cat:"Nemlendirici",rating:"safe",score:90,desc:"Keratolotik ve nemlendirici.",concern:null,comedogenic:0,skinTypes:["dry","normal"],usage:"Akşam %5-10.",avoid:["sensitive"]},
+  "niacinamide":{tr:"Niasinamid (B3)",cat:"Aktif",rating:"safe",score:99,desc:"Gözenek küçülter, leke açar, yağlanmayı dengeler, bariyeri güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah/akşam %2-10.",avoid:[]},
+  "retinol":{tr:"Retinol (A Vitamini)",cat:"Aktif",rating:"caution",score:88,desc:"Anti-aging altın standardı. Hücre yenilenmesi.",concern:"Hamilelikte yasak. SPF şart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sadece akşam, haftada 2-3x başla.",avoid:["sensitive","dry"],conflictsWith:["ascorbic acid","glycolic acid","salicylic acid","benzoyl peroxide"],conflictNote:"Retinoid + asit aynı gece kullanılmamalı — yüksek irritasyon riski. Benzoil peroksit retinolü inaktive eder."},
+  "retinal":{tr:"Retinal",cat:"Aktif",rating:"caution",score:90,desc:"Retinoldan 11x güçlü.",concern:"Hamilelikte yasak. SPF şart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sadece akşam.",avoid:["sensitive","dry"],conflictsWith:["ascorbic acid","glycolic acid","salicylic acid","lactic acid","mandelic acid","benzoyl peroxide"],conflictNote:"Retinoid + asit aynı gece kesinlikle kullanılmamalı. Benzoil peroksit retinolü inaktive eder."},
+  "retinyl palmitate":{tr:"Retinil Palmitat",cat:"Aktif",rating:"safe",score:75,desc:"En hafif retinol formu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF ile.",avoid:[]},
+  "ascorbic acid":{tr:"Askorbik Asit (C Vitamini)",cat:"Aktif",rating:"safe",score:97,bioavailability:"cok yuksek",vitaminCTier:1,desc:"En guclu ve dogrudan aktif C vitamini formu. Antioksidan, leke acici, kolajen sentezi uyarici.",concern:"pH 3.5 altinda calisir. Okside olabilir — hava gecirmez ambalaj sart.",comedogenic:0,skinTypes:["normal","combination","oily"],usage:"Sabah %10-20, uzerine SPF.",avoid:["sensitive"],conflictsWith:["retinol","retinal","benzoyl peroxide"],conflictNote:"Retinoid ile ayni seansta kullanmaktan kacin. Yuksek konsantrasyonda (%10+) niasinamid ile sararma riski — dusuk konsantrasyonda sorun yok. Benzoil peroksit C vitaminini oksitler."},
+  "ascorbyl glucoside":{tr:"Askorbil Glukozit (C Vitamini Turevi)",cat:"Aktif",rating:"caution",score:72,bioavailability:"orta",vitaminCTier:3,desc:"Stabil C vitamini turevidir. Ciltte enzimle askorbik asite donusur; donusum hizi degisken ama etki gosterebildigi in vitro kanitlanmistir.",concern:"Biyoyararlanimi askorbik aside gore dusuk. Hassas ciltler icin iyi alternatif.",comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "ascorbyl tetraisopalmitate":{tr:"Askorbil Tetraizopalmirat",cat:"Aktif",rating:"safe",score:88,bioavailability:"iyi",vitaminCTier:2,desc:"Yagda cozunur stabil C vitamini turevidir. 2 gun icinde %84u askorbik asite donusur, derin penetrasyon gosterir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "sodium ascorbyl phosphate":{tr:"Sodyum Askorbil Fosfat",cat:"Aktif",rating:"caution",score:70,bioavailability:"orta-dusuk",vitaminCTier:3,desc:"Stabil C vitamini turevidir. Epidermise gecisi zayif; akne uzerinde anti-inflamatuar etki gosterir.",concern:"Epidermise gecisi sinirli. Renk esitleme icin askorbik asite gore daha az etkili. Akne bakim icin iyi secim.",comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "3-o-ethyl ascorbic acid":{tr:"3-O-Etil Askorbik Asit",cat:"Aktif",rating:"safe",score:85,bioavailability:"iyi",vitaminCTier:2,desc:"Stabil ve iyi biyoyararlanımlı C vitamini.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah, SPF ile.",avoid:[]},
+  "alpha arbutin":{tr:"Alfa Arbütin",cat:"Aktif",rating:"safe",score:93,desc:"Melanin üretimini baskılayan leke açıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah ve akşam %1-2.",avoid:[]},
+  "kojic acid":{tr:"Kojik Asit",cat:"Aktif",rating:"caution",score:75,desc:"Mantar kaynaklı leke açıcı.",concern:"Uzun süreli yüksek doz önerilmez.",comedogenic:0,skinTypes:["normal","combination"],usage:"Kısa kürler, SPF ile.",avoid:["sensitive","dry"]},
+  "azelaic acid":{tr:"Azelaik Asit",cat:"Aktif",rating:"safe",score:95,desc:"Akne, rozase, leke — çok yönlü. Gebelikte kullanılabilir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam %10-20.",avoid:[]},
+  "salicylic acid":{tr:"Salisilik Asit (BHA)",cat:"Aktif",rating:"caution",score:88,desc:"Gözenek içine giren yağda çözünür asit.",concern:"Hamilelikte dikkat. Kuru ciltlerde kurutucu.",comedogenic:0,skinTypes:["oily","combination"],usage:"Akşam %0.5-2, 2-3 günde bir başla.",avoid:["dry","sensitive"],conflictsWith:["retinol","retinal","glycolic acid"],conflictNote:"Birden fazla asit + retinoid kombinasyonu aşırı irritasyon riski."},
+  "glycolic acid":{tr:"Glikolik Asit (AHA)",cat:"Aktif",rating:"caution",score:85,desc:"Güçlü exfoliant.",concern:"SPF şart. Hassas ciltlerde dikkat.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Akşam haftada 2-3x, SPF.",avoid:["sensitive","dry"],conflictsWith:["retinol","retinal","salicylic acid","benzoyl peroxide"],conflictNote:"Çoklu asit/retinoid kombinasyonu iritasyon riski."},
+  "lactic acid":{tr:"Laktik Asit (AHA)",cat:"Aktif",rating:"safe",score:90,desc:"Nazik AHA, nemlendirir de.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF.",avoid:[]},
+  "mandelic acid":{tr:"Mandelik Asit",cat:"Aktif",rating:"safe",score:92,desc:"En nazik AHA, koyu ciltler için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Akşam, SPF.",avoid:[]},
+  "bakuchiol":{tr:"Bakuchiol",cat:"Aktif",rating:"safe",score:94,desc:"Bitkisel retinol alternatifi. Hamilelikte kullanılabilir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "adenosine":{tr:"Adenozin",cat:"Aktif",rating:"safe",score:91,desc:"Anti-aging. Kırışıklık azaltır, elastikiyet artırır.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "benzoyl peroxide":{tr:"Benzoil Peroksit",cat:"Aktif",rating:"caution",score:78,desc:"Akne bakterisini öldüren güçlü aktif.",concern:"Çok kurutucu. Havlu/yastık beyazlatabilir.",comedogenic:0,skinTypes:["oily","combination"],usage:"Akşam nokta uygulaması ile başla.",avoid:["dry","sensitive"],conflictsWith:["retinol","retinal","ascorbic acid","glycolic acid","salicylic acid"],conflictNote:"Retinol ve asitlerle birlikte aşırı irritasyon ve etkinlik kaybı."},
+  "tranexamic acid":{tr:"Traneksamik Asit",cat:"Aktif",rating:"safe",score:92,desc:"Leke açıcı, rozase ve hiperpigmentasyon için.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "dimethicone":{tr:"Dimetikon",cat:"Emollient",rating:"safe",score:80,desc:"Silikon bazlı yumuşatıcı. İpeksi his, nem kilitleme.",concern:null,comedogenic:1,skinTypes:["dry","normal","sensitive"],usage:"Akşam bakım katmanı.",avoid:["oily"]},
+  "cetyl alcohol":{tr:"Setil Alkol",cat:"Emollient",rating:"safe",score:88,desc:"Yagli alkol, nemlendirir, kivam verir. Yagli ciltlerde dikkat — komedonik potansiyeli orta duzeydir.",concern:"Yagliakne egilimli ciltlerde dikkatli kullanim onerilir.",comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Kuru ciltler için.",avoid:["oily","combination"]},
+  "squalane":{tr:"Skualan",cat:"Emollient",rating:"safe",score:98,desc:"Ultra hafif bitkisel yağ, gözenek tıkamaz.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "jojoba oil":{tr:"Jojoba Yağı",cat:"Emollient",rating:"safe",score:96,desc:"Sebuma benzer vaks ester, dengeleyici.",concern:null,comedogenic:2,skinTypes:["normal","dry","combination"],usage:"Akşam birkaç damla.",avoid:["oily"]},
+  "rosehip oil":{tr:"Kuşburnu Yağı",cat:"Emollient",rating:"caution",score:80,desc:"A vitamini ve yağ asitleri, anti-aging.",concern:"Akne/yağlı ciltlerde dikkat.",comedogenic:1,skinTypes:["dry","normal","combination"],usage:"Akşam.",avoid:["oily"]},
+  "shea butter":{tr:"Shea Yağı",cat:"Emollient",rating:"safe",score:85,desc:"Besleyici ve onarıcı.",concern:null,comedogenic:0,skinTypes:["dry","sensitive"],usage:"Akşam.",avoid:["oily","combination"]},
+  "ceramide np":{tr:"Seramid NP",cat:"Bariyer",rating:"safe",score:99,desc:"Cildin doğal bariyer yapı taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide ap":{tr:"Seramid AP",cat:"Bariyer",rating:"safe",score:99,desc:"Bariyer desteği.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide eop":{tr:"Seramid EOP",cat:"Bariyer",rating:"safe",score:99,desc:"Bariyer takviyesi.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "ceramide":{tr:"Seramid",cat:"Bariyer",rating:"safe",score:99,desc:"Cildin doğal bariyer yapı taşı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "cholesterol":{tr:"Kolesterol",cat:"Bariyer",rating:"safe",score:90,desc:"Seramidlerle birlikte bariyer fonksiyonu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Seramid ürünlerle.",avoid:[]},
+  "phenoxyethanol":{tr:"Fenoksietanol",cat:"Koruyucu",rating:"caution",score:70,desc:"Yaygın koruyucu, %1 altında güvenli.",concern:"Bebek ürünleri ve hassas ciltler dikkat.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Düşük konsantrasyonda.",avoid:["sensitive"]},
+  "ethylhexylglycerin":{tr:"Etilheksilgliserin",cat:"Koruyucu",rating:"safe",score:82,desc:"Hafif koruyucu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "potassium sorbate":{tr:"Potasyum Sorbat",cat:"Koruyucu",rating:"safe",score:85,desc:"Hafif ve güvenli koruyucu.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "benzyl alcohol":{tr:"Benzil Alkol",cat:"Koruyucu",rating:"caution",score:65,desc:"Doğal koruyucu ve çözücü.",concern:"Bazı kişilerde alerjen.",comedogenic:0,skinTypes:["normal","oily"],usage:"Dikkat.",avoid:["sensitive"]},
+  "tocopherol":{tr:"Tokoferol (E Vit.)",cat:"Antioksidan",rating:"safe",score:93,desc:"Güçlü antioksidan.",concern:null,comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Sabah veya akşam.",avoid:["oily"]},
+  "tocopheryl acetate":{tr:"Tokoferil Asetat (E Vit.)",cat:"Antioksidan",rating:"safe",score:90,desc:"E vitamininin stabil formu.",concern:null,comedogenic:2,skinTypes:["dry","normal","sensitive"],usage:"Sabah veya akşam.",avoid:["oily"]},
+  "ferulic acid":{tr:"Ferülik Asit",cat:"Antioksidan",rating:"safe",score:93,desc:"C ve E vitaminini güçlendirir.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah C vitamini ile.",avoid:[]},
+  "resveratrol":{tr:"Resveratrol",cat:"Antioksidan",rating:"safe",score:93,desc:"Güçlü antioksidan, anti-aging.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah veya akşam.",avoid:[]},
+  "citric acid":{tr:"Sitrik Asit",cat:"pH Düzenleyici",rating:"safe",score:85,desc:"pH dengesi, hafif antioksidan.",concern:null,comedogenic:0,skinTypes:["all"],usage:"pH dengeleyici.",avoid:[]},
+  "sodium hydroxide":{tr:"Sodyum Hidroksit",cat:"pH Düzenleyici",rating:"safe",score:80,desc:"pH dengesini sağlar.",concern:null,comedogenic:0,skinTypes:["all"],usage:"pH dengeleyici.",avoid:[]},
+  "fragrance":{tr:"Parfüm / Koku",cat:"Parfüm",rating:"risky",score:30,desc:"İçeriği gizli tutulabilen koku karışımı.",concern:"Alerji, tahriş, endokrin bozucu riski.",comedogenic:0,skinTypes:[],usage:"Hassas ciltler kaçınsın.",avoid:["sensitive","dry","oily","combination"]},
+  "parfum":{tr:"Parfüm",cat:"Parfüm",rating:"risky",score:30,desc:"Koku bileşenleri karışımı.",concern:"Hassas ciltlerde kaçın.",comedogenic:0,skinTypes:[],usage:"Kaçının.",avoid:["sensitive"]},
+  "linalool":{tr:"Linalool",cat:"Parfüm Bileşeni",rating:"caution",score:50,desc:"Lavanta kokusu — potansiyel alerjen.",concern:"AB'de zorunlu bildirilen 26 alerjen arasında.",comedogenic:0,skinTypes:["normal","oily"],usage:"Hassas ciltler dikkat.",avoid:["sensitive"]},
+  "limonene":{tr:"Limonen",cat:"Parfüm Bileşeni",rating:"caution",score:50,desc:"Narenciye kokusu — potansiyel alerjen.",concern:"AB'de zorunlu bildirilen alerjen.",comedogenic:0,skinTypes:["normal","oily"],usage:"Hassas ciltler dikkat.",avoid:["sensitive"]},
+  "zinc oxide":{tr:"Çinko Oksit",cat:"Güneş Filtresi",rating:"safe",score:98,desc:"Fiziksel UVA+UVB filtresi. Hassas ve bebek ciltler için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah son katman.",avoid:[]},
+  "titanium dioxide":{tr:"Titanyum Dioksit",cat:"Güneş Filtresi",rating:"safe",score:95,desc:"Fiziksel güneş filtresi.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah son katman.",avoid:[]},
+  "avobenzone":{tr:"Avobenson",cat:"Güneş Filtresi",rating:"caution",score:72,desc:"Kimyasal UVA filtresi.",concern:"Stabilize edilmeli, bazı ciltlerde irritasyon.",comedogenic:0,skinTypes:["normal","oily","combination"],usage:"Sabah.",avoid:["sensitive"]},
+  "oxybenzone":{tr:"Oksibenson",cat:"Güneş Filtresi",rating:"risky",score:25,desc:"Kimyasal filtre.",concern:"Endokrin bozucu şüphesi, mercan zararı.",comedogenic:0,skinTypes:[],usage:"Fiziksel alternatif tercih et.",avoid:["sensitive","dry","oily","combination","normal"]},
+  "alcohol denat":{tr:"Denatüre Alkol",cat:"Çözücü",rating:"caution",score:50,desc:"Ürünü inceltir, emilimi hızlandırır.",concern:"Bariyer bozabilir.",comedogenic:0,skinTypes:["oily"],usage:"Kısa süreli, yağlı ciltler.",avoid:["dry","sensitive","normal"]},
+  "alcohol":{tr:"Alkol",cat:"Çözücü",rating:"caution",score:50,desc:"Çözücü.",concern:"Hassas/kuru ciltlerde dikkat.",comedogenic:0,skinTypes:["oily"],usage:"Dikkat.",avoid:["dry","sensitive"]},
+  "carbomer":{tr:"Karbomer",cat:"Kıvam Artırıcı",rating:"safe",score:85,desc:"Jel kıvamı sağlayan polimer.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "xanthan gum":{tr:"Ksantan Sakızı",cat:"Kıvam Artırıcı",rating:"safe",score:90,desc:"Doğal kıvam verici.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Güvenli.",avoid:[]},
+  "allantoin":{tr:"Allantoin",cat:"Yatıştırıcı",rating:"safe",score:96,desc:"Tahriş giderici, hücre yenilemeyi destekler.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "centella asiatica extract":{tr:"Centella Asiatica (Cica)",cat:"Yatıştırıcı",rating:"safe",score:97,desc:"Sakinleştirici ve onarıcı. Akne izi için ideal.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "aloe barbadensis leaf juice":{tr:"Aloe Vera",cat:"Yatıştırıcı",rating:"safe",score:95,desc:"Soğutucu, yatıştırıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Gerektiğinde günde 2-3 kez.",avoid:[]},
+  "green tea extract":{tr:"Yeşil Çay Özü",cat:"Antioksidan",rating:"safe",score:94,desc:"EGCG içerir. Güçlü antioksidan.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah.",avoid:[]},
+  "collagen":{tr:"Kolajen",cat:"Aktif",rating:"safe",score:70,desc:"Ciltte yüzeyel nemlendirici etki — deriye nüfuz edemez.",concern:"Topikal kolajen vaadiyle çelişir.",comedogenic:0,skinTypes:["all"],usage:"Nemlendirici etki beklenir.",avoid:[]},
+  "kaolin":{tr:"Kaolin (Kil)",cat:"Emici",rating:"safe",score:87,desc:"Doğal kil. Yağ emer.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Haftada 1-2 kez maske.",avoid:["dry","sensitive"]},
+  "bentonite":{tr:"Bentonit Kili",cat:"Emici",rating:"safe",score:84,desc:"Yağ emici kil.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Haftada 1-2 kez.",avoid:["dry","sensitive"]},
+  "zinc pca":{tr:"Çinko PCA",cat:"Aktif",rating:"safe",score:88,desc:"Yağlanmayı dengeler, akne karşıtı.",concern:null,comedogenic:0,skinTypes:["oily","combination"],usage:"Sabah veya akşam.",avoid:[]},
+  "snail secretion filtrate":{tr:"Salyangoz Müsini",cat:"Yatıştırıcı",rating:"safe",score:92,desc:"Onarıcı, nemlendirici, yatıştırıcı.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "propolis extract":{tr:"Propolis Özü",cat:"Antioksidan",rating:"safe",score:88,desc:"Antimikrobiyal ve antioksidan.",concern:"Arı ürünlerine alerjisi olanlar dikkat.",comedogenic:0,skinTypes:["all"],usage:"Günde 2 kez.",avoid:[]},
+  "caffeine":{tr:"Kafein",cat:"Aktif",rating:"safe",score:85,desc:"Göz altı şişliği ve koyu halka için.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Sabah göz çevresi.",avoid:[]},
+  "petrolatum":{tr:"Petrolatum (Vazelin)",cat:"Emollient",rating:"safe",score:88,desc:"Güçlü onarıcı ve nem kilitleyici.",concern:null,comedogenic:1,skinTypes:["dry","sensitive"],usage:"Akşam son katman.",avoid:["oily"]},
+};
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function lookupIngredient(raw, index, total) {
+  const key = raw.trim().toLowerCase().replace(/\*/g,"");
+  let found = DB[key];
+  if (!found) { for (const [k,v] of Object.entries(DB)) { if (key.includes(k)||k.includes(key)){found=v;break;} } }
+  const base = found||{tr:raw.trim(),cat:"Bilinmeyen",rating:"unknown",score:50,desc:"Veritabanında bilgi yok.",concern:null,comedogenic:0,skinTypes:["all"],usage:"Bilgi yok.",avoid:[]};
+  const pct=index/total;
+  const position=pct<0.15?"Yüksek":pct<0.4?"Orta-Yüksek":pct<0.65?"Orta":pct<0.85?"Düşük":"Eser";
+  const positionNote=pct<0.15?"Üst sıralarda — yüksek konsantrasyon":pct<0.4?"İlk yarıda — orta-yüksek":pct<0.65?"Ortada — orta":pct<0.85?"İkinci yarıda — düşük":"Sonda — genellikle <%1";
+  return {name:raw.trim(),position,positionNote,listIndex:index+1,...base};
+}
+function parseIngredients(text){
+  const items=text.split(/[,\n;]+/).map(s=>s.trim()).filter(Boolean);
+  return items.map((item,i)=>lookupIngredient(item,i,items.length));
+}
+
+// ─── CONFLICT DETECTION ───────────────────────────────────────────────────────
+const CONFLICTS=[
+  {a:["retinol","retinal","retinyl palmitate"],b:["ascorbic acid","glycolic acid","salicylic acid","benzoyl peroxide","lactic acid","mandelic acid"],severity:"high",icon:"⚡",title:"Retinoid + Asit / Benzoil Peroksit",tip:"Retinoid ve asitler ayni gece kesinlikle kullanilmamali. Benzoil peroksit retinolu inaktive eder. Farkli gecelere ayir."},
+  {a:["ascorbic acid"],b:["niacinamide"],severity:"medium",icon:"🟡",title:"C Vitamini + Niasinamid (Yuksek Kons.)",tip:"Her ikisi yuksek konsantrasyonda (%10+) ayni rutinde kullanildiginda sararma riski. Dusuk konsantrasyonda sorun yoktur. Sabah C vitamini, aksam niasinamid onerilir."},
+  {a:["benzoyl peroxide"],b:["retinol","retinal","ascorbic acid"],severity:"high",icon:"⚡",title:"Benzoil Peroksit + Retinoid / C Vitamini",tip:"Benzoil peroksit retinolu inaktive eder ve C vitaminini oksitler — bu ikililer kesinlikle ayni rutinde kullanilmamali."},
+  {a:["glycolic acid","salicylic acid","lactic acid","mandelic acid"],b:["glycolic acid","salicylic acid","lactic acid","mandelic acid"],severity:"medium",icon:"🟡",title:"Çoklu Asit",tip:"Aynı rutinde birden fazla güçlü asit aşırı irritasyon riski. Tek bir exfoliant seç."},
+  {a:["alcohol denat","alcohol"],b:["retinol","ascorbic acid","niacinamide"],severity:"medium",icon:"🟡",title:"Alkol + Aktif Bileşenler",tip:"Alkol aktif bileşenlerin etkinliğini azaltabilir ve iritasyon artırabilir."},
+  {a:["fragrance","parfum"],b:["retinol","retinal","glycolic acid","salicylic acid","ascorbic acid"],severity:"medium",icon:"🟡",title:"Parfüm + Güçlü Aktifler",tip:"Parfüm hassas ve aktif içerikli ürünlerde ekstra iritasyon riski."},
+];
+
+function detectConflicts(items){
+  const keys=items.map(i=>i.name.toLowerCase());
+  const found=[];
+  for(const c of CONFLICTS){
+    const hasA=c.a.some(a=>keys.some(k=>k.includes(a)||a.includes(k)));
+    const hasB=c.b.some(b=>keys.some(k=>k.includes(b)||b.includes(k)));
+    if(hasA&&hasB){
+      // find actual ingredient names
+      const aNames=items.filter(i=>c.a.some(a=>i.name.toLowerCase().includes(a)||a.includes(i.name.toLowerCase()))).map(i=>i.tr);
+      const bNames=items.filter(i=>c.b.some(b=>i.name.toLowerCase().includes(b)||b.includes(i.name.toLowerCase()))).map(i=>i.tr);
+      const key=c.title;
+      if(!found.find(f=>f.title===key)) found.push({...c,aNames:[...new Set(aNames)],bNames:[...new Set(bNames)]});
+    }
+  }
+  return found;
+}
+
+// ─── PALETTE ──────────────────────────────────────────────────────────────────
+const C={
+  bg:"#0e0b16",bgCard:"#16112a",bgDeep:"#0a0812",bgHover:"#1c1638",
+  border:"#2d2250",borderGold:"#c9993a40",
+  text:"#ede8ff",textMid:"#9b8ec4",textLight:"#5a4d80",
+  purple:"#7c5cbf",purpleLight:"#a87de8",purpleDim:"#2a1f4a",
+  gold:"#c9993a",goldLight:"#e8c46a",goldDim:"#3a2a0a",goldBorder:"#c9993a50",
+  safe:"#4ec994",safeDim:"#0d2e1e",safeBorder:"#1d5c3a",
+  caution:"#e8a830",cautionDim:"#2e1e04",cautionBorder:"#5a3c08",
+  risky:"#e85060",riskyDim:"#2e0810",riskyBorder:"#5a1020",
+  unknown:"#6a5a8a",unknownDim:"#1a1228",unknownBorder:"#3a2a5a",
+};
+const RM={
+  safe:{label:"Güvenli",color:C.safe,bg:C.safeDim,border:C.safeBorder},
+  caution:{label:"Dikkat",color:C.caution,bg:C.cautionDim,border:C.cautionBorder},
+  risky:{label:"Riskli",color:C.risky,bg:C.riskyDim,border:C.riskyBorder},
+  unknown:{label:"Bilinmiyor",color:C.unknown,bg:C.unknownDim,border:C.unknownBorder},
+};
+
+// ─── QUIZ ─────────────────────────────────────────────────────────────────────
+const QUIZ=[
+  {q:"Yüzünüzü yıkadıktan birkaç saat sonra cildiniz nasıl?",opts:[{l:"Gergin ve çekiyor",t:"dry"},{l:"Parlıyor, yağlı hissediyor",t:"oily"},{l:"T bölgesi yağlı, yanaklar normal",t:"combination"},{l:"Normal, rahat",t:"normal"}]},
+  {q:"Gözenekleriniz hakkında ne söylersiniz?",opts:[{l:"Pek fark etmiyorum",t:"dry"},{l:"Büyük ve belirgin",t:"oily"},{l:"Burun/alın büyük, yanaklar küçük",t:"combination"},{l:"Normal büyüklükte",t:"normal"}]},
+  {q:"Yeni bir ürün denediğinizde ne olur?",opts:[{l:"Sık sık kızarır veya tahriş olur",t:"sensitive"},{l:"Akne veya siyah nokta çıkar",t:"oily"},{l:"Genelde iyi tolere ederim",t:"normal"},{l:"Bazen çekmece yapıyor",t:"dry"}]},
+  {q:"Makyaj gün içinde nasıl görünür?",opts:[{l:"Uçuyor, pul pul",t:"dry"},{l:"Parlıyor, akıyor",t:"oily"},{l:"T bölgesi parlıyor",t:"combination"},{l:"Genelde yerinde kalıyor",t:"normal"}]},
+  {q:"En çok hangi sorunla boğuşuyorsunuz?",opts:[{l:"Kuru, sıkıştıran his",t:"dry"},{l:"Akne, siyah nokta",t:"oily"},{l:"Leke / renk eşitsizliği",t:"combination"},{l:"Kırışıklık / sarkma",t:"normal"},{l:"Hassasiyet, kızarıklık",t:"sensitive"}]},
+];
+const SKIN_REC={
+  dry:{label:"Kuru Cilt",emoji:"🌵",desc:"Bariyeri onarın, nem kilitleyin.",badges:["Seramid","Hyalüronik Asit","Panthenol","Squalane"],avoid:["Alkol","Salisilik Asit","Glikolik Asit","Parfüm"]},
+  oily:{label:"Yağlı Cilt",emoji:"✨",desc:"Yağı dengeleyin, gözenekleri açık tutun.",badges:["Niasinamid","Salisilik Asit","Çinko PCA","BHA"],avoid:["Ağır Yağlar","Shea Yağı","Dimetikon (yoğun)"]},
+  combination:{label:"Karma Cilt",emoji:"⚖️",desc:"T bölgesini dengeleyin, yanakları koruyun.",badges:["Niasinamid","Hyalüronik Asit","BHA (T bölge)","Skualan"],avoid:["Çok ağır kremler","Parfüm"]},
+  sensitive:{label:"Hassas Cilt",emoji:"🌸",desc:"Yatıştırın, irritanlardan kaçının.",badges:["Centella Asiatica","Allantoin","Seramid","Azelaik Asit"],avoid:["Parfüm","Alkol","Retinol (başlangıçta)","Kuvvetli AHA/BHA"]},
+  normal:{label:"Normal Cilt",emoji:"🍃",desc:"Koruyun ve antioksidanlarla destekleyin.",badges:["C Vitamini","Retinol","Peptidler","SPF"],avoid:["Gereksiz yoğun ürünler"]},
+};
+
+
+const GITHUB_PRODUCTS_URL = "https://raw.githubusercontent.com/divamentor/dermadecode/main/products.json";
+
+// Compact product data [name, brand, cat, ingredients]
+function calcScore(items){
+  if(!items||!items.length)return 0;
+  const w=items.map(ing=>{
+    let s=ing.rating==="unknown"?45:ing.score;
+    if(ing.vitaminCTier===3)s=Math.min(s,72);
+    const wt=ing.rating==="risky"?1.5:1;
+    return{s,wt};
+  });
+  const tw=w.reduce((a,b)=>a+b.wt,0);
+  return Math.round(w.reduce((a,b)=>a+b.s*b.wt,0)/tw);
+}
+
+const SAMPLE="Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinol, Dimethicone, Phenoxyethanol, Fragrance, Citric Acid, Tocopheryl Acetate, Allantoin, Carbomer, Cetyl Alcohol, Potassium Sorbate";
+
+
+// ════════════════════════════════════════════════════════════
+// APP STATE
+// ════════════════════════════════════════════════════════════
+const PAGES = ['home','analyze','compare','quiz','routine'];
+let ST = {
+  page:'home',
+  input:'',results:null,activeIdx:null,filter:'all',
+  productQ:'',productSuggs:[],
+  cmpA:{input:'',results:null,q:'',suggs:[]},
+  cmpB:{input:'',results:null,q:'',suggs:[]},
+  quizStep:0,quizAns:[],quizResult:null,
+  products:EMBEDDED_PRODUCTS,
+  routineProds:[],routineResult:null,
+  routineQ:'',routineSuggs:[],
+  manualName:'',manualIng:'',
+};
+
+// ════════════════════════════════════════════════════════════
+// ROUTING
+// ════════════════════════════════════════════════════════════
+function go(page) {
+  ST.page = page;
+  if(page==='quiz'){ST.quizStep=0;ST.quizAns=[];ST.quizResult=null;}
+  if(page==='routine'){ST.routineProds=[];ST.routineResult=null;}
+  render();
+}
+function goHome(){ST.results=null;go('home');}
+
+// ════════════════════════════════════════════════════════════
+// SEARCH
+// ════════════════════════════════════════════════════════════
+// Local search in embedded products
+function searchLocal(q,cb){
+  if(!q||q.trim().length<2){cb([]);return;}
+  const ql=q.toLowerCase().trim(),words=ql.split(/\s+/);
+  cb(ST.products.map(p=>{
+    const h=(p.name+' '+p.brand+' '+(p.cat||'')).toLowerCase();
+    let s=0;
+    if(h.includes(ql))s+=100;
+    words.forEach(w=>{if(h.includes(w))s+=20;});
+    if(p.brand.toLowerCase().includes(ql))s+=40;
+    if(p.name.toLowerCase().startsWith(ql))s+=30;
+    return{...p,_s:s};
+  }).filter(p=>p._s>0).sort((a,b)=>b._s-a._s).slice(0,6));
+}
+
+// Live search via Open Beauty Facts API
+let _searchTimer=null;
+function searchProds(q,cb){
+  if(!q||q.trim().length<2){cb([]);return;}
+  // First show local results instantly
+  const local=[];
+  searchLocal(q,r=>local.push(...r));
+  if(local.length)cb(local);
+  // Then fetch from Open Beauty Facts
+  clearTimeout(_searchTimer);
+  _searchTimer=setTimeout(()=>{
+    const url='https://world.openbeautyfacts.org/cgi/search.pl?search_terms='+encodeURIComponent(q)+'&search_simple=1&action=process&json=1&page_size=8&fields=product_name,brands,categories_tags,ingredients_text';
+    fetch(url)
+      .then(r=>r.json())
+      .then(data=>{
+        if(!data.products)return;
+        const remote=data.products
+          .filter(p=>p.product_name&&p.ingredients_text&&p.ingredients_text.length>20)
+          .map(p=>({
+            name:p.product_name,
+            brand:p.brands||'',
+            cat:(p.categories_tags&&p.categories_tags[0])||'',
+            ingredients:p.ingredients_text,
+          }));
+        // Merge: local first, then remote (deduplicate by name)
+        const seen=new Set(local.map(p=>p.name.toLowerCase()));
+        const merged=[...local,...remote.filter(p=>!seen.has(p.name.toLowerCase()))];
+        cb(merged.slice(0,10));
+      })
+      .catch(()=>{}); // silently fail, local results still shown
+  },350);
+}
+
+// ════════════════════════════════════════════════════════════
+// ROUTINE HELPERS
+// ════════════════════════════════════════════════════════════
+const SM=["Temizleyici","Tonik","C Vitamini","Serum","Göz Kremi","Nemlendirici","Güneş Koruma"];
+const SE=["Yağ Temizleyici","Temizleyici","Tonik","Asit/Peeling","Serum","Retinoid","Göz Kremi","Nemlendirici","Onarıcı"];
+function gTime(p){const n=(p.name+' '+(p.cat||'')).toLowerCase();if(/spf|sunscreen|güneş/.test(n))return'am';if(/gece|night|retinol|retinal|aha|bha|peeling/.test(n))return'pm';if(/cleansing oil|oil cleanser/.test(n))return'pm';return'both';}
+function gStep(p,s){const n=(p.name+' '+(p.cat||'')).toLowerCase();if(/spf|sunscreen|güneş/.test(n))return'Güneş Koruma';if(/retinol|retinal|retinoid/.test(n))return'Retinoid';if(/cleansing oil|balm/.test(n))return'Yağ Temizleyici';if(/cleanser|temizleyici|foam|micellar|wash/.test(n))return'Temizleyici';if(/eye|göz/.test(n))return'Göz Kremi';if(/toner|tonik|essence|esans/.test(n))return'Tonik';if(/peeling|aha|bha/.test(n))return'Asit/Peeling';if(s==='am'&&/ascorbic|vitamin c/.test(n))return'C Vitamini';if(/serum|ampoule/.test(n))return'Serum';if(/ointment|onarıcı/.test(n))return'Onarıcı';return'Nemlendirici';}
+function gActs(parsed){const k=parsed.map(i=>i.name.toLowerCase());const has=t=>t.some(x=>k.some(ki=>ki.includes(x)));return{ret:has(['retinol','retinal','granactive']),vitC:has(['ascorbic acid','3-o-ethyl']),aha:has(['glycolic','lactic acid','mandelic']),bha:has(['salicylic acid']),nia:has(['niacinamide']),bp:has(['benzoyl peroxide'])};}
+
+function buildRoutine(){
+  if(!ST.routineProds.length)return;
+  const tagged=ST.routineProds.map(p=>({...p,time:gTime(p),act:gActs(p.parsed)}));
+  const srt=(l,steps)=>l.sort((a,b)=>{const ai=steps.indexOf(a.step),bi=steps.indexOf(b.step);return(ai<0?99:ai)-(bi<0?99:bi);});
+  const am=srt(tagged.filter(p=>p.time==='am'||p.time==='both').map(p=>({...p,step:gStep(p,'am')})),SM);
+  const pm=srt(tagged.filter(p=>p.time==='pm'||p.time==='both').map(p=>({...p,step:gStep(p,'pm')})),SE);
+  const warns=[];
+  am.filter(p=>p.act.ret).forEach(p=>warns.push({sev:'high',msg:'"'+p.name+'" retinoid — sadece akşam kullanılmalı.'}));
+  const pA=pm.filter(p=>p.act.aha||p.act.bha),pR=pm.filter(p=>p.act.ret);
+  if(pA.length&&pR.length)warns.push({sev:'high',msg:'Asit + Retinoid aynı gece — farklı gecelere ayır.'});
+  const vC=tagged.filter(p=>p.act.vitC),nia=tagged.filter(p=>p.act.nia);
+  if(vC.length&&nia.length)warns.push({sev:'medium',msg:'C vitamini + Niasinamid: yüksek dozda sararma riski.'});
+  const tips=[];
+  if(pR.length)tips.push('Retinoid kullanırken sabah mutlaka SPF uygula.');
+  if(!am.some(p=>/spf|sunscreen|güneş/.test((p.name+p.cat).toLowerCase())))tips.push('Sabah rutininde SPF görünmüyor — aktif kullanıyorsan şart.');
+  if(vC.length)tips.push('C vitaminini sabah kullan — antioksidan koruması gündüz kritik.');
+  ST.routineResult={am,pm,warns,tips};
+  render();
+}
+
+// ════════════════════════════════════════════════════════════
+// DOM HELPERS
+// ════════════════════════════════════════════════════════════
+function el(tag,cls,html){
+  const e=document.createElement(tag);
+  if(cls)e.className=cls;
+  if(html!==undefined)e.innerHTML=html;
+  return e;
+}
+function div(cls,html){return el('div',cls,html);}
+
+function makeCard(labelTxt,titleTxt,bodyFn){
+  const c=div('card fade-up');
+  const head=div('card-head');
+  if(labelTxt){const l=div('card-head-label');l.textContent=labelTxt;head.appendChild(l);}
+  const t=div('card-head-title');t.textContent=titleTxt;head.appendChild(t);
+  c.appendChild(head);
+  const body=div('card-body');
+  bodyFn(body,c);
+  c.appendChild(body);
+  return c;
+}
+
+
+function _updateDropdown(wrap,suggs,onSel,setQ,setSuggs){
+  // Remove old dropdown if exists
+  const old=wrap.querySelector('.sugg-box');
+  if(old)old.remove();
+  if(!suggs||!suggs.length)return;
+  const box=div('sugg-box');
+  suggs.forEach(p=>{
+    const item=div('sugg-item');
+    const name=div('sugg-name');name.textContent=p.name;
+    const brand=div('sugg-brand');brand.textContent=p.brand+(p.cat?' · '+p.cat:'');
+    item.append(name,brand);
+    item.addEventListener('mousedown',e=>{
+      e.preventDefault();
+      onSel(p);
+      setSuggs([]);
+      box.remove();
+    });
+    box.appendChild(item);
+  });
+  wrap.appendChild(box);
+}
+function makeSearchField(placeholder,value,onChange,onSelect,suggs,clearSuggs){
+  const wrap=div('');wrap.style.position='relative';
+  const row=div('');row.style.cssText='position:relative;';
+  const inp=el('input','input');
+  inp.placeholder=placeholder;inp.value=value||'';
+  inp.addEventListener('input',e=>onChange(e.target.value));
+  inp.addEventListener('blur',()=>setTimeout(()=>{setSuggs([]);_updateDropdown(wrap,[],onSel,setQ,setSuggs);},200));
+  const icon=el('span','');icon.textContent='🔍';
+  icon.style.cssText='position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.4;pointer-events:none;';
+  row.append(inp,icon);wrap.appendChild(row);
+  // Dropdown managed by _updateDropdown()
+  return wrap;
+}
+
+// ════════════════════════════════════════════════════════════
+// PAGES
+// ════════════════════════════════════════════════════════════
+
+function pageHome(root){
+  // Hero
+  const hero=div('');
+  hero.style.cssText='text-align:center;padding:48px 0 40px;';
+  const icon=div('');
+  icon.style.cssText='font-size:64px;display:inline-block;margin-bottom:20px;animation:breathe 4s ease-in-out infinite;filter:drop-shadow(0 8px 32px rgba(232,160,176,0.5));';
+  icon.textContent='🌸';
+  const eyebrow=div('');
+  eyebrow.style.cssText='font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px;';
+  eyebrow.textContent='Kozmetik İçerik Analizi';
+  const title=div('');
+  title.style.cssText="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,54px);font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.02em;line-height:1.15;";
+  title.textContent='Formülün arkasını gör';
+  const sub=div('');
+  sub.style.cssText='font-size:16px;color:var(--ink-mid);max-width:400px;margin:0 auto 44px;line-height:1.7;';
+  sub.textContent='Ürün içeriklerini dermatolojik bakışla analiz et, karşılaştır, cildine en doğru rutini keşfet.';
+  hero.append(icon,eyebrow,title,sub);
+
+  const grid=div('home-grid');
+  [
+    {id:'analyze',icon:'🔬',title:'İçerik Analizi',desc:'Her bileşeni bilimsel veriyle incele',bg:'linear-gradient(145deg,#1a1520,#3a2840)'},
+    {id:'compare',icon:'⚖',title:'Karşılaştır',desc:'İki ürünü yan yana değerlendir',bg:'linear-gradient(145deg,#2a3850,#1e2d42)'},
+    {id:'quiz',icon:'✦',title:'Cilt Tipi',desc:'Cildini tanı, öneri al',bg:'linear-gradient(145deg,#4a2840,#3a1e38)'},
+    {id:'routine',icon:'◑',title:'Rutin Kur',desc:'Sabah & akşam rutinini planla',bg:'linear-gradient(145deg,#2a3a28,#1e2e1e)'},
+  ].forEach(card=>{
+    const c=el('button','home-card');
+    c.style.background=card.bg;
+    c.style.boxShadow='0 8px 32px rgba(26,21,32,0.2)';
+    c.innerHTML='<span class="home-card-icon">'+card.icon+'</span><div class="home-card-title">'+card.title+'</div><div class="home-card-desc">'+card.desc+'</div>';
+    c.onclick=()=>go(card.id);
+    grid.appendChild(c);
+  });
+
+  const feats=div('');
+  feats.style.cssText='display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:48px;';
+  [['🌿','Bilimsel DB'],['⚡','Çakışma Tespiti'],['🌸','Cilt Analizi'],['◑','Rutin'],['⚖','Karşılaştır']].forEach(([ic,lb])=>{
+    const f=div('');f.style.cssText='text-align:center;';
+    f.innerHTML='<div style="font-size:22px;margin-bottom:6px">'+ic+'</div><div style="font-size:11px;color:var(--ink-light);font-weight:500;letter-spacing:.05em">'+lb+'</div>';
+    feats.appendChild(f);
+  });
+
+  root.append(hero,grid,feats);
+}
+
+function pageQuiz(root){
+  const wrap=div('');wrap.style.cssText='max-width:560px;margin:0 auto;';
+  if(!ST.quizResult){
+    const q=QUIZ[ST.quizStep];
+    const pct=((ST.quizStep+1)/QUIZ.length*100)+'%';
+    const c=div('card fade-up');
+
+    const head=div('card-head');
+    const prog=div('');prog.style.cssText='margin-bottom:14px;';
+    const bar=div('score-bar');
+    const fill=div('score-fill');fill.style.cssText='width:'+pct+';background:linear-gradient(90deg,var(--blossom-deep),var(--sky));';
+    bar.appendChild(fill);
+    const label=div('card-head-label');label.textContent='SORU '+(ST.quizStep+1)+' / '+QUIZ.length;
+    const title=div('card-head-title');title.textContent=q.q;
+    prog.appendChild(bar);
+    head.append(prog,label,title);
+    c.appendChild(head);
+
+    const body=div('card-body');
+    const opts=div('');opts.style.cssText='display:flex;flex-direction:column;gap:10px;';
+    q.opts.forEach((opt,i)=>{
+      const b=el('button','quiz-opt');
+      const letter=div('quiz-letter');letter.textContent=String.fromCharCode(65+i);
+      const txt=el('span','');txt.textContent=opt.l;
+      b.append(letter,txt);
+      b.onclick=()=>{
+        const ans=[...ST.quizAns,opt.t];
+        if(ST.quizStep<QUIZ.length-1){ST.quizAns=ans;ST.quizStep++;render();}
+        else{const counts={};ans.forEach(t=>{counts[t]=(counts[t]||0)+1;});ST.quizResult=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];render();}
+      };
+      opts.appendChild(b);
+    });
+    body.appendChild(opts);
+    c.appendChild(body);
+    wrap.appendChild(c);
+  } else {
+    const r=SKIN_REC[ST.quizResult]||SKIN_REC.normal;
+    const c=div('card fade-up');
+    const head=div('card-head');
+    head.style.textAlign='center';
+    head.style.paddingTop='32px';
+    const ico=div('');ico.style.cssText='font-size:56px;margin-bottom:12px;';ico.textContent=r.emoji;
+    const label=div('card-head-label');label.textContent='CİLT TİPİNİZ';
+    const title=div('card-head-title');title.style.fontSize='28px';title.textContent=r.label;
+    head.append(ico,label,title);
+    c.appendChild(head);
+
+    const body=div('card-body');
+    const desc=div('');desc.style.cssText='font-size:15px;color:var(--ink-mid);line-height:1.7;margin-bottom:24px;';desc.textContent=r.desc;
+    const grid=div('two-col');grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;';
+    const recBox=div('');
+    recBox.style.cssText='background:var(--safe-light);border-radius:14px;padding:18px;border:1px solid rgba(74,158,110,0.15);';
+    recBox.innerHTML='<div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--safe);margin-bottom:10px">✓ Önerilen</div>';
+    const recChips=div('');recChips.style.cssText='display:flex;flex-wrap:wrap;gap:5px;';
+    r.badges.forEach(b=>{const ch=div('chip');ch.style.cssText='background:white;color:var(--safe);border-color:rgba(74,158,110,0.2);';ch.textContent=b;recChips.appendChild(ch);});
+    recBox.appendChild(recChips);
+
+    const avBox=div('');
+    avBox.style.cssText='background:var(--risky-light);border-radius:14px;padding:18px;border:1px solid rgba(192,64,96,0.1);';
+    avBox.innerHTML='<div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--risky);margin-bottom:10px">✗ Kaçın</div>';
+    const avChips=div('');avChips.style.cssText='display:flex;flex-wrap:wrap;gap:5px;';
+    r.avoid.forEach(b=>{const ch=div('chip');ch.style.cssText='background:white;color:var(--risky);border-color:rgba(192,64,96,0.15);';ch.textContent=b;avChips.appendChild(ch);});
+    avBox.appendChild(avChips);
+    grid.append(recBox,avBox);
+
+    const btns=div('');btns.style.cssText='display:flex;gap:10px;';
+    const b1=el('button','btn btn-ghost');b1.textContent='Tekrar ↺';b1.onclick=()=>{ST.quizStep=0;ST.quizAns=[];ST.quizResult=null;render();};
+    const b2=el('button','btn btn-primary');b2.textContent='Ürün Analiz Et →';b2.onclick=()=>go('analyze');
+    btns.append(b1,b2);
+    body.append(desc,grid,btns);
+    c.appendChild(body);
+    wrap.appendChild(c);
+  }
+  root.appendChild(wrap);
+}
+
+function makeIngredientSearch(qVal,setQ,suggs,setSuggs,onSelect,onAnalyze,inputVal,setInput){
+  const frag=document.createDocumentFragment();
+  // Product search
+  const searchWrap=makeSearchField(
+    ST.products.length?'CeraVe, COSRX, Anua, Farmasi…':'Ürünler yükleniyor…',
+    qVal,
+    v=>{setQ(v);searchProds(v,ss=>{setSuggs(ss);_updateDropdown(wrap,ss,onSel,setQ,setSuggs);});},
+    p=>{setQ(p.name);setSuggs([]);setInput(p.ingredients);const r=parseIngredients(p.ingredients);ST.results=r;ST.activeIdx=null;ST.filter='all';render();},
+    suggs,
+    ()=>{setSuggs([]);_updateDropdown(wrap,[],onSel,setQ,setSuggs);}
+  );
+  if(ST.products.length){
+    const cnt=div('');cnt.style.cssText='margin-top:6px;font-size:11px;color:var(--ink-light);';
+    cnt.textContent=ST.products.length+' ürün yüklendi';
+    searchWrap.appendChild(cnt);
+  }
+  frag.appendChild(searchWrap);
+
+  // Divider
+  const divider=div('');
+  divider.style.cssText='display:flex;align-items:center;gap:16px;margin:20px 0;';
+  const l=div('');l.style.cssText='flex:1;height:1px;background:rgba(200,180,210,0.2);';
+  const mid=div('');mid.style.cssText='font-size:11px;color:var(--ink-light);letter-spacing:.06em;white-space:nowrap;';mid.textContent='veya INCI listesi yapıştır';
+  const r2=div('');r2.style.cssText='flex:1;height:1px;background:rgba(200,180,210,0.2);';
+  divider.append(l,mid,r2);
+  frag.appendChild(divider);
+
+  const ta=el('textarea','input');ta.placeholder='Water, Glycerin, Niacinamide…';ta.rows=5;ta.value=inputVal||'';
+  ta.addEventListener('input',e=>{setInput(e.target.value);}); // no render — focus stays
+  frag.appendChild(ta);
+
+  const row=div('');row.style.cssText='display:flex;gap:10px;margin-top:14px;justify-content:space-between;align-items:center;';
+  const sample=el('button','btn btn-ghost btn-sm');sample.textContent='Örnek formül';
+  sample.onclick=()=>{ST.input=SAMPLE;ta.value=SAMPLE;render();};
+  const go2=el('button','btn btn-primary');go2.textContent='Analiz Et →';
+  go2.disabled=false;
+  if(go2.disabled)go2.classList.add('');
+  go2.onclick=()=>{
+    const txt=ST.input||ta.value;
+    if(!txt.trim())return;
+    ST.input=txt;
+    ST.results=parseIngredients(txt);
+    ST.activeIdx=null;ST.filter='all';
+    render();
+  };
+  row.append(sample,go2);
+  frag.appendChild(row);
+  return frag;
+}
+
+function pageAnalyze(root){
+  // Input card
+  const inputCard=makeCard('ÜRÜN ANALİZİ','İçerikleri incele',body=>{
+    body.appendChild(makeIngredientSearch(
+      ST.productQ,v=>{ST.productQ=v;},
+      ST.productSuggs,v=>{ST.productSuggs=v;},
+      ()=>{},
+      ()=>{},
+      ST.input,v=>{ST.input=v;}
+    ));
+  });
+  root.appendChild(inputCard);
+
+  if(!ST.results)return;
+
+  const results=ST.results;
+  const conflicts=detectConflicts(results);
+  const avgScore=calcScore(results);
+  const scoreColor=avgScore>=80?'var(--safe)':avgScore>=60?'var(--caution)':'var(--risky)';
+  const filtered=results.filter(r=>ST.filter==='all'||r.rating===ST.filter);
+  const active=ST.activeIdx!=null?results[ST.activeIdx]:null;
+
+  const BADGES=[
+    {ic:'🛡',lb:'Bariyer',chk:it=>it.filter(i=>i.name.toLowerCase().includes('ceramide')).length>=3},
+    {ic:'🌿',lb:'Parfümsüz',chk:it=>!it.some(i=>['fragrance','parfum','linalool','limonene'].some(k=>i.name.toLowerCase().includes(k)))},
+    {ic:'⚡',lb:'Güçlü C',chk:it=>it.some(i=>i.vitaminCTier&&i.vitaminCTier<=2)},
+    {ic:'✦',lb:'Retinoid',chk:it=>it.some(i=>['retinol','retinal'].some(k=>i.name.toLowerCase().includes(k)))},
+    {ic:'✓',lb:'Temiz',chk:it=>it.filter(i=>i.rating==='risky').length===0},
+    {ic:'💧',lb:'Nem',chk:it=>it.filter((i,idx)=>idx<it.length*0.4&&['glycerin','hyaluronate','panthenol'].some(k=>i.name.toLowerCase().includes(k))).length>=3},
+    {ic:'☀',lb:'SPF',chk:it=>it.some(i=>['zinc oxide','titanium dioxide','avobenzone','homosalate'].some(k=>i.name.toLowerCase().includes(k)))},
+  ];
+  const badges=BADGES.filter(b=>b.chk(results));
+
+  root.appendChild(div('','')).style.height='16px';
+
+  // Score row
+  const scoreRow=div('');scoreRow.style.cssText='display:grid;grid-template-columns:180px 1fr;gap:16px;margin-bottom:16px;';
+
+  const scoreCard=div('card fade-up');
+  scoreCard.style.cssText='display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;';
+  const scoreLabel=div('card-head-label');scoreLabel.style.marginBottom='8px';scoreLabel.textContent='FORMÜL SKORU';
+  const scoreNum=div('');scoreNum.style.cssText="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:"+scoreColor+";line-height:1;";scoreNum.textContent=String(avgScore);
+  const scoreSub=div('');scoreSub.style.cssText='font-size:12px;color:var(--ink-light);margin-bottom:16px;';scoreSub.textContent='/100';
+  const sBar=div('score-bar');sBar.style.width='100%';
+  const sFill=div('score-fill');sFill.style.cssText='width:'+avgScore+'%;background:'+scoreColor+';';
+  sBar.appendChild(sFill);
+  scoreCard.append(scoreLabel,scoreNum,scoreSub,sBar);
+
+  const rightCol=div('');
+  // Badges
+  if(badges.length){
+    const bRow=div('');bRow.style.cssText='display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;';
+    badges.forEach(b=>{
+      const chip=div('badge');chip.innerHTML=b.ic+' '+b.lb;bRow.appendChild(chip);
+    });
+    rightCol.appendChild(bRow);
+  }
+  // Filters
+  const filterRow=div('');filterRow.style.cssText='display:flex;flex-wrap:wrap;gap:6px;';
+  [
+    {l:'Tümü',r:'all'},{l:'🌿 Güvenli',r:'safe'},{l:'🌾 Dikkat',r:'caution'},{l:'🥀 Riskli',r:'risky'},{l:'? Bilinmiyor',r:'unknown'}
+  ].forEach(x=>{
+    const cnt=results.filter(r=>x.r==='all'||r.rating===x.r).length;
+    const c=div('chip'+(ST.filter===x.r?' active':''));c.textContent=x.l+' '+cnt;
+    c.onclick=()=>{ST.filter=x.r;render();};filterRow.appendChild(c);
+  });
+  rightCol.appendChild(filterRow);
+  scoreRow.append(scoreCard,rightCol);
+  root.appendChild(scoreRow);
+
+  // Conflicts
+  if(conflicts.length){
+    const cc=div('card fade-up');cc.style.marginBottom='16px';
+    const cHead=div('card-head');
+    const cLabel=div('card-head-label');cLabel.textContent='UYARI';
+    const cTitle=div('card-head-title');cTitle.textContent='⚡ '+conflicts.length+' Çakışma Tespit Edildi';
+    cHead.append(cLabel,cTitle);cc.appendChild(cHead);
+    const cBody=div('card-body');
+    conflicts.forEach(cf=>{
+      const item=div('conflict-item');
+      item.style.background=cf.severity==='high'?'var(--risky-light)':'var(--caution-light)';
+      item.style.border='1px solid '+(cf.severity==='high'?'rgba(192,64,96,0.15)':'rgba(200,136,42,0.15)');
+      const head2=div('');head2.style.cssText='display:flex;align-items:center;gap:8px;margin-bottom:6px;';
+      const ico2=div('');ico2.style.fontSize='18px';ico2.textContent=cf.icon;
+      const ctitle=div('');ctitle.style.cssText='font-size:13px;font-weight:700;color:'+(cf.severity==='high'?'var(--risky)':'var(--caution)');ctitle.textContent=cf.title;
+      head2.append(ico2,ctitle);
+      const tip=div('');tip.style.cssText='font-size:13px;color:var(--ink-mid);line-height:1.6;';tip.textContent=cf.tip;
+      item.append(head2,tip);cBody.appendChild(item);
+    });
+    cc.appendChild(cBody);root.appendChild(cc);
+  }
+
+  root.appendChild(div('','')).style.height='16px';
+
+  // Ingredient list
+  const RATING_META={
+    safe:{emoji:'🌿',color:'var(--safe)'},
+    caution:{emoji:'🌾',color:'var(--caution)'},
+    risky:{emoji:'🥀',color:'var(--risky)'},
+    unknown:{emoji:'?',color:'var(--unknown)'},
+  };
+  const listCard=div('card fade-up');listCard.style.marginBottom='16px';
+  // Header row
+  const listHead=div('ing-row');listHead.style.cssText='background:rgba(242,196,206,0.06);border-bottom:1px solid rgba(200,180,210,0.15);cursor:default;padding-top:10px;padding-bottom:10px;';
+  listHead.style.fontWeight='600';listHead.style.fontSize='11px';listHead.style.letterSpacing='.06em';listHead.style.textTransform='uppercase';listHead.style.color='var(--ink-light)';
+  ['#','Bileşen','Konsantrasyon','Skor'].forEach((h,i)=>{
+    const hd=div('');hd.textContent=h;if(i===3)hd.style.textAlign='right';listHead.appendChild(hd);
+  });
+  listCard.appendChild(listHead);
+
+  filtered.forEach((ing,i)=>{
+    const meta=RATING_META[ing.rating]||RATING_META.unknown;
+    const realIdx=results.indexOf(ing);
+    const isActive=ST.activeIdx===realIdx;
+    const hasCf=conflicts.some(cf=>[...(cf.aNames||[]),...(cf.bNames||[])].includes(ing.tr));
+
+    const row=div('ing-row'+(isActive?' active':''));
+    const num=div('');num.style.cssText='font-size:11px;color:var(--ink-light);';num.textContent=ing.listIndex;
+    const nameCol=div('');
+    const nameLine=div('');nameLine.style.cssText='display:flex;align-items:center;gap:7px;flex-wrap:wrap;';
+    const emo=div('');emo.style.fontSize='14px';emo.textContent=meta.emoji;
+    const nm=div('');nm.style.cssText='font-size:14px;font-weight:500;color:var(--ink);';nm.textContent=ing.tr;
+    nameLine.append(emo,nm);
+    if(hasCf){const cf=div('chip');cf.style.cssText='font-size:10px;padding:2px 8px;color:var(--risky);border-color:rgba(192,64,96,0.2);background:var(--risky-light);';cf.textContent='⚡';nameLine.appendChild(cf);}
+    if(ing.vitaminCTier===1){const vc=div('chip');vc.style.cssText='font-size:10px;padding:2px 8px;color:var(--safe);border-color:rgba(74,158,110,0.2);background:var(--safe-light);';vc.textContent='C★';nameLine.appendChild(vc);}
+    const sub=div('');sub.style.cssText='font-size:11px;color:var(--ink-light);margin-top:2px;';sub.textContent=ing.name+' · '+ing.cat;
+    nameCol.append(nameLine,sub);
+
+    const pos=div('');pos.style.cssText='font-size:12px;color:var(--ink-light);';pos.textContent=ing.position;
+    const score=div('');score.style.cssText='text-align:right;';
+    const sNum=div('');sNum.style.cssText="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:"+meta.color+";";sNum.textContent=String(ing.score);
+    score.appendChild(sNum);
+
+    row.append(num,nameCol,pos,score);
+    row.addEventListener('mouseenter',()=>{if(!isActive)row.style.background='rgba(242,196,206,0.06)';});
+    row.addEventListener('mouseleave',()=>{if(!isActive)row.style.background='';});
+    row.onclick=()=>{ST.activeIdx=isActive?null:realIdx;render();};
+    listCard.appendChild(row);
+  });
+  root.appendChild(listCard);
+
+  // Detail
+  if(active){
+    const meta=RATING_META[active.rating]||RATING_META.unknown;
+    const det=makeCard('BILEŞEN DETAYI',active.tr,body=>{
+      const desc=div('');desc.style.cssText='font-size:14px;color:var(--ink-mid);line-height:1.8;margin-bottom:16px;';desc.textContent=active.desc;
+      body.appendChild(desc);
+      if(active.vitaminCTier){
+        const vbox=div('');
+        const col=active.vitaminCTier<=2?'var(--safe)':active.vitaminCTier===3?'var(--caution)':'var(--risky)';
+        const vbg=active.vitaminCTier<=2?'var(--safe-light)':active.vitaminCTier===3?'var(--caution-light)':'var(--risky-light)';
+        vbox.style.cssText='background:'+vbg+';border-radius:12px;padding:16px;margin-bottom:14px;';
+        const vtitle=div('');vtitle.style.cssText='font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px;letter-spacing:.05em;';vtitle.textContent='C VİTAMİNİ TİER '+active.vitaminCTier+'/4';
+        const bars=div('');bars.style.cssText='display:flex;gap:4px;margin-bottom:8px;';
+        [1,2,3,4].forEach(t=>{const b=div('');b.style.cssText='flex:1;height:6px;border-radius:100px;background:'+(t<=active.vitaminCTier?col:'rgba(200,180,210,0.2)')+';';bars.appendChild(b);});
+        const vdesc=div('');vdesc.style.cssText='font-size:13px;color:var(--ink);';
+        vdesc.textContent=active.vitaminCTier===1?'En güçlü form — yüksek biyoyararlanım':active.vitaminCTier===2?'İyi form — güvenilir etki':active.vitaminCTier===3?'Orta form — dönüşüm gerektirir':'Zayıf form — düşük biyoyararlanım';
+        vbox.append(vtitle,bars,vdesc);body.appendChild(vbox);
+      }
+      if(active.usage){const u=div('');u.style.cssText='font-size:13px;color:var(--ink-mid);padding:12px 16px;background:rgba(242,196,206,0.1);border-radius:10px;margin-bottom:10px;border:1px solid rgba(232,160,176,0.2);line-height:1.6;';u.innerHTML='<strong style="color:var(--ink)">Kullanım:</strong> '+active.usage;body.appendChild(u);}
+      const pos2=div('');pos2.style.cssText='font-size:12px;color:var(--ink-light);margin-bottom:active.concern?10:0;';pos2.textContent='📍 '+active.positionNote;body.appendChild(pos2);
+      if(active.concern){const w=div('');w.style.cssText='font-size:13px;color:var(--risky);background:var(--risky-light);padding:12px 16px;border-radius:10px;margin-top:10px;border:1px solid rgba(192,64,96,0.1);';w.textContent='⚠️ '+active.concern;body.appendChild(w);}
+    });
+    det.style.marginBottom='16px';
+    det.classList.add('fade-up');
+    root.appendChild(det);
+  }
+
+  // Skin suitability
+  const skinCard=makeCard('CİLT TİPİNE UYGUNLUK','Formül değerlendirmesi',body=>{
+    const grid=div('five-col');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;';
+    ['dry','oily','combination','sensitive','normal'].forEach(type=>{
+      const LABS={dry:'Kuru',oily:'Yağlı',combination:'Karma',sensitive:'Hassas',normal:'Normal'};
+      const EMJS={dry:'🏜️',oily:'✨',combination:'⚖',sensitive:'🌸',normal:'🍃'};
+      const av=results.filter(r=>r.avoid&&r.avoid.includes(type)).length;
+      const sc=Math.max(0,Math.round(100-(av/results.length)*100));
+      const col=sc>=80?'var(--safe)':sc>=55?'var(--caution)':'var(--risky)';
+      const cell=div('skin-cell');
+      cell.innerHTML='<div style="font-size:20px;margin-bottom:6px">'+EMJS[type]+'</div><div class="skin-score" style="color:'+col+'">'+sc+'</div>';
+      const bar=div('score-bar');bar.style.margin='6px auto';bar.style.width='100%';
+      const fill2=div('score-fill');fill2.style.cssText='width:'+sc+'%;background:'+col+';';
+      bar.appendChild(fill2);cell.appendChild(bar);
+      const lbl=div('skin-label');lbl.textContent=LABS[type];cell.appendChild(lbl);
+      grid.appendChild(cell);
+    });
+    body.appendChild(grid);
+  });
+  skinCard.classList.add('fade-up');skinCard.style.marginBottom='16px';root.appendChild(skinCard);
+
+  // Promise analysis
+  const promCard=makeCard('VAATLER vs FORMÜL','Formülün gerçek analizi',body=>{
+    [
+      {c:'💧 Nemlendirme',e:()=>{const a=results.filter(i=>['hyaluronic','sodium hyaluronate','glycerin','panthenol','urea'].some(k=>i.name.toLowerCase().includes(k)));if(!a.length)return{v:'Zayıf',c:'var(--risky)',d:'Güçlü nemlendirici yok.'};const pp=results.indexOf(a[0])/results.length;return pp<0.4?{v:'Güçlü',c:'var(--safe)',d:a[0].tr+' üst sıralarda.'}:pp<0.7?{v:'Orta',c:'var(--caution)',d:a[0].tr+' orta sıralarda.'}:{v:'Zayıf',c:'var(--risky)',d:a[0].tr+' listede geride.'}}},
+      {c:'⏳ Anti-Aging',e:()=>{const a=results.filter(i=>['retinol','retinal','bakuchiol','adenosine','peptide','ascorbic acid'].some(k=>i.name.toLowerCase().includes(k)));if(!a.length)return{v:'Yok',c:'var(--unknown)',d:'Anti-aging bileşen yok.'};return results.indexOf(a[0])<results.length*0.5?{v:'Güçlü',c:'var(--safe)',d:a[0].tr+' etkin sırada.'}:{v:'Orta',c:'var(--caution)',d:a[0].tr+' mevcut.'}}},
+      {c:'✨ Leke Açma',e:()=>{const a=results.filter(i=>['niacinamide','alpha arbutin','ascorbic acid','ascorbyl','azelaic','tranexamic'].some(k=>i.name.toLowerCase().includes(k)));if(!a.length)return{v:'Yok',c:'var(--unknown)',d:'Leke önleyici bileşen yok.'};return results.indexOf(a[0])<results.length*0.5?{v:'Güçlü',c:'var(--safe)',d:a[0].tr+' etkin.'}:{v:'Orta',c:'var(--caution)',d:a[0].tr+' mevcut.'}}},
+      {c:'🌸 Hassas Cilt',e:()=>{const so=results.filter(i=>['allantoin','centella','aloe','panthenol','ceramide','squalane'].some(k=>i.name.toLowerCase().includes(k)));const ir=results.filter(i=>['fragrance','parfum','alcohol denat'].some(k=>i.name.toLowerCase().includes(k)));if(ir.length&&!so.length)return{v:'Riskli',c:'var(--risky)',d:ir[0].tr+' var.'};if(ir.length)return{v:'Çelişkili',c:'var(--caution)',d:'Hem irritan hem yatıştırıcı.'};return so.length>=2?{v:'Uygun',c:'var(--safe)',d:'Yatıştırıcı formül.'}:so.length?{v:'Orta',c:'var(--caution)',d:'Kısmi yatıştırıcı.'}:{v:'Nötr',c:'var(--unknown)',d:'Yatıştırıcı yok.'}}},
+      {c:'🛡 Bariyer',e:()=>{const cer=results.filter(i=>i.name.toLowerCase().includes('ceramide'));return cer.length>=2?{v:'Güçlü',c:'var(--safe)',d:cer.length+' seramid.'}:cer.length?{v:'İyi',c:'var(--safe)',d:cer[0].tr+' var.'}:{v:'Zayıf',c:'var(--risky)',d:'Seramid yok.'}}},
+      {c:'☀ SPF',e:()=>{const sf=results.filter(i=>['zinc oxide','titanium dioxide','avobenzone','homosalate'].some(k=>i.name.toLowerCase().includes(k)));if(!sf.length)return{v:'Yok',c:'var(--unknown)',d:'Güneş filtresi yok.'};return sf.some(a=>['zinc oxide','titanium dioxide'].some(k=>a.name.toLowerCase().includes(k)))?{v:'Fiziksel',c:'var(--safe)',d:'Mineral filtre.'}:{v:'Kimyasal',c:'var(--caution)',d:'Kimyasal filtre.'}}},
+    ].forEach(check=>{
+      const res=check.e();
+      const row=div('promise-row');
+      const left=div('');
+      const lbl=div('promise-label');lbl.textContent=check.c;
+      const det=div('promise-detail');det.textContent=res.d;
+      left.append(lbl,det);
+      const verdict=div('verdict');
+      verdict.style.cssText='background:transparent;color:'+res.c+';border:1.5px solid '+res.c+'40;';
+      verdict.textContent=res.v;
+      row.append(left,verdict);body.appendChild(row);
+    });
+  });
+  promCard.classList.add('fade-up');
+  promCard.style.marginBottom='16px';
+  root.appendChild(promCard);
+
+  // Footer
+  const foot=div('');foot.style.cssText='padding:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;';
+  foot.innerHTML='<div><div style="font-size:13px;font-weight:600;color:var(--ink)">Dr. Bengi Su Ege</div><div style="font-size:11px;color:var(--ink-light)">Genel bilgi · Tıbbi tavsiye değildir</div></div>';
+  const disclaimerBtn=el('button','btn btn-ghost btn-sm');disclaimerBtn.textContent='⚠️ Yasal Uyarı';disclaimerBtn.onclick=showDisclaimer;
+  foot.appendChild(disclaimerBtn);root.appendChild(foot);
+}
+
+function pageCompare(root){
+  const wrap=makeCard('ÜRÜN KARŞILAŞTIRMA','İki ürünü yan yana değerlendir',body=>{
+    const grid=div('two-col');grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:24px;';
+    ['A','B'].forEach(label=>{
+      const col=div('');
+      const lbl=div('card-head-label');lbl.textContent='ÜRÜN '+label;lbl.style.marginBottom='12px';col.appendChild(lbl);
+      const state=label==='A'?ST.cmpA:ST.cmpB;
+      const setSt=patch=>Object.assign(label==='A'?ST.cmpA:ST.cmpB,patch);
+      col.appendChild(makeSearchField(
+        'Ürün ara…',state.q,
+        v=>{setSt({q:v});searchProds(v,ss=>{setSt({suggs:ss});render();});render();},
+        p=>{setSt({q:p.name,suggs:[],input:p.ingredients,results:parseIngredients(p.ingredients)});render();},
+        state.suggs,()=>{setSt({suggs:[]});render();}
+      ));
+      col.appendChild(div('','')).style.height='10px';
+      const ta=el('textarea','input');ta.placeholder='veya INCI listesi yapıştır…';ta.rows=4;ta.value=state.input||'';
+      ta.addEventListener('input',e=>{setSt({input:e.target.value});});col.appendChild(ta);
+      col.appendChild(div('','')).style.height='10px';
+      const analyzeBtn=el('button','btn btn-primary btn-full');analyzeBtn.textContent='Analiz Et →';
+      analyzeBtn.onclick=()=>{setSt({results:parseIngredients(state.input)});render();};
+      analyzeBtn.disabled=!state.input;col.appendChild(analyzeBtn);
+      grid.appendChild(col);
+    });
+    body.appendChild(grid);
+  });
+  root.appendChild(wrap);
+
+  const A=ST.cmpA.results,B=ST.cmpB.results;
+  if(!A||!B)return;
+
+  root.appendChild(div('','')).style.height='16px';
+
+  // Score comparison
+  const scoreGrid=div('two-col');scoreGrid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;';
+  const sA=calcScore(A),sB=calcScore(B);
+  [[A,'A',ST.cmpA],[B,'B',ST.cmpB]].forEach(([res,label,state])=>{
+    const sc=calcScore(res);
+    const col=sc>=80?'var(--safe)':sc>=60?'var(--caution)':'var(--risky)';
+    const card2=div('card fade-up');
+    card2.style.padding='24px';
+    card2.style.textAlign='center';
+    const lbl=div('card-head-label');lbl.textContent='ÜRÜN '+label;
+    const name=div('');name.style.cssText='font-size:12px;color:var(--ink-light);margin-bottom:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';name.textContent=state.q||'Manuel giriş';
+    const num=div('');num.style.cssText="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:"+col+";line-height:1;margin-bottom:4px;";num.textContent=String(sc);
+    const sub=div('');sub.style.cssText='font-size:11px;color:var(--ink-light);margin-bottom:14px;';sub.textContent='/100';
+    const bar=div('score-bar');const fill=div('score-fill');fill.style.cssText='width:'+sc+'%;background:'+col+';';bar.appendChild(fill);
+    card2.append(lbl,name,num,sub,bar);scoreGrid.appendChild(card2);
+  });
+  root.appendChild(scoreGrid);
+
+  // Winner
+  if(sA!==sB){
+    const winner=div('card fade-up');winner.style.cssText='padding:20px;text-align:center;margin-bottom:16px;background:linear-gradient(135deg,rgba(242,196,206,0.12),rgba(200,223,240,0.12));';
+    winner.innerHTML='<div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px">Ürün '+(sA>sB?'A':'B')+' öne çıkıyor</div><div style="font-size:13px;color:var(--ink-light)">Fark: '+Math.abs(sA-sB)+' puan</div>';
+    root.appendChild(winner);
+  }
+
+  // Diff
+  const diffCard=makeCard('BILEŞEN FARKI','Ortak ve ayrı bileşenler',body=>{
+    const kA=new Set(A.map(i=>i.tr)),kB=new Set(B.map(i=>i.tr));
+    const oA=[...kA].filter(k=>!kB.has(k)).slice(0,6),oB=[...kB].filter(k=>!kA.has(k)).slice(0,6),cm=[...kA].filter(k=>kB.has(k)).slice(0,6);
+    const grid=div('three-col');grid.style.cssText='display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;';
+    [[oA,"Sadece A'da",'var(--blossom-deep)'],[cm,'Ortak','var(--caution)'],[oB,'Sadece B','var(--sky)']].forEach(([list,title,col])=>{
+      const col2=div('');
+      const ttl=div('card-head-label');ttl.style.cssText='color:'+col+';margin-bottom:10px;';ttl.textContent=title;col2.appendChild(ttl);
+      if(!list.length){const em=div('');em.style.cssText='font-size:12px;color:var(--ink-light);';em.textContent='—';col2.appendChild(em);}
+      list.forEach(k=>{const row=div('');row.style.cssText='font-size:13px;color:var(--ink);padding:6px 0;border-bottom:1px solid rgba(200,180,210,0.1);';row.textContent=k;col2.appendChild(row);});
+      grid.appendChild(col2);
+    });
+    body.appendChild(grid);
+  });
+  diffCard.classList.add('fade-up');root.appendChild(diffCard);
+}
+
+function pageRoutine(root){
+  // Add products
+  const addCard=makeCard('RUTİN OLUŞTURUCU','Ürünlerini ekle',body=>{
+    body.appendChild(makeSearchField(
+      ST.products.length?'Ürün ara…':'Yükleniyor…',
+      ST.routineQ,
+      v=>{ST.routineQ=v;searchProds(v,ss=>{ST.routineSuggs=ss;render();});},
+      p=>{
+        if(ST.routineProds.find(rp=>rp.name===p.name))return;
+        ST.routineProds=[...ST.routineProds,{name:p.name,brand:p.brand,cat:p.cat||'',ingredients:p.ingredients,parsed:parseIngredients(p.ingredients)}];
+        ST.routineQ='';ST.routineSuggs=[];ST.routineResult=null;render();
+      },
+      ST.routineSuggs,()=>{ST.routineSuggs=[];render();}
+    ));
+    body.appendChild(div('','')).style.height='16px';
+    const divider2=div('card-head-label');divider2.textContent='VEYA MANUEL EKLE';body.appendChild(divider2);
+    body.appendChild(div('','')).style.height='8px';
+    const mRow=div('');mRow.style.cssText='display:grid;grid-template-columns:1fr 2fr auto;gap:10px;align-items:center;';
+    const nameI=el('input','input');nameI.placeholder='Ürün adı';nameI.value=ST.manualName||'';
+    nameI.addEventListener('input',e=>ST.manualName=e.target.value);
+    const ingI=el('input','input');ingI.placeholder='Water, Glycerin…';ingI.value=ST.manualIng||'';
+    ingI.addEventListener('input',e=>ST.manualIng=e.target.value);
+    const addBtn=el('button','btn btn-primary btn-sm');addBtn.textContent='Ekle';
+    addBtn.onclick=()=>{
+      const n=nameI.value.trim(),i=ingI.value.trim();
+      if(!n||!i)return;
+      ST.routineProds=[...ST.routineProds,{name:n,brand:'',cat:'',ingredients:i,parsed:parseIngredients(i)}];
+      ST.manualName='';ST.manualIng='';ST.routineResult=null;render();
+    };
+    mRow.append(nameI,ingI,addBtn);body.appendChild(mRow);
+  });
+  root.appendChild(addCard);
+
+  if(!ST.routineProds.length)return;
+
+  root.appendChild(div('','')).style.height='16px';
+
+  // Product list
+  const listCard2=div('card fade-up');listCard2.style.marginBottom='16px';
+  const listHead2=div('card-head');
+  const lLabel=div('card-head-label');lLabel.textContent='EKLENEN ÜRÜNLER';
+  const lTitle=div('card-head-title');lTitle.textContent=ST.routineProds.length+' ürün';
+  listHead2.append(lLabel,lTitle);listCard2.appendChild(listHead2);
+  ST.routineProds.forEach((p,i)=>{
+    const row=div('routine-step');row.style.display='flex';row.style.alignItems='center';row.style.gap='14px';
+    const icon3=div('');icon3.style.cssText='font-size:18px;flex-shrink:0;';icon3.textContent=gTime(p)==='am'?'🌅':gTime(p)==='pm'?'🌙':'🌿';
+    const info=div('');info.style.flex='1';
+    const nm=div('step-name');nm.textContent=p.name;
+    const br=div('step-brand');if(p.brand)br.textContent=p.brand;
+    info.append(nm,br);
+    const rm=el('button','btn btn-ghost btn-sm');rm.textContent='×';rm.style.padding='6px 10px';
+    rm.onclick=()=>{ST.routineProds=ST.routineProds.filter((_,j)=>j!==i);ST.routineResult=null;render();};
+    row.append(icon3,info,rm);listCard2.appendChild(row);
+  });
+  const buildBtn=div('');buildBtn.style.padding='16px 24px';buildBtn.style.borderTop='1px solid rgba(200,180,210,0.1)';
+  const bb=el('button','btn btn-primary btn-full');bb.textContent='🌿 Rutini Oluştur';bb.onclick=buildRoutine;
+  buildBtn.appendChild(bb);listCard2.appendChild(buildBtn);
+  root.appendChild(listCard2);
+
+  if(!ST.routineResult)return;
+
+  const rr=ST.routineResult;
+
+  // Warnings
+  if(rr.warns.length){
+    const wCard=div('card fade-up');wCard.style.marginBottom='16px';
+    const wHead=div('card-head');
+    const wLbl=div('card-head-label');wLbl.textContent='UYARI';
+    const wTitle=div('card-head-title');wTitle.textContent='⚡ '+rr.warns.length+' Çakışma';
+    wHead.append(wLbl,wTitle);wCard.appendChild(wHead);
+    const wBody=div('card-body');
+    rr.warns.forEach(w=>{
+      const item=div('conflict-item');item.style.background=w.sev==='high'?'var(--risky-light)':'var(--caution-light)';
+      item.style.border='1px solid '+(w.sev==='high'?'rgba(192,64,96,0.15)':'rgba(200,136,42,0.15)');
+      item.innerHTML='<div style="font-size:12px;font-weight:700;color:'+(w.sev==='high'?'var(--risky)':'var(--caution)')+';margin-bottom:4px">'+(w.sev==='high'?'⚡ Yüksek Risk':'⚠ Orta Risk')+'</div><div style="font-size:13px;color:var(--ink-mid);line-height:1.6">'+w.msg+'</div>';
+      wBody.appendChild(item);
+    });
+    wCard.appendChild(wBody);root.appendChild(wCard);
+  }
+
+  // AM/PM grid
+  const rGrid=div('two-col');rGrid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;';
+  [{lb:'🌅 Sabah Rutini',list:rr.am},{lb:'🌙 Akşam Rutini',list:rr.pm}].forEach(({lb,list})=>{
+    const c=div('card fade-up');
+    const h=div('card-head');const t=div('card-head-title');t.textContent=lb;h.appendChild(t);c.appendChild(h);
+    if(!list.length){const em=div('card-body');em.style.cssText='font-size:13px;color:var(--ink-light);text-align:center;';em.textContent='Bu seans için ürün yok.';c.appendChild(em);}
+    list.forEach((p,i)=>{
+      const row=div('routine-step');
+      const sn=div('step-number');sn.textContent=(i+1)+'. '+p.step;
+      const nm=div('step-name');nm.textContent=p.name;
+      const br=div('step-brand');if(p.brand)br.textContent=p.brand;
+      const tags=div('');tags.style.cssText='display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;';
+      if(p.act.ret){const t=div('chip');t.style.cssText='color:var(--unknown);border-color:rgba(128,128,152,0.2);font-size:10px;padding:2px 8px;';t.textContent='Retinoid';tags.appendChild(t);}
+      if(p.act.aha||p.act.bha){const t=div('chip');t.style.cssText='color:var(--caution);border-color:rgba(200,136,42,0.2);font-size:10px;padding:2px 8px;';t.textContent='Asit';tags.appendChild(t);}
+      if(p.act.vitC){const t=div('chip');t.style.cssText='color:var(--safe);border-color:rgba(74,158,110,0.2);font-size:10px;padding:2px 8px;';t.textContent='C Vitamini';tags.appendChild(t);}
+      row.append(sn,nm,br,tags);c.appendChild(row);
+    });
+    rGrid.appendChild(c);
+  });
+  root.appendChild(rGrid);
+
+  // Tips
+  if(rr.tips.length){
+    const tipCard=makeCard('UZMAN İPUÇLARI','',body=>{
+      rr.tips.forEach(t=>{
+        const row=div('');row.style.cssText='font-size:13px;color:var(--ink-mid);padding:10px 16px;border-radius:10px;background:rgba(200,223,240,0.12);border-left:3px solid var(--sky);margin-bottom:8px;line-height:1.6;';
+        row.textContent=t;body.appendChild(row);
+      });
+    });
+    tipCard.classList.add('fade-up');root.appendChild(tipCard);
+  }
+
+  if(!rr.warns.length){
+    const ok=div('card');ok.style.cssText='padding:16px 20px;text-align:center;font-size:14px;font-weight:500;color:var(--safe);margin-bottom:16px;';
+    ok.textContent='✓ Çakışma tespit edilmedi — harika seçimler!';root.appendChild(ok);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// DISCLAIMER
+// ════════════════════════════════════════════════════════════
+function showDisclaimer(){
+  let m=document.getElementById('modal');if(m){m.remove();return;}
+  m=document.createElement('div');m.id='modal';
+  m.onclick=e=>{if(e.target===m)m.remove();};
+  const box=div('modal-box');
+  box.onclick=e=>e.stopPropagation();
+  const head=div('card-head');head.style.textAlign='center';head.style.paddingTop='28px';
+  head.innerHTML='<div style="font-size:36px;margin-bottom:10px">🌿</div><div class="card-head-title">Yasal Uyarı</div>';
+  const body=div('card-body');
+  body.innerHTML='<p style="font-size:14px;color:var(--ink-mid);line-height:1.8;margin-bottom:8px">Bu platform <strong style="color:var(--ink)">Dr. Bengi Su Ege</strong> tarafından genel bilgilendirme amacıyla hazırlanmıştır.</p><p style="font-size:13px;color:var(--ink-light);line-height:1.7;margin-bottom:6px">🌿 Tıbbi tavsiye niteliği taşımaz.</p><p style="font-size:13px;color:var(--ink-light);line-height:1.7;margin-bottom:6px">🌾 Konsantrasyon tahminleri INCI sırasına dayalıdır.</p><p style="font-size:13px;color:var(--ink-light);line-height:1.7;margin-bottom:24px">🌸 Bireysel alerji ve hassasiyetler değerlendirilemez.</p>';
+  const closeBtn=el('button','btn btn-primary btn-full');closeBtn.textContent='Anladım';closeBtn.onclick=()=>m.remove();
+  body.appendChild(closeBtn);
+  box.append(head,body);m.appendChild(box);document.body.appendChild(m);
+}
+
+// ════════════════════════════════════════════════════════════
+// NAV BUILD
+// ════════════════════════════════════════════════════════════
+function buildNav(){
+  // Desktop tabs
+  const navTabs=document.getElementById('navTabs');
+  navTabs.innerHTML='';
+  [['home','Ana'],['analyze','🔬 Analiz'],['compare','⚖ Karşılaştır'],['quiz','✦ Quiz'],['routine','◑ Rutin']].forEach(([id,lb])=>{
+    const t=el('button','nav-tab'+(ST.page===id?' active':''));t.textContent=lb;
+    t.onclick=()=>go(id);navTabs.appendChild(t);
+  });
+  // Mobile nav
+  const mNav=document.getElementById('mobile-nav');
+  mNav.innerHTML='';
+  mNav.style.display=window.innerWidth<=680?'flex':'none';
+  [['home','🏠','Ana'],['analyze','🔬','Analiz'],['compare','⚖','Karşı'],['quiz','✦','Quiz'],['routine','◑','Rutin']].forEach(([id,ic,lb])=>{
+    const t=el('button','mob-tab'+(ST.page===id?' active':''));
+    t.innerHTML='<div class="mob-tab-icon">'+ic+'</div><span>'+lb+'</span>';
+    t.onclick=()=>go(id);mNav.appendChild(t);
+  });
+}
+
+// ════════════════════════════════════════════════════════════
+// PETALS
+// ════════════════════════════════════════════════════════════
+function spawnPetals(){
+  const bg=document.getElementById('bg');
+  const configs=[
+    {l:'5%',d:0,s:9},{l:'14%',d:2.2,s:11},{l:'26%',d:.7,s:8.5},
+    {l:'38%',d:3.8,s:12},{l:'52%',d:1.4,s:10},{l:'64%',d:2.8,s:9.5},
+    {l:'76%',d:4.2,s:13},{l:'88%',d:.4,s:11.5},{l:'94%',d:3,s:8},
+  ];
+  configs.forEach((p,i)=>{
+    const petal=document.createElement('div');
+    petal.className='petal';
+    const size=5+Math.random()*5;
+    Object.assign(petal.style,{
+      left:p.l,
+      width:size+'px',
+      height:(size*1.6)+'px',
+      background:'rgba('+(240+Math.random()*15)+','+(165+Math.random()*20)+','+(190+Math.random()*15)+',0.8)',
+      animationDuration:p.s+'s',
+      animationDelay:p.d+'s',
+      transform:'rotate('+(i*43+15)+'deg)',
+    });
+    bg.appendChild(petal);
+  });
+}
+
+// ════════════════════════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════════════════════════
+function render(){
+  buildNav();
+  const main=document.getElementById('main');
+  main.innerHTML='';
+  if(ST.page==='home') pageHome(main);
+  else if(ST.page==='analyze') pageAnalyze(main);
+  else if(ST.page==='compare') pageCompare(main);
+  else if(ST.page==='quiz') pageQuiz(main);
+  else if(ST.page==='routine') pageRoutine(main);
+}
+
+// ════════════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════════════
+window.addEventListener('resize',()=>{
+  const mNav=document.getElementById('mobile-nav');
+  if(mNav) mNav.style.display=window.innerWidth<=680?'flex':'none';
+});
+spawnPetals();
+render();
+
+// Products embedded — no fetch needed
+// GitHub fetch disabled (embedded data used instead)
+</script>
+</body>
+</html>
