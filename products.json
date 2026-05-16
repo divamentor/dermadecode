@@ -1,0 +1,2834 @@
+[
+  {
+    "name": "CeraVe Moisturizing Cream",
+    "brand": "CeraVe",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Hyaluronic Acid, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Sodium PCA, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Moisturizing Lotion",
+    "brand": "CeraVe",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Dimethicone, Sodium Hyaluronate, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Xanthan Gum, Tocopherol, Phytosphingosine, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Foaming Facial Cleanser",
+    "brand": "CeraVe",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Sodium Lauroyl Sarcosinate, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Hydrating Facial Cleanser",
+    "brand": "CeraVe",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cetearyl Alcohol, Behentrimonium Methosulfate, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe AM Facial Moisturizing Lotion SPF30",
+    "brand": "CeraVe",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Glycerin, Zinc Oxide, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Xanthan Gum, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe PM Facial Moisturizing Lotion",
+    "brand": "CeraVe",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Renewing SA Cleanser",
+    "brand": "CeraVe",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Resurfacing Retinol Serum",
+    "brand": "CeraVe",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Retinol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Vitamin C Serum",
+    "brand": "CeraVe",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Hyaluronic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Eye Repair Cream",
+    "brand": "CeraVe",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Cetearyl Alcohol, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Healing Ointment",
+    "brand": "CeraVe",
+    "cat": "Onarıcı",
+    "ingredients": "Petrolatum, Mineral Oil, Ceramide NP, Ceramide AP, Ceramide EOP, Hyaluronic Acid, Cholesterol, Phytosphingosine"
+  },
+  {
+    "name": "CeraVe SA Smoothing Cream",
+    "brand": "CeraVe",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Lactic Acid, Allantoin, Cetearyl Alcohol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Skin Renewing Night Cream",
+    "brand": "CeraVe",
+    "cat": "Gece Kremi",
+    "ingredients": "Water, Glycerin, Niacinamide, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Retinol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Acne Control Gel",
+    "brand": "CeraVe",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Lactic Acid, Ceramide NP, Allantoin, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Body Lotion",
+    "brand": "CeraVe",
+    "cat": "Vücut Bakımı",
+    "ingredients": "Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Dimethicone, Sodium Hyaluronate, Xanthan Gum, Tocopherol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Therapeutic Hand Cream",
+    "brand": "CeraVe",
+    "cat": "El Bakımı",
+    "ingredients": "Water, Glycerin, Petrolatum, Cetearyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Dimethicone, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "CeraVe Hydrating Sunscreen SPF50",
+    "brand": "CeraVe",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Glycerin, Zinc Oxide, Titanium Dioxide, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Niacinamide, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "CeraVe Mineral Sunscreen SPF30",
+    "brand": "CeraVe",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Niacinamide, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Hydrating Toner",
+    "brand": "CeraVe",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Baby Moisturizing Cream",
+    "brand": "CeraVe",
+    "cat": "Bebek",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Dimethicone, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Baby Wash and Shampoo",
+    "brand": "CeraVe",
+    "cat": "Bebek",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "CeraVe Psoriasis Moisturizing Cream",
+    "brand": "CeraVe",
+    "cat": "Tedavi Edici",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Sodium Hyaluronate, Lactic Acid, Urea, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "CeraVe Blemish Control Cleanser",
+    "brand": "CeraVe",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Ceramide NP, Sodium Hyaluronate, Zinc PCA, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "CeraVe Smoothing Cleanser",
+    "brand": "CeraVe",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Sodium Cocoyl Isethionate, Ceramide NP, Ceramide AP, Ceramide EOP, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "CeraVe Facial Moisturizing Lotion Acne-Prone",
+    "brand": "CeraVe",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Niacinamide, Dimethicone, Ceramide NP, Ceramide AP, Ceramide EOP, Sodium Hyaluronate, Cholesterol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Hydrating Gentle Cleanser",
+    "brand": "La Roche-Posay",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cetyl Alcohol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Double Repair Moisturizer",
+    "brand": "La Roche-Posay",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Ceramide AP, Sodium Hyaluronate, Cholesterol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Double Repair UV SPF30",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Sensitive Fluide",
+    "brand": "La Roche-Posay",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Sensitive Creme",
+    "brand": "La Roche-Posay",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Shea Butter, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Ultra Eye",
+    "brand": "La Roche-Posay",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar Purifying Foaming Gel",
+    "brand": "La Roche-Posay",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Zinc Pidolate, Niacinamide, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar Duo+",
+    "brand": "La Roche-Posay",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Lipo-Hydroxy Acid, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar Serum",
+    "brand": "La Roche-Posay",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Glycolic Acid, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar Mat",
+    "brand": "La Roche-Posay",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Zinc PCA, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Anthelios UVMune 400 SPF50+",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Niacinamide, Titanium Dioxide, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Anthelios Invisible Fluid SPF50+",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Anthelios Tinted SPF50+",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Iron Oxides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Anthelios AC Mat SPF50+",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Niacinamide, Silica, Zinc PCA, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Hyalu B5 Serum",
+    "brand": "La Roche-Posay",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate Crosspolymer, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Cicaplast Baume B5",
+    "brand": "La Roche-Posay",
+    "cat": "Onarıcı",
+    "ingredients": "Water, Glycerin, Panthenol, Shea Butter, Allantoin, Ceramide NP, Zinc Sulfate, Copper Sulfate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Cicaplast Baume B5 SPF50",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Glycerin, Panthenol, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Cicaplast Gel B5",
+    "brand": "La Roche-Posay",
+    "cat": "Onarıcı",
+    "ingredients": "Water, Glycerin, Panthenol, Allantoin, Niacinamide, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Redermic Retinol Serum",
+    "brand": "La Roche-Posay",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "La Roche-Posay Mela B3 Serum",
+    "brand": "La Roche-Posay",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Pure Vitamin C10 Serum",
+    "brand": "La Roche-Posay",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Salicylic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Lipikar Balm AP+M",
+    "brand": "La Roche-Posay",
+    "cat": "Vücut Bakımı",
+    "ingredients": "Water, Glycerin, Shea Butter, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Substiane Rich",
+    "brand": "La Roche-Posay",
+    "cat": "Anti-Aging",
+    "ingredients": "Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Retinyl Palmitate, Allantoin, Shea Butter, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Redermic C Vitamin C Eye",
+    "brand": "La Roche-Posay",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Ascorbyl Glucoside, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Purifying Foaming Cream Cleanser",
+    "brand": "La Roche-Posay",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Niacinamide, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar Gel Cleanser Oily Skin",
+    "brand": "La Roche-Posay",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sodium Laureth Sulfate, Niacinamide, Zinc Pidolate, Salicylic Acid, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Anthelios XL Melt-in Cream SPF50+",
+    "brand": "La Roche-Posay",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Dimethicone, Tocopherol, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Rosaliac Micellar Water",
+    "brand": "La Roche-Posay",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Niacinamide, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"
+  },
+  {
+    "name": "La Roche-Posay Lipikar Syndet AP+",
+    "brand": "La Roche-Posay",
+    "cat": "Vücut Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Niacinamide, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "La Roche-Posay Effaclar K+",
+    "brand": "La Roche-Posay",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Lactic Acid, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "The Ordinary Niacinamide 10% + Zinc 1%",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "name": "The Ordinary Hyaluronic Acid 2% + B5",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Sodium Hyaluronate, Panthenol, Sodium Hyaluronate Crosspolymer, Propanediol, Pentylene Glycol, Glycerin, Ahnfeltia Concinna Extract, Sodium Acetylated Hyaluronate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Retinol 0.2% in Squalane",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Squalane, Retinol"
+  },
+  {
+    "name": "The Ordinary Retinol 0.5% in Squalane",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Squalane, Retinol"
+  },
+  {
+    "name": "The Ordinary Retinol 1% in Squalane",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Squalane, Retinol"
+  },
+  {
+    "name": "The Ordinary Retinal 0.2% Emulsion",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Squalane, Retinal, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "name": "The Ordinary Granactive Retinoid 2% Emulsion",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide, Jojoba Esters, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "name": "The Ordinary Granactive Retinoid 5% in Squalane",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Squalane, Hydroxypinacolone Retinoate, Dimethyl Isosorbide"
+  },
+  {
+    "name": "The Ordinary AHA 30% + BHA 2% Peeling Solution",
+    "brand": "The Ordinary",
+    "cat": "Peeling",
+    "ingredients": "Aqua, Glycolic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Propanediol, Salicylic Acid, Tasmannia Lanceolata Fruit/Leaf Extract, Dimethyl Isosorbide, Potassium Citrate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Glycolic Acid 7% Toning Solution",
+    "brand": "The Ordinary",
+    "cat": "Tonik",
+    "ingredients": "Aqua, Glycolic Acid, Rosa Damascena Flower Water, Centaurea Cyanus Flower Water, Aloe Barbadensis Leaf Water, Propanediol, Glycerin, Triethanolamine, Sodium Hyaluronate Crosspolymer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Lactic Acid 5% + HA",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Lactic Acid 10% + HA",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Lactic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Mandelic Acid 10% + HA",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Mandelic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Azelaic Acid Suspension 10%",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Azelaic Acid, Isodecyl Neopentanoate, Dimethicone, Glycerin, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Alpha Arbutin 2% + HA",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Alpha Arbutin, Propanediol, Sodium Hyaluronate Crosspolymer, Ferulic Acid, Lactic Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Ascorbic Acid 8% + Alpha Arbutin 2%",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Alpha Arbutin, Propanediol, Dimethyl Isosorbide"
+  },
+  {
+    "name": "The Ordinary Vitamin C Suspension 23% + HA Spheres 2%",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Isodecyl Neopentanoate, Squalane, Sodium Hyaluronate Crosspolymer, Silica, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Buffet Multi-Technology Peptide Serum",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Sodium Hyaluronate, Pentapeptide-18, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Palmitoyl Tripeptide-38, Acetyl Hexapeptide-3, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Natural Moisturizing Factors + HA",
+    "brand": "The Ordinary",
+    "cat": "Nemlendirici",
+    "ingredients": "Aqua, Glycerin, Urea, Arginine, Aspartic Acid, Pyrrolidone Carboxylic Acid, Glycine, Alanine, Serine, Sodium PCA, Sodium Hyaluronate, Panthenol, Allantoin, Lecithin, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Salicylic Acid 2% Solution",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Salicylic Acid, Witch Hazel Water, Sodium Hyaluronate Crosspolymer, Propanediol, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Salicylic Acid 2% Masque",
+    "brand": "The Ordinary",
+    "cat": "Maske",
+    "ingredients": "Aqua, Kaolin, Bentonite, Salicylic Acid, Glycerin, Propanediol, Sodium Hyaluronate, Allantoin, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary 100% Plant-Derived Squalane",
+    "brand": "The Ordinary",
+    "cat": "Yağ",
+    "ingredients": "Squalane"
+  },
+  {
+    "name": "The Ordinary 100% Cold-Pressed Rosehip Seed Oil",
+    "brand": "The Ordinary",
+    "cat": "Yağ",
+    "ingredients": "Rosa Canina Seed Oil"
+  },
+  {
+    "name": "The Ordinary Marine Hyaluronics",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Propanediol, Pseudoalteromonas Ferment Extract, Sodium Hyaluronate, Sesamum Indicum Seed Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary EUK 134 0.1%",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Propanediol, Ethylbisiminomethylguaiacol Manganese Chloride, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Squalane Cleanser",
+    "brand": "The Ordinary",
+    "cat": "Temizleyici",
+    "ingredients": "Squalane, Sucrose Stearate, Sucrose Laurate"
+  },
+  {
+    "name": "The Ordinary Multi-Peptide + Copper Peptides Serum",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Tripeptide-1, Copper Tripeptide-1, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Propanediol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Caffeine Solution 5% + EGCG",
+    "brand": "The Ordinary",
+    "cat": "Göz Serumu",
+    "ingredients": "Aqua, Caffeine, Epigallocatechin Gallate, Glycerin, Propanediol, Ruscus Aculeatus Root Extract, Sodium Hyaluronate, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Coverage Foundation",
+    "brand": "The Ordinary",
+    "cat": "Fondöten",
+    "ingredients": "Aqua, Isododecane, Dimethicone, Titanium Dioxide, Niacinamide, Glycerin, Iron Oxides, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Mineral UV Filters SPF30",
+    "brand": "The Ordinary",
+    "cat": "Güneş Koruma",
+    "ingredients": "Aqua, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Multi-Peptide Lash and Brow Serum",
+    "brand": "The Ordinary",
+    "cat": "Serum",
+    "ingredients": "Aqua, Propanediol, Glycerin, Biotinoyl Tripeptide-1, Apigenin, Oleanolic Acid, Sodium Hyaluronate, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Glycolipid Cream Cleanser",
+    "brand": "The Ordinary",
+    "cat": "Temizleyici",
+    "ingredients": "Aqua, Glycerin, Cocamidopropyl Betaine, Glycolipids, Allantoin, Sodium Hyaluronate, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Depuff Eye Serum",
+    "brand": "The Ordinary",
+    "cat": "Göz Serumu",
+    "ingredients": "Aqua, Glycerin, Sodium Hyaluronate, Caffeine, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary 3% Glycolic Acid Toning Solution",
+    "brand": "The Ordinary",
+    "cat": "Tonik",
+    "ingredients": "Aqua, Glycolic Acid, Propanediol, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Ordinary Concealer",
+    "brand": "The Ordinary",
+    "cat": "Kapatıcı",
+    "ingredients": "Aqua, Isododecane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Iron Oxides, Phenoxyethanol"
+  },
+  {
+    "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+    "brand": "COSRX",
+    "cat": "Esans",
+    "ingredients": "Snail Secretion Filtrate, Betaine, Panthenol, Sodium Polyacrylate, Phenoxyethanol, Allantoin, Ethylhexylglycerin, Sodium Hyaluronate, Glycerin"
+  },
+  {
+    "name": "COSRX Advanced Snail 92 All In One Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Snail Secretion Filtrate, Cetearyl Olivate, Sorbitan Olivate, Dimethicone, Glycerin, Niacinamide, Panthenol, Allantoin, Sodium Hyaluronate, Ceramide NP, Tocopherol, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Salicylic Acid Daily Gentle Cleanser",
+    "brand": "COSRX",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Sodium Methyl Cocoyl Taurate, Glycerin, Salicylic Acid, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX BHA Blackhead Power Liquid",
+    "brand": "COSRX",
+    "cat": "Tonik",
+    "ingredients": "Butylene Glycol, Salix Alba Bark Water, Betaine Salicylate, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX AHA 7 Whitehead Power Liquid",
+    "brand": "COSRX",
+    "cat": "Tonik",
+    "ingredients": "Glycolic Acid, Pyrus Malus Fruit Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Citric Acid, Sodium Citrate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Low pH Good Morning Gel Cleanser",
+    "brand": "COSRX",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Allantoin, Panthenol, Sodium Hyaluronate, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Hydrium Triple Hyaluronic Moisture Ampoule",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Water, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Glycerin, Panthenol, Allantoin, Betaine, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Triple C Lightning Liquid",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Propanediol, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Glycerin, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX The Retinol 0.1 Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX The Retinol 0.5 Oil",
+    "brand": "COSRX",
+    "cat": "Yağ",
+    "ingredients": "Squalane, Retinol, Tocopherol"
+  },
+  {
+    "name": "COSRX Oil-Free Ultra Moisturizing Lotion",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Birch Sap, Allantoin, Panthenol, Sodium Hyaluronate, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Full Fit Propolis Light Ampoule",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Propolis Extract, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Pure Fit Cica Serum",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Pure Fit Cica Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Acne Pimple Master Patch",
+    "brand": "COSRX",
+    "cat": "Akne Bakım",
+    "ingredients": "Styrene Isoprene Styrene Block Copolymer, Polyisobutylene, Petroleum Resin, Polyurethane Film"
+  },
+  {
+    "name": "COSRX AC Collection Ultimate Spot Cream",
+    "brand": "COSRX",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Centella Asiatica Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX RX Balancium Comfort Ceramide Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Centella Water Alcohol-Free Toner",
+    "brand": "COSRX",
+    "cat": "Tonik",
+    "ingredients": "Centella Asiatica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Advanced Snail Peptide Eye Cream",
+    "brand": "COSRX",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Peptides, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX One Step Original Clear Pad",
+    "brand": "COSRX",
+    "cat": "Ped",
+    "ingredients": "Water, Betaine, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Hyaluronic Acid Intensive Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Sun SPF50+ PA++++",
+    "brand": "COSRX",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Ethylhexyl Triazone, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Advanced Snail Mucin Power Gel Toner",
+    "brand": "COSRX",
+    "cat": "Tonik",
+    "ingredients": "Snail Secretion Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Mini AC Collection Acne Foam Cleanser",
+    "brand": "COSRX",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "COSRX Balancium Comfort Ceramide Soft Cream",
+    "brand": "COSRX",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Bioderma Sensibio H2O Micellar Water",
+    "brand": "Bioderma",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Hexylene Glycol, Fructooligosaccharides, Disodium Cocoamphodiacetate, Disodium EDTA, Cucumis Sativus Fruit Extract, Propylene Glycol, Sodium Benzoate, Cetrimonium Bromide"
+  },
+  {
+    "name": "Bioderma Sebium H2O Micellar Water",
+    "brand": "Bioderma",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Hexylene Glycol, Zinc Gluconate, Copper Sulfate, Disodium Cocoamphodiacetate, Niacinamide, Allantoin, Disodium EDTA, Sodium Benzoate, Cetrimonium Bromide"
+  },
+  {
+    "name": "Bioderma Sensibio Moisturizer",
+    "brand": "Bioderma",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Sensibio AR Cream",
+    "brand": "Bioderma",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Sebium Mat",
+    "brand": "Bioderma",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Zinc Gluconate, Salicylic Acid, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol"
+  },
+  {
+    "name": "Bioderma Sebium Pore Refiner",
+    "brand": "Bioderma",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Silica, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Hydrabio H2O Micellar Water",
+    "brand": "Bioderma",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Sodium Hyaluronate, Allantoin, Sodium Benzoate, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Hydrabio Serum",
+    "brand": "Bioderma",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Atoderm Intensive Baume",
+    "brand": "Bioderma",
+    "cat": "Vücut Bakımı",
+    "ingredients": "Water, Glycerin, Shea Butter, Ceramide NP, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Pigmentbio C-Concentrate",
+    "brand": "Bioderma",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Photoderm MAX Aquafluid SPF50+",
+    "brand": "Bioderma",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Glycerin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Pigmentbio Daily Care SPF50+",
+    "brand": "Bioderma",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Alpha Arbutin, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Sensibio Foam Cleanser",
+    "brand": "Bioderma",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Hydrabio Gel-Creme",
+    "brand": "Bioderma",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Bioderma Sensibio Light Cream",
+    "brand": "Bioderma",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice Skin Perfecting 2% BHA Liquid Exfoliant",
+    "brand": "Paula's Choice",
+    "cat": "Tonik",
+    "ingredients": "Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 80, Camellia Oleifera Leaf Extract, Sodium Hydroxide, Tetrasodium EDTA"
+  },
+  {
+    "name": "Paula's Choice C15 Super Booster",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Water, Dimethyl Isosorbide, Ferulic Acid, Panthenol, Tocopherol, Sodium Hydroxide, Glycerin, Xanthan Gum, Sodium Hyaluronate"
+  },
+  {
+    "name": "Paula's Choice 1% Retinol Booster",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Retinol, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Paula's Choice 10% Azelaic Acid Booster",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Azelaic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice 20% Niacinamide Treatment",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Niacinamide, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Paula's Choice CLEAR 2.5% Benzoyl Peroxide",
+    "brand": "Paula's Choice",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Benzoyl Peroxide, Glycerin, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice SKIN RECOVERY Replenishing Moisturizer",
+    "brand": "Paula's Choice",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Shea Butter, Ceramide NP, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice RESIST Anti-Aging Moisturizer SPF50",
+    "brand": "Paula's Choice",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopherol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice 0.3% Retinol + 2% Bakuchiol",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Bakuchiol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice CALM Redness Relief Moisturizer",
+    "brand": "Paula's Choice",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Ceramide NP, Allantoin, Centella Asiatica Extract, Panthenol, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice Skin Perfecting 8% AHA Gel",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Glycolic Acid, Butylene Glycol, Glycerin, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice PEPTIDE Booster",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice SKIN BALANCING Ultra-Sheer Daily Defense SPF30",
+    "brand": "Paula's Choice",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice Clinical Niacinamide 20% Treatment",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Niacinamide, Glycerin, Allantoin, Sodium Hyaluronate, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Paula's Choice Defense Antioxidant Serum",
+    "brand": "Paula's Choice",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Niacinamide, Tocopherol, Ferulic Acid, Resveratrol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant Protini Polypeptide Cream",
+    "brand": "Drunk Elephant",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Cetearyl Alcohol, Signal Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Squalane, Ceramide NP, Tocopherol, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Drunk Elephant T.L.C. Sukari Babyfacial",
+    "brand": "Drunk Elephant",
+    "cat": "Peeling",
+    "ingredients": "Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Aloe Barbadensis Leaf Juice, Sodium Hydroxide, Carbomer, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant C-Firma Fresh Day Serum",
+    "brand": "Drunk Elephant",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Ferulic Acid, Tocopherol, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant A-Passioni Retinol Cream",
+    "brand": "Drunk Elephant",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Retinol, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Drunk Elephant B-Hydra Intensive Hydration Serum",
+    "brand": "Drunk Elephant",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Panthenol, Pineapple Ceramide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Drunk Elephant Lala Retro Whipped Cream",
+    "brand": "Drunk Elephant",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Squalane, Shea Butter, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Drunk Elephant Umbra Tinte Physical Defense SPF30",
+    "brand": "Drunk Elephant",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Glycerin, Dimethicone, Squalane, Ceramide NP, Allantoin, Iron Oxides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant Beste No. 9 Jelly Cleanser",
+    "brand": "Drunk Elephant",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant T.L.C. Framboos Glycolic Night Serum",
+    "brand": "Drunk Elephant",
+    "cat": "Gece Serumu",
+    "ingredients": "Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant B-Goldi Bright Drops",
+    "brand": "Drunk Elephant",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant Slaai Makeup-Melting Butter Cleanser",
+    "brand": "Drunk Elephant",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Marula Oil, Glycerin, Allantoin, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant F-Balm Electrolyte Waterfacial Mask",
+    "brand": "Drunk Elephant",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant C-Tango Multivitamin Eye Cream",
+    "brand": "Drunk Elephant",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Drunk Elephant Polypeptide-121 Future Cream",
+    "brand": "Drunk Elephant",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Niacinamide, Multi-Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals C E Ferulic",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Ethoxydiglycol, Ascorbic Acid, Glycerin, Propylene Glycol, Laureth-23, Tocopherol, Ferulic Acid, Panthenol, Sodium Hyaluronate, Benzyl Alcohol, Dehydroacetic Acid"
+  },
+  {
+    "name": "SkinCeuticals Phloretin CF",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Ethoxydiglycol, Ascorbic Acid, Phloretin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Silymarin CF",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Ethoxydiglycol, Ascorbic Acid, Salicylic Acid, Silymarin, Ferulic Acid, Glycerin, Panthenol, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals HA Intensifier",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Licorice Root Extract, Purple Rice Extract, Proxylane, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Triple Lipid Restore 2:4:2",
+    "brand": "SkinCeuticals",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Cholesterol, Fatty Acids, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Retinol 0.3",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Retinol 0.5",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Retinol 1.0",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Dimethicone, Squalane, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Phyto Corrective Gel",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Physical Fusion UV Defense SPF50",
+    "brand": "SkinCeuticals",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Hydrating B5 Gel",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Panthenol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Blemish Age Defense",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Salicylic Acid, Glycerin, Niacinamide, Dioic Acid, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals A.G.E. Interrupter Advanced",
+    "brand": "SkinCeuticals",
+    "cat": "Anti-Aging",
+    "ingredients": "Water, Glycerin, Proxylane, Blueberry Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Metacell Renewal B3",
+    "brand": "SkinCeuticals",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Simply Clean",
+    "brand": "SkinCeuticals",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sodium Lauroyl Sarcosinate, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "SkinCeuticals Daily Brightening UV Defense SPF30",
+    "brand": "SkinCeuticals",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo First Care Activating Serum",
+    "brand": "Sulwhasoo",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panax Ginseng Root Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Concentrated Ginseng Renewing Cream",
+    "brand": "Sulwhasoo",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Panax Ginseng Root Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Snowise EX Brightening Serum",
+    "brand": "Sulwhasoo",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, White Mulberry Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Timetreasure Invigorating Cream",
+    "brand": "Sulwhasoo",
+    "cat": "Anti-Aging",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Retinyl Palmitate, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo UV Wise Brightening Sun Protector SPF50+",
+    "brand": "Sulwhasoo",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Panax Ginseng Root Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Gentle Cleansing Foam",
+    "brand": "Sulwhasoo",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Panax Ginseng Root Extract, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Concentrated Ginseng Renewing Serum",
+    "brand": "Sulwhasoo",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Radiance Energy Mask",
+    "brand": "Sulwhasoo",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf 77% Soothing Toner",
+    "brand": "Anua",
+    "cat": "Tonik",
+    "ingredients": "Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf Pore Control Cleansing Oil",
+    "brand": "Anua",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Houttuynia Cordata Extract, Niacinamide, Sodium Hyaluronate, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf 80% Moisture Barrier Cream",
+    "brand": "Anua",
+    "cat": "Nemlendirici",
+    "ingredients": "Houttuynia Cordata Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Niacinamide 10% + TXA 4% Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Tranexamic Acid, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Peach 77% Niacin Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Prunus Persica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf Quercetinol Pore Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Houttuynia Cordata Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf Artichoke Brightening Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Cynara Scolymus Leaf Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf Cream",
+    "brand": "Anua",
+    "cat": "Nemlendirici",
+    "ingredients": "Houttuynia Cordata Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Squalane, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf Foam Cleanser",
+    "brand": "Anua",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Houttuynia Cordata Extract, Niacinamide, Allantoin, Panthenol, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf UV Aqua Sun Fluid SPF50+",
+    "brand": "Anua",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Houttuynia Cordata Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf Retinol Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Houttuynia Cordata Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Heartleaf Skin Toner Pad",
+    "brand": "Anua",
+    "cat": "Ped",
+    "ingredients": "Houttuynia Cordata Extract, Water, Butylene Glycol, Glycerin, Niacinamide, Salicylic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Anua Peach Niacin Brightening Mask",
+    "brand": "Anua",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Niacinamide, Prunus Persica Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf Blemish Serum",
+    "brand": "Anua",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Houttuynia Cordata Extract, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Anua Heartleaf Jelly Cleanser",
+    "brand": "Anua",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Houttuynia Cordata Extract, Hyaluronic Acid, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Birch Juice Moisturizing Serum",
+    "brand": "Round Lab",
+    "cat": "Serum",
+    "ingredients": "Betula Platyphylla Japonica Juice, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Round Lab 1025 Dokdo Toner",
+    "brand": "Round Lab",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Sea Water, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Birch Juice Moisturizing Cream",
+    "brand": "Round Lab",
+    "cat": "Nemlendirici",
+    "ingredients": "Betula Platyphylla Japonica Juice, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab 1025 Dokdo Cleanser",
+    "brand": "Round Lab",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sea Water, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Dokdo Sun Cream SPF50+",
+    "brand": "Round Lab",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Sea Water, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Mugwort Calming Serum",
+    "brand": "Round Lab",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Artemisia Princeps Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Mugwort Calming Cream",
+    "brand": "Round Lab",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Artemisia Princeps Leaf Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Vitamin C Serum",
+    "brand": "Round Lab",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Round Lab Retinol Night Serum",
+    "brand": "Round Lab",
+    "cat": "Gece Serumu",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Ampoule",
+    "brand": "Skin1004",
+    "cat": "Serum",
+    "ingredients": "Centella Asiatica Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Skin1004 Hyalu-Cica Water-Fit Sun Serum SPF50+",
+    "brand": "Skin1004",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Tone Brightening Capsule Ampoule",
+    "brand": "Skin1004",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Centella Asiatica Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Asiatica 100 Ampoule",
+    "brand": "Skin1004",
+    "cat": "Serum",
+    "ingredients": "Centella Asiatica Extract, Glycerin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Foam Cleanser",
+    "brand": "Skin1004",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Centella Asiatica Extract, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Light Cream",
+    "brand": "Skin1004",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Zombie Beauty Hydrating Serum",
+    "brand": "Skin1004",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Madagascar Centella Poremizing Quick Wash",
+    "brand": "Skin1004",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Centella Asiatica Extract, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Skin1004 Hyalu-Cica Toner Pad",
+    "brand": "Skin1004",
+    "cat": "Ped",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Sodium Hyaluronate, Niacinamide, Allantoin, Salicylic Acid, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Dive-In Low-Molecular Hyaluronic Acid Serum",
+    "brand": "Torriden",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Sodium Acetylated Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Torriden Solid-In Ceramide Moisturizer",
+    "brand": "Torriden",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Dive-In Low-Molecular Hyaluronic Acid Toner",
+    "brand": "Torriden",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Balanceful Cica Serum",
+    "brand": "Torriden",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Balanceful Cica Cream",
+    "brand": "Torriden",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Dive-In Serum Sun SPF50+",
+    "brand": "Torriden",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Solid-In Ceramide Eye Cream",
+    "brand": "Torriden",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Dive-In Hyaluronic Acid Cleanser",
+    "brand": "Torriden",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Solid-In Ceramide Toner",
+    "brand": "Torriden",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Torriden Solid-In Ceramide Milk Cleanser",
+    "brand": "Torriden",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Relief Sun SPF50+",
+    "brand": "Beauty of Joseon",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Rice Bran Extract, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide",
+    "brand": "Beauty of Joseon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Propolis Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Dynasty Cream",
+    "brand": "Beauty of Joseon",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Rice Bran Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Calming Serum Green Tea + Panthenol",
+    "brand": "Beauty of Joseon",
+    "cat": "Serum",
+    "ingredients": "Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Revive Eye Serum",
+    "brand": "Beauty of Joseon",
+    "cat": "Göz Serumu",
+    "ingredients": "Water, Glycerin, Niacinamide, Peptides, Sodium Hyaluronate, Allantoin, Panthenol, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Centella + Vitamin C Sun Serum SPF50+",
+    "brand": "Beauty of Joseon",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Centella Asiatica Extract, Ascorbyl Glucoside, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Ginseng Essence Water",
+    "brand": "Beauty of Joseon",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Revive Serum Ginseng + Snail Mucin",
+    "brand": "Beauty of Joseon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Matte Sun Stick SPF50+",
+    "brand": "Beauty of Joseon",
+    "cat": "Güneş Koruma",
+    "ingredients": "Zinc Oxide, Titanium Dioxide, Caprylic/Capric Triglyceride, Squalane, Niacinamide, Allantoin, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Glow Deep Serum Rice + Alpha Arbutin",
+    "brand": "Beauty of Joseon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Rice Bran Extract, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Midnight Repair Serum Ginseng + Retinal",
+    "brand": "Beauty of Joseon",
+    "cat": "Gece Serumu",
+    "ingredients": "Water, Glycerin, Panax Ginseng Root Extract, Retinal, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Plum Blossom Radiance Serum",
+    "brand": "Beauty of Joseon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Prunus Mume Flower Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Glow Sunscreen Carrot + Niacinamide SPF50+",
+    "brand": "Beauty of Joseon",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Daucus Carota Sativa Root Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Apricot Blossom Peeling Gel",
+    "brand": "Beauty of Joseon",
+    "cat": "Peeling",
+    "ingredients": "Water, Glycerin, Prunus Armeniaca Flower Extract, Lactic Acid, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Beauty of Joseon Radiance Cleansing Balm",
+    "brand": "Beauty of Joseon",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Rice Bran Extract, Glycerin, Allantoin, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Hyaluronic Acid Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Retinol Night Cream",
+    "brand": "Farmasi",
+    "cat": "Gece Kremi",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Vitamin C Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Niacinamide Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem AHA BHA Peeling Toner",
+    "brand": "Farmasi",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Collagen Cream",
+    "brand": "Farmasi",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Micellar Water",
+    "brand": "Farmasi",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem SPF50 Sunscreen",
+    "brand": "Farmasi",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Alpha Arbutin Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Salicylic Acid Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Azelaic Acid Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Azelaic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Ceramide Moisturizer",
+    "brand": "Farmasi",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Eye Cream",
+    "brand": "Farmasi",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Snail Mucin Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Tranexamic Acid Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Tranexamic Acid, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Bakuchiol Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Bakuchiol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Peptide Serum",
+    "brand": "Farmasi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Dr. C. Tuna Suprem Tinted Moisturizer SPF30",
+    "brand": "Farmasi",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Iron Oxides, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi Skin Care Refreshing Toner",
+    "brand": "Farmasi",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Farmasi BB Cream SPF15",
+    "brand": "Farmasi",
+    "cat": "BB Krem",
+    "ingredients": "Water, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Hyalüronik Asit Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Biota Plus Retinol Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus C Vitamini Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Niacinamide Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Kil Maskesi",
+    "brand": "Biota Plus",
+    "cat": "Maske",
+    "ingredients": "Water, Kaolin, Bentonite, Glycerin, Niacinamide, Allantoin, Salicylic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus SPF50 Güneş Kremi",
+    "brand": "Biota Plus",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Alfa Arbutin Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Alpha Arbutin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Seramid Nemlendirici",
+    "brand": "Biota Plus",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Salisilik Asit Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Azelaik Asit Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Azelaic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Micellar Temizleme Suyu",
+    "brand": "Biota Plus",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Sodium Benzoate, Disodium EDTA"
+  },
+  {
+    "name": "Biota Plus Bakuchiol Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Bakuchiol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Göz Altı Serumu",
+    "brand": "Biota Plus",
+    "cat": "Göz Serumu",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Peptit Serumu",
+    "brand": "Biota Plus",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Biota Plus Gece Gündüz Kremi",
+    "brand": "Biota Plus",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Hyaluron Expert Intensely Lifting Cream",
+    "brand": "Eveline",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Retinyl Palmitate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Vitamin C Brightening Serum",
+    "brand": "Eveline",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline White Prestige 4D Whitening Night Cream",
+    "brand": "Eveline",
+    "cat": "Gece Kremi",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Retinyl Palmitate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Retinol Power Lifting Expert Cream",
+    "brand": "Eveline",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Bio Hyaluron Expert Eye Cream",
+    "brand": "Eveline",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Facemed+ Salicylic Acid Face Wash",
+    "brand": "Eveline",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Facemed+ Micellar Water 3 in 1",
+    "brand": "Eveline",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Hexylene Glycol, Disodium Cocoamphodiacetate, Allantoin, Panthenol, Sodium Benzoate, Disodium EDTA"
+  },
+  {
+    "name": "Eveline Serum 7 Effects Perfect Skin",
+    "brand": "Eveline",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinyl Palmitate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Niacynamid 10% + Zinc Face Serum",
+    "brand": "Eveline",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline SPF50 Protective Face Fluid",
+    "brand": "Eveline",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Pure Control Mattifying Face Moisturizer",
+    "brand": "Eveline",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Zinc PCA, Silica, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Peptide Lift Expert Moisturizing Cream",
+    "brand": "Eveline",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Peptides, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eveline Hyaluronic Expert Skin Toner",
+    "brand": "Eveline",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Neutrogena Hydro Boost Water Gel",
+    "brand": "Neutrogena",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Dimethicone, Glycerin, Sodium Hyaluronate, Dimethicone/Vinyl Dimethicone Crosspolymer, Phenoxyethanol, Dimethiconol, Sodium Acrylates Copolymer, Carbomer, Sodium Hydroxide, Ethylhexylglycerin"
+  },
+  {
+    "name": "Neutrogena Rapid Wrinkle Repair Retinol Serum",
+    "brand": "Neutrogena",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Dimethicone, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Neutrogena Ultra Sheer Dry-Touch SPF50+",
+    "brand": "Neutrogena",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Avobenzone, Glycerin, Dimethicone, Silica, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Neutrogena Oil-Free Acne Wash",
+    "brand": "Neutrogena",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Allantoin, Panthenol, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Garnier Micellar Cleansing Water",
+    "brand": "Garnier",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Hexylene Glycol, Glycerin, Disodium Cocoamphodiacetate, Disodium EDTA, Poloxamer 184, Rosa Damascena Flower Water, Sodium Benzoate, Sodium Chloride"
+  },
+  {
+    "name": "Garnier Vitamin C Brightening Serum",
+    "brand": "Garnier",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Salicylic Acid, Citric Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Garnier Hyaluronic Aloe Jelly Moisturizer",
+    "brand": "Garnier",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Aloe Barbadensis Leaf Juice, Sodium Hyaluronate, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Vichy Minéral 89 Hyaluronic Acid Serum",
+    "brand": "Vichy",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Pentylene Glycol, Sodium Chloride, Hyaluronic Acid, Xanthan Gum, Citric Acid, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Vichy Capital Soleil UV Age Daily SPF50+",
+    "brand": "Vichy",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Glycerin, Niacinamide, Dimethicone, Hyaluronic Acid, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Vichy Normaderm Correcting Anti-Acne Care",
+    "brand": "Vichy",
+    "cat": "Akne Bakım",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Avene Cicalfate+ Restorative Protective Cream",
+    "brand": "Avene",
+    "cat": "Onarıcı",
+    "ingredients": "Water, Glycerin, Zinc Sulfate, Copper Sulfate, Sucrose Octasulfate, Allantoin, Squalane, Beeswax, Stearyl Alcohol, Cetyl Alcohol, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Avene Hydrance Rich Hydrating Cream",
+    "brand": "Avene",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Dimethicone, Squalane, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Xanthan Gum, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Avene RetrinAL 0.1 Intensive Cream",
+    "brand": "Avene",
+    "cat": "Anti-Aging",
+    "ingredients": "Water, Glycerin, Retinal, Squalane, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eucerin Hyaluron-Filler Serum",
+    "brand": "Eucerin",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Sodium Hyaluronate, Niacinamide, Dimethicone, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Benzyl Alcohol"
+  },
+  {
+    "name": "Eucerin DermoPure Triple Action Serum",
+    "brand": "Eucerin",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Eucerin Sun Oil Control SPF50+",
+    "brand": "Eucerin",
+    "cat": "Güneş Koruma",
+    "ingredients": "Aqua, Homosalate, Octocrylene, Glycerin, Niacinamide, Silica, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Cetaphil Moisturizing Cream",
+    "brand": "Cetaphil",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Petrolatum, Dicaprylyl Ether, Dimethicone, Urea, Panthenol, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Cetaphil Gentle Skin Cleanser",
+    "brand": "Cetaphil",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Cetyl Alcohol, Propylene Glycol, Sodium Lauryl Sulfate, Stearyl Alcohol, Methylparaben, Propylparaben, Butylparaben"
+  },
+  {
+    "name": "Kiehl's Ultra Facial Cream",
+    "brand": "Kiehl's",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Squalane, Sucrose, Dimethicone, Sodium PCA, Panthenol, Allantoin, Mannitol, Trehalose, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Kiehl's Powerful-Strength Line-Reducing Concentrate",
+    "brand": "Kiehl's",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "The Inkey List Hyaluronic Acid Serum",
+    "brand": "The Inkey List",
+    "cat": "Serum",
+    "ingredients": "Aqua, Sodium Hyaluronate, Glycerin, Sodium Polyacrylate, Allantoin, Panthenol, Xanthan Gum, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Inkey List Retinol Serum",
+    "brand": "The Inkey List",
+    "cat": "Serum",
+    "ingredients": "Aqua, Glycerin, Squalane, Retinol, Dimethicone, Dimethyl Isosorbide, Carbomer, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "name": "The Inkey List Niacinamide",
+    "brand": "The Inkey List",
+    "cat": "Serum",
+    "ingredients": "Aqua, Niacinamide, Zinc PCA, Propanediol, Xanthan Gum, Allantoin, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Inkey List Vitamin C Serum",
+    "brand": "The Inkey List",
+    "cat": "Serum",
+    "ingredients": "Aqua, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "The Inkey List Tranexamic Acid Night Treatment",
+    "brand": "The Inkey List",
+    "cat": "Gece Bakımı",
+    "ingredients": "Aqua, Glycerin, Tranexamic Acid, Niacinamide, Retinol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Good Molecules Discoloration Correcting Serum",
+    "brand": "Good Molecules",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Tranexamic Acid, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Good Molecules Niacinamide Toning Essence",
+    "brand": "Good Molecules",
+    "cat": "Esans",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Good Molecules Overnight Exfoliating Treatment",
+    "brand": "Good Molecules",
+    "cat": "Gece Bakımı",
+    "ingredients": "Water, Glycerin, Glycolic Acid, Lactic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Purito Centella Unscented Serum",
+    "brand": "Purito",
+    "cat": "Serum",
+    "ingredients": "Water, Centella Asiatica Extract, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Purito Daily Go-To Sunscreen SPF50+",
+    "brand": "Purito",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Purito From Green Vitamin C Serum",
+    "brand": "Purito",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Isntree Hyaluronic Acid Toner",
+    "brand": "Isntree",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Isntree Hyaluronic Acid Watery Sun Gel SPF50+",
+    "brand": "Isntree",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Freshly Juiced Vitamin C Serum",
+    "brand": "Klairs",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Rich Moist Soothing Serum",
+    "brand": "Klairs",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Midnight Blue Calming Cream",
+    "brand": "Klairs",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Supple Preparation Facial Toner",
+    "brand": "Klairs",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Axis-Y Dark Spot Correcting Glow Serum",
+    "brand": "Axis-Y",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Tranexamic Acid, Sodium Hyaluronate, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Axis-Y Complete No-Stress Physical Sunscreen SPF50+",
+    "brand": "Axis-Y",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Centella Asiatica Extract, Allantoin, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Laneige Water Sleeping Mask",
+    "brand": "Laneige",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Laneige Lip Sleeping Mask",
+    "brand": "Laneige",
+    "cat": "Dudak Bakımı",
+    "ingredients": "Hydrogenated Polyisobutene, Glycerin, Sodium Hyaluronate, Panthenol, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Laneige Water Bank Blue Hyaluronic Serum",
+    "brand": "Laneige",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Dr. Jart+ Cicapair Tiger Grass Cream",
+    "brand": "Dr. Jart+",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Dr. Jart+ Ceramidin Cream",
+    "brand": "Dr. Jart+",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Missha Time Revolution The First Treatment Essence",
+    "brand": "Missha",
+    "cat": "Esans",
+    "ingredients": "Saccharomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Missha All Around Safe Block SPF50+",
+    "brand": "Missha",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Ethylhexyl Triazone, Glycerin, Zinc Oxide, Dimethicone, Niacinamide, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Hyaluronic Toner",
+    "brand": "Haruharu WONDER",
+    "cat": "Tonik",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Bakuchiol Eye Cream",
+    "brand": "Haruharu WONDER",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Bakuchiol, Oryza Sativa Bran Extract, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Zero Pore Pad 2.0",
+    "brand": "Medicube",
+    "cat": "Ped",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Red Erasing Serum",
+    "brand": "Medicube",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Azelaic Acid, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Some By Mi AHA BHA PHA 30 Days Miracle Toner",
+    "brand": "Some By Mi",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Tea Tree Leaf Extract, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Some By Mi AHA BHA PHA 30 Days Miracle Serum",
+    "brand": "Some By Mi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Glycolic Acid, Salicylic Acid, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Some By Mi Yuja Niacin Brightening Serum",
+    "brand": "Some By Mi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Citrus Junos Fruit Extract, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Innisfree Green Tea Seed Serum",
+    "brand": "Innisfree",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Camellia Sinensis Leaf Water, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Innisfree Retinol Cica Repair Ampoule",
+    "brand": "Innisfree",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Innisfree Daily UV Defense SPF45",
+    "brand": "Innisfree",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Octocrylene, Zinc Oxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Etude House Soon Jung 2x Barrier Intensive Cream",
+    "brand": "Etude House",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Panthenol, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Etude House SoonJung 10 Free Mildness Toner",
+    "brand": "Etude House",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Golden Rose Wonder BB Cream SPF25",
+    "brand": "Golden Rose",
+    "cat": "BB Krem",
+    "ingredients": "Water, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Golden Rose CC Cream SPF50+",
+    "brand": "Golden Rose",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Titanium Dioxide, Glycerin, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Flormar Perfect Coverage Foundation",
+    "brand": "Flormar",
+    "cat": "Fondöten",
+    "ingredients": "Water, Cyclopentasiloxane, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Olay Regenerist Micro-Sculpting Cream",
+    "brand": "Olay",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Dimethicone, Cetearyl Alcohol, Panthenol, Sodium Hyaluronate, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Olay Regenerist Retinol 24 Night Moisturizer",
+    "brand": "Olay",
+    "cat": "Gece Kremi",
+    "ingredients": "Water, Glycerin, Niacinamide, Retinol, Dimethicone, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Sulwhasoo Snowise EX Brightening Cream",
+    "brand": "Sulwhasoo",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, White Mulberry Extract, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Milk Skin Toner",
+    "brand": "TIRTIR",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tremella Fuciformis Sporocarp Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "TIRTIR Mask Fit Red Cushion SPF40",
+    "brand": "TIRTIR",
+    "cat": "Fondöten",
+    "ingredients": "Water, Cyclopentasiloxane, Titanium Dioxide, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Iron Oxides, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Milk Skin Serum",
+    "brand": "TIRTIR",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tremella Fuciformis Sporocarp Extract, Adenosine, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "TIRTIR Micro Fit Sunscreen SPF50+",
+    "brand": "TIRTIR",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Calming Serum Cica",
+    "brand": "TIRTIR",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "TIRTIR Mask Fit All Cover Cushion SPF50+",
+    "brand": "TIRTIR",
+    "cat": "Fondöten",
+    "ingredients": "Water, Cyclopentasiloxane, Titanium Dioxide, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Iron Oxides, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Cream Fit Skin Toner",
+    "brand": "TIRTIR",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Glow Serum Niacinamide",
+    "brand": "TIRTIR",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "TIRTIR Collagen Jelly Cream",
+    "brand": "TIRTIR",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TIRTIR Retinol Real Cream",
+    "brand": "TIRTIR",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mixsoon Bean Essence",
+    "brand": "Mixsoon",
+    "cat": "Esans",
+    "ingredients": "Glycine Soja Seed Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mixsoon Centella Serum",
+    "brand": "Mixsoon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mixsoon Bifida Ferment Essence",
+    "brand": "Mixsoon",
+    "cat": "Esans",
+    "ingredients": "Bifida Ferment Lysate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mixsoon Galactomyces Serum",
+    "brand": "Mixsoon",
+    "cat": "Serum",
+    "ingredients": "Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mixsoon Syn-Ake Peptide Serum",
+    "brand": "Mixsoon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Syn-Ake, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mixsoon Hyaluronique Serum",
+    "brand": "Mixsoon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydrolyzed Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mixsoon Rice Toner",
+    "brand": "Mixsoon",
+    "cat": "Tonik",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mixsoon Vitamin C 25% Serum",
+    "brand": "Mixsoon",
+    "cat": "Serum",
+    "ingredients": "Water, Ascorbic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "It's Skin Power 10 Formula VC Effector",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbyl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "It's Skin Power 10 Formula WR Effector",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Retinyl Palmitate, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "It's Skin Power 10 Formula GF Effector",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Peptides, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "It's Skin Power 10 Formula LI Effector",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Licorice Root Extract, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "It's Skin Power 10 Formula Q10 Effector",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ubiquinone, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "It's Skin Hyaluronic Acid Moisture Serum",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "It's Skin Prestige D'snail Serum",
+    "brand": "It's Skin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mizon All In One Snail Repair Cream",
+    "brand": "Mizon",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Ceramide NP, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mizon Original Skin Energy Hyaluronic Acid 100",
+    "brand": "Mizon",
+    "cat": "Serum",
+    "ingredients": "Water, Sodium Hyaluronate, Glycerin, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mizon Snail Repair Eye Cream",
+    "brand": "Mizon",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mizon Collagen Power Firming Serum",
+    "brand": "Mizon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Collagen, Niacinamide, Sodium Hyaluronate, Allantoin, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mizon Good Night White Sleeping Mask",
+    "brand": "Mizon",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Mizon AHA & BHA Daily Clean Toner",
+    "brand": "Mizon",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Glycolic Acid, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Mizon Snail Repair Intensive Ampoule",
+    "brand": "Mizon",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Niacinamide, Adenosine, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Vitamin C 21.5% Advanced Serum",
+    "brand": "By Wishtrend",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Water, Dimethyl Isosorbide, Glycerin, Ferulic Acid, Tocopherol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Acid-Duo 2% Mild Gel Cleanser",
+    "brand": "By Wishtrend",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Gluconolactone, Lactic Acid, Niacinamide, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Gluten-Free No-Stress Calming Serum",
+    "brand": "By Wishtrend",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Mandelic Acid 5% Skin Prep Water",
+    "brand": "By Wishtrend",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Mandelic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "By Wishtrend Mugwort 5% Clearing Serum",
+    "brand": "By Wishtrend",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Artemisia Princeps Leaf Extract, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Polyphenols in Propolis 15% Ampoule",
+    "brand": "By Wishtrend",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Propolis Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "By Wishtrend Pure Vitamin C 15% with Ferulic Acid",
+    "brand": "By Wishtrend",
+    "cat": "Serum",
+    "ingredients": "Ascorbic Acid, Water, Dimethyl Isosorbide, Ferulic Acid, Glycerin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Ma:nyo Pure Cleansing Oil",
+    "brand": "Ma:nyo",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Cetyl Ethylhexanoate, Squalane, PEG-20 Glyceryl Triisostearate, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Ma:nyo Galactomyces Niacin Special Treatment Essence",
+    "brand": "Ma:nyo",
+    "cat": "Esans",
+    "ingredients": "Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Ma:nyo Bifida Complex Biome Ampoule",
+    "brand": "Ma:nyo",
+    "cat": "Serum",
+    "ingredients": "Bifida Ferment Lysate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Ma:nyo Galactomyces Moisture Cream",
+    "brand": "Ma:nyo",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Galactomyces Ferment Filtrate, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Ma:nyo Hyaluron Bakuchiol Serum",
+    "brand": "Ma:nyo",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Bakuchiol, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Ma:nyo Rosehip Repair Serum",
+    "brand": "Ma:nyo",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Rosa Canina Seed Oil, Niacinamide, Sodium Hyaluronate, Allantoin, Tocopherol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin&Lab Barrierderm Intensive Cream",
+    "brand": "Skin&Lab",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin&Lab Dr. Pore Tightening Serum",
+    "brand": "Skin&Lab",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin&Lab Red Serum",
+    "brand": "Skin&Lab",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin&Lab Vitamin C Brightening Serum",
+    "brand": "Skin&Lab",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Ferulic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Skin&Lab Sun Project Light Sun Essence SPF50+",
+    "brand": "Skin&Lab",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture 5.5 Lotion",
+    "brand": "Haruharu WONDER",
+    "cat": "Nemlendirici",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture Cream",
+    "brand": "Haruharu WONDER",
+    "cat": "Nemlendirici",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture Serum",
+    "brand": "Haruharu WONDER",
+    "cat": "Serum",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture Deep Cleansing Oil",
+    "brand": "Haruharu WONDER",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Oryza Sativa Bran Oil, Glycerin, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Honey Green Repairative Serum",
+    "brand": "Haruharu WONDER",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Honey Extract, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture Sunscreen SPF50+",
+    "brand": "Haruharu WONDER",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Oryza Sativa Bran Extract, Niacinamide, Dimethicone, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Haruharu WONDER Black Rice Moisture Toner",
+    "brand": "Haruharu WONDER",
+    "cat": "Tonik",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Red Body Acne Serum",
+    "brand": "Medicube",
+    "cat": "Vücut Bakımı",
+    "ingredients": "Water, Glycerin, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Age-R Booster H",
+    "brand": "Medicube",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Sodium Hyaluronate, Hyaluronic Acid, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Red Clearing Serum",
+    "brand": "Medicube",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Collagen Lifting Capsule Cream",
+    "brand": "Medicube",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Collagen, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Zero Sebum Clearing Foam",
+    "brand": "Medicube",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Salicylic Acid, Niacinamide, Zinc PCA, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Medicube Peptide Bouncing Cream",
+    "brand": "Medicube",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Peptides, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Cosrx Advanced Snail 96 Mucin Power Ampoule",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Snail Secretion Filtrate, Glycerin, Betaine, Panthenol, Sodium Polyacrylate, Allantoin, Sodium Hyaluronate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Some By Mi Snail Truecica Miracle Repair Cream",
+    "brand": "Some By Mi",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Centella Asiatica Extract, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Some By Mi Retinol Intense Reactivating Serum",
+    "brand": "Some By Mi",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Some By Mi Galactomyces Pure Vitamin C Glow Serum",
+    "brand": "Some By Mi",
+    "cat": "Serum",
+    "ingredients": "Galactomyces Ferment Filtrate, Water, Glycerin, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Some By Mi AHA BHA PHA 30 Days Miracle Cream",
+    "brand": "Some By Mi",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Niacinamide, Ceramide NP, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Isntree Hyaluronic Acid Real Eye Cream",
+    "brand": "Isntree",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Caffeine, Peptides, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Isntree Chestnut AHA 8% Clear Serum",
+    "brand": "Isntree",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Glycolic Acid, Lactic Acid, Castanea Crenata Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Isntree Green Tea Fresh Toner",
+    "brand": "Isntree",
+    "cat": "Tonik",
+    "ingredients": "Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Isntree Centella Nourishing Cream",
+    "brand": "Isntree",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Goodal Green Tangerine Vita C Dark Spot Serum",
+    "brand": "Goodal",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Citrus Unshiu Peel Extract, Ascorbyl Glucoside, Niacinamide, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Goodal Green Tangerine Vita C Oil Drop Serum",
+    "brand": "Goodal",
+    "cat": "Serum",
+    "ingredients": "Squalane, Ascorbyl Tetraisopalmitate, Citrus Unshiu Peel Extract, Rosehip Oil, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "name": "Goodal Houttuynia Cordata Calming Moisture Toner",
+    "brand": "Goodal",
+    "cat": "Tonik",
+    "ingredients": "Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Neogen Real Fresh Foam Green Tea",
+    "brand": "Neogen",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Sodium Cocoyl Isethionate, Camellia Sinensis Leaf Water, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Neogen Bio-Peel Gauze Peeling Wine",
+    "brand": "Neogen",
+    "cat": "Peeling",
+    "ingredients": "Water, Glycerin, Vitis Vinifera Fruit Extract, Lactic Acid, Glycolic Acid, Allantoin, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Neogen Dermalogy Real Ferment Micro Essence",
+    "brand": "Neogen",
+    "cat": "Esans",
+    "ingredients": "Saccharomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Neogen Day-Light Protection Sunscreen SPF50+",
+    "brand": "Neogen",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Homosalate, Zinc Oxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Dr. Althea Retinol Tightening Serum",
+    "brand": "Dr. Althea",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Retinol, Niacinamide, Ceramide NP, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Dr. Althea Pro-Collagen Peptide Serum",
+    "brand": "Dr. Althea",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Dr. Althea Tone-Up UV Shield SPF50+",
+    "brand": "Dr. Althea",
+    "cat": "Güneş Koruma",
+    "ingredients": "Water, Zinc Oxide, Titanium Dioxide, Glycerin, Dimethicone, Niacinamide, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Abib Mild Acidic pH Sheet Mask Cica Fit",
+    "brand": "Abib",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Abib Gummy Sheet Mask Hyaluronic Acid Sticker",
+    "brand": "Abib",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Abib Heartleaf Essence Pad",
+    "brand": "Abib",
+    "cat": "Ped",
+    "ingredients": "Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Salicylic Acid, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Abib Rebalancing Skin Toner Heartleaf Boosting",
+    "brand": "Abib",
+    "cat": "Tonik",
+    "ingredients": "Houttuynia Cordata Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "VT Cosmetics Cica Cream",
+    "brand": "VT Cosmetics",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "VT Cosmetics Reedle Shot 100",
+    "brand": "VT Cosmetics",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Retinol, Peptides, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "VT Cosmetics Pro Cica Foam Cleanser",
+    "brand": "VT Cosmetics",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Centella Asiatica Extract, Allantoin, Panthenol, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Rovectin Skin Essentials Barrier Repair Cream",
+    "brand": "Rovectin",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Rovectin Skin Essentials Conditioning Cleanser",
+    "brand": "Rovectin",
+    "cat": "Temizleyici",
+    "ingredients": "Water, Glycerin, Cocamidopropyl Betaine, Ceramide NP, Allantoin, Panthenol, Sodium Hyaluronate, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Rovectin Clean Nourishing Sleeping Mask",
+    "brand": "Rovectin",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Benton Aloe BHA Skin Toner",
+    "brand": "Benton",
+    "cat": "Tonik",
+    "ingredients": "Water, Aloe Barbadensis Leaf Juice, Glycerin, Salicylic Acid, Niacinamide, Sodium Hyaluronate, Allantoin, Xanthan Gum, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "name": "Benton Snail Bee Ultimate Serum",
+    "brand": "Benton",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Bee Venom, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Benton Deep Green Tea Serum",
+    "brand": "Benton",
+    "cat": "Serum",
+    "ingredients": "Camellia Sinensis Leaf Water, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Numbuzin No.3 Skin Softening Serum",
+    "brand": "Numbuzin",
+    "cat": "Serum",
+    "ingredients": "Galactomyces Ferment Filtrate, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Numbuzin No.5 Vitamin Niacinamide Concentrated Serum",
+    "brand": "Numbuzin",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Niacinamide, Ascorbyl Glucoside, Alpha Arbutin, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Numbuzin No.9 Poreless Soft Skin Toner",
+    "brand": "Numbuzin",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Niacinamide, Salicylic Acid, Zinc PCA, Sodium Hyaluronate, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "name": "Huxley Secret of Sahara Oil",
+    "brand": "Huxley",
+    "cat": "Yağ",
+    "ingredients": "Opuntia Ficus-Indica Seed Oil, Squalane, Rosa Canina Seed Oil, Tocopherol, Linalool"
+  },
+  {
+    "name": "Huxley Grab Water Essence",
+    "brand": "Huxley",
+    "cat": "Esans",
+    "ingredients": "Water, Glycerin, Opuntia Ficus-Indica Seed Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Huxley Cream Anti-Gravity",
+    "brand": "Huxley",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Opuntia Ficus-Indica Seed Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Fundamental Nourishing Eye Butter",
+    "brand": "Klairs",
+    "cat": "Göz Kremi",
+    "ingredients": "Water, Glycerin, Shea Butter, Niacinamide, Sodium Hyaluronate, Allantoin, Caffeine, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Klairs Gentle Black Deep Cleansing Oil",
+    "brand": "Klairs",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Jojoba Oil, Tocopherol, Sodium Hyaluronate, Phenoxyethanol"
+  },
+  {
+    "name": "Etude House Soon Jung pH 5.5 Relief Toner",
+    "brand": "Etude House",
+    "cat": "Tonik",
+    "ingredients": "Water, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Centella Asiatica Extract, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Etude House Real Art Cleansing Oil Moisture",
+    "brand": "Etude House",
+    "cat": "Temizleyici",
+    "ingredients": "Caprylic/Capric Triglyceride, Squalane, Glycerin, Tocopherol, Sodium Hyaluronate, Phenoxyethanol"
+  },
+  {
+    "name": "I'm From Rice Toner",
+    "brand": "I'm From",
+    "cat": "Tonik",
+    "ingredients": "Oryza Sativa Bran Extract, Water, Glycerin, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "I'm From Fig Serum",
+    "brand": "I'm From",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Ficus Carica Fruit Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "I'm From Mugwort Sheet Mask",
+    "brand": "I'm From",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Artemisia Princeps Leaf Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Belif True Cream Moisturizing Bomb",
+    "brand": "Belif",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Glyceryl Glucoside, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Belif The True Cream Aqua Bomb",
+    "brand": "Belif",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Glyceryl Glucoside, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TonyMoly Magic Food Banana Sleeping Pack",
+    "brand": "TonyMoly",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Musa Sapientum Fruit Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "TonyMoly I'm Real Sheet Mask Hyaluronic Acid",
+    "brand": "TonyMoly",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Niacinamide, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Nature Republic Soothing & Moisture Aloe Vera Gel",
+    "brand": "Nature Republic",
+    "cat": "Jel",
+    "ingredients": "Aloe Barbadensis Leaf Juice, Water, Glycerin, Carbomer, Sodium Hydroxide, Allantoin, Panthenol, Phenoxyethanol"
+  },
+  {
+    "name": "Dr.G Red Blemish Clear Soothing Cream",
+    "brand": "Dr.G",
+    "cat": "Nemlendirici",
+    "ingredients": "Water, Glycerin, Centella Asiatica Extract, Ceramide NP, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Dr.G Brightening Peeling Gel",
+    "brand": "Dr.G",
+    "cat": "Peeling",
+    "ingredients": "Water, Glycerin, Lactic Acid, Niacinamide, Allantoin, Sodium Hyaluronate, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Papa Recipe Bombee Honey Mask",
+    "brand": "Papa Recipe",
+    "cat": "Maske",
+    "ingredients": "Water, Glycerin, Honey Extract, Niacinamide, Sodium Hyaluronate, Allantoin, Panthenol, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Cosrx Advanced Snail 92 Wrinkle Care Serum",
+    "brand": "COSRX",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Snail Secretion Filtrate, Retinyl Palmitate, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Missha Super Aqua Ultra Hyalron Serum",
+    "brand": "Missha",
+    "cat": "Serum",
+    "ingredients": "Water, Glycerin, Sodium Hyaluronate, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Niacinamide, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "name": "Missha Time Revolution Night Repair Ampoule",
+    "brand": "Missha",
+    "cat": "Gece Serumu",
+    "ingredients": "Water, Glycerin, Niacinamide, Retinol, Adenosine, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  }
+]
