@@ -464,6 +464,7 @@ const SAMPLE="Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinol, Dimethi
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const GITHUB_URL = GITHUB_PRODUCTS_URL;
 
+// ─── MAIN APP COMPONENT ───────────────────────────────────────────────────────
 export default function App() {
   const [mode, setMode] = useState("home");
   const [input, setInput] = useState("");
@@ -614,7 +615,7 @@ export default function App() {
 
       
       {showPhotoAdd && (
-        <div onClick={() => setShowPhotoAdd(false)} style={{ position: "fixed", inset: 0, background: "rgba(74,55,61,0.3)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 20, backdropFilter: "blur(4px)" }}>
+        <div onClick={() => setShowPhotoAdd(false)} style={{ position: "fixed", inset: 0, background: "rgba(74,55,61,0.3)", zIndex: 100, display: "flex", alignItems: "center", justifyCenter: "center", padding: 20, backdropFilter: "blur(4px)", justifyContent: "center" }}>
           <div onClick={e => e.stopPropagation()} className="bubble-card" style={{ maxWidth: 480, width: "100%", padding: 24 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
               <div>
@@ -746,6 +747,37 @@ export default function App() {
                     );
                   })}
                 </div>
+
+                
+                {(() => {
+                  const types = ["dry", "oily", "combination", "sensitive", "normal"];
+                  const SKIN_LABELS2 = { dry: "Kuru Cilt", oily: "Yağlı Cilt", combination: "Karma Cilt", sensitive: "Hassas Cilt", normal: "Normal Cilt" };
+                  const suitability = types.map(type => {
+                    const avoidCount = results.filter(r => r.avoid?.includes(type)).length;
+                    const score = Math.max(0, Math.round(100 - (avoidCount / results.length) * 100));
+                    return { type, label: SKIN_LABELS2[type], score, avoidCount };
+                  });
+                  return (
+                    <div className="bubble-card" style={{ background: C.bgCard, border: `2px solid ${C.border}`, padding: "20px", marginBottom: 16 }}>
+                      <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 13, color: C.purple, textTransform: "uppercase", marginBottom: 14 }}>Cilt Tipleri ile Uyum Grafiği</div>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 12 }}>
+                        {suitability.map(({ type, label, score, avoidCount }) => {
+                          const col = score >= 80 ? C.safe : score >= 55 ? C.caution : C.risky;
+                          return (
+                            <div key={type} style={{ textAlign: "center", background: C.bgDeep, border: `1px solid ${C.border}`, borderRadius: 14, padding: 12 }}>
+                              <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 22, color: col }}>{score}%</div>
+                              <div style={{ height: 4, background: C.purpleDim, borderRadius: 2, margin: "6px 0" }}>
+                                <div style={{ height: "100%", width: `${score}%`, borderRadius: 2, background: col }} />
+                              </div>
+                              <div style={{ fontSize: 12, fontWeight: 600, color: C.text }}>{label}</div>
+                              {avoidCount > 0 && <div style={{ fontSize: 11, color: C.risky, fontWeight: 600, marginTop: 2 }}>{avoidCount} Bariyer Riski</div>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {active && (
                   <div className="bubble-card fade" style={{ padding: 20, background: C.purpleDim, borderColor: C.border }}>
