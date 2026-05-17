@@ -123,22 +123,42 @@ function detectConflicts(items){
 }
 
 // ─── PALETTE ──────────────────────────────────────────────────────────────────
-const C={
-  bg:"#0e0b16",bgCard:"#16112a",bgDeep:"#0a0812",bgHover:"#1c1638",
-  border:"#2d2250",borderGold:"#c9993a40",
-  text:"#ede8ff",textMid:"#9b8ec4",textLight:"#5a4d80",
-  purple:"#7c5cbf",purpleLight:"#a87de8",purpleDim:"#2a1f4a",
-  gold:"#c9993a",goldLight:"#e8c46a",goldDim:"#3a2a0a",goldBorder:"#c9993a50",
-  safe:"#4ec994",safeDim:"#0d2e1e",safeBorder:"#1d5c3a",
-  caution:"#e8a830",cautionDim:"#2e1e04",cautionBorder:"#5a3c08",
-  risky:"#e85060",riskyDim:"#2e0810",riskyBorder:"#5a1020",
-  unknown:"#6a5a8a",unknownDim:"#1a1228",unknownBorder:"#3a2a5a",
+const C = {
+  bg: "#FFF5F7",          
+  bgCard: "#FFFFFF",      
+  bgDeep: "#FFFDFE",      
+  bgHover: "#FFEBF1",     
+  border: "#FAD0DC",      
+  borderGold: "#FFE5A3",  
+  text: "#4A373D",        
+  textMid: "#8C737B",     
+  textLight: "#C2A6B0",   
+  purple: "#FF6B8B",      
+  purpleLight: "#FF94AE", 
+  purpleDim: "#FFF0F3",   
+  gold: "#E5A93C",        
+  goldLight: "#F7D070",   
+  goldDim: "#FFFDF4",     
+  goldBorder: "#F5D382",
+  safe: "#66BB6A",        
+  safeDim: "#EDF7ED",
+  safeBorder: "#C8E6C9",
+  caution: "#FFA726",     
+  cautionDim: "#FFF3E0",
+  cautionBorder: "#FFE0B2",
+  risky: "#EF5350",       
+  riskyDim: "#FFEBEE",
+  riskyBorder: "#FFCDD2",
+  unknown: "#90A4AE",     
+  unknownDim: "#F0F4F8",
+  unknownBorder: "#CFD8DC",
 };
-const RM={
-  safe:{label:"Güvenli",color:C.safe,bg:C.safeDim,border:C.safeBorder},
-  caution:{label:"Dikkat",color:C.caution,bg:C.cautionDim,border:C.cautionBorder},
-  risky:{label:"Riskli",color:C.risky,bg:C.riskyDim,border:C.riskyBorder},
-  unknown:{label:"Bilinmiyor",color:C.unknown,bg:C.unknownDim,border:C.unknownBorder},
+
+const RM = {
+  safe: { label: "Güvenli", color: C.safe, bg: C.safeDim, border: C.safeBorder },
+  caution: { label: "Dikkat", color: C.caution, bg: C.cautionDim, border: C.cautionBorder },
+  risky: { label: "Riskli", color: C.risky, bg: C.riskyDim, border: C.riskyBorder },
+  unknown: { label: "Bilinmiyor", color: C.unknown, bg: C.unknownDim, border: C.unknownBorder },
 };
 
 // ─── QUIZ ─────────────────────────────────────────────────────────────────────
@@ -444,176 +464,119 @@ const SAMPLE="Water, Glycerin, Niacinamide, Sodium Hyaluronate, Retinol, Dimethi
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 const GITHUB_URL = GITHUB_PRODUCTS_URL;
 
-export default function App(){
-  const [mode,setMode]=useState("home");
-  const [input,setInput]=useState("");
-  const [results,setResults]=useState(null);
-  const [activeIdx,setActiveIdx]=useState(null);
-  const [filter,setFilter]=useState("all");
-  const [productQ,setProductQ]=useState("");
-  const [productSuggs,setProductSuggs]=useState([]);
-  const [compareA,setCompareA]=useState({input:"",results:null,productQ:"",productSuggs:[]});
-  const [compareB,setCompareB]=useState({input:"",results:null,productQ:"",productSuggs:[]});
-  const [quizStep,setQuizStep]=useState(0);
-  const [quizAnswers,setQuizAnswers]=useState([]);
-  const [quizResult,setQuizResult]=useState(null);
-  const [showDisclaimer,setShowDisclaimer]=useState(false);
-  const [allProducts,setAllProducts]=useState(PRODUCT_DATA);
-  const [ghStatus,setGhStatus]=useState("ok");
-  const [showPhotoAdd,setShowPhotoAdd]=useState(false);
-  const [photoScanStatus,setPhotoScanStatus]=useState("");
-  const [photoScanResult,setPhotoScanResult]=useState(null);
-  const [photoScanError,setPhotoScanError]=useState("");
-  const [routineProducts,setRoutineProducts]=useState([]);
-  const [routineResult,setRoutineResult]=useState(null);
-  const [routineQ,setRoutineQ]=useState("");
-  const [routineSuggs,setRoutineSuggs]=useState([]);
-  const [manualName,setManualName]=useState("");
-  const [manualIng,setManualIng]=useState("");
-  const canvasRef=useRef(null);
-  const fileRef=useRef(null);
-  const photoRef=useRef(null);
+export default function App() {
+  const [mode, setMode] = useState("home");
+  const [input, setInput] = useState("");
+  const [results, setResults] = useState(null);
+  const [activeIdx, setActiveIdx] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const [productQ, setProductQ] = useState("");
+  const [productSuggs, setProductSuggs] = useState([]);
+  const [compareA, setCompareA] = useState({ input: "", results: null, productQ: "", productSuggs: [] });
+  const [compareB, setCompareB] = useState({ input: "", results: null, productQ: "", productSuggs: [] });
+  const [quizStep, setQuizStep] = useState(0);
+  const [quizAnswers, setQuizAnswers] = useState([]);
+  const [quizResult, setQuizResult] = useState(null);
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
+  const [allProducts, setAllProducts] = useState(PRODUCT_DATA);
+  const [ghStatus, setGhStatus] = useState("ok");
+  const [showPhotoAdd, setShowPhotoAdd] = useState(false);
+  const [photoScanStatus, setPhotoScanStatus] = useState("");
+  const [photoScanResult, setPhotoScanResult] = useState(null);
+  const [photoScanError, setPhotoScanError] = useState("");
+  const [routineProducts, setRoutineProducts] = useState([]);
+  const [routineResult, setRoutineResult] = useState(null);
+  const [routineQ, setRoutineQ] = useState("");
+  const [routineSuggs, setRoutineSuggs] = useState([]);
+  const [manualName, setManualName] = useState("");
+  const [manualIng, setManualIng] = useState("");
+  const canvasRef = useRef(null);
+  const photoRef = useRef(null);
 
-  // GitHub'dan ek ürün çek
-  useEffect(()=>{
-    if(GITHUB_URL.includes("KULLANICI_ADI")) return;
-    fetch(GITHUB_URL+"?t="+Date.now())
-      .then(r=>{if(!r.ok)throw new Error();return r.json();})
-      .then(data=>{
-        const valid=Array.isArray(data)?data.filter(p=>p.name&&p.ingredients):[];
-        if(valid.length>0){
-          const existing=new Set(PRODUCT_DATA.map(p=>p.name.toLowerCase()));
-          const newOnes=valid.filter(p=>!existing.has(p.name.toLowerCase()));
-          setAllProducts([...PRODUCT_DATA,...newOnes]);
-          setGhStatus("ok");
+  useEffect(() => {
+    if (GITHUB_PRODUCTS_URL.includes("KULLANICI_ADI")) return;
+    fetch(GITHUB_PRODUCTS_URL + "?t=" + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(data => {
+        const valid = Array.isArray(data) ? data.filter(p => p.name && p.ingredients) : [];
+        if (valid.length > 0) {
+          const existing = new Set(PRODUCT_DATA.map(p => p.name.toLowerCase()));
+          const newOnes = valid.filter(p => !existing.has(p.name.toLowerCase()));
+          setAllProducts([...PRODUCT_DATA, ...newOnes]);
         }
-      })
-      .catch(()=>{});
-  },[]);
+      }).catch(() => {});
+  }, []);
 
-  const analyze=(text,cb)=>{
-    const src=text||input; if(!src.trim())return;
-    const r=parseIngredients(src);
-    if(cb)cb(r); else{setResults(r);setActiveIdx(null);setFilter("all");}
+  const analyze = (text, cb) => {
+    const src = text || input; if (!src.trim()) return;
+    const r = parseIngredients(src);
+    if (cb) cb(r); else { setResults(r); setActiveIdx(null); setFilter("all"); }
   };
 
-  const searchProducts=(q,cb)=>{
-    if(!q||q.trim().length<2){cb([]);return;}
-    const ql=q.toLowerCase().trim();
-    const words=ql.split(/\s+/);
-    const scored=allProducts.map(p=>{
-      const hay=(p.name+" "+p.brand+" "+(p.cat||"")).toLowerCase();
-      let s=0;
-      if(hay.includes(ql))s+=100;
-      words.forEach(w=>{if(hay.includes(w))s+=20;});
-      if(p.brand.toLowerCase().includes(ql))s+=40;
-      if(p.name.toLowerCase().startsWith(ql))s+=30;
-      return{...p,_s:s};
-    }).filter(p=>p._s>0).sort((a,b)=>b._s-a._s).slice(0,8);
+  const searchProducts = (q, cb) => {
+    if (!q || q.trim().length < 2) { cb([]); return; }
+    const ql = q.toLowerCase().trim();
+    const words = ql.split(/\s+/);
+    const scored = allProducts.map(p => {
+      const hay = (p.name + " " + p.brand + " " + (p.cat || "")).toLowerCase();
+      let s = 0;
+      if (hay.includes(ql)) s += 100;
+      words.forEach(w => { if (hay.includes(w)) s += 20; });
+      if (p.brand.toLowerCase().includes(ql)) s += 40;
+      if (p.name.toLowerCase().startsWith(ql)) s += 30;
+      return { ...p, _s: s };
+    }).filter(p => p._s > 0).sort((a, b) => b._s - a._s).slice(0, 8);
     cb(scored);
   };
 
-  const handlePhotoScan=async(file)=>{
-    if(!file)return;
-    setPhotoScanStatus("loading");setPhotoScanError("");setPhotoScanResult(null);
-    try{
-      const base64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(",")[1]);r.onerror=rej;r.readAsDataURL(file);});
-      const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:[
-          {type:"image",source:{type:"base64",media_type:file.type||"image/jpeg",data:base64}},
-          {type:"text",text:'Bu kozmetik ürün fotoğrafından bilgileri çıkar, SADECE JSON döndür: {"name":"Ürün adı","brand":"Marka","cat":"Kategori","ingredients":"INCI listesi"}'}
-        ]}]})});
-      const data=await resp.json();
-      const text=data.content.map(i=>i.text||"").join("").trim();
-      const parsed=JSON.parse(text.replace(/```json|```/g,"").trim());
-      if(!parsed.ingredients)throw new Error("inci_not_found");
-      setPhotoScanResult(parsed);setPhotoScanStatus("done");
-    }catch(e){
-      setPhotoScanError(e.message==="inci_not_found"?"İçerik listesi okunamadı.":"Fotoğraf işlenemedi.");
+  const handlePhotoScan = async (file) => {
+    if (!file) return;
+    setPhotoScanStatus("loading"); setPhotoScanError(""); setPhotoScanResult(null);
+    try {
+      const base64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(",")[1]); r.onerror = rej; r.readAsDataURL(file); });
+      const resp = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{
+            role: "user", content: [
+              { type: "image", source: { type: "base64", media_type: file.type || "image/jpeg", data: base64 } },
+              { type: "text", text: 'Bu kozmetik ürün fotoğrafından bilgileri çıkar, SADECE JSON döndür: {"name":"Ürün adı","brand":"Marka","cat":"Kategori","ingredients":"INCI listesi"}' }
+            ]
+          }]
+        })
+      });
+      const data = await resp.json();
+      const text = data.content.map(i => i.text || "").join("").trim();
+      const parsed = JSON.parse(text.replace(/```json|
+```/g, "").trim());
+      if (!parsed.ingredients) throw new Error("inci_not_found");
+      setPhotoScanResult(parsed); setPhotoScanStatus("done");
+    } catch (e) {
+      setPhotoScanError(e.message === "inci_not_found" ? "İçerik listesi okunamadı." : "Fotoğraf işlenemedi.");
       setPhotoScanStatus("error");
     }
   };
 
-  // ── Quiz ─────────────────────────────────────────────────────────────────────
-  const answerQuiz=(type)=>{
-    const ans=[...quizAnswers,type];
-    if(quizStep<QUIZ.length-1){setQuizAnswers(ans);setQuizStep(quizStep+1);}
-    else{
-      const counts={};
-      ans.forEach(t=>{counts[t]=(counts[t]||0)+1;});
-      const skinType=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
-      setQuizResult(skinType);
+  const buildRoutine = () => {
+    if (!routineProducts.length) return;
+    const tagged = routineProducts.map(p => ({ ...p, time: guessTime(p), actives: getActives(p.parsed) }));
+    const sortByStep = (list, steps) => list.sort((a, b) => { const ai = steps.indexOf(a.step), bi = steps.indexOf(b.step); return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi); });
+    const morning = sortByStep(tagged.filter(p => p.time === "morning" || p.time === "both").map(p => ({ ...p, step: guessStep(p, "morning") })), ["Temizleyici", "Tonik / Esans", "C Vitamini Serumu", "Serum (Aktif)", "Göz Kremi", "Nemlendirici", "Güneş Koruma"]);
+    const evening = sortByStep(tagged.filter(p => p.time === "evening" || p.time === "both").map(p => ({ ...p, step: guessStep(p, "evening") })), ["Temizleyici (Yağ Bazlı)", "Temizleyici", "Tonik / Esans", "Asit / Peeling", "Serum (Aktif)", "Retinoid", "Göz Kremi", "Nemlendirici", "Onarıcı"]);
+    
+    const cfls = [];
+    morning.filter(p => p.actives.retinoid).forEach(p => cfls.push({ severity: "high", icon: "⚡", msg: `"${p.name}" retinoid içeriyor ve sabah rutininde — retinoidler sadece akşam kullanılmalı.` }));
+    if (evening.filter(p => p.actives.aha||p.actives.bha).length && evening.filter(p => p.actives.retinoid).length) {
+      cfls.push({ severity: "high", icon: "⚡", msg: "Asit ve Retinoid ürünleri aynı akşam rutininde — bariyer sağlığı için farklı gecelere ayırmalısın." });
     }
+    const tips = [];
+    if (evening.some(p => p.actives.retinoid)) tips.push("🔬 Retinoid kullanırken sabah rutinine mutlaka SPF eklemelisin.");
+    setRoutineResult({ morning, evening, conflicts: cfls, tips });
   };
 
-  // ── Routine ───────────────────────────────────────────────────────────────────
-  const STEPS_M=["Temizleyici","Tonik / Esans","C Vitamini Serumu","Serum (Aktif)","Göz Kremi","Nemlendirici","Güneş Koruma"];
-  const STEPS_E=["Temizleyici (Yağ Bazlı)","Temizleyici","Tonik / Esans","Asit / Peeling","Serum (Aktif)","Retinoid","Göz Kremi","Nemlendirici","Onarıcı"];
-
-  const guessTime=(p)=>{
-    const n=(p.name+" "+(p.cat||"")).toLowerCase();
-    if(/spf|sunscreen|güneş|sun protect/.test(n))return"morning";
-    if(/night|gece|retinol|retinal|retinoid|granactive|peeling|exfoliant|aha|bha|glycolic|salicylic/.test(n))return"evening";
-    if(/cleansing oil|oil cleanser|cleansing balm/.test(n))return"evening";
-    return"both";
-  };
-
-  const guessStep=(p,session)=>{
-    const n=(p.name+" "+(p.cat||"")).toLowerCase();
-    if(/spf|sunscreen|güneş/.test(n))return"Güneş Koruma";
-    if(/retinol|retinal|retinoid|granactive/.test(n))return"Retinoid";
-    if(/cleansing oil|cleansing balm|oil cleanser/.test(n))return"Temizleyici (Yağ Bazlı)";
-    if(/cleanser|temizleyici|foam|gel clean|micellar|wash/.test(n))return"Temizleyici";
-    if(/eye|göz/.test(n))return"Göz Kremi";
-    if(/toner|tonik|essence|esans|pad/.test(n))return"Tonik / Esans";
-    if(/peeling|exfoliant|aha|bha/.test(n))return"Asit / Peeling";
-    if(session==="morning"&&/ascorbic acid|vitamin c serum|c vitamini/.test(n))return"C Vitamini Serumu";
-    if(/serum|ampoule|booster|liquid|esans/.test(n))return"Serum (Aktif)";
-    if(/ointment|healing|onarıcı|petrolatum/.test(n))return"Onarıcı";
-    return"Nemlendirici";
-  };
-
-  const getActives=(parsed)=>{
-    const k=parsed.map(i=>i.name.toLowerCase());
-    const has=(terms)=>terms.some(t=>k.some(ki=>ki.includes(t)));
-    return{
-      retinoid:has(["retinol","retinal","granactive","hydroxypinacolone retinoate"]),
-      vitaminC:has(["ascorbic acid","sodium ascorbyl phosphate","3-o-ethyl"]),
-      aha:has(["glycolic acid","lactic acid","mandelic acid","tartaric acid"]),
-      bha:has(["salicylic acid","betaine salicylate"]),
-      niacinamide:has(["niacinamide"]),
-      benzoyl:has(["benzoyl peroxide"]),
-    };
-  };
-
-  const buildRoutine=()=>{
-    if(!routineProducts.length)return;
-    const tagged=routineProducts.map(p=>({...p,time:guessTime(p),actives:getActives(p.parsed)}));
-    const sortByStep=(list,steps)=>list.sort((a,b)=>{const ai=steps.indexOf(a.step),bi=steps.indexOf(b.step);return(ai===-1?99:ai)-(bi===-1?99:bi);});
-    const morning=sortByStep(tagged.filter(p=>p.time==="morning"||p.time==="both").map(p=>({...p,step:guessStep(p,"morning")})),STEPS_M);
-    const evening=sortByStep(tagged.filter(p=>p.time==="evening"||p.time==="both").map(p=>({...p,step:guessStep(p,"evening")})),STEPS_E);
-    const cfls=[];
-    morning.filter(p=>p.actives.retinoid).forEach(p=>cfls.push({severity:"high",icon:"⚡",msg:`"${p.name}" retinoid içeriyor ve sabah rutininde — retinoidler sadece akşam kullanılmalı.`}));
-    const eAcid=evening.filter(p=>p.actives.aha||p.actives.bha);
-    const eRet=evening.filter(p=>p.actives.retinoid);
-    if(eAcid.length&&eRet.length)cfls.push({severity:"high",icon:"⚡",msg:`Asit (${eAcid.map(p=>p.name).join(", ")}) + Retinoid (${eRet.map(p=>p.name).join(", ")}) aynı akşam rutininde — farklı gecelere ayır.`});
-    const vcP=tagged.filter(p=>p.actives.vitaminC);
-    const niaP=tagged.filter(p=>p.actives.niacinamide);
-    if(vcP.length&&niaP.length&&vcP.some(v=>niaP.some(n=>n.name!==v.name)))cfls.push({severity:"medium",icon:"🟡",msg:`C vitamini + niasinamid yüksek konsantrasyonda sararma riski. Sabah C vitamini, akşam niasinamid önerilir.`});
-    const benz=tagged.filter(p=>p.actives.benzoyl);
-    if(benz.length&&(vcP.length||eRet.length))cfls.push({severity:"high",icon:"⚡",msg:`Benzoil peroksit (${benz[0].name}) retinolü inaktive eder ve C vitaminini oksitler.`});
-    const tips=[];
-    if(eRet.length)tips.push("🔬 Retinoid kullanırken sabah mutlaka SPF uygulayın. Haftada 2-3 gece ile başlayın.");
-    if(eAcid.length&&!eRet.length)tips.push("🧪 Asit ve retinoid günlerini birbirinden ayırın.");
-    if(!morning.some(p=>/spf|sunscreen|güneş/.test((p.name+p.cat).toLowerCase())))tips.push("☀️ Sabah rutininde SPF görünmüyor — aktif kullanıyorsanız şart.");
-    if(vcP.length)tips.push("💛 C vitaminini sabah kullanın — gündüz antioksidan koruması en değerlidir.");
-    setRoutineResult({morning,evening,conflicts:cfls,tips});
-  };
-
-  // ── Computed values ───────────────────────────────────────────────────────────
-  const conflicts=results?detectConflicts(results):[];
-  const compareConflictsA=compareA.results?detectConflicts(compareA.results):[];
-  const compareConflictsB=compareB.results?detectConflicts(compareB.results):[];
+  const conflicts = results ? detectConflicts(results) : [];
+  const compareConflictsA = compareA.results ? detectConflicts(compareA.results) : [];
+  const compareConflictsB = compareB.results ? detectConflicts(compareB.results) : [];
   const BADGE_DEFS2=[
     {id:"ceramide_hero",icon:"🛡️",label:"Bariyer Kahramanı",check:items=>items.filter(i=>i.name.toLowerCase().includes("ceramide")).length>=3},
     {id:"fragrance_free",icon:"🌿",label:"Parfümsüz",check:items=>!items.some(i=>["fragrance","parfum","linalool","limonene"].some(k=>i.name.toLowerCase().includes(k)))},
@@ -623,880 +586,302 @@ export default function App(){
     {id:"hydration_max",icon:"💧",label:"Nem Bombası",check:items=>items.filter((i,idx)=>idx<items.length*0.4&&["glycerin","hyaluronate","panthenol","sorbitol"].some(k=>i.name.toLowerCase().includes(k))).length>=3},
     {id:"spf_hero",icon:"☀️",label:"SPF Koruması",check:items=>items.some(i=>["zinc oxide","titanium dioxide","avobenzone","homosalate","octocrylene"].some(k=>i.name.toLowerCase().includes(k)))},
   ];
+  const badges = results ? BADGE_DEFS2.filter(b => b.check(results)) : [];
+  const avgScore = calcScore(results);
+  const scoreColor = avgScore >= 80 ? C.safe : avgScore >= 60 ? C.caution : C.risky;
+  const filtered = results?.filter(r => filter === "all" || r.rating === filter);
+  const active = activeIdx !== null && results ? results[activeIdx] : null;
 
-  const avgScore=calcScore(results);
-  const scoreColor=avgScore>=80?C.safe:avgScore>=60?C.caution:C.risky;
-  const filtered=results?.filter(r=>filter==="all"||r.rating===filter);
-  const active=activeIdx!==null&&results?results[activeIdx]:null;
-  const badges=results?BADGE_DEFS2.filter(b=>b.check(results)):[];
-
-  const S={fontFamily:"'DM Sans',sans-serif"};
-  const serif={fontFamily:"'Cormorant Garamond',serif"};
-
-  return(
-    <div style={{minHeight:"100vh",background:C.bg,color:C.text,...S,position:"relative",overflow:"hidden"}}>
+  return (
+    <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "'Quicksand', sans-serif", position: "relative", overflow: "hidden" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
-        ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:${C.bgDeep};}::-webkit-scrollbar-thumb{background:${C.border};border-radius:2px;}
-        .row:hover{background:${C.bgHover}!important;cursor:pointer;}
-        .btn{transition:all 0.2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
-        .btn:hover:not(:disabled){opacity:0.9;transform:translateY(-1px);}
-        .nav-btn{transition:all 0.2s;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
-        .nav-btn:hover{color:${C.gold}!important;}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes spin{to{transform:rotate(360deg)}}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-        @keyframes badgePop{0%{transform:scale(0.8);opacity:0}70%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
-        .fade{animation:fadeUp 0.4s ease forwards;}
-        .badge{animation:badgePop 0.5s ease forwards;}
-        .gold-glow{box-shadow:0 0 20px ${C.gold}20,0 4px 20px rgba(0,0,0,0.3);}
-        .input-field{background:${C.bgDeep};border:1px solid ${C.border};border-radius:10px;padding:13px 16px;color:${C.text};font-size:15px;width:100%;outline:none;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;}
-        .input-field:focus{border-color:${C.gold};}
-        textarea.input-field{line-height:1.7;resize:vertical;}
+        ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:${C.purpleDim};}::-webkit-scrollbar-thumb{background:${C.border};border-radius:3px;}
+        .row{transition:all 0.2s; border-radius:10px; margin:2px 0;}
+        .row:hover{background:${C.bgHover}!important;cursor:pointer;transform: scale(1.01);}
+        .btn{transition:all 0.2s;cursor:pointer;border:none;font-family:'Quicksand',sans-serif;box-shadow: 0 4px 0 rgba(74,55,61,0.12); border-radius:12px;}
+        .btn:hover:not(:disabled){opacity:0.95;transform:translateY(-1px);box-shadow: 0 5px 0 rgba(74,55,61,0.18);}
+        .btn:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 rgba(74,55,61,0.15);}
+        .nav-btn{transition:all 0.2s;cursor:pointer;background:none;border:none;font-family:'Fredoka',sans-serif;color:${C.textMid};}
+        .nav-btn:hover{color:${C.purple}!important; transform: scale(1.03);}
+        .bubble-card{box-shadow: 0 8px 24px rgba(244,143,177,0.08); border-radius:20px; transition:all 0.3s; background:#fff; border:2px solid ${C.border};}
+        .input-field{background:${C.bgDeep};border:2px solid ${C.border};border-radius:14px;padding:12px 16px;color:${C.text};font-size:15px;width:100%;outline:none;font-family:'Quicksand',sans-serif;}
+        .input-field:focus{border-color:${C.purple}; box-shadow: 0 0 0 4px ${C.purpleDim};}
       `}</style>
 
-      <canvas ref={canvasRef} style={{position:"fixed",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:0,opacity:0.5}}/>
-      <div style={{position:"fixed",top:-300,left:-200,width:700,height:700,borderRadius:"50%",background:`radial-gradient(circle,${C.purpleDim} 0%,transparent 65%)`,pointerEvents:"none",zIndex:0}}/>
-      <div style={{position:"fixed",bottom:-200,right:-100,width:500,height:500,borderRadius:"50%",background:`radial-gradient(circle,${C.goldDim} 0%,transparent 65%)`,pointerEvents:"none",zIndex:0}}/>
+      <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.4 }} />
 
-      {/* PHOTO SCAN MODAL */}
-      {showPhotoAdd&&(
-        <div onClick={()=>setShowPhotoAdd(false)} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.8)",zIndex:100,display:"flex",alignItems:"center",justifyContent:"center",padding:20,backdropFilter:"blur(4px)"}}>
-          <div onClick={e=>e.stopPropagation()} style={{background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:16,maxWidth:480,width:"100%",padding:28,boxShadow:"0 24px 60px rgba(0,0,0,0.5)"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+      
+      {showPhotoAdd && (
+        <div onClick={() => setShowPhotoAdd(false)} style={{ position: "fixed", inset: 0, background: "rgba(74,55,61,0.3)", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 20, backdropFilter: "blur(4px)" }}>
+          <div onClick={e => e.stopPropagation()} className="bubble-card" style={{ maxWidth: 480, width: "100%", padding: 24 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
               <div>
-                <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:4}}>📷 Fotoğrafla Tara</div>
-                <div style={{fontSize:13,color:C.textMid}}>Ürün etiketini çek, içerikler otomatik okunur</div>
+                <h3 style={{ fontFamily: "'Fredoka', sans-serif", color: C.purple, fontSize: 16 }}>📷 Sihirli Kamera Tarayıcı</h3>
+                <div style={{ fontSize: 13, color: C.textMid }}>Etiketi çek, içerikler otomatik dökülsün ✨</div>
               </div>
-              <button onClick={()=>setShowPhotoAdd(false)} style={{background:"none",border:"none",color:C.textLight,fontSize:20,cursor:"pointer"}}>×</button>
+              <button onClick={() => setShowPhotoAdd(false)} style={{ background: "none", border: "none", color: C.textLight, fontSize: 24, cursor: "pointer" }}>×</button>
             </div>
-
-            <input ref={photoRef} type="file" accept="image/*" capture="environment" style={{display:"none"}} onChange={e=>handlePhotoScan(e.target.files[0])}/>
-
-            {/* Tips */}
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:16}}>
-              {["📸 Düz ve tam karşıdan çek","💡 İyi ışık, gölge olmasın","🔍 Yazılar net görünsün","📐 Tüm içerik listesi görünsün"].map((t,i)=>(
-                <div key={i} style={{fontSize:11,color:C.textMid,background:C.bgDeep,border:`1px solid ${C.border}`,borderRadius:8,padding:"7px 10px"}}>{t}</div>
-              ))}
-            </div>
-
-            {photoScanStatus===""&&(
-              <button onClick={()=>photoRef.current?.click()} style={{width:"100%",padding:14,background:`linear-gradient(135deg,${C.purple},${C.gold})`,border:"none",borderRadius:10,color:"#fff",fontSize:15,fontWeight:600,cursor:"pointer",fontFamily:"'DM Sans',sans-serif"}}>
-                📷 Fotoğraf Çek / Yükle
-              </button>
-            )}
-
-            {photoScanStatus==="loading"&&(
-              <div style={{textAlign:"center",padding:"24px 0"}}>
-                <div style={{width:32,height:32,border:`3px solid ${C.border}`,borderTopColor:C.gold,borderRadius:"50%",animation:"spin 0.8s linear infinite",margin:"0 auto 12px"}}/>
-                <div style={{color:C.textMid,fontSize:14}}>Etiket okunuyor…</div>
-              </div>
-            )}
-
-            {photoScanStatus==="error"&&(
+            <input ref={photoRef} type="file" accept="image/*" capture="environment" style={{ display: "none" }} onChange={e => handlePhotoScan(e.target.files[0])} />
+            {photoScanStatus === "" && <button onClick={() => photoRef.current?.click()} className="btn" style={{ width: "100%", padding: 12, background: C.purple, color: "#fff", fontWeight: 600 }}>Kamerayı Aç / Fotoğraf Seç</button>}
+            {photoScanStatus === "loading" && <div style={{ textAlign: "center", padding: 16, color: C.purple, fontWeight: 600 }}>🔮 İçerik kodları çözülüyor...</div>}
+            {photoScanStatus === "done" && photoScanResult && (
               <div>
-                <div style={{padding:"12px 14px",background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:10,color:C.risky,fontSize:13,marginBottom:12,lineHeight:1.6}}>⚠️ {photoScanError}</div>
-                <button onClick={()=>{setPhotoScanStatus("");setPhotoScanError("");photoRef.current?.click();}} style={{width:"100%",padding:12,background:C.bgDeep,border:`1px solid ${C.border}`,borderRadius:10,color:C.textMid,fontSize:14,cursor:"pointer",fontFamily:"'DM Sans',sans-serif"}}>Tekrar Dene</button>
-              </div>
-            )}
-
-            {photoScanStatus==="done"&&photoScanResult&&(
-              <div>
-                <div style={{background:C.safeDim,border:`1px solid ${C.safeBorder}`,borderRadius:10,padding:14,marginBottom:14}}>
-                  <div style={{fontSize:11,color:C.safe,letterSpacing:2,textTransform:"uppercase",marginBottom:8}}>✓ Okunan Bilgiler</div>
-                  <div style={{fontSize:14,color:C.text,fontWeight:600,marginBottom:2}}>{photoScanResult.name||"İsim okunamadı"}</div>
-                  <div style={{fontSize:12,color:C.gold,marginBottom:8}}>{photoScanResult.brand||""}{photoScanResult.cat?" · "+photoScanResult.cat:""}</div>
-                  <div style={{fontSize:11,color:C.textMid,lineHeight:1.6,maxHeight:80,overflow:"auto"}}>{photoScanResult.ingredients}</div>
+                <div style={{ background: C.safeDim, padding: 12, borderRadius: 12, marginBottom: 12, border: `1px solid ${C.safeBorder}` }}>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>{photoScanResult.name}</div>
+                  <div style={{ fontSize: 12, color: C.textMid, maxHeight: 60, overflow: "auto", marginTop: 4 }}>{photoScanResult.ingredients}</div>
                 </div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-                  <button onClick={()=>{setPhotoScanStatus("");setPhotoScanResult(null);photoRef.current?.click();}}
-                    style={{padding:11,background:C.bgDeep,border:`1px solid ${C.border}`,borderRadius:10,color:C.textMid,fontSize:13,cursor:"pointer",fontFamily:"'DM Sans',sans-serif"}}>
-                    Tekrar Çek
-                  </button>
-                  <button onClick={()=>{
-                    setInput(photoScanResult.ingredients);
-                    setMode("analyze");
-                    setShowPhotoAdd(false);
-                    setPhotoScanStatus("");
-                    setPhotoScanResult(null);
-                    analyze(photoScanResult.ingredients);
-                  }} style={{padding:11,background:`linear-gradient(135deg,${C.purple},${C.gold})`,border:"none",borderRadius:10,color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'DM Sans',sans-serif"}}>
-                    Analiz Et →
-                  </button>
-                </div>
+                <button onClick={() => { setInput(photoScanResult.ingredients); setMode("analyze"); setShowPhotoAdd(false); analyze(photoScanResult.ingredients); }} className="btn" style={{ width: "100%", padding: 12, background: C.purple, color: "#fff", fontWeight: 600 }}>Analizi Başlat →</button>
               </div>
             )}
           </div>
         </div>
       )}
-      {showDisclaimer&&(
-        <div onClick={()=>setShowDisclaimer(false)} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.75)",zIndex:100,display:"flex",alignItems:"center",justifyContent:"center",padding:20,backdropFilter:"blur(4px)"}}>
-          <div onClick={e=>e.stopPropagation()} style={{background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:16,maxWidth:500,width:"100%",padding:32,boxShadow:"0 24px 60px rgba(0,0,0,0.5)"}}>
-            <div style={{fontSize:11,letterSpacing:3,color:C.risky,marginBottom:8,textTransform:"uppercase"}}>Yasal Uyarı</div>
-            <h3 style={{...serif,fontSize:20,color:C.text,marginBottom:16}}>Lütfen okuyun</h3>
-            <div style={{fontSize:14,color:C.textMid,lineHeight:1.85}}>
-              <p style={{marginBottom:10}}>Bu platform <strong style={{color:C.goldLight}}>Dr. Bengi Su Ege</strong> tarafından hazırlanmış genel bilgilendirme amaçlı bir içerik rehberidir.</p>
-              <p style={{marginBottom:10}}>⚠️ Tıbbi tavsiye, teşhis veya tedavi sunmamaktadır.</p>
-              <p style={{marginBottom:10}}>⚠️ Konsantrasyon tahminleri INCI sırasına dayalıdır — kesin yüzdeler üretici tarafından bilinir.</p>
-              <p style={{marginBottom:18}}>⚠️ Bireysel cilt tipi, alerji ve ilaç kullanımı değerlendirmeye dahil edilemez. Uzman hekime başvurun.</p>
-            </div>
-            <button className="btn" onClick={()=>setShowDisclaimer(false)} style={{width:"100%",padding:13,background:`linear-gradient(135deg,${C.purple},${C.gold})`,borderRadius:10,color:"#fff",fontSize:15,fontWeight:600}}>Anladım</button>
-          </div>
-        </div>
-      )}
 
-      <div style={{position:"relative",zIndex:1,maxWidth:900,margin:"0 auto",padding:"0 20px 80px"}}>
-
-        {/* NAV */}
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"24px 0 8px",borderBottom:`1px solid ${C.border}`,marginBottom:32,flexWrap:"wrap",gap:12}}>
-          <button className="nav-btn" onClick={()=>{setMode("home");setResults(null);}} style={{display:"flex",alignItems:"center",gap:10}}>
-            <div style={{width:32,height:32,borderRadius:"50%",background:`linear-gradient(135deg,${C.purple},${C.gold})`,display:"flex",alignItems:"center",justifyContent:"center",...serif,fontWeight:700,fontSize:14,color:"#fff"}}>D</div>
-            <span style={{...serif,fontSize:18,fontWeight:600,color:C.text}}>DermaDecode</span>
+      
+      <div style={{ maxWidth: 920, margin: "0 auto", padding: "0 20px 60px", position: "relative", zIndex: 1 }}>
+        
+        
+        <div className="bubble-card" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", marginTop: 20, marginBottom: 28, flexWrap: "wrap", gap: 12 }}>
+          <button className="nav-btn" onClick={() => { setMode("home"); setResults(null); }} style={{ display: "flex", alignItems: "center", gap: 8, background: "none", border: "none" }}>
+            <div style={{ width: 34, height: 34, borderRadius: "10px", background: `linear-gradient(135deg,${C.purple},${C.purpleLight})`, display: "flex", alignItems: "center", fontFamily: "'Fredoka', sans-serif", fontSize: 16, color: "#fff", justifyContent: "center" }}>🔮</div>
+            <span style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 18, color: C.text }}>Derma<span style={{ color: C.purple }}>Decode</span></span>
           </button>
-          <div style={{display:"flex",gap:4,alignItems:"center",flexWrap:"wrap"}}>
-            {[{id:"analyze",label:"🔍 Analiz"},{id:"compare",label:"⚖️ Karşılaştır"},{id:"quiz",label:"🎯 Quiz"},{id:"routine",label:"🌅 Rutin"}].map(m=>(
-              <button key={m.id} className="nav-btn" onClick={()=>{setMode(m.id);if(m.id==="quiz"){setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}if(m.id==="routine"){setRoutineProducts([]);setRoutineResult(null);setManualName("");setManualIng("");}}}
-                style={{fontSize:13,padding:"7px 14px",borderRadius:20,color:mode===m.id?C.gold:C.textMid,background:mode===m.id?C.purpleDim:"transparent",border:`1px solid ${mode===m.id?C.purple:"transparent"}`,fontWeight:mode===m.id?600:400}}>
+          
+          <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+            {[{ id: "analyze", label: "🔍 İncele" }, { id: "compare", label: "⚖️ Kıyasla" }, { id: "quiz", label: "🎯 Test Et" }, { id: "routine", label: "🌅 Rutinim" }].map(m => (
+              <button key={m.id} className="nav-btn" onClick={() => setMode(m.id)} style={{ fontSize: 14, padding: "8px 14px", borderRadius: 10, background: mode === m.id ? C.purpleDim : "transparent", color: mode === m.id ? C.purple : C.textMid, fontWeight: mode === m.id ? 600 : 500 }}>
                 {m.label}
               </button>
             ))}
-            <button className="nav-btn" onClick={()=>{setShowPhotoAdd(true);setPhotoScanStatus("");setPhotoScanResult(null);setPhotoScanError("");}}
-              style={{fontSize:13,padding:"7px 14px",borderRadius:20,color:C.purpleLight,border:`1px solid ${C.purpleDim}`,background:C.purpleDim}}>
-              📷 Tara
-            </button>
-            <button className="nav-btn" onClick={()=>setShowDisclaimer(true)} style={{fontSize:13,padding:"7px 14px",color:C.risky,borderRadius:20,border:`1px solid ${C.riskyBorder}`}}>⚠️</button>
-          </div>
-          <div style={{display:"flex",alignItems:"center",gap:10,padding:"8px 14px",background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:10,fontSize:12}}>
-            <div style={{width:28,height:28,borderRadius:"50%",background:`linear-gradient(135deg,${C.purpleDim},${C.goldDim})`,display:"flex",alignItems:"center",justifyContent:"center",...serif,fontWeight:700,color:C.gold,border:`1px solid ${C.goldBorder}`}}>B</div>
-            <div>
-              <div style={{...serif,fontWeight:600,color:C.text,fontSize:13}}>Dr. Bengi Su Ege</div>
-              <div style={{color:C.textLight,fontSize:10,letterSpacing:1}}>İÇERİK DANIŞMANI</div>
-            </div>
+            <button className="nav-btn" onClick={() => setShowPhotoAdd(true)} style={{ fontSize: 14, padding: "8px 14px", borderRadius: 10, color: "#fff", background: C.purple, fontWeight: 600 }}>Tıkla Tara</button>
           </div>
         </div>
 
-        {/* ── HOME ── */}
-        {mode==="home"&&(
-          <div className="fade" style={{textAlign:"center",padding:"40px 0"}}>
-            <div style={{fontSize:11,letterSpacing:5,color:C.gold,textTransform:"uppercase",marginBottom:16}}>Kozmetik İçerik Analizi</div>
-            <h1 style={{...serif,fontSize:"clamp(48px,8vw,84px)",fontWeight:700,lineHeight:1,letterSpacing:-2,color:C.text,marginBottom:16}}>
-              Derma<span style={{color:C.gold,fontStyle:"italic"}}>Decode</span>
+        
+        {mode === "home" && (
+          <div className="fade" style={{ textAlign: "center", padding: "30px 0" }}>
+            <h1 style={{ fontFamily: "'Fredoka', sans-serif", fontSize: "clamp(36px, 6vw, 64px)", color: C.text, lineHeight: 1.1, marginBottom: 12 }}>
+              Cilt Bakımını <br/><span style={{ color: C.purple }}>Oyunlaştır 🪄</span>
             </h1>
-            <p style={{color:C.textMid,fontSize:16,maxWidth:480,margin:"0 auto 40px",lineHeight:1.7,fontWeight:300}}>
-              Ürün içeriklerini analiz edin, karşılaştırın ve cilt tipinize uygun formülleri keşfedin.
+            <p style={{ color: C.textMid, fontSize: 15, maxWidth: 480, margin: "0 auto 32px", lineHeight: 1.6 }}>
+              Kozmetik etiketlerindeki karmaşık Latince içerikleri dermatolojik verilere dayanarak sevimli bir panelle analiz edin.
             </p>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,maxWidth:640,margin:"0 auto"}}>
-              {[
-                {id:"analyze",icon:"🔍",title:"İçerik Analiz",desc:"Bileşenleri dermatolojik açıdan incele"},
-                {id:"compare",icon:"⚖️",title:"Karşılaştır",desc:"2 ürünü yan yana analiz et"},
-                {id:"quiz",icon:"🎯",title:"Cilt Quiz",desc:"Cilt tipini keşfet, öneri al"},
-              ].map(card=>(
-                <button key={card.id} className="btn" onClick={()=>{setMode(card.id);if(card.id==="quiz"){setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}}}
-                  style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:"24px 16px",textAlign:"center",color:C.text}}>
-                  <div style={{fontSize:36,marginBottom:12}}>{card.icon}</div>
-                  <div style={{...serif,fontSize:16,fontWeight:600,marginBottom:6}}>{card.title}</div>
-                  <div style={{color:C.textMid,fontSize:13,lineHeight:1.5}}>{card.desc}</div>
-                </button>
-              ))}
-            </div>
-            <div style={{marginTop:48,display:"flex",justifyContent:"center",gap:24,flexWrap:"wrap"}}>
-              {[["70+","Analiz Bileşeni"],["7","Vaat Kontrolü"],["6","Çakışma Kuralı"],["5","Cilt Tipi"]].map(([n,l])=>(
-                <div key={l} style={{textAlign:"center"}}>
-                  <div style={{...serif,fontSize:32,fontWeight:700,color:C.gold}}>{n}</div>
-                  <div style={{color:C.textLight,fontSize:12,letterSpacing:1,textTransform:"uppercase"}}>{l}</div>
-                </div>
-              ))}
-            </div>
-            {ghStatus==="ok"&&allProducts.length>PRODUCT_DATA.length&&(
-              <div style={{marginTop:16,display:"inline-flex",alignItems:"center",gap:6,padding:"5px 14px",background:C.safeDim,border:`1px solid ${C.safeBorder}`,borderRadius:20,fontSize:12,color:C.safe}}>
-                ✓ GitHub'dan ek ürünler yüklendi
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, maxWidth: 680, margin: "0 auto" }}>
+              <div className="bubble-card" style={{ padding: 20, cursor: "pointer" }} onClick={() => setMode("analyze")}>
+                <div style={{ fontSize: 36, marginBottom: 8 }}>🔍</div>
+                <h4 style={{ fontFamily: "'Fredoka', sans-serif", marginBottom: 4 }}>İçerik Analizi</h4>
+                <p style={{ fontSize: 12, color: C.textMid }}>INCI listelerini saniyeler içinde çözün.</p>
               </div>
-            )}
-            {ghStatus==="loading"&&(
-              <div style={{marginTop:16,fontSize:12,color:C.textLight}}>Ürün veritabanı yükleniyor…</div>
-            )}
+              <div className="bubble-card" style={{ padding: 20, cursor: "pointer" }} onClick={() => setMode("compare")}>
+                <div style={{ fontSize: 36, marginBottom: 8 }}>⚖️</div>
+                <h4 style={{ fontFamily: "'Fredoka', sans-serif", marginBottom: 4 }}>Ürün Karşılaştırma</h4>
+                <p style={{ fontSize: 12, color: C.textMid }}>İki formülü yan yana ekleyip kıyaslayın.</p>
+              </div>
+              <div className="bubble-card" style={{ padding: 20, cursor: "pointer" }} onClick={() => setMode("quiz")}>
+                <div style={{ fontSize: 36, marginBottom: 8 }}>🎯</div>
+                <h4 style={{ fontFamily: "'Fredoka', sans-serif", marginBottom: 4 }}>Cilt Quizi</h4>
+                <p style={{ fontSize: 12, color: C.textMid }}>Cildinize en iyi gelecek aktifleri bulun.</p>
+              </div>
+            </div>
           </div>
         )}
 
-        {/* ── QUIZ ── */}
-        {mode==="quiz"&&(
+        
+        {mode === "analyze" && (
           <div className="fade">
-            {!quizResult?(
-              <>
-                <div style={{marginBottom:24}}>
-                  <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:8}}>Cilt Tipi Quiz — {quizStep+1}/{QUIZ.length}</div>
-                  <div style={{height:4,background:C.border,borderRadius:2,marginBottom:24}}>
-                    <div style={{height:"100%",width:`${((quizStep+1)/QUIZ.length)*100}%`,background:`linear-gradient(90deg,${C.purple},${C.gold})`,borderRadius:2,transition:"width 0.4s ease"}}/>
-                  </div>
-                  <h2 style={{...serif,fontSize:"clamp(20px,4vw,30px)",fontWeight:600,color:C.text,lineHeight:1.3}}>{QUIZ[quizStep].q}</h2>
-                </div>
-                <div style={{display:"grid",gap:12}}>
-                  {QUIZ[quizStep].opts.map((opt,i)=>(
-                    <button key={i} className="btn" onClick={()=>answerQuiz(opt.t)}
-                      style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:12,padding:"18px 22px",textAlign:"left",color:C.text,fontSize:15,fontWeight:400,display:"flex",alignItems:"center",gap:14}}>
-                      <div style={{width:28,height:28,borderRadius:"50%",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,color:C.textLight,flexShrink:0}}>{String.fromCharCode(65+i)}</div>
-                      {opt.l}
-                    </button>
-                  ))}
-                </div>
-              </>
-            ):(
-              <div className="fade">
-                {(()=>{const r=SKIN_REC[quizResult]||SKIN_REC.normal;return(
-                  <div style={{background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:16,padding:32,boxShadow:`0 0 40px ${C.gold}10`}}>
-                    <div style={{textAlign:"center",marginBottom:28}}>
-                      <div style={{fontSize:56,marginBottom:12}}>{r.emoji}</div>
-                      <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:8}}>Cilt Tipiniz</div>
-                      <h2 style={{...serif,fontSize:36,fontWeight:700,color:C.text}}>{r.label}</h2>
-                      <p style={{color:C.textMid,fontSize:15,marginTop:10,lineHeight:1.7}}>{r.desc}</p>
-                    </div>
-                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:20}}>
-                      <div style={{background:C.safeDim,border:`1px solid ${C.safeBorder}`,borderRadius:12,padding:18}}>
-                        <div style={{fontSize:11,letterSpacing:2,color:C.safe,textTransform:"uppercase",marginBottom:10}}>Önerilen Bileşenler</div>
-                        <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-                          {r.badges.map(b=><span key={b} style={{fontSize:12,padding:"3px 10px",borderRadius:20,background:`${C.safe}18`,color:C.safe,border:`1px solid ${C.safe}40`}}>{b}</span>)}
-                        </div>
-                      </div>
-                      <div style={{background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:12,padding:18}}>
-                        <div style={{fontSize:11,letterSpacing:2,color:C.risky,textTransform:"uppercase",marginBottom:10}}>Kaçınılacaklar</div>
-                        <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-                          {r.avoid.map(b=><span key={b} style={{fontSize:12,padding:"3px 10px",borderRadius:20,background:`${C.risky}18`,color:C.risky,border:`1px solid ${C.risky}40`}}>{b}</span>)}
-                        </div>
-                      </div>
-                    </div>
-                    <div style={{display:"flex",gap:10}}>
-                      <button className="btn" onClick={()=>{setQuizStep(0);setQuizAnswers([]);setQuizResult(null);}} style={{flex:1,padding:12,background:C.bgDeep,border:`1px solid ${C.border}`,borderRadius:10,color:C.textMid,fontSize:14}}>Tekrar Yap</button>
-                      <button className="btn" onClick={()=>setMode("analyze")} style={{flex:2,padding:12,background:`linear-gradient(135deg,${C.purple},${C.gold})`,borderRadius:10,color:"#fff",fontSize:14,fontWeight:600}}>Ürün Analiz Et →</button>
-                    </div>
-                  </div>
-                );})()}
+            <div className="bubble-card" style={{ padding: 20, marginBottom: 16 }}>
+              <ProductSearch q="{productQ}" setQ="{setProductQ}" suggs="{productSuggs}" setSuggs="{setProductSuggs}" onSearch="{q"> searchProducts(q, setProductSuggs)} onSelect={p => { setInput(p.ingredients); setProductQ(p.name); setProductSuggs([]); analyze(p.ingredients); }} ghStatus={ghStatus} totalCount={allProducts.length} />
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16, marginBottom: 6 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: C.textMid }}>Veya İçerik Listesini Buraya Girin:</span>
+                <button onClick={() => setInput(SAMPLE)} style={{ fontSize: 11, background: C.purpleDim, color: C.purple, border: "none", padding: "2px 8px", borderRadius: 6, fontWeight: 600, cursor: "pointer" }}>Örnek Yükle</button>
               </div>
-            )}
-          </div>
-        )}
-
-        {/* ── ANALYZE ── */}
-        {mode==="analyze"&&(
-          <div className="fade">
-            {/* Input card */}
-            <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden",marginBottom:16,boxShadow:"0 8px 32px rgba(0,0,0,0.25)"}}>
-              <div style={{padding:24}}>
-                <ProductSearch q={productQ} setQ={setProductQ} suggs={productSuggs} setSuggs={setProductSuggs}
-                  onSearch={q=>searchProducts(q,s=>setProductSuggs(s))}
-                  onSelect={p=>{setInput(p.ingredients);setProductQ(p.name+" — "+p.brand);setProductSuggs([]);analyze(p.ingredients);}}
-                  ghStatus={ghStatus} totalCount={allProducts.length}/>
-                <div style={{margin:"12px 0",display:"flex",alignItems:"center",gap:8}}>
-                  <div style={{flex:1,height:1,background:C.border}}/><span style={{color:C.textLight,fontSize:12}}>veya</span><div style={{flex:1,height:1,background:C.border}}/>
-                </div>
-                <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-                  <span style={{fontSize:13,color:C.textLight}}>INCI listesini yapıştır</span>
-                  <button onClick={()=>setInput(SAMPLE)} style={{fontSize:12,color:C.gold,background:C.goldDim,border:`1px solid ${C.goldBorder}`,borderRadius:6,padding:"3px 10px",cursor:"pointer"}}>Örnek</button>
-                </div>
-                <textarea className="input-field" value={input} onChange={e=>setInput(e.target.value)} placeholder="Water, Glycerin, Niacinamide..." rows={4}/>
-                <button className="btn" onClick={()=>analyze()} disabled={!input.trim()}
-                  style={{marginTop:12,width:"100%",padding:14,background:input.trim()?`linear-gradient(135deg,${C.purple},${C.gold})`:C.border,borderRadius:10,color:input.trim()?"#fff":C.textLight,fontSize:15,fontWeight:600}}>
-                  İçerikleri Analiz Et
-                </button>
-              </div>
+              <textarea className="input-field" value={input} onChange={e => setInput(e.target.value)} placeholder="Aqua, Glycerin, Niacinamide..." rows={4} />
+              <button className="btn" onClick={() => analyze()} disabled={!input.trim()} style={{ marginTop: 12, width: "100%", padding: 12, background: input.trim() ? C.purple : C.textLight, color: "#fff", fontWeight: 600, fontSize: 14 }}>Formülü Sihirli Çözümle ✨</button>
             </div>
 
-            {/* Disclaimer strip */}
-            <div style={{marginBottom:16,padding:"10px 16px",background:C.cautionDim,border:`1px solid ${C.cautionBorder}`,borderRadius:10,fontSize:12,color:C.caution,display:"flex",justifyContent:"space-between",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-              <span>⚠️ Genel bilgi amaçlıdır, tıbbi tavsiye değildir.</span>
-              <button onClick={()=>setShowDisclaimer(true)} style={{fontSize:11,color:C.gold,background:"none",border:`1px solid ${C.goldBorder}`,padding:"3px 10px",borderRadius:6,cursor:"pointer"}}>Uyarılar →</button>
-            </div>
-
-            {results&&(
+            {results && (
               <div className="fade">
-                {/* BADGES */}
-                {badges.length>0&&(
-                  <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:16}}>
-                    {badges.map((b,i)=>(
-                      <div key={b.id} className="badge" style={{animationDelay:`${i*0.08}s`,display:"flex",alignItems:"center",gap:6,padding:"6px 12px",background:C.goldDim,border:`1px solid ${C.goldBorder}`,borderRadius:20,fontSize:12,color:C.goldLight}} title={b.desc}>
-                        {b.icon} {b.label}
+                {conflicts.length > 0 && (
+                  <div style={{ background: C.riskyDim, border: `2px solid ${C.riskyBorder}`, borderRadius: 16, padding: 16, marginBottom: 16 }}>
+                    <div style={{ fontFamily: "'Fredoka', sans-serif", color: C.risky, fontSize: 14, marginBottom: 8 }}>⚠️ Aktif İçerik Çakışması Algılandı</div>
+                    {conflicts.map((cf, idx) => (
+                      <div key={idx} style={{ fontSize: 13, color: C.text, marginBottom: 6, paddingLeft: 8, borderLeft: `2px solid ${C.risky}` }}>
+                        <strong>{cf.title}:</strong> {cf.tip}
                       </div>
                     ))}
                   </div>
                 )}
 
-                {/* CONFLICTS */}
-                {conflicts.length>0&&(
-                  <div style={{marginBottom:16,background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:14,overflow:"hidden"}}>
-                    <div style={{padding:"12px 18px",background:"rgba(232,80,96,0.1)",borderBottom:`1px solid ${C.riskyBorder}`,fontSize:11,letterSpacing:2,color:C.risky,textTransform:"uppercase"}}>
-                      ⚡ {conflicts.length} Bileşen Çakışması Tespit Edildi
-                    </div>
-                    {conflicts.map((cf,i)=>(
-                      <div key={i} style={{padding:"14px 18px",borderBottom:i<conflicts.length-1?`1px solid rgba(232,80,96,0.15)`:"none"}}>
-                        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
-                          <span style={{fontSize:16}}>{cf.icon}</span>
-                          <span style={{fontSize:14,fontWeight:600,color:cf.severity==="high"?C.risky:C.caution}}>{cf.title}</span>
-                          <span style={{fontSize:10,padding:"2px 8px",borderRadius:10,background:cf.severity==="high"?C.riskyDim:C.cautionDim,color:cf.severity==="high"?C.risky:C.caution,border:`1px solid ${cf.severity==="high"?C.riskyBorder:C.cautionBorder}`}}>
-                            {cf.severity==="high"?"Yüksek Risk":"Orta Risk"}
-                          </span>
-                        </div>
-                        <div style={{fontSize:13,color:C.textMid,lineHeight:1.6,paddingLeft:24}}>
-                          <span style={{color:C.risky}}>{cf.aNames.join(", ")}</span> + <span style={{color:C.caution}}>{cf.bNames.join(", ")}</span>
-                          <div style={{marginTop:4,color:C.textLight}}>{cf.tip}</div>
-                        </div>
-                      </div>
-                    ))}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+                  <div className="bubble-card" style={{ padding: 16, textAlign: "center" }}>
+                    <div style={{ fontSize: 12, color: C.textMid, fontWeight: 600 }}>Formül Temizlik Puanı</div>
+                    <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 36, color: scoreColor }}>{avgScore}<span style={{ fontSize: 16, color: C.textLight }}>/100</span></div>
                   </div>
-                )}
-
-                {/* SCORES */}
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
-                  <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:"20px 22px"}}>
-                    <div style={{fontSize:11,color:C.textLight,letterSpacing:2,textTransform:"uppercase",marginBottom:8}}>Genel Skor</div>
-                    <div style={{...serif,fontSize:44,fontWeight:700,color:scoreColor,lineHeight:1}}>{avgScore}<span style={{fontSize:18,color:C.textLight}}>/100</span></div>
-                    <div style={{marginTop:10,height:4,borderRadius:2,background:C.border}}>
-                      <div style={{height:"100%",width:`${avgScore}%`,borderRadius:2,background:scoreColor,transition:"width 1s ease",boxShadow:`0 0 8px ${scoreColor}60`}}/>
-                    </div>
-                  </div>
-                  <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:"20px 22px"}}>
-                    <div style={{fontSize:11,color:C.textLight,letterSpacing:2,textTransform:"uppercase",marginBottom:12}}>Dağılım</div>
-                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-                      {[{l:"Güvenli",c:results.filter(r=>r.rating==="safe").length,col:C.safe,r:"safe"},{l:"Dikkat",c:results.filter(r=>r.rating==="caution").length,col:C.caution,r:"caution"},{l:"Riskli",c:results.filter(r=>r.rating==="risky").length,col:C.risky,r:"risky"},{l:"Bilinmiyor",c:results.filter(r=>r.rating==="unknown").length,col:C.unknown,r:"unknown"}].map(x=>(
-                        <button key={x.r} onClick={()=>setFilter(f=>f===x.r?"all":x.r)} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 8px",background:filter===x.r?`${x.col}18`:C.bgDeep,border:`1px solid ${filter===x.r?x.col+"60":C.border}`,borderRadius:8,cursor:"pointer",textAlign:"left"}}>
-                          <div style={{width:7,height:7,borderRadius:"50%",background:x.col,boxShadow:`0 0 5px ${x.col}`,flexShrink:0}}/>
-                          <span style={{fontSize:13,color:C.text}}>{x.c} <span style={{color:C.textMid,fontSize:12}}>{x.l}</span></span>
+                  <div className="bubble-card" style={{ padding: 16 }}>
+                    <div style={{ fontSize: 12, color: C.textMid, fontWeight: 600, marginBottom: 6 }}>Filtrele</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                      {["safe", "caution", "risky"].map(r => (
+                        <button key={r} onClick={() => setFilter(filter === r ? "all" : r)} style={{ fontSize: 11, padding: "4px 8px", borderRadius: 8, background: filter === r ? C.purpleDim : C.bgDeep, border: `1px solid ${filter === r ? C.purple : C.border}`, color: C.text, cursor: "pointer", fontWeight: 600 }}>
+                          {r === "safe" ? "🍏 Güvenli" : r === "caution" ? "🍊 Dikkat" : "🍓 Riskli"}
                         </button>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                {/* INGREDIENT LIST */}
-                <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",marginBottom:12,boxShadow:"0 4px 20px rgba(0,0,0,0.2)"}}>
-                  <div style={{display:"grid",gridTemplateColumns:"28px 1fr 90px 48px",padding:"9px 18px",background:C.bgDeep,borderBottom:`1px solid ${C.border}`}}>
-                    {["#","Bileşen","Konsantrasyon","Skor"].map((h,i)=><div key={i} style={{fontSize:10,color:C.textLight,letterSpacing:2,textTransform:"uppercase",textAlign:i===3?"right":"left"}}>{h}</div>)}
-                  </div>
-                  {filtered?.map((ing,i)=>{
-                    const meta=RM[ing.rating]||RM.unknown;
-                    const realIdx=results.indexOf(ing);
-                    const hasConflict=conflicts.some(cf=>[...cf.aNames,...cf.bNames].includes(ing.tr));
-                    return(
-                      <div key={i} className="row" onClick={()=>setActiveIdx(activeIdx===realIdx?null:realIdx)}
-                        style={{display:"grid",gridTemplateColumns:"28px 1fr 90px 48px",alignItems:"center",padding:"13px 18px",borderBottom:i<filtered.length-1?`1px solid ${C.border}`:"none",background:activeIdx===realIdx?C.purpleDim:"transparent"}}>
-                        <span style={{fontSize:11,color:C.textLight}}>{ing.listIndex}</span>
+                <div className="bubble-card" style={{ overflow: "hidden", marginBottom: 16 }}>
+                  {filtered?.map((ing, i) => {
+                    const meta = RM[ing.rating] || RM.unknown;
+                    return (
+                      <div key={i} className="row" onClick={() => setActiveIdx(activeIdx === results.indexOf(ing) ? null : results.indexOf(ing))} style={{ display: "grid", gridTemplateColumns: "30px 1fr 50px", padding: "10px 14px", alignItems: "center", borderBottom: `1px solid ${C.purpleDim}` }}>
+                        <span style={{ fontSize: 12, color: C.textLight, fontWeight: 600 }}>{ing.listIndex}</span>
                         <div>
-                          <div style={{display:"flex",alignItems:"center",gap:7,flexWrap:"wrap"}}>
-                            <div style={{width:7,height:7,borderRadius:"50%",background:meta.color,boxShadow:`0 0 5px ${meta.color}`,flexShrink:0}}/>
-                            <span style={{fontSize:14,color:C.text,fontWeight:500}}>{ing.tr}</span>
-                            {hasConflict&&<span style={{fontSize:9,padding:"1px 6px",borderRadius:8,background:C.riskyDim,color:C.risky,border:`1px solid ${C.riskyBorder}`}}>⚡ Çakışma</span>}
-                            {ing.vitaminCTier===4&&<span style={{fontSize:9,padding:"1px 6px",borderRadius:8,background:C.riskyDim,color:C.risky,border:`1px solid ${C.riskyBorder}`}}>Düşük Bio.</span>}
-                            {ing.vitaminCTier===1&&<span style={{fontSize:9,padding:"1px 6px",borderRadius:8,background:C.safeDim,color:C.safe,border:`1px solid ${C.safeBorder}`}}>Güçlü C</span>}
-                          </div>
-                          <div style={{fontSize:11,color:C.textLight,marginTop:2,paddingLeft:14}}>{ing.name} · {ing.cat}</div>
+                          <div style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{ing.tr}</div>
+                          <div style={{ fontSize: 11, color: C.textLight }}>{ing.name} • {ing.cat}</div>
                         </div>
-                        <div style={{fontSize:11,color:ing.position==="Yüksek"?C.caution:ing.position==="Eser"?C.textLight:C.textMid}}>{ing.position}</div>
-                        <div style={{...serif,fontSize:17,color:meta.color,fontWeight:700,textAlign:"right"}}>{ing.score}</div>
+                        <span style={{ fontSize: 14, fontWeight: 700, color: meta.color, textAlign: "right" }}>{ing.score}</span>
                       </div>
                     );
                   })}
                 </div>
 
-                {/* DETAIL */}
-                {active&&(
-                  <div className="fade" style={{background:C.bgCard,border:`1px solid ${RM[active.rating].border}`,borderRadius:14,padding:24,marginBottom:12,boxShadow:`0 8px 32px rgba(0,0,0,0.25),0 0 20px ${RM[active.rating].color}10`}}>
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:14}}>
-                      <div>
-                        <div style={{...serif,fontSize:20,fontWeight:600,color:C.text,marginBottom:3}}>{active.tr}</div>
-                        <div style={{fontSize:11,color:C.textLight,letterSpacing:1}}>{active.name} · #{active.listIndex} · {active.cat}</div>
-                      </div>
-                      <div style={{textAlign:"right"}}>
-                        <div style={{...serif,fontSize:32,fontWeight:700,color:RM[active.rating].color,lineHeight:1}}>{active.score}</div>
-                        <div style={{fontSize:11,color:RM[active.rating].color,fontWeight:600,letterSpacing:1}}>{RM[active.rating].label}</div>
-                      </div>
-                    </div>
-                    <p style={{fontSize:14,color:C.textMid,lineHeight:1.85,marginBottom:12}}>{active.desc}</p>
-                    {active.vitaminCTier&&(
-                      <div style={{padding:"11px 14px",background:active.vitaminCTier<=2?C.safeDim:active.vitaminCTier===3?C.cautionDim:C.riskyDim,border:`1px solid ${active.vitaminCTier<=2?C.safeBorder:active.vitaminCTier===3?C.cautionBorder:C.riskyBorder}`,borderRadius:10,marginBottom:10}}>
-                        <div style={{fontSize:11,color:active.vitaminCTier<=2?C.safe:active.vitaminCTier===3?C.caution:C.risky,letterSpacing:2,textTransform:"uppercase",marginBottom:6}}>C Vitamini Etkinlik — Tier {active.vitaminCTier}/4</div>
-                        <div style={{display:"flex",gap:3,marginBottom:8}}>
-                          {[1,2,3,4].map(t=><div key={t} style={{flex:1,height:3,borderRadius:2,background:t<=active.vitaminCTier?(active.vitaminCTier<=2?C.safe:active.vitaminCTier===3?C.caution:C.risky):C.border}}/>)}
-                        </div>
-                        <p style={{fontSize:13,color:C.text,lineHeight:1.6}}>
-                          {active.vitaminCTier===1&&"En güçlü form — yüksek biyoyararlanım, doğrudan aktif."}
-                          {active.vitaminCTier===2&&"İyi form — makul biyoyararlanım, güvenilir etki."}
-                          {active.vitaminCTier===3&&"Orta form — dönüşüm gerektirir, değişken etkinlik."}
-                          {active.vitaminCTier===4&&"Zayıf form — düşük biyoyararlanım. C vitamini vaadi abartılı olabilir."}
-                        </p>
-                      </div>
-                    )}
-                    {active.usage&&(
-                      <div style={{padding:"10px 14px",background:C.goldDim,border:`1px solid ${C.goldBorder}`,borderRadius:10,marginBottom:10}}>
-                        <div style={{fontSize:11,color:C.gold,letterSpacing:2,textTransform:"uppercase",marginBottom:5}}>Kullanım Önerisi</div>
-                        <p style={{fontSize:13,color:C.text,lineHeight:1.6}}>{active.usage}</p>
-                      </div>
-                    )}
-                    <div style={{fontSize:13,color:C.textMid,padding:"9px 13px",background:C.bgDeep,borderRadius:8,marginBottom:active.concern?10:0}}>
-                      📍 {active.positionNote}
-                    </div>
-                    {active.concern&&(
-                      <div style={{padding:"10px 13px",background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:8,fontSize:13,color:C.risky,lineHeight:1.6,marginTop:10}}>
-                        ⚠️ {active.concern}
-                      </div>
-                    )}
-                    {active.comedogenic>0&&(
-                      <div style={{marginTop:10,fontSize:12,color:C.caution}}>
-                        Komedonik: {"◆".repeat(active.comedogenic)}{"◇".repeat(5-active.comedogenic)} ({active.comedogenic}/5)
-                      </div>
-                    )}
+                {active && (
+                  <div className="bubble-card fade" style={{ padding: 20, background: C.purpleDim, borderColor: C.border }}>
+                    <h4 style={{ fontFamily: "'Fredoka', sans-serif", color: C.text, fontSize: 16, marginBottom: 4 }}>{active.tr} ({active.name})</h4>
+                    <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.5, marginBottom: 8 }}>{active.desc}</p>
+                    {active.usage && <div style={{ fontSize: 12, color: C.text, background: "#fff", padding: "6px 10px", borderRadius: 8, border: `1px solid ${C.border}` }}>⚙️ <strong>Kullanım:</strong> {active.usage}</div>}
                   </div>
                 )}
+              </div>
+            )}
+          </div>
+        )}
 
-                {/* SKIN SUITABILITY */}
-                {(()=>{
-                  const types=["dry","oily","combination","sensitive","normal"];
-                  const SKIN_LABELS2={dry:"Kuru",oily:"Yağlı",combination:"Karma",sensitive:"Hassas",normal:"Normal"};
-                  const suitability=types.map(type=>{
-                    const avoidCount=results.filter(r=>r.avoid?.includes(type)).length;
-                    const score=Math.max(0,Math.round(100-(avoidCount/results.length)*100));
-                    return{type,label:SKIN_LABELS2[type],score,avoidCount};
-                  });
-                  return(
-                    <div style={{background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:14,padding:"20px 22px",marginBottom:12,boxShadow:`0 0 20px ${C.gold}08`}}>
-                      <div style={{fontSize:11,color:C.gold,letterSpacing:3,textTransform:"uppercase",marginBottom:14}}>Cilt Tipine Uygunluk</div>
-                      <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10}}>
-                        {suitability.map(({type,label,score,avoidCount})=>{
-                          const col=score>=80?C.safe:score>=55?C.caution:C.risky;
-                          return(
-                            <div key={type} style={{textAlign:"center"}}>
-                              <div style={{...serif,fontSize:22,fontWeight:700,color:col,lineHeight:1}}>{score}</div>
-                              <div style={{height:3,borderRadius:2,background:C.border,margin:"6px 0"}}>
-                                <div style={{height:"100%",width:`${score}%`,borderRadius:2,background:col,boxShadow:`0 0 6px ${col}60`}}/>
-                              </div>
-                              <div style={{fontSize:11,color:C.textMid}}>{label}</div>
-                              {avoidCount>0&&<div style={{fontSize:10,color:C.risky,marginTop:2}}>{avoidCount} dikkat</div>}
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div style={{marginTop:12,fontSize:11,color:C.textLight,lineHeight:1.6}}>
-                        Skor, o cilt tipi için "dikkat" işaretli bileşen sayısına göre hesaplanır. Yüksek skor = bu cilt tipine daha uygun formül.
-                      </div>
-                    </div>
-                  );
-                })()}
+        
+        {mode === "compare" && (
+          <div className="fade">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+              <div className="bubble-card" style={{ padding: 16 }}>
+                <span style={{ fontSize: 12, color: C.purple, fontWeight: 700 }}>Ürün A</span>
+                <textarea className="input-field" value={compareA.input} onChange={e => setCompareA({ ...compareA, input: e.target.value })} placeholder="INCI yapıştır..." rows={3} style={{ marginTop: 6 }} />
+                <button className="btn" onClick={() => setCompareA({ ...compareA, results: parseIngredients(compareA.input) })} style={{ width: "100%", padding: 8, background: C.purple, color: "#fff", marginTop: 8, fontSize: 12, fontWeight: 600 }}>A'yı Yükle</button>
+              </div>
+              <div className="bubble-card" style={{ padding: 16 }}>
+                <span style={{ fontSize: 12, color: C.gold, fontWeight: 700 }}>Ürün B</span>
+                <textarea className="input-field" value={compareB.input} onChange={e => setCompareB({ ...compareB, input: e.target.value })} placeholder="INCI yapıştır..." rows={3} style={{ marginTop: 6 }} />
+                <button className="btn" onClick={() => setCompareB({ ...compareB, results: parseIngredients(compareB.input) })} style={{ width: "100%", padding: 8, background: C.purple, color: "#fff", marginTop: 8, fontSize: 12, fontWeight: 600 }}>B'yi Yükle</button>
+              </div>
+            </div>
 
-                {/* PROMISE ANALYSIS */}
-                {(()=>{
-                  const checks=[
-                    {claim:"Yoğun Nemlendirme",icon:"💧",evaluate(){
-                      const actives=results.filter(i=>["hyaluronic acid","sodium hyaluronate","glycerin","glycerol","panthenol","urea","sorbitol"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!actives.length)return{verdict:"Zayıf",color:C.risky,detail:"Güçlü nemlendirici bileşen bulunamadı."};
-                      const idx=results.indexOf(actives[0]),pct=idx/results.length;
-                      if(pct<0.4)return{verdict:"Güçlü",color:C.safe,detail:`${actives[0].tr} listenin üst yarısında — yüksek konsantrasyon beklenir.`};
-                      if(pct<0.7)return{verdict:"Orta",color:C.caution,detail:`${actives[0].tr} mevcut ama listede orta sıralarda.`};
-                      return{verdict:"Zayıf",color:C.risky,detail:`${actives[0].tr} listenin sonunda — eser miktarda olabilir.`};
-                    }},
-                    {claim:"Anti-Aging / Kırışıklık",icon:"⏳",evaluate(){
-                      const all=results.filter(i=>["retinol","retinal","retinyl","bakuchiol","adenosine","peptide","resveratrol","ascorbic acid","ascorbyl"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!all.length)return{verdict:"Zayıf",color:C.risky,detail:"Kanıtlanmış anti-aging bileşen bulunamadı."};
-                      const real=all.filter(a=>!a.name.toLowerCase().includes("collagen"));
-                      if(!real.length)return{verdict:"Yanıltıcı",color:C.risky,detail:"Sadece topikal kolajen var — deriye nüfuz edemez, vaat karşılanamaz."};
-                      const idx=results.indexOf(real[0]);
-                      if(idx<results.length*0.5)return{verdict:"Güçlü",color:C.safe,detail:`${real[0].tr} listenin üst yarısında — anlamlı etki beklentisi makul.`};
-                      return{verdict:"Orta",color:C.caution,detail:`${real[0].tr} mevcut ama konsantrasyonu sınırlı olabilir.`};
-                    }},
-                    {claim:"Leke Açma / Parlaklık",icon:"✨",evaluate(){
-                      const actives=results.filter(i=>["niacinamide","alpha arbutin","kojic acid","ascorbic acid","ascorbyl","azelaic acid","mandelic acid","glycolic acid","lactic acid","tranexamic"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!actives.length)return{verdict:"Zayıf",color:C.risky,detail:"Leke açıcı bileşen bulunamadı."};
-                      const top=actives[0],idx=results.indexOf(top);
-                      const isEffective=["niacinamide","alpha arbutin","ascorbic acid","azelaic acid","tranexamic"].some(k=>top.name.toLowerCase().includes(k));
-                      if(idx<results.length*0.4&&isEffective)return{verdict:"Güçlü",color:C.safe,detail:`${top.tr} üst sıralarda — leke açma vaadi karşılanabilir.`};
-                      if(idx<results.length*0.65)return{verdict:"Orta",color:C.caution,detail:`${top.tr} mevcut — etki konsantrasyona bağlı.`};
-                      return{verdict:"Zayıf",color:C.risky,detail:`${top.tr} listede geride — konsantrasyon yetersiz olabilir.`};
-                    }},
-                    {claim:"Hassas Cilt / Yatıştırıcı",icon:"🌿",evaluate(){
-                      const soothing=results.filter(i=>["allantoin","centella","aloe","panthenol","ceramide","cholesterol","green tea","squalane"].some(k=>i.name.toLowerCase().includes(k)));
-                      const irritants=results.filter(i=>["fragrance","parfum","alcohol denat","linalool","limonene"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(irritants.length&&!soothing.length)return{verdict:"Yanıltıcı",color:C.risky,detail:`Yatıştırıcı yok ama ${irritants[0].tr} gibi irritanlar var.`};
-                      if(irritants.length)return{verdict:"Çelişkili",color:C.caution,detail:`Yatıştırıcılar mevcut ama ${irritants.map(i=>i.tr).join(", ")} hassas ciltleri etkileyebilir.`};
-                      if(soothing.length>=2)return{verdict:"Güçlü",color:C.safe,detail:`${soothing.slice(0,2).map(a=>a.tr).join(" ve ")} formülü hassas cilt dostu yapıyor.`};
-                      if(soothing.length===1)return{verdict:"Orta",color:C.caution,detail:`${soothing[0].tr} var ama formül daha güçlü yatıştırıcılardan yoksun.`};
-                      return{verdict:"Zayıf",color:C.risky,detail:"Yatıştırıcı bileşen bulunamadı."};
-                    }},
-                    {claim:"Gözenek / Yağ Kontrolü",icon:"🔬",evaluate(){
-                      const actives=results.filter(i=>["niacinamide","salicylic acid","zinc","kaolin","bentonite","charcoal","glycolic acid"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!actives.length)return{verdict:"Zayıf",color:C.risky,detail:"Gözenek veya yağ kontrolüne yönelik bileşen bulunamadı."};
-                      const comedogenics=results.filter((i,idx)=>i.comedogenic>=2&&idx<results.length*0.5);
-                      if(comedogenics.length)return{verdict:"Çelişkili",color:C.caution,detail:`${actives[0].tr} var ama ${comedogenics[0].tr} (komedonik) üst sıralarda — çelişkili formül.`};
-                      const idx=results.indexOf(actives[0]);
-                      return idx<results.length*0.5
-                        ?{verdict:"Güçlü",color:C.safe,detail:`${actives[0].tr} üst sıralarda — gözenek ve yağ vaadi karşılanabilir.`}
-                        :{verdict:"Orta",color:C.caution,detail:`${actives[0].tr} mevcut ama konsantrasyonu sınırlı olabilir.`};
-                    }},
-                    {claim:"Bariyer Onarımı",icon:"🛡️",evaluate(){
-                      const ceramides=results.filter(i=>i.name.toLowerCase().includes("ceramide"));
-                      const others=results.filter(i=>["cholesterol","squalane","sodium hyaluronate"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!ceramides.length&&!others.length)return{verdict:"Zayıf",color:C.risky,detail:"Bariyer onarımına yönelik bileşen yok."};
-                      if(ceramides.length>=2)return{verdict:"Güçlü",color:C.safe,detail:`${ceramides.length} farklı seramid içeriyor — güçlü bariyer onarım formülü.`};
-                      if(ceramides.length===1)return{verdict:"İyi",color:C.safe,detail:`${ceramides[0].tr} mevcut — bariyer desteği sağlar.`};
-                      return{verdict:"Orta",color:C.caution,detail:"Tam seramid kompleksi yok ama destekleyici bileşenler mevcut."};
-                    }},
-                    {claim:"Güneş Koruma (SPF)",icon:"☀️",evaluate(){
-                      const sunFilters=results.filter(i=>["zinc oxide","titanium dioxide","avobenzone","octocrylene","oxybenzone","homosalate","octinoxate"].some(k=>i.name.toLowerCase().includes(k)));
-                      if(!sunFilters.length)return{verdict:"Yok",color:C.unknown,detail:"Güneş filtresi bileşeni bulunamadı — SPF vaadi varsa şüpheyle yaklaşın."};
-                      const physical=sunFilters.filter(a=>["zinc oxide","titanium dioxide"].some(k=>a.name.toLowerCase().includes(k)));
-                      const hasOxy=sunFilters.some(a=>a.name.toLowerCase().includes("oxybenzone"));
-                      if(physical.length)return{verdict:"Güvenli",color:C.safe,detail:`Fiziksel filtre (${physical[0].tr}) — hassas ciltler için ideal.`};
-                      if(hasOxy)return{verdict:"Riskli",color:C.risky,detail:"Oksibenson içeriyor — endokrin bozucu şüphesi olan kimyasal filtre."};
-                      return{verdict:"Orta",color:C.caution,detail:`Kimyasal filtre (${sunFilters[0]?.tr}) — etkili ama hassas ciltlerde dikkat.`};
-                    }},
-                  ];
-                  const promises=checks.map(c=>({claim:c.claim,icon:c.icon,...c.evaluate()}));
-                  return(
-                    <div style={{background:C.bgCard,border:`1px solid ${C.borderGold}`,borderRadius:14,padding:"20px 22px",marginBottom:12,boxShadow:`0 0 20px ${C.gold}08`}}>
-                      <div style={{fontSize:11,color:C.gold,letterSpacing:3,textTransform:"uppercase",marginBottom:6}}>Vaatler vs. Formül</div>
-                      <div style={{fontSize:13,color:C.textMid,marginBottom:14,lineHeight:1.6}}>İçerik sıralaması ve bileşen etkinliğine göre yaygın ürün vaatleri formülle ne kadar örtüşüyor?</div>
-                      <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                        {promises.map((p,i)=>(
-                          <div key={i} style={{display:"grid",gridTemplateColumns:"28px 1fr auto",alignItems:"center",gap:12,padding:"12px 14px",background:C.bgDeep,borderRadius:10,border:`1px solid ${C.border}`}}>
-                            <div style={{fontSize:18,textAlign:"center"}}>{p.icon}</div>
-                            <div>
-                              <div style={{fontSize:12,color:C.textMid,marginBottom:2}}>{p.claim}</div>
-                              <div style={{fontSize:13,color:C.text,lineHeight:1.6}}>{p.detail}</div>
-                            </div>
-                            <span style={{fontSize:11,fontWeight:700,padding:"3px 10px",borderRadius:16,background:`${p.color}18`,color:p.color,border:`1px solid ${p.color}40`,whiteSpace:"nowrap"}}>
-                              {p.verdict}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                      <div style={{marginTop:12,fontSize:11,color:C.textLight,lineHeight:1.7,padding:"9px 13px",background:C.bgDeep,borderRadius:8}}>
-                        ⚠️ Analiz INCI sıralaması ve bileşen profillerine dayanır. Kesin konsantrasyonlar bilinmeden formülün tam etkinliği garanti edilemez.
-                      </div>
-                    </div>
-                  );
-                })()}
-
-                {/* Footer */}
-                <div style={{marginTop:24,paddingTop:18,borderTop:`1px solid ${C.border}`,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
+            {compareA.results && compareB.results && (
+              <div className="bubble-card" style={{ padding: 16, textAlign: "center" }}>
+                <h4 style={{ fontFamily: "'Fredoka', sans-serif" }}>Kıyaslama Skoru</h4>
+                <div style={{ display: "flex", marginTop: 12, justifyContent: "space-around" }}>
                   <div>
-                    <div style={{...serif,fontSize:14,fontWeight:600,color:C.text}}>Dr. Bengi Su Ege</div>
-                    <div style={{fontSize:11,color:C.textLight}}>Genel bilgi amaçlıdır · Tıbbi tavsiye değildir</div>
+                    <div style={{ fontSize: 12, color: C.textMid }}>Ürün A</div>
+                    <div style={{ fontSize: 24, fontWeight: 700, color: C.purple }}>{calcScore(compareA.results)}</div>
                   </div>
-                  <button onClick={()=>setShowDisclaimer(true)} style={{fontSize:12,color:C.gold,background:C.goldDim,border:`1px solid ${C.goldBorder}`,padding:"6px 14px",borderRadius:8,cursor:"pointer"}}>Yasal Uyarılar</button>
+                  <div>
+                    <div style={{ fontSize: 12, color: C.textMid }}>Ürün B</div>
+                    <div style={{ fontSize: 24, fontWeight: 700, color: C.gold }}>{calcScore(compareB.results)}</div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         )}
 
-        {/* ── COMPARE ── */}
-        {mode==="compare"&&(
-          <div className="fade">
-            <div style={{marginBottom:20}}>
-              <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:6}}>Ürün Karşılaştırma</div>
-              <p style={{color:C.textMid,fontSize:14}}>İki ürünü yan yana analiz et. Skor, bileşen profili ve çakışmaları karşılaştır.</p>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:24}}>
-              {[["A",compareA,setCompareA],[" B",compareB,setCompareB]].map(([label,state,setState])=>(
-                <div key={label} style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:18}}>
-                  <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:12}}>Ürün {label}</div>
-                  <ProductSearch q={state.productQ} setQ={q=>setState(s=>({...s,productQ:q}))}
-                    suggs={state.productSuggs} setSuggs={ss=>setState(s=>({...s,productSuggs:ss}))}
-                    onSearch={q=>searchProducts(q,ss=>setState(s=>({...s,productSuggs:ss})))}
-                    onSelect={p=>{const r=parseIngredients(p.ingredients);setState(s=>({...s,input:p.ingredients,results:r,productQ:p.name,productSuggs:[]}));}}
-                    small ghStatus={ghStatus}/>
-                  <div style={{margin:"10px 0",height:1,background:C.border}}/>
-                  <textarea className="input-field" value={state.input} onChange={e=>{const v=e.target.value;setState(s=>({...s,input:v}));}} placeholder="veya INCI yapıştır..." rows={3} style={{fontSize:13}}/>
-                  <button className="btn" onClick={()=>{const r=parseIngredients(state.input);setState(s=>({...s,results:r}));}} disabled={!state.input.trim()}
-                    style={{marginTop:10,width:"100%",padding:11,background:state.input.trim()?`linear-gradient(135deg,${C.purple},${C.gold})`:C.border,borderRadius:8,color:state.input.trim()?"#fff":C.textLight,fontSize:13,fontWeight:600}}>
-                    Analiz Et
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            {compareA.results&&compareB.results&&(
-              <div className="fade">
-                {/* Score comparison */}
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:16}}>
-                  {[[compareA,"A",compareConflictsA],[compareB,"B",compareConflictsB]].map(([state,label,cfls])=>{
-                    const sc=calcScore(state.results);
-                    const col=sc>=80?C.safe:sc>=60?C.caution:C.risky;
-                    const bdg=BADGE_DEFS2.filter(b=>b.check(state.results));
-                    return(
-                      <div key={label} style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:20}}>
-                        <div style={{fontSize:11,letterSpacing:2,color:C.gold,textTransform:"uppercase",marginBottom:4}}>Ürün {label}</div>
-                        <div style={{fontSize:12,color:C.textMid,marginBottom:12,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{state.productQ||"Manuel giriş"}</div>
-                        <div style={{...serif,fontSize:40,fontWeight:700,color:col,lineHeight:1,marginBottom:8}}>{sc}<span style={{fontSize:16,color:C.textLight}}>/100</span></div>
-                        <div style={{height:3,borderRadius:2,background:C.border,marginBottom:10}}>
-                          <div style={{height:"100%",width:`${sc}%`,borderRadius:2,background:col,boxShadow:`0 0 6px ${col}60`}}/>
-                        </div>
-                        <div style={{display:"flex",gap:4,flexWrap:"wrap",marginBottom:bdg.length?10:0}}>
-                          {bdg.slice(0,3).map(b=><span key={b.id} style={{fontSize:10,padding:"2px 8px",borderRadius:12,background:C.goldDim,color:C.goldLight,border:`1px solid ${C.goldBorder}`}}>{b.icon} {b.label}</span>)}
-                        </div>
-                        {cfls.length>0&&(
-                          <div style={{padding:"8px 10px",background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:8,fontSize:12,color:C.risky}}>
-                            ⚡ {cfls.length} çakışma var
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Winner */}
-                {(()=>{
-                  const sA=calcScore(compareA.results), sB=calcScore(compareB.results);
-                  const cfA=compareConflictsA.length, cfB=compareConflictsB.length;
-                  const riskA=compareA.results.filter(r=>r.rating==="risky").length;
-                  const riskB=compareB.results.filter(r=>r.rating==="risky").length;
-                  const winner=sA>sB?"A":sB>sA?"B":null;
-                  return(
-                    <div style={{background:winner?C.goldDim:C.bgCard,border:`1px solid ${winner?C.goldBorder:C.border}`,borderRadius:14,padding:20,marginBottom:16,textAlign:"center"}}>
-                      <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:10}}>Karşılaştırma Sonucu</div>
-                      {winner?(
-                        <>
-                          <div style={{...serif,fontSize:28,fontWeight:700,color:C.goldLight,marginBottom:8}}>Ürün {winner} Öne Çıkıyor</div>
-                          <div style={{color:C.textMid,fontSize:14,lineHeight:1.7}}>
-                            Skor farkı: <strong style={{color:C.text}}>{Math.abs(sA-sB)} puan</strong>
-                            {cfA!==cfB&&<> · Çakışma: A={cfA}, B={cfB}</>}
-                            {riskA!==riskB&&<> · Riskli bileşen: A={riskA}, B={riskB}</>}
-                          </div>
-                        </>
-                      ):(
-                        <div style={{...serif,fontSize:22,fontWeight:600,color:C.textMid}}>Eşit Skor — Detaylara Bakın</div>
-                      )}
-                    </div>
-                  );
-                })()}
-
-                {/* Side-by-side ingredient diff */}
-                <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",marginBottom:12}}>
-                  <div style={{padding:"10px 18px",background:C.bgDeep,borderBottom:`1px solid ${C.border}`,fontSize:11,color:C.textLight,letterSpacing:2,textTransform:"uppercase"}}>Ortak & Farklı Bileşenler</div>
-                  {(()=>{
-                    const keysA=new Set(compareA.results.map(i=>i.tr));
-                    const keysB=new Set(compareB.results.map(i=>i.tr));
-                    const onlyA=[...keysA].filter(k=>!keysB.has(k)).slice(0,6);
-                    const onlyB=[...keysB].filter(k=>!keysA.has(k)).slice(0,6);
-                    const common=[...keysA].filter(k=>keysB.has(k)).slice(0,6);
-                    return(
-                      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",borderTop:`1px solid ${C.border}`}}>
-                        <div style={{padding:16,borderRight:`1px solid ${C.border}`}}>
-                          <div style={{fontSize:10,color:C.purple,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Sadece A'da</div>
-                          {onlyA.map(k=><div key={k} style={{fontSize:12,color:C.text,padding:"3px 0",borderBottom:`1px solid ${C.border}22`}}>{k}</div>)}
-                          {!onlyA.length&&<div style={{fontSize:12,color:C.textLight}}>—</div>}
-                        </div>
-                        <div style={{padding:16,borderRight:`1px solid ${C.border}`}}>
-                          <div style={{fontSize:10,color:C.gold,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Ortak</div>
-                          {common.map(k=><div key={k} style={{fontSize:12,color:C.textMid,padding:"3px 0",borderBottom:`1px solid ${C.border}22`}}>{k}</div>)}
-                          {!common.length&&<div style={{fontSize:12,color:C.textLight}}>—</div>}
-                        </div>
-                        <div style={{padding:16}}>
-                          <div style={{fontSize:10,color:C.purpleLight,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Sadece B'de</div>
-                          {onlyB.map(k=><div key={k} style={{fontSize:12,color:C.text,padding:"3px 0",borderBottom:`1px solid ${C.border}22`}}>{k}</div>)}
-                          {!onlyB.length&&<div style={{fontSize:12,color:C.textLight}}>—</div>}
-                        </div>
-                      </div>
-                    );
-                  })()}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-        {/* ── ROUTINE ── */}
-        {mode==="routine"&&(
-          <div className="fade">
-            <div style={{marginBottom:20}}>
-              <div style={{fontSize:11,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:6}}>🌅 Rutin Oluşturucu</div>
-              <p style={{color:C.textMid,fontSize:14,lineHeight:1.7}}>Kullandığın ürünleri ekle — sabah/akşam sırası otomatik oluşsun, çakışmalar gösterilsin.</p>
-            </div>
-
-            {/* Product adder */}
-            <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,padding:20,marginBottom:16}}>
-              <ProductSearch
-                q={routineQ} setQ={setRoutineQ}
-                suggs={routineSuggs} setSuggs={setRoutineSuggs}
-                onSearch={q=>searchProducts(q,s=>setRoutineSuggs(s))}
-                onSelect={p=>{
-                  if(routineProducts.find(rp=>rp.name===p.name)) return;
-                  setRoutineProducts(prev=>[...prev,{name:p.name,brand:p.brand,cat:p.cat||"",ingredients:p.ingredients,parsed:parseIngredients(p.ingredients)}]);
-                  setRoutineQ(""); setRoutineSuggs([]); setRoutineResult(null);
-                }}
-                ghStatus={ghStatus} totalCount={allProducts.length}/>
-
-              <div style={{margin:"12px 0",display:"flex",alignItems:"center",gap:8}}>
-                <div style={{flex:1,height:1,background:C.border}}/><span style={{color:C.textLight,fontSize:11}}>veya INCI yapıştır</span><div style={{flex:1,height:1,background:C.border}}/>
-              </div>
-
-              {/* Manual add */}
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-                <input value={manualName} onChange={e=>setManualName(e.target.value)} placeholder="Ürün adı" className="input-field" style={{fontSize:13,padding:"10px 12px"}}/>
-                <div style={{display:"flex",gap:8}}>
-                  <input value={manualIng} onChange={e=>setManualIng(e.target.value)} placeholder="Water, Glycerin, Retinol…" className="input-field" style={{fontSize:13,padding:"10px 12px",flex:1}}/>
-                  <button className="btn" onClick={()=>{
-                    if(!manualName.trim()||!manualIng.trim()) return;
-                    setRoutineProducts(prev=>[...prev,{name:manualName.trim(),brand:"",cat:"",ingredients:manualIng.trim(),parsed:parseIngredients(manualIng.trim())}]);
-                    setManualName(""); setManualIng(""); setRoutineResult(null);
-                  }} style={{padding:"10px 14px",background:`linear-gradient(135deg,${C.purple},${C.gold})`,borderRadius:10,color:"#fff",fontSize:13,fontWeight:600,whiteSpace:"nowrap",border:"none",cursor:"pointer",fontFamily:"'DM Sans',sans-serif"}}>
-                    + Ekle
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Product list */}
-            {routineProducts.length>0&&(
-              <div style={{background:C.bgCard,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",marginBottom:16}}>
-                <div style={{padding:"10px 18px",background:C.bgDeep,borderBottom:`1px solid ${C.border}`,fontSize:11,color:C.textLight,letterSpacing:2,textTransform:"uppercase"}}>
-                  Eklenen Ürünler ({routineProducts.length})
-                </div>
-                {routineProducts.map((p,i)=>(
-                  <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 18px",borderBottom:i<routineProducts.length-1?`1px solid ${C.border}`:"none"}}>
-                    <div style={{width:8,height:8,borderRadius:"50%",background:C.gold,flexShrink:0}}/>
-                    <div style={{flex:1}}>
-                      <div style={{fontSize:14,color:C.text,fontWeight:500}}>{p.name}</div>
-                      {p.brand&&<div style={{fontSize:11,color:C.gold}}>{p.brand}</div>}
-                    </div>
-                    <div style={{fontSize:11,color:C.textLight,background:C.bgDeep,padding:"3px 10px",borderRadius:10,border:`1px solid ${C.border}`}}>
-                      {guessTime(p)==="morning"?"🌅 Sabah":guessTime(p)==="evening"?"🌙 Akşam":"🌅🌙 Her İkisi"}
-                    </div>
-                    <button onClick={()=>{setRoutineProducts(prev=>prev.filter((_,j)=>j!==i));setRoutineResult(null);}}
-                      style={{background:"none",border:"none",color:C.risky,fontSize:18,cursor:"pointer",lineHeight:1}}>×</button>
-                  </div>
-                ))}
-                <div style={{padding:14,borderTop:`1px solid ${C.border}`}}>
-                  <button className="btn" onClick={buildRoutine}
-                    style={{width:"100%",padding:13,background:`linear-gradient(135deg,${C.purple},${C.gold})`,borderRadius:10,color:"#fff",fontSize:15,fontWeight:600}}>
-                    Rutini Oluştur →
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Routine Result */}
-            {routineResult&&(
-              <div className="fade">
-                {/* Conflicts */}
-                {routineResult.conflicts.length>0&&(
-                  <div style={{background:C.riskyDim,border:`1px solid ${C.riskyBorder}`,borderRadius:14,overflow:"hidden",marginBottom:14}}>
-                    <div style={{padding:"12px 18px",background:"rgba(232,80,96,0.1)",borderBottom:`1px solid ${C.riskyBorder}`,fontSize:11,letterSpacing:2,color:C.risky,textTransform:"uppercase"}}>
-                      ⚡ {routineResult.conflicts.length} Uyarı Tespit Edildi
-                    </div>
-                    {routineResult.conflicts.map((cf,i)=>(
-                      <div key={i} style={{padding:"13px 18px",borderBottom:i<routineResult.conflicts.length-1?`1px solid rgba(232,80,96,0.15)`:"none"}}>
-                        <div style={{display:"flex",gap:8,alignItems:"flex-start"}}>
-                          <span style={{fontSize:16,flexShrink:0}}>{cf.icon}</span>
-                          <div>
-                            <span style={{fontSize:11,padding:"2px 8px",borderRadius:10,background:cf.severity==="high"?C.riskyDim:C.cautionDim,color:cf.severity==="high"?C.risky:C.caution,border:`1px solid ${cf.severity==="high"?C.riskyBorder:C.cautionBorder}`,marginBottom:6,display:"inline-block"}}>
-                              {cf.severity==="high"?"Yüksek Risk":"Orta Risk"}
-                            </span>
-                            <div style={{fontSize:13,color:C.textMid,lineHeight:1.6,marginTop:4}}>{cf.msg}</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Morning & Evening side by side */}
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:14}}>
-                  {[
-                    {session:"morning",label:"🌅 Sabah Rutini",list:routineResult.morning,color:C.gold,dim:C.goldDim,border:C.goldBorder},
-                    {session:"evening",label:"🌙 Akşam Rutini",list:routineResult.evening,color:C.purpleLight,dim:C.purpleDim,border:`${C.purpleLight}40`},
-                  ].map(({label,list,color,dim,border})=>(
-                    <div key={label} style={{background:C.bgCard,border:`1px solid ${border}`,borderRadius:14,overflow:"hidden"}}>
-                      <div style={{padding:"12px 18px",background:dim,borderBottom:`1px solid ${border}`,fontSize:12,color,fontWeight:600,letterSpacing:1}}>
-                        {label}
-                      </div>
-                      {list.length===0?(
-                        <div style={{padding:"20px 18px",fontSize:13,color:C.textLight,textAlign:"center"}}>Bu seans için ürün yok</div>
-                      ):list.map((p,i)=>(
-                        <div key={i} style={{padding:"13px 18px",borderBottom:i<list.length-1?`1px solid ${C.border}`:"none"}}>
-                          <div style={{fontSize:10,color,letterSpacing:2,textTransform:"uppercase",marginBottom:4}}>
-                            {i+1}. {p.step}
-                          </div>
-                          <div style={{fontSize:14,color:C.text,fontWeight:500}}>{p.name}</div>
-                          {p.brand&&<div style={{fontSize:11,color:C.textLight,marginTop:1}}>{p.brand}</div>}
-                          {/* Active warnings inline */}
-                          <div style={{display:"flex",gap:4,flexWrap:"wrap",marginTop:6}}>
-                            {p.actives.retinoid&&<span style={{fontSize:9,padding:"1px 7px",borderRadius:8,background:C.purpleDim,color:C.purpleLight,border:`1px solid ${C.purpleLight}40`}}>Retinoid</span>}
-                            {(p.actives.aha||p.actives.bha)&&<span style={{fontSize:9,padding:"1px 7px",borderRadius:8,background:C.cautionDim,color:C.caution,border:`1px solid ${C.cautionBorder}`}}>Asit</span>}
-                            {p.actives.vitaminC&&<span style={{fontSize:9,padding:"1px 7px",borderRadius:8,background:C.safeDim,color:C.safe,border:`1px solid ${C.safeBorder}`}}>C Vit.</span>}
-                            {p.actives.niacinamide&&<span style={{fontSize:9,padding:"1px 7px",borderRadius:8,background:`${C.purple}20`,color:C.purpleLight,border:`1px solid ${C.purple}40`}}>Niasinamid</span>}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+        
+        {mode === "quiz" && (
+          <div className="bubble-card fade" style={{ padding: 24, textAlign: "center" }}>
+            {!quizResult ? (
+              <div>
+                <span style={{ fontSize: 12, color: C.purple, fontWeight: 700 }}>Soru {quizStep + 1}</span>
+                <h3 style={{ fontFamily: "'Fredoka', sans-serif", margin: "8px 0 20px" }}>{QUIZ[quizStep].q}</h3>
+                <div style={{ display: "grid", gap: 8 }}>
+                  {QUIZ[quizStep].opts.map((opt, idx) => (
+                    <button key={idx} className="btn" onClick={() => answerQuiz(opt.t)} style={{ padding: 12, background: C.bgDeep, border: `1px solid ${C.border}`, color: C.text, fontWeight: 500, textAlign: "left" }}>{opt.l}</button>
                   ))}
                 </div>
+              </div>
+            ) : (
+              <div>
+                <div style={{ fontSize: 48 }}>{SKIN_REC[quizResult]?.emoji}</div>
+                <h2 style={{ fontFamily: "'Fredoka', sans-serif", color: C.text }}>{SKIN_REC[quizResult]?.label}</h2>
+                <p style={{ color: C.textMid, fontSize: 14, margin: "8px 0 16px" }}>{SKIN_REC[quizResult]?.desc}</p>
+                <button className="btn" onClick={() => { setQuizStep(0); setQuizAnswers([]); setQuizResult(null); }} style={{ padding: "8px 16px", background: C.purple, color: "#fff" }}>Testi Sıfırla</button>
+              </div>
+            )}
+          </div>
+        )}
 
-                {/* Tips */}
-                {routineResult.tips.length>0&&(
-                  <div style={{background:C.goldDim,border:`1px solid ${C.goldBorder}`,borderRadius:14,padding:20,marginBottom:14}}>
-                    <div style={{fontSize:11,color:C.gold,letterSpacing:3,textTransform:"uppercase",marginBottom:12}}>Uzman İpuçları</div>
-                    <div style={{display:"flex",flexDirection:"column",gap:10}}>
-                      {routineResult.tips.map((t,i)=>(
-                        <div key={i} style={{fontSize:13,color:C.text,lineHeight:1.7,paddingLeft:16,borderLeft:`2px solid ${C.gold}`,display:"flex",gap:0}}>{t}</div>
-                      ))}
-                    </div>
+        
+        {mode === "routine" && (
+          <div className="fade">
+            <div className="bubble-card" style={{ padding: 20, marginBottom: 16 }}>
+              <ProductSearch q="{routineQ}" setQ="{setRoutineQ}" suggs="{routineSuggs}" setSuggs="{setRoutineSuggs}" onSearch="{q"> searchProducts(q, setRoutineSuggs)} onSelect={p => { setRoutineProducts([...routineProducts, { name: p.name, brand: p.brand, ingredients: p.ingredients, parsed: parseIngredients(p.ingredients) }]); setRoutineQ(""); setRoutineSuggs([]); }} ghStatus={ghStatus} totalCount={allProducts.length} />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 12 }}>
+                <input value={manualName} onChange={e => setManualName(e.target.value)} placeholder="Ürün ismi..." className="input-field" style={{ fontSize: 13 }} />
+                <div style={{ display: "flex", gap: 6 }}>
+                  <input value={manualIng} onChange={e => setManualIng(e.target.value)} placeholder="INCI listesi..." className="input-field" style={{ fontSize: 13, flex: 1 }} />
+                  <button className="btn" onClick={() => { if (!manualName.trim() || !manualIng.trim()) return; setRoutineProducts([...routineProducts, { name: manualName, brand: "", ingredients: manualIng, parsed: parseIngredients(manualIng) }]); setManualName(""); setManualIng(""); }} style={{ background: C.purple, color: "#fff", padding: "0 14px", fontWeight: 600 }}>+</button>
+                </div>
+              </div>
+            </div>
+
+            {routineProducts.length > 0 && (
+              <div className="bubble-card" style={{ padding: 16, marginBottom: 16 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: C.textMid, marginBottom: 8 }}>Eklenen Ürünler ({routineProducts.length})</div>
+                {routineProducts.map((p, idx) => (
+                  <div key={idx} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: `1px solid ${C.purpleDim}`, fontSize: 13 }}>
+                    <span>🌸 <strong>{p.name}</strong></span>
+                    <button onClick={() => setRoutineProducts(routineProducts.filter((_, j) => j !== idx))} style={{ background: "none", border: "none", color: C.risky, cursor: "pointer", fontWeight: 700 }}>Sil</button>
                   </div>
-                )}
+                ))}
+                <button className="btn" onClick={buildRoutine} style={{ width: "100%", padding: 12, background: C.purple, color: "#fff", fontWeight: 600, marginTop: 12 }}>Rutin Sıralamasını Çıkar →</button>
+              </div>
+            )}
 
-                {/* No conflicts message */}
-                {routineResult.conflicts.length===0&&(
-                  <div style={{background:C.safeDim,border:`1px solid ${C.safeBorder}`,borderRadius:12,padding:"14px 18px",marginBottom:14,fontSize:13,color:C.safe}}>
-                    ✓ Seçili ürünler arasında bilinen çakışma tespit edilmedi.
-                  </div>
-                )}
-
-                <div style={{paddingTop:16,borderTop:`1px solid ${C.border}`,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
-                  <div style={{fontSize:11,color:C.textLight}}>Sıralama ürün adı ve içeriğe göre tahmin edilir · Gerekirse elle düzenleyin</div>
-                  <button onClick={()=>setShowDisclaimer(true)} style={{fontSize:11,color:C.gold,background:C.goldDim,border:`1px solid ${C.goldBorder}`,padding:"5px 12px",borderRadius:8,cursor:"pointer"}}>Yasal Uyarılar</button>
+            {routineResult && (
+              <div className="display-routine" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="bubble-card" style={{ padding: 14 }}>
+                  <div style={{ fontWeight: 700, color: C.gold, marginBottom: 6 }}>🌅 Sabah</div>
+                  {routineResult.morning.map((p, i) => <div key={i} style={{ fontSize: 13, marginBottom: 4 }}>{i+1}. {p.step} - {p.name}</div>)}
+                </div>
+                <div className="bubble-card" style={{ padding: 14 }}>
+                  <div style={{ fontWeight: 700, color: C.purple, marginBottom: 6 }}>🌙 Akşam</div>
+                  {routineResult.evening.map((p, i) => <div key={i} style={{ fontSize: 13, marginBottom: 4 }}>{i+1}. {p.step} - {p.name}</div>)}
                 </div>
               </div>
             )}
           </div>
         )}
+
       </div>
     </div>
   );
 }
 
 // ─── PRODUCT SEARCH COMPONENT ─────────────────────────────────────────────────
-function ProductSearch({q,setQ,suggs,setSuggs,onSearch,onSelect,small,ghStatus,totalCount}){
-  const C2={bgDeep:"#0a0812",border:"#2d2250",text:"#ede8ff",textLight:"#5a4d80",gold:"#c9993a",goldDim:"#3a2a0a",goldBorder:"#c9993a50",purpleDim:"#2a1f4a",bgCard:"#16112a",safe:"#4ec994",safeDim:"#0d2e1e",safeBorder:"#1d5c3a",caution:"#e8a830",cautionDim:"#2e1e04"};
-  return(
-    <div style={{position:"relative"}}>
-      <div style={{marginBottom:6,display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-        <span style={{fontSize:11,color:C2.textLight,letterSpacing:1}}>
-          {small?"Ürün ara":"İsim veya marka ile ara"}
-        </span>
-        {ghStatus==="loading"&&(
-          <span style={{fontSize:10,color:C2.caution,display:"flex",alignItems:"center",gap:4}}>
-            <span style={{display:"inline-block",width:8,height:8,borderRadius:"50%",border:`1.5px solid ${C2.caution}`,borderTopColor:"transparent",animation:"spin 0.7s linear infinite"}}/>
-            Veritabanı yükleniyor…
-          </span>
-        )}
-        {ghStatus==="ok"&&totalCount&&(
-          <span style={{fontSize:10,color:C2.safe}}>✓ {totalCount} ürün hazır</span>
-        )}
-        {ghStatus==="err"&&(
-          <span style={{fontSize:10,color:"#e85060"}}>⚠ Veritabanı yüklenemedi</span>
-        )}
+function ProductSearch({ q, setQ, suggs, setSuggs, onSearch, onSelect, small, ghStatus, totalCount }) {
+  const C2 = { bgDeep: "#FFFDFE", border: "#FAD0DC", text: "#4A373D", textLight: "#C2A6B0", gold: "#E5A93C", purpleDim: "#FFF0F3", bgCard: "#FFFFFF", safe: "#66BB6A", caution: "#FFA726" };
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4, fontSize: 12, fontWeight: 600, color: C2.textLight }}>
+        <span>{small ? "Ürünleri Filtrele" : "Veritabanından Hızlı Arama"}</span>
+        {ghStatus === "loading" && <span>Senkronize ediliyor...</span>}
+        {ghStatus === "ok" && totalCount && <span style={{ color: C2.safe }}>✓ {totalCount} Aktif Formül</span>}
       </div>
-      <div style={{position:"relative"}}>
-        <input value={q} onChange={e=>{setQ(e.target.value);onSearch(e.target.value);}}
-          placeholder={small?"Ürün ara...":"CeraVe, Cosrx, Anua, Farmasi, The Ordinary..."}
-          style={{width:"100%",background:C2.bgDeep,border:`1px solid ${C2.border}`,borderRadius:10,padding:`${small?"10px":"13px"} 38px ${small?"10px":"13px"} 14px`,color:C2.text,fontSize:small?13:15,outline:"none",fontFamily:"'DM Sans',sans-serif",transition:"border-color 0.2s"}}
-          onFocus={e=>e.target.style.borderColor=C2.gold} onBlur={e=>setTimeout(()=>{e.target.style.borderColor=C2.border;},200)}/>
-        <span style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",fontSize:14,opacity:0.4}}>🔍</span>
+      <div style={{ position: "relative" }}>
+        <input value={q} onChange={e => { setQ(e.target.value); onSearch(e.target.value); }} placeholder={small ? "Ürün adı..." : "Marka veya ürün aratın (CeraVe, Anua, Cosrx...)"} style={{ width: "100%", background: C2.bgDeep, border: `2px solid ${C2.border}`, borderRadius: 12, padding: "10px 14px", color: C2.text, outline: "none", fontFamily: "'Quicksand', sans-serif" }} onFocus={e => e.target.style.borderColor = C2.gold} onBlur={e => setTimeout(() => e.target.style.borderColor = C2.border, 200)} />
       </div>
-      {suggs.length>0&&(
-        <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:C2.bgCard,border:`1px solid ${C2.goldBorder}`,borderRadius:12,overflow:"hidden",zIndex:30,boxShadow:"0 12px 40px rgba(0,0,0,0.5)",maxHeight:300,overflowY:"auto"}}>
-          {suggs.map((p,i)=>(
-            <div key={i} onMouseDown={()=>onSelect(p)}
-              style={{padding:"10px 14px",cursor:"pointer",borderBottom:i<suggs.length-1?`1px solid ${C2.border}`:"none"}}
-              onMouseEnter={e=>e.currentTarget.style.background=C2.purpleDim}
-              onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-              <div style={{fontSize:13,color:C2.text,fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>{p.name}</div>
-              <div style={{fontSize:11,color:C2.gold,fontFamily:"'DM Sans',sans-serif",marginTop:2}}>{p.brand}{p.cat?" · "+p.cat:""}</div>
+      {suggs.length > 0 && (
+        <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: C2.bgCard, border: `2px solid ${C2.border}`, borderRadius: 12, overflow: "hidden", zIndex: 110, boxShadow: "0 8px 24px rgba(74,55,61,0.08)" }}>
+          {suggs.map((p, i) => (
+            <div key={i} onMouseDown={() => onSelect(p)} style={{ padding: "10px 14px", cursor: "pointer", borderBottom: i < suggs.length - 1 ? `1px solid ${C2.purpleDim}` : "none", fontSize: 13, color: C2.text, fontWeight: 600 }} onMouseEnter={e => e.currentTarget.style.background = C2.purpleDim} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+              {p.name} <span style={{ fontSize: 11, color: C2.gold, display: "block" }}>{p.brand}</span>
             </div>
           ))}
         </div>
